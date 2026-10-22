@@ -1,0 +1,2 @@
+# DND_5z_Building_Tool
+基于通用AI开发的DND私设5z规则下构筑求解以及评分工具
