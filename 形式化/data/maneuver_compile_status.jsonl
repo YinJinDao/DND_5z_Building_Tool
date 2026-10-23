@@ -6,15 +6,19 @@
 {"id": "mv.开山流.中级.玄武势", "name": "玄武势", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.开山流.中级.求生本能", "name": "求生本能", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.开山流.高级.共工槌", "name": "共工槌", "status": "needs_ruling", "reason": "伤害为公式而非骰式，需专用表达式", "source": "compiler"}
+{"id": "mv.开山流.高级.剑刃风暴", "name": "剑刃风暴", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.开山流.高级.力劈华山", "name": "力劈华山", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.高级.威力满溢", "name": "威力满溢", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.开山流.高级.长城", "name": "长城", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.超级.无敌", "name": "无敌", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.游龙流.低级.忍者落杀", "name": "忍者落杀", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
+{"id": "mv.游龙流.低级.虚晃一招", "name": "虚晃一招", "status": "needs_ruling", "reason": "依赖对抗检定，结果分布未建模", "source": "compiler"}
 {"id": "mv.游龙流.低级.守株待兔", "name": "守株待兔", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
+{"id": "mv.游龙流.低级.伪装破绽", "name": "伪装破绽", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.游龙流.中级.抱身投", "name": "抱身投", "status": "needs_ruling", "reason": "依赖对抗检定，结果分布未建模", "source": "compiler"}
 {"id": "mv.游龙流.中级.九死离魂", "name": "九死离魂", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.游龙流.高级.叹为观止", "name": "叹为观止", "status": "needs_ruling", "reason": "依赖对抗检定，结果分布未建模", "source": "compiler"}
+{"id": "mv.游龙流.高级.亢龙有悔", "name": "亢龙有悔", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.游龙流.超级.百川归海", "name": "百川归海", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.摘星流.低级.踢盾", "name": "踢盾", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.摘星流.低级.斩钢闪", "name": "斩钢闪", "status": "needs_ruling", "reason": "伤害作用于线/区域上的其它生物，不是被攻击目标", "source": "compiler"}
@@ -49,6 +53,7 @@
 {"id": "mv.混元流.高级.元素傀儡", "name": "元素傀儡", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.混元流.高级.碎刃", "name": "碎刃", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.超级.闪电旋风劈", "name": "闪电旋风劈", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "mv.神机流.低级.击虚", "name": "击虚", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "mv.神机流.低级.指挥官奇袭", "name": "指挥官奇袭", "status": "needs_ruling", "reason": "伤害来自友方的攻击，不属于本人输出", "source": "compiler"}
 {"id": "mv.神机流.低级.回马枪", "name": "回马枪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.神机流.中级.合击", "name": "合击", "status": "needs_ruling", "reason": "以夹击为前提，打桩契约默认不成立", "source": "compiler"}

@@ -23,11 +23,18 @@ import sys
 SIGNALS = {
     "damage":  (r"伤害", r"\d+d\d+", r"易伤", r"免疫", r"抗性", r"吸收", r"生命值"),
     "hit":     (r"命中", r"攻击检定", r"优势", r"劣势", r"重击", r"失手"),
-    "economy": (r"附赠动作", r"反应", r"攻击次数", r"额外攻击", r"替换", r"多重攻击"),
+    "economy": (r"附赠动作", r"反应", r"替换"),
     "resource": (r"卓越骰", r"术法点", r"法术位", r"每日", r"长休", r"短休", r"次数"),
     "move":    (r"移动", r"冲锋", r"骑乘", r"速度", r"触及", r"射程", r"距离"),
+    # 伤害乘数：改变攻击次数或命中层数，效果是**乘性**的，不是加性的。
+    # 早期把它归进 economy/hit 各计 2 分，导致「额外攻击」「鲁莽攻击」这类
+    # 核心特性被判 C 档——它们是伤害链路里权重最高的一类。
+    "multiplier": (r"攻击次数", r"额外攻击", r"多重攻击",
+                   r"攻击[^。]{0,15}优势", r"近战武器攻击具有优势",
+                   r"每回合[^。]{0,8}次(武器)?攻击"),
 }
-WEIGHT = {"damage": 3, "hit": 2, "economy": 2, "resource": 1, "move": 1}
+WEIGHT = {"damage": 3, "hit": 2, "economy": 2, "resource": 1, "move": 1,
+          "multiplier": 4}
 DICE_RE = re.compile(r"\d+d\d+")
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -54,6 +61,9 @@ def score(text):
 
 
 def tier(total, hits):
+    # 伤害乘数单独即可定 A：攻击次数翻倍、命中层数提升，其影响大于任何加值
+    if "multiplier" in hits:
+        return "A"
     if total >= 6 and "damage" in hits:
         return "A"
     if total >= 3:

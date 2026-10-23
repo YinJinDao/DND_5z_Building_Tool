@@ -34,7 +34,7 @@
 {"id": "mv.开山流.高级.震山", "kind": "maneuver", "name": "震山", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.开山流.高级.英雄登场", "kind": "maneuver", "name": "英雄登场", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.开山流.高级.共工槌", "kind": "maneuver", "name": "共工槌", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "mv.开山流.高级.剑刃风暴", "kind": "maneuver", "name": "剑刃风暴", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
+{"id": "mv.开山流.高级.剑刃风暴", "kind": "maneuver", "name": "剑刃风暴", "score": 8, "tier": "A", "signals": ["economy", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.开山流.高级.力劈华山", "kind": "maneuver", "name": "力劈华山", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.开山流.高级.威力满溢", "kind": "maneuver", "name": "威力满溢", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.开山流.高级.轰天", "kind": "maneuver", "name": "轰天", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -55,12 +55,12 @@
 {"id": "mv.游龙流.低级.燕返", "kind": "maneuver", "name": "燕返", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "mv.游龙流.低级.绞脖", "kind": "maneuver", "name": "绞脖", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.游龙流.低级.滑铲", "kind": "maneuver", "name": "滑铲", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
-{"id": "mv.游龙流.低级.虚晃一招", "kind": "maneuver", "name": "虚晃一招", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
+{"id": "mv.游龙流.低级.虚晃一招", "kind": "maneuver", "name": "虚晃一招", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.游龙流.低级.后空翻", "kind": "maneuver", "name": "后空翻", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.游龙流.低级.四两拨千斤", "kind": "maneuver", "name": "四两拨千斤", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
-{"id": "mv.游龙流.低级.守株待兔", "kind": "maneuver", "name": "守株待兔", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.游龙流.低级.守株待兔", "kind": "maneuver", "name": "守株待兔", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.游龙流.低级.翻滚", "kind": "maneuver", "name": "翻滚", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "mv.游龙流.低级.伪装破绽", "kind": "maneuver", "name": "伪装破绽", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.游龙流.低级.伪装破绽", "kind": "maneuver", "name": "伪装破绽", "score": 10, "tier": "A", "signals": ["economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.游龙流.低级.流光", "kind": "maneuver", "name": "流光", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.游龙流.中级.一字电剑", "kind": "maneuver", "name": "一字电剑", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.游龙流.中级.抱身投", "kind": "maneuver", "name": "抱身投", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -92,7 +92,7 @@
 {"id": "mv.游龙流.高级.罗生门", "kind": "maneuver", "name": "罗生门", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.游龙流.高级.百彩青髓蛊", "kind": "maneuver", "name": "百彩青髓蛊", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "mv.游龙流.高级.镜花水月", "kind": "maneuver", "name": "镜花水月", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "mv.游龙流.高级.亢龙有悔", "kind": "maneuver", "name": "亢龙有悔", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "mv.游龙流.高级.亢龙有悔", "kind": "maneuver", "name": "亢龙有悔", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "mv.游龙流.高级.柳絮随风", "kind": "maneuver", "name": "柳絮随风", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "mv.游龙流.高级.斗转星移", "kind": "maneuver", "name": "斗转星移", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "mv.游龙流.高级.和光同尘", "kind": "maneuver", "name": "和光同尘", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -109,7 +109,7 @@
 {"id": "mv.摘星流.低级.士之怒", "kind": "maneuver", "name": "士之怒", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "mv.摘星流.低级.影拔", "kind": "maneuver", "name": "影拔", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.摘星流.低级.全力以赴", "kind": "maneuver", "name": "全力以赴", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
-{"id": "mv.摘星流.低级.归真", "kind": "maneuver", "name": "归真", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
+{"id": "mv.摘星流.低级.归真", "kind": "maneuver", "name": "归真", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.摘星流.低级.剑刃障壁", "kind": "maneuver", "name": "剑刃障壁", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "mv.摘星流.低级.困兽犹斗", "kind": "maneuver", "name": "困兽犹斗", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.摘星流.低级.夺魁", "kind": "maneuver", "name": "夺魁", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
@@ -147,7 +147,7 @@
 {"id": "mv.摘星流.低级.月见酒", "kind": "maneuver", "name": "月见酒", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.摘星流.中级.樱上幕", "kind": "maneuver", "name": "樱上幕", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "mv.摘星流.高级.猪鹿蝶", "kind": "maneuver", "name": "猪鹿蝶", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "mv.摘星流.超级.刹那一刀·苦夜叉", "kind": "maneuver", "name": "刹那一刀·苦夜叉", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "mv.摘星流.超级.刹那一刀·苦夜叉", "kind": "maneuver", "name": "刹那一刀·苦夜叉", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "mv.混元流.低级.砖袭", "kind": "maneuver", "name": "砖袭", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.混元流.低级.焰之蛇", "kind": "maneuver", "name": "焰之蛇", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "mv.混元流.低级.锈蚀爪", "kind": "maneuver", "name": "锈蚀爪", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
@@ -192,9 +192,9 @@
 {"id": "mv.混元流.高级.微尘潜能", "kind": "maneuver", "name": "微尘潜能", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
 {"id": "mv.混元流.高级.晴雨", "kind": "maneuver", "name": "晴雨", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.混元流.高级.翻江倒海", "kind": "maneuver", "name": "翻江倒海", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
-{"id": "mv.混元流.高级.巴之雷", "kind": "maneuver", "name": "巴之雷", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "mv.混元流.高级.巴之雷", "kind": "maneuver", "name": "巴之雷", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.混元流.高级.取色笔", "kind": "maneuver", "name": "取色笔", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "mv.混元流.高级.雷锁连携", "kind": "maneuver", "name": "雷锁连携", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.混元流.高级.雷锁连携", "kind": "maneuver", "name": "雷锁连携", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.混元流.高级.遁术", "kind": "maneuver", "name": "遁术", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.混元流.高级.气凝", "kind": "maneuver", "name": "气凝", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "mv.混元流.高级.元素傀儡", "kind": "maneuver", "name": "元素傀儡", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
@@ -212,7 +212,7 @@
 {"id": "mv.混元流.超级.黑域", "kind": "maneuver", "name": "黑域", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "mv.混元流.超级.铁心之意", "kind": "maneuver", "name": "铁心之意", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.神机流.低级.光导剑", "kind": "maneuver", "name": "光导剑", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
-{"id": "mv.神机流.低级.击虚", "kind": "maneuver", "name": "击虚", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "mv.神机流.低级.击虚", "kind": "maneuver", "name": "击虚", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "mv.神机流.低级.指挥官奇袭", "kind": "maneuver", "name": "指挥官奇袭", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
 {"id": "mv.神机流.低级.扰乱攻击", "kind": "maneuver", "name": "扰乱攻击", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "mv.神机流.低级.回马枪", "kind": "maneuver", "name": "回马枪", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
@@ -244,7 +244,7 @@
 {"id": "mv.神机流.高级.确立标靶", "kind": "maneuver", "name": "确立标靶", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "mv.神机流.高级.穿刺骷髅", "kind": "maneuver", "name": "穿刺骷髅", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.神机流.高级.逐客令", "kind": "maneuver", "name": "逐客令", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
-{"id": "mv.神机流.高级.声东击西", "kind": "maneuver", "name": "声东击西", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.神机流.高级.声东击西", "kind": "maneuver", "name": "声东击西", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "mv.神机流.高级.团战之歌", "kind": "maneuver", "name": "团战之歌", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.神机流.高级.视觉链接", "kind": "maneuver", "name": "视觉链接", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.神机流.高级.放权", "kind": "maneuver", "name": "放权", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
@@ -258,27 +258,27 @@
 {"id": "mv.神机流.超级.薪尽火传", "kind": "maneuver", "name": "薪尽火传", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.圣武士.神圣感知", "kind": "class_feature", "name": "神圣感知", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.圣武士.圣疗", "kind": "class_feature", "name": "圣疗", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
-{"id": "cf.圣武士.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
+{"id": "cf.圣武士.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 14, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
 {"id": "cf.圣武士.守护圣印", "kind": "class_feature", "name": "守护圣印", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "cf.圣武士.引导神力", "kind": "class_feature", "name": "引导神力", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "cf.圣武士.神佑", "kind": "class_feature", "name": "神佑", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.圣武士.圣印枷锁", "kind": "class_feature", "name": "圣印枷锁", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "cf.圣武士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.圣武士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.圣武士.守护灵光", "kind": "class_feature", "name": "守护灵光", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.勇气灵光", "kind": "class_feature", "name": "勇气灵光", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.光耀打击", "kind": "class_feature", "name": "光耀打击", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.圣武士.额外专长", "kind": "class_feature", "name": "额外专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.圣武士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.圣武士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.圣武士.净化之触", "kind": "class_feature", "name": "净化之触", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.公理之躯", "kind": "class_feature", "name": "公理之躯", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
-{"id": "cf.圣武士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.圣武士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.圣武士.圣印追击", "kind": "class_feature", "name": "圣印追击", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.至高圣武士", "kind": "class_feature", "name": "至高圣武士", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.偏转灵光", "kind": "class_feature", "name": "偏转灵光", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.圣武士.救赎之舞", "kind": "class_feature", "name": "救赎之舞", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "cf.圣武士.仁慈之剑", "kind": "class_feature", "name": "仁慈之剑", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "cf.圣武士.仁慈之弯月", "kind": "class_feature", "name": "仁慈之弯月", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "cf.圣武士.雪恨", "kind": "class_feature", "name": "雪恨", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "cf.圣武士.雪恨", "kind": "class_feature", "name": "雪恨", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "cf.圣武士.无私祷告", "kind": "class_feature", "name": "无私祷告", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.圣武士.亵渎感知", "kind": "class_feature", "name": "亵渎感知", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.圣武士.毒击", "kind": "class_feature", "name": "毒击", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
@@ -337,11 +337,11 @@
 {"id": "cf.奇械师.荷蒙库鲁兹Homunculus", "kind": "class_feature", "name": "荷蒙库鲁兹Homunculus", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "cf.奇械师.枪手", "kind": "class_feature", "name": "枪手", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.奇械师.魔能子弹", "kind": "class_feature", "name": "魔能子弹", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.奇械师.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "cf.奇械师.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.奇械师.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
+{"id": "cf.奇械师.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.奇械师.子弹式压缩球", "kind": "class_feature", "name": "子弹式压缩球", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.奇械师.替换肢体", "kind": "class_feature", "name": "替换肢体", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "cf.奇械师.多重攻击", "kind": "class_feature", "name": "多重攻击", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
+{"id": "cf.奇械师.多重攻击", "kind": "class_feature", "name": "多重攻击", "score": 5, "tier": "A", "signals": ["multiplier", "resource"], "status": "screened"}
 {"id": "cf.奇械师.替换外皮", "kind": "class_feature", "name": "替换外皮", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "cf.奇械师.替换内脏", "kind": "class_feature", "name": "替换内脏", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
 {"id": "cf.奇械师.替换头颅", "kind": "class_feature", "name": "替换头颅", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
@@ -356,7 +356,7 @@
 {"id": "cf.奇械师.装甲零件", "kind": "class_feature", "name": "装甲零件", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.奇械师.扩展零件插槽", "kind": "class_feature", "name": "扩展零件插槽", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.奇械师.备用零件库", "kind": "class_feature", "name": "备用零件库", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "cf.奇械师.完美装甲", "kind": "class_feature", "name": "完美装甲", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.奇械师.完美装甲", "kind": "class_feature", "name": "完美装甲", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.奇械师.试验用魔杖", "kind": "class_feature", "name": "试验用魔杖", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.奇械师.声光冲击", "kind": "class_feature", "name": "声光冲击", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.奇械师.二重火花", "kind": "class_feature", "name": "二重火花", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
@@ -397,7 +397,7 @@
 {"id": "cf.武僧.佛门术法", "kind": "class_feature", "name": "佛门术法", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.武僧.伏魔狱", "kind": "class_feature", "name": "伏魔狱", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.驭气以击", "kind": "class_feature", "name": "驭气以击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "cf.武僧.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.武僧.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.武僧.震慑拳", "kind": "class_feature", "name": "震慑拳", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.武僧.罗汉金身", "kind": "class_feature", "name": "罗汉金身", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.反射闪避", "kind": "class_feature", "name": "反射闪避", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -406,13 +406,13 @@
 {"id": "cf.武僧.百病不侵", "kind": "class_feature", "name": "百病不侵", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.明王怒相", "kind": "class_feature", "name": "明王怒相", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.武僧.额外专长", "kind": "class_feature", "name": "额外专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.武僧.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.武僧.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.武僧.慧海气藏", "kind": "class_feature", "name": "慧海气藏", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.武僧.天语通", "kind": "class_feature", "name": "天语通", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "cf.武僧.心识", "kind": "class_feature", "name": "心识", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
 {"id": "cf.武僧.菩提觉悟", "kind": "class_feature", "name": "菩提觉悟", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "cf.武僧.应缘而击", "kind": "class_feature", "name": "应缘而击", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
-{"id": "cf.武僧.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.武僧.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.武僧.万法归宗", "kind": "class_feature", "name": "万法归宗", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.武僧.六道业火", "kind": "class_feature", "name": "六道业火", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "cf.武僧.十方法界", "kind": "class_feature", "name": "十方法界", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -426,9 +426,9 @@
 {"id": "cf.武僧.龙岛厨艺", "kind": "class_feature", "name": "龙岛厨艺", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.武僧.龙岛戒律", "kind": "class_feature", "name": "龙岛戒律", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "cf.武僧.龙岛忠仆", "kind": "class_feature", "name": "龙岛忠仆", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.武僧.龙岛秘传", "kind": "class_feature", "name": "龙岛秘传", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "cf.武僧.龙岛秘传", "kind": "class_feature", "name": "龙岛秘传", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.武僧.武林绝学", "kind": "class_feature", "name": "武林绝学", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "cf.武僧.真气属性", "kind": "class_feature", "name": "真气属性", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "cf.武僧.真气属性", "kind": "class_feature", "name": "真气属性", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.武僧.轻身坠", "kind": "class_feature", "name": "轻身坠", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
 {"id": "cf.武僧.临阵顿悟", "kind": "class_feature", "name": "临阵顿悟", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.真气小成", "kind": "class_feature", "name": "真气小成", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
@@ -449,13 +449,13 @@
 {"id": "cf.武僧.火宗形态", "kind": "class_feature", "name": "火宗形态", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.武僧.灵动身法", "kind": "class_feature", "name": "灵动身法", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "cf.武僧.精通散打技巧", "kind": "class_feature", "name": "精通散打技巧", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "cf.武僧.阳光枪", "kind": "class_feature", "name": "阳光枪", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.武僧.阳光枪", "kind": "class_feature", "name": "阳光枪", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.武僧.奇迹祷告", "kind": "class_feature", "name": "奇迹祷告", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.武僧.余火重燃", "kind": "class_feature", "name": "余火重燃", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.金石之誓", "kind": "class_feature", "name": "金石之誓", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "cf.武僧.附赠熟练项", "kind": "class_feature", "name": "附赠熟练项", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.武僧.强化黑暗视觉", "kind": "class_feature", "name": "强化黑暗视觉", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.武僧.暗影技艺", "kind": "class_feature", "name": "暗影技艺", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.武僧.暗影技艺", "kind": "class_feature", "name": "暗影技艺", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.武僧.飞龙在天", "kind": "class_feature", "name": "飞龙在天", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.武僧.潜龙在渊", "kind": "class_feature", "name": "潜龙在渊", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.武僧.邪诡恶毒", "kind": "class_feature", "name": "邪诡恶毒", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
@@ -463,7 +463,7 @@
 {"id": "cf.武僧.天魔通", "kind": "class_feature", "name": "天魔通", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "cf.武僧.血童不死身", "kind": "class_feature", "name": "血童不死身", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.武僧.酒中仙", "kind": "class_feature", "name": "酒中仙", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "cf.武僧.醉拳法门", "kind": "class_feature", "name": "醉拳法门", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.武僧.醉拳法门", "kind": "class_feature", "name": "醉拳法门", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.法师.法术风格", "kind": "class_feature", "name": "法术风格", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.法师.奥术回想", "kind": "class_feature", "name": "奥术回想", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.法师.闪回记忆", "kind": "class_feature", "name": "闪回记忆", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
@@ -473,10 +473,10 @@
 {"id": "cf.法师.传道法师", "kind": "class_feature", "name": "传道法师", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.法师.抵御魔法", "kind": "class_feature", "name": "抵御魔法", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.法师.奥术融合", "kind": "class_feature", "name": "奥术融合", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
-{"id": "cf.法师.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.法师.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.法师.时间变幻", "kind": "class_feature", "name": "时间变幻", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.法师.时间旅行者", "kind": "class_feature", "name": "时间旅行者", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "cf.法师.凶兆猎犬", "kind": "class_feature", "name": "凶兆猎犬", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.法师.凶兆猎犬", "kind": "class_feature", "name": "凶兆猎犬", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.法师.原初魔力", "kind": "class_feature", "name": "原初魔力", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.法师.本能记忆", "kind": "class_feature", "name": "本能记忆", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.法师.生命方程式", "kind": "class_feature", "name": "生命方程式", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
@@ -491,22 +491,22 @@
 {"id": "cf.法师.夺取控制", "kind": "class_feature", "name": "夺取控制", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.法师.精通超魔", "kind": "class_feature", "name": "精通超魔", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.法师.信仰之跃", "kind": "class_feature", "name": "信仰之跃", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.游侠.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
+{"id": "cf.游侠.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
 {"id": "cf.游侠.怪物学识", "kind": "class_feature", "name": "怪物学识", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.游侠.瞄准猎物", "kind": "class_feature", "name": "瞄准猎物", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.游侠.引导神力", "kind": "class_feature", "name": "引导神力", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.游侠.无踪步", "kind": "class_feature", "name": "无踪步", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "cf.游侠.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.游侠.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.游侠.战术掩护", "kind": "class_feature", "name": "战术掩护", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.游侠.战斗专注", "kind": "class_feature", "name": "战斗专注", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.游侠.自然面纱", "kind": "class_feature", "name": "自然面纱", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.游侠.额外专长", "kind": "class_feature", "name": "额外专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.游侠.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.游侠.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.游侠.野性感官", "kind": "class_feature", "name": "野性感官", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.游侠.防守战术", "kind": "class_feature", "name": "防守战术", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.游侠.大地行者", "kind": "class_feature", "name": "大地行者", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "cf.游侠.天罗地网", "kind": "class_feature", "name": "天罗地网", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
-{"id": "cf.游侠.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.游侠.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.游侠.截灭众敌", "kind": "class_feature", "name": "截灭众敌", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "cf.游侠.超进化", "kind": "class_feature", "name": "超进化", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.游侠.情绪轮转", "kind": "class_feature", "name": "情绪轮转", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
@@ -514,32 +514,32 @@
 {"id": "cf.游侠.连绵之潮", "kind": "class_feature", "name": "连绵之潮", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.游侠.青草试炼", "kind": "class_feature", "name": "青草试炼", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.游侠.煎药", "kind": "class_feature", "name": "煎药", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "cf.游侠.审判", "kind": "class_feature", "name": "审判", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
+{"id": "cf.游侠.审判", "kind": "class_feature", "name": "审判", "score": 8, "tier": "A", "signals": ["hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.游侠.施法者克星", "kind": "class_feature", "name": "施法者克星", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
 {"id": "cf.游侠.否决之刃", "kind": "class_feature", "name": "否决之刃", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.游侠.猎杀时刻", "kind": "class_feature", "name": "猎杀时刻", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.游侠.位面战士", "kind": "class_feature", "name": "位面战士", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.游侠.位面战士", "kind": "class_feature", "name": "位面战士", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.游侠.魔射手学识", "kind": "class_feature", "name": "魔射手学识", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "cf.游侠.魔力射击", "kind": "class_feature", "name": "魔力射击", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
 {"id": "cf.游侠.森林射手", "kind": "class_feature", "name": "森林射手", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.游侠.预备射击", "kind": "class_feature", "name": "预备射击", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.游侠.灌法箭", "kind": "class_feature", "name": "灌法箭", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "cf.游侠.龙族赠礼", "kind": "class_feature", "name": "龙族赠礼", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.灵能武士.魂铸武器", "kind": "class_feature", "name": "魂铸武器", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.灵能武士.魂铸武器", "kind": "class_feature", "name": "魂铸武器", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.灵能武士.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
 {"id": "cf.灵能武士.探灵", "kind": "class_feature", "name": "探灵", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
-{"id": "cf.灵能武士.谋而后动", "kind": "class_feature", "name": "谋而后动", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
+{"id": "cf.灵能武士.谋而后动", "kind": "class_feature", "name": "谋而后动", "score": 8, "tier": "A", "signals": ["economy", "hit", "multiplier"], "status": "screened"}
 {"id": "cf.灵能武士.心路回馈", "kind": "class_feature", "name": "心路回馈", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.灵能武士.斩业", "kind": "class_feature", "name": "斩业", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.灵能武士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.灵能武士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.灵能武士.并行思维", "kind": "class_feature", "name": "并行思维", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.灵能武士.援驰", "kind": "class_feature", "name": "援驰", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.灵能武士.意念守护", "kind": "class_feature", "name": "意念守护", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.灵能武士.额外专长", "kind": "class_feature", "name": "额外专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.灵能武士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.灵能武士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.灵能武士.心墙", "kind": "class_feature", "name": "心墙", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.灵能武士.开源网络", "kind": "class_feature", "name": "开源网络", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "cf.灵能武士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.灵能武士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.灵能武士.代行希望", "kind": "class_feature", "name": "代行希望", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.灵能武士.灵容", "kind": "class_feature", "name": "灵容", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "cf.灵能武士.世界线", "kind": "class_feature", "name": "世界线", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
@@ -580,23 +580,23 @@
 {"id": "cf.灵能武士.撕裂心智", "kind": "class_feature", "name": "撕裂心智", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "cf.狂战士.狂暴", "kind": "class_feature", "name": "狂暴", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.狂战士.无甲防御", "kind": "class_feature", "name": "无甲防御", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
-{"id": "cf.狂战士.怒不可遏", "kind": "class_feature", "name": "怒不可遏", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "cf.狂战士.战斗风格", "kind": "class_feature", "name": "战斗风格", "score": 14, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
+{"id": "cf.狂战士.怒不可遏", "kind": "class_feature", "name": "怒不可遏", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "cf.狂战士.险境感知", "kind": "class_feature", "name": "险境感知", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.狂战士.原初学识", "kind": "class_feature", "name": "原初学识", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.鲁莽攻击", "kind": "class_feature", "name": "鲁莽攻击", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "cf.狂战士.鲁莽攻击", "kind": "class_feature", "name": "鲁莽攻击", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "cf.狂战士.快速移动", "kind": "class_feature", "name": "快速移动", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "cf.狂战士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.狂战士.额外攻击", "kind": "class_feature", "name": "额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.狂战士.野性直觉", "kind": "class_feature", "name": "野性直觉", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.狂战士.直觉猛扑", "kind": "class_feature", "name": "直觉猛扑", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "cf.狂战士.原初斗士", "kind": "class_feature", "name": "原初斗士", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.狂战士.哨卫之铭", "kind": "class_feature", "name": "哨卫之铭", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "cf.狂战士.额外专长", "kind": "class_feature", "name": "额外专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.狂战士.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.狂战士.坚韧狂暴", "kind": "class_feature", "name": "坚韧狂暴", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "cf.狂战士.狂暴之心", "kind": "class_feature", "name": "狂暴之心", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.狂战士.不屈勇武", "kind": "class_feature", "name": "不屈勇武", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.狂战士.非凡额外攻击", "kind": "class_feature", "name": "非凡额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.狂战士.陷阵之志", "kind": "class_feature", "name": "陷阵之志", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.狂战士.力战不息", "kind": "class_feature", "name": "力战不息", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.狂战士.圣树活力", "kind": "class_feature", "name": "圣树活力", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -605,7 +605,7 @@
 {"id": "cf.狂战士.世界树之奇旅", "kind": "class_feature", "name": "世界树之奇旅", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "cf.狂战士.精魄指引", "kind": "class_feature", "name": "精魄指引", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.狂战士.图腾精魄", "kind": "class_feature", "name": "图腾精魄", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.兽之形·低级", "kind": "class_feature", "name": "兽之形·低级", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "cf.狂战士.兽之形·低级", "kind": "class_feature", "name": "兽之形·低级", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.狂战士.兽之形·中级", "kind": "class_feature", "name": "兽之形·中级", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "cf.狂战士.兽魂现身", "kind": "class_feature", "name": "兽魂现身", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.狂战士.兽之形·高级", "kind": "class_feature", "name": "兽之形·高级", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
@@ -630,7 +630,7 @@
 {"id": "cf.狂战士.魔狱虹吸", "kind": "class_feature", "name": "魔狱虹吸", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "cf.狂战士.血统亲和", "kind": "class_feature", "name": "血统亲和", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.狂战士.龙焰铸就", "kind": "class_feature", "name": "龙焰铸就", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.狂战士.怒龙醒转", "kind": "class_feature", "name": "怒龙醒转", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
+{"id": "cf.狂战士.怒龙醒转", "kind": "class_feature", "name": "怒龙醒转", "score": 11, "tier": "A", "signals": ["damage", "economy", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.狂战士.精通重击", "kind": "class_feature", "name": "精通重击", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.狂战士.显现回音", "kind": "class_feature", "name": "显现回音", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.狂战士.回音化身", "kind": "class_feature", "name": "回音化身", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -646,8 +646,8 @@
 {"id": "cf.狂战士.立盾", "kind": "class_feature", "name": "立盾", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "cf.狂战士.警惕护卫", "kind": "class_feature", "name": "警惕护卫", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.狂战士.险境庇护", "kind": "class_feature", "name": "险境庇护", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "cf.狂战士.武器学识", "kind": "class_feature", "name": "武器学识", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.狂战士.破胆怒喝", "kind": "class_feature", "name": "破胆怒喝", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
+{"id": "cf.狂战士.武器学识", "kind": "class_feature", "name": "武器学识", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "cf.狂战士.破胆怒喝", "kind": "class_feature", "name": "破胆怒喝", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.狂战士.警惕直觉", "kind": "class_feature", "name": "警惕直觉", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.狂战士.大步驰援", "kind": "class_feature", "name": "大步驰援", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "cf.狂战士.心眼弹反", "kind": "class_feature", "name": "心眼弹反", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
@@ -658,10 +658,10 @@
 {"id": "cf.狂战士.雅臣", "kind": "class_feature", "name": "雅臣", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.狂战士.拔刀斩", "kind": "class_feature", "name": "拔刀斩", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.狂战士.太刀与胁差", "kind": "class_feature", "name": "太刀与胁差", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.狂战士.玉碎冲锋", "kind": "class_feature", "name": "玉碎冲锋", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "cf.狂战士.飞燕斩", "kind": "class_feature", "name": "飞燕斩", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.狂战士.玉碎冲锋", "kind": "class_feature", "name": "玉碎冲锋", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
+{"id": "cf.狂战士.飞燕斩", "kind": "class_feature", "name": "飞燕斩", "score": 8, "tier": "A", "signals": ["hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.狂战士.并蒂仪式", "kind": "class_feature", "name": "并蒂仪式", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
-{"id": "cf.狂战士.花开连理", "kind": "class_feature", "name": "花开连理", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
+{"id": "cf.狂战士.花开连理", "kind": "class_feature", "name": "花开连理", "score": 9, "tier": "A", "signals": ["economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.狂战士.彼岸双生", "kind": "class_feature", "name": "彼岸双生", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "cf.狂战士.比翼战舞", "kind": "class_feature", "name": "比翼战舞", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
 {"id": "cf.狂战士.同生共死", "kind": "class_feature", "name": "同生共死", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -672,7 +672,7 @@
 {"id": "cf.狂战士.龙骑士", "kind": "class_feature", "name": "龙骑士", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "cf.狂战士.血脉升华", "kind": "class_feature", "name": "血脉升华", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "cf.狂战士.不折将官", "kind": "class_feature", "name": "不折将官", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
-{"id": "cf.盗贼.偷袭", "kind": "class_feature", "name": "偷袭", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "cf.盗贼.偷袭", "kind": "class_feature", "name": "偷袭", "score": 12, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "cf.盗贼.专精", "kind": "class_feature", "name": "专精", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.盗贼.盗贼黑话", "kind": "class_feature", "name": "盗贼黑话", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.盗贼.灵巧动作", "kind": "class_feature", "name": "灵巧动作", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
@@ -703,11 +703,11 @@
 {"id": "cf.盗贼.战术调整", "kind": "class_feature", "name": "战术调整", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.盗贼.重整阵势", "kind": "class_feature", "name": "重整阵势", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "cf.盗贼.剑艺", "kind": "class_feature", "name": "剑艺", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.盗贼.决斗", "kind": "class_feature", "name": "决斗", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "cf.盗贼.决斗", "kind": "class_feature", "name": "决斗", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "cf.盗贼.胆大无畏", "kind": "class_feature", "name": "胆大无畏", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "cf.盗贼.潇洒气质", "kind": "class_feature", "name": "潇洒气质", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.盗贼.回天一击", "kind": "class_feature", "name": "回天一击", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
-{"id": "cf.盗贼.迅捷优雅", "kind": "class_feature", "name": "迅捷优雅", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.盗贼.迅捷优雅", "kind": "class_feature", "name": "迅捷优雅", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.盗贼.氤氲的香笼", "kind": "class_feature", "name": "氤氲的香笼", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "cf.盗贼.破茧的鸣奏", "kind": "class_feature", "name": "破茧的鸣奏", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "cf.盗贼.暗箭难防", "kind": "class_feature", "name": "暗箭难防", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
@@ -718,7 +718,7 @@
 {"id": "cf.盗贼.策士专长", "kind": "class_feature", "name": "策士专长", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.盗贼.心灵欺骗", "kind": "class_feature", "name": "心灵欺骗", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.盗贼.戏里戏外", "kind": "class_feature", "name": "戏里戏外", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.盗贼.立体机动装置训练", "kind": "class_feature", "name": "立体机动装置训练", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "cf.盗贼.立体机动装置训练", "kind": "class_feature", "name": "立体机动装置训练", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.盗贼.巨人克星", "kind": "class_feature", "name": "巨人克星", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.盗贼.击破高墙", "kind": "class_feature", "name": "击破高墙", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
 {"id": "cf.盗贼.真空气刃", "kind": "class_feature", "name": "真空气刃", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -763,10 +763,10 @@
 {"id": "cf.德鲁伊.阴影之种的呼唤", "kind": "class_feature", "name": "阴影之种的呼唤", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
 {"id": "cf.德鲁伊.腐败化身", "kind": "class_feature", "name": "腐败化身", "score": 9, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "cf.德鲁伊.一体共生", "kind": "class_feature", "name": "一体共生", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
-{"id": "cf.德鲁伊.枯死植株", "kind": "class_feature", "name": "枯死植株", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.德鲁伊.枯死植株", "kind": "class_feature", "name": "枯死植株", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.德鲁伊.星图", "kind": "class_feature", "name": "星图", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
-{"id": "cf.德鲁伊.金刚猩猩Megaprimatus Kong", "kind": "class_feature", "name": "金刚猩猩Megaprimatus Kong", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
-{"id": "cf.德鲁伊.轰龙Tigrex", "kind": "class_feature", "name": "轰龙Tigrex", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "cf.德鲁伊.金刚猩猩Megaprimatus Kong", "kind": "class_feature", "name": "金刚猩猩Megaprimatus Kong", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "cf.德鲁伊.轰龙Tigrex", "kind": "class_feature", "name": "轰龙Tigrex", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.德鲁伊.泡影编织的梦境", "kind": "class_feature", "name": "泡影编织的梦境", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.德鲁伊.召唤图腾", "kind": "class_feature", "name": "召唤图腾", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "cf.德鲁伊.召唤图腾增远", "kind": "class_feature", "name": "召唤图腾增远", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -780,14 +780,14 @@
 {"id": "cf.吟游诗人.吟唱", "kind": "class_feature", "name": "吟唱", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.万事通", "kind": "class_feature", "name": "万事通", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.吟游诗人.专精", "kind": "class_feature", "name": "专精", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "cf.吟游诗人.先发激励", "kind": "class_feature", "name": "先发激励", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.吟游诗人.先发激励", "kind": "class_feature", "name": "先发激励", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.万众瞩目", "kind": "class_feature", "name": "万众瞩目", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.吟游诗人.同一首歌", "kind": "class_feature", "name": "同一首歌", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.狂热应援", "kind": "class_feature", "name": "狂热应援", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.附赠熟练项", "kind": "class_feature", "name": "附赠熟练项", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "cf.吟游诗人.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "cf.吟游诗人.精通额外攻击", "kind": "class_feature", "name": "精通额外攻击", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "cf.吟游诗人.胜利之歌", "kind": "class_feature", "name": "胜利之歌", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
-{"id": "cf.吟游诗人.聚义同心", "kind": "class_feature", "name": "聚义同心", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
+{"id": "cf.吟游诗人.聚义同心", "kind": "class_feature", "name": "聚义同心", "score": 8, "tier": "A", "signals": ["damage", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.灵魂集会", "kind": "class_feature", "name": "灵魂集会", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "cf.吟游诗人.慧识流传", "kind": "class_feature", "name": "慧识流传", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "cf.吟游诗人.挽歌", "kind": "class_feature", "name": "挽歌", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
@@ -823,7 +823,7 @@
 {"id": "cf.召唤师.怪物进化", "kind": "class_feature", "name": "怪物进化", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.召唤师.第二召唤", "kind": "class_feature", "name": "第二召唤", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.召唤师.精通指令", "kind": "class_feature", "name": "精通指令", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.召唤师.固化召唤", "kind": "class_feature", "name": "固化召唤", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "cf.召唤师.固化召唤", "kind": "class_feature", "name": "固化召唤", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "cf.召唤师.兽潮", "kind": "class_feature", "name": "兽潮", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "cf.召唤师.杀戮阵型", "kind": "class_feature", "name": "杀戮阵型", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.召唤师.幻兽种", "kind": "class_feature", "name": "幻兽种", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -835,11 +835,11 @@
 {"id": "cf.召唤师.理念之光", "kind": "class_feature", "name": "理念之光", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
 {"id": "cf.召唤师.理念赋能", "kind": "class_feature", "name": "理念赋能", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.召唤师.圣域", "kind": "class_feature", "name": "圣域", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "cf.召唤师.理念显化", "kind": "class_feature", "name": "理念显化", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "cf.召唤师.理念显化", "kind": "class_feature", "name": "理念显化", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.召唤师.心魔赋形", "kind": "class_feature", "name": "心魔赋形", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "cf.召唤师.心灵视野", "kind": "class_feature", "name": "心灵视野", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "cf.召唤师.一体两面", "kind": "class_feature", "name": "一体两面", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "cf.召唤师.心魔化身", "kind": "class_feature", "name": "心魔化身", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "cf.召唤师.心魔化身", "kind": "class_feature", "name": "心魔化身", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "cf.召唤师.号令族群", "kind": "class_feature", "name": "号令族群", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "cf.召唤师.潜能激发", "kind": "class_feature", "name": "潜能激发", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "cf.召唤师.领袖风范", "kind": "class_feature", "name": "领袖风范", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
@@ -873,12 +873,12 @@
 {"id": "feat.浪潮哨兵", "kind": "feat", "name": "浪潮哨兵", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "feat.磐石哨兵", "kind": "feat", "name": "磐石哨兵", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "feat.超自然直觉", "kind": "feat", "name": "超自然直觉", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
-{"id": "feat.灵动借机", "kind": "feat", "name": "灵动借机", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "feat.罗比拉战术", "kind": "feat", "name": "罗比拉战术", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "feat.灵动借机", "kind": "feat", "name": "灵动借机", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
+{"id": "feat.罗比拉战术", "kind": "feat", "name": "罗比拉战术", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.反击钳制", "kind": "feat", "name": "反击钳制", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "feat.层层设障", "kind": "feat", "name": "层层设障", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
-{"id": "feat.坚守阵地", "kind": "feat", "name": "坚守阵地", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
-{"id": "feat.连续借机", "kind": "feat", "name": "连续借机", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
+{"id": "feat.层层设障", "kind": "feat", "name": "层层设障", "score": 8, "tier": "A", "signals": ["economy", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.坚守阵地", "kind": "feat", "name": "坚守阵地", "score": 8, "tier": "A", "signals": ["economy", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.连续借机", "kind": "feat", "name": "连续借机", "score": 7, "tier": "A", "signals": ["economy", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.双刀借机", "kind": "feat", "name": "双刀借机", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.法术借机", "kind": "feat", "name": "法术借机", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "feat.战技借机", "kind": "feat", "name": "战技借机", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
@@ -903,7 +903,7 @@
 {"id": "feat.合作式警戒", "kind": "feat", "name": "合作式警戒", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
 {"id": "feat.合作式反制", "kind": "feat", "name": "合作式反制", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.合作式术法", "kind": "feat", "name": "合作式术法", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.合作式阵型", "kind": "feat", "name": "合作式阵型", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "feat.合作式阵型", "kind": "feat", "name": "合作式阵型", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.合作式作战", "kind": "feat", "name": "合作式作战", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.伙伴协同", "kind": "feat", "name": "伙伴协同", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.仪式施法者", "kind": "feat", "name": "仪式施法者", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -923,25 +923,25 @@
 {"id": "feat.白袍入道", "kind": "feat", "name": "白袍入道", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
 {"id": "feat.威力攻击", "kind": "feat", "name": "威力攻击", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.死神降临", "kind": "feat", "name": "死神降临", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
-{"id": "feat.战神降临", "kind": "feat", "name": "战神降临", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "feat.战神降临", "kind": "feat", "name": "战神降临", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.威力豁免", "kind": "feat", "name": "威力豁免", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.黯星降临", "kind": "feat", "name": "黯星降临", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.耀星降临", "kind": "feat", "name": "耀星降临", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.疯狂连击", "kind": "feat", "name": "疯狂连击", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
 {"id": "feat.疯狂压制", "kind": "feat", "name": "疯狂压制", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.穿刺者", "kind": "feat", "name": "穿刺者", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.挥砍者", "kind": "feat", "name": "挥砍者", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "feat.钝击者", "kind": "feat", "name": "钝击者", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "feat.穿刺者", "kind": "feat", "name": "穿刺者", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
+{"id": "feat.挥砍者", "kind": "feat", "name": "挥砍者", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "feat.钝击者", "kind": "feat", "name": "钝击者", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.重击大师", "kind": "feat", "name": "重击大师", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.近程射手", "kind": "feat", "name": "近程射手", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "feat.箭刃交响", "kind": "feat", "name": "箭刃交响", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.箭刃交响", "kind": "feat", "name": "箭刃交响", "score": 10, "tier": "A", "signals": ["economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.凶蛮打手", "kind": "feat", "name": "凶蛮打手", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.精通属性损伤", "kind": "feat", "name": "精通属性损伤", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.心理控制大师", "kind": "feat", "name": "心理控制大师", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.生理控制大师", "kind": "feat", "name": "生理控制大师", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.豁免暴击", "kind": "feat", "name": "豁免暴击", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.保龄球专家", "kind": "feat", "name": "保龄球专家", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "feat.群战专家", "kind": "feat", "name": "群战专家", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "feat.群战专家", "kind": "feat", "name": "群战专家", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.合击", "kind": "feat", "name": "合击", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.泰坦之握", "kind": "feat", "name": "泰坦之握", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "feat.血怒", "kind": "feat", "name": "血怒", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
@@ -980,7 +980,7 @@
 {"id": "feat.毁灭真言", "kind": "feat", "name": "毁灭真言", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.均衡", "kind": "feat", "name": "均衡", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.奇境触碰", "kind": "feat", "name": "奇境触碰", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
-{"id": "feat.系挂战斗", "kind": "feat", "name": "系挂战斗", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
+{"id": "feat.系挂战斗", "kind": "feat", "name": "系挂战斗", "score": 9, "tier": "A", "signals": ["economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.绝境一搏", "kind": "feat", "name": "绝境一搏", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.尤里卡", "kind": "feat", "name": "尤里卡", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.金属龙赋礼", "kind": "feat", "name": "金属龙赋礼", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
@@ -990,7 +990,7 @@
 {"id": "feat.极道帝兵", "kind": "feat", "name": "极道帝兵", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.敏锐心灵", "kind": "feat", "name": "敏锐心灵", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.天命之礼", "kind": "feat", "name": "天命之礼", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
-{"id": "feat.黑暗之拥", "kind": "feat", "name": "黑暗之拥", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.黑暗之拥", "kind": "feat", "name": "黑暗之拥", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.咬持", "kind": "feat", "name": "咬持", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.脚持", "kind": "feat", "name": "脚持", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.尾持", "kind": "feat", "name": "尾持", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -1005,35 +1005,35 @@
 {"id": "feat.增援未来", "kind": "feat", "name": "增援未来", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.极尽升华", "kind": "feat", "name": "极尽升华", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.骑乘战斗", "kind": "feat", "name": "骑乘战斗", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "feat.奋力冲刺", "kind": "feat", "name": "奋力冲刺", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "feat.弓马娴熟", "kind": "feat", "name": "弓马娴熟", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "feat.奋力冲刺", "kind": "feat", "name": "奋力冲刺", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.弓马娴熟", "kind": "feat", "name": "弓马娴熟", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.骑兵践踏", "kind": "feat", "name": "骑兵践踏", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.长缨如龙", "kind": "feat", "name": "长缨如龙", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.救主灵驹", "kind": "feat", "name": "救主灵驹", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "feat.强制骑乘", "kind": "feat", "name": "强制骑乘", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
 {"id": "feat.强制骑乘冲刺", "kind": "feat", "name": "强制骑乘冲刺", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "feat.撕裂", "kind": "feat", "name": "撕裂", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.咬合", "kind": "feat", "name": "咬合", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.咬合", "kind": "feat", "name": "咬合", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.毒触", "kind": "feat", "name": "毒触", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.扫尾", "kind": "feat", "name": "扫尾", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.扫尾", "kind": "feat", "name": "扫尾", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.椎撞", "kind": "feat", "name": "椎撞", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.连环猛兽击", "kind": "feat", "name": "连环猛兽击", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
 {"id": "feat.斗殴高手", "kind": "feat", "name": "斗殴高手", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
-{"id": "feat.人身攻击", "kind": "feat", "name": "人身攻击", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.人身攻击", "kind": "feat", "name": "人身攻击", "score": 13, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.武器大师", "kind": "feat", "name": "武器大师", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.巨武器大师", "kind": "feat", "name": "巨武器大师", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.巨武器宗师", "kind": "feat", "name": "巨武器宗师", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "feat.巨大武器师", "kind": "feat", "name": "巨大武器师", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "feat.长柄武器大师", "kind": "feat", "name": "长柄武器大师", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
-{"id": "feat.长度优势", "kind": "feat", "name": "长度优势", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "feat.长度优势", "kind": "feat", "name": "长度优势", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.神射手", "kind": "feat", "name": "神射手", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "feat.强弩专家", "kind": "feat", "name": "强弩专家", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
-{"id": "feat.森林射手", "kind": "feat", "name": "森林射手", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "feat.森林射手", "kind": "feat", "name": "森林射手", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.风浪射手", "kind": "feat", "name": "风浪射手", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "feat.警戒射手", "kind": "feat", "name": "警戒射手", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "feat.超凡射手", "kind": "feat", "name": "超凡射手", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.枪手", "kind": "feat", "name": "枪手", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
-{"id": "feat.泰坦弓手", "kind": "feat", "name": "泰坦弓手", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.泰坦弓手", "kind": "feat", "name": "泰坦弓手", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.灵箭", "kind": "feat", "name": "灵箭", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "feat.巨人打击", "kind": "feat", "name": "巨人打击", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.巨人技艺模仿", "kind": "feat", "name": "巨人技艺模仿", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
@@ -1042,15 +1042,15 @@
 {"id": "feat.缠蛇掠血", "kind": "feat", "name": "缠蛇掠血", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.蝶舞银翅", "kind": "feat", "name": "蝶舞银翅", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
 {"id": "feat.过载震颤", "kind": "feat", "name": "过载震颤", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
-{"id": "feat.锻砧之怒", "kind": "feat", "name": "锻砧之怒", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "feat.锻砧之怒", "kind": "feat", "name": "锻砧之怒", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.力满残月", "kind": "feat", "name": "力满残月", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.长长法杖", "kind": "feat", "name": "长长法杖", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "feat.刺剑大师", "kind": "feat", "name": "刺剑大师", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.刺剑大师", "kind": "feat", "name": "刺剑大师", "score": 10, "tier": "A", "signals": ["economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.随手投掷", "kind": "feat", "name": "随手投掷", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.旋转飞掷", "kind": "feat", "name": "旋转飞掷", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.忠诚武器折返", "kind": "feat", "name": "忠诚武器折返", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
-{"id": "feat.武器连招", "kind": "feat", "name": "武器连招", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
-{"id": "feat.见切与居合", "kind": "feat", "name": "见切与居合", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
+{"id": "feat.武器连招", "kind": "feat", "name": "武器连招", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "feat.见切与居合", "kind": "feat", "name": "见切与居合", "score": 8, "tier": "A", "signals": ["economy", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.登龙", "kind": "feat", "name": "登龙", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "feat.次元极斩", "kind": "feat", "name": "次元极斩", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "feat.猎虫", "kind": "feat", "name": "猎虫", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
@@ -1059,7 +1059,7 @@
 {"id": "feat.超高出力属性解放斩", "kind": "feat", "name": "超高出力属性解放斩", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.适应武器", "kind": "feat", "name": "适应武器", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "feat.武器娴熟", "kind": "feat", "name": "武器娴熟", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.反击风暴", "kind": "feat", "name": "反击风暴", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.反击风暴", "kind": "feat", "name": "反击风暴", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.跳斩", "kind": "feat", "name": "跳斩", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.擅长异种武器", "kind": "feat", "name": "擅长异种武器", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.英魂之刃", "kind": "feat", "name": "英魂之刃", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
@@ -1067,10 +1067,10 @@
 {"id": "feat.穿透与回旋", "kind": "feat", "name": "穿透与回旋", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "feat.回环射手", "kind": "feat", "name": "回环射手", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "feat.暴雨梨花", "kind": "feat", "name": "暴雨梨花", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.贯手著棼", "kind": "feat", "name": "贯手著棼", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "feat.阵地狙击", "kind": "feat", "name": "阵地狙击", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
-{"id": "feat.倒钩大师", "kind": "feat", "name": "倒钩大师", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
-{"id": "feat.死亡收割", "kind": "feat", "name": "死亡收割", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "feat.贯手著棼", "kind": "feat", "name": "贯手著棼", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.阵地狙击", "kind": "feat", "name": "阵地狙击", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "feat.倒钩大师", "kind": "feat", "name": "倒钩大师", "score": 9, "tier": "A", "signals": ["economy", "hit", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.死亡收割", "kind": "feat", "name": "死亡收割", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "feat.定点爆破", "kind": "feat", "name": "定点爆破", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.霹雳车", "kind": "feat", "name": "霹雳车", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.超音激荡", "kind": "feat", "name": "超音激荡", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -1081,27 +1081,27 @@
 {"id": "feat.大厨", "kind": "feat", "name": "大厨", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.运动员", "kind": "feat", "name": "运动员", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.欺诈师", "kind": "feat", "name": "欺诈师", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.嘲讽师", "kind": "feat", "name": "嘲讽师", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "feat.嘲讽师", "kind": "feat", "name": "嘲讽师", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.医疗师", "kind": "feat", "name": "医疗师", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.望气师", "kind": "feat", "name": "望气师", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.通灵师", "kind": "feat", "name": "通灵师", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.占梦师", "kind": "feat", "name": "占梦师", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.快手", "kind": "feat", "name": "快手", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "feat.擒抱者", "kind": "feat", "name": "擒抱者", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
-{"id": "feat.进阶擒抱者", "kind": "feat", "name": "进阶擒抱者", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
+{"id": "feat.擒抱者", "kind": "feat", "name": "擒抱者", "score": 9, "tier": "A", "signals": ["economy", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "feat.进阶擒抱者", "kind": "feat", "name": "进阶擒抱者", "score": 8, "tier": "A", "signals": ["economy", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.冲撞者", "kind": "feat", "name": "冲撞者", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.进阶冲撞者", "kind": "feat", "name": "进阶冲撞者", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "feat.强健身心", "kind": "feat", "name": "强健身心", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.圣斗士顽强", "kind": "feat", "name": "圣斗士顽强", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.危机管理", "kind": "feat", "name": "危机管理", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "feat.适应性", "kind": "feat", "name": "适应性", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.危机管理", "kind": "feat", "name": "危机管理", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.适应性", "kind": "feat", "name": "适应性", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.不屈", "kind": "feat", "name": "不屈", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.攻城专家", "kind": "feat", "name": "攻城专家", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.驾驶员", "kind": "feat", "name": "驾驶员", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.铁驭骑士", "kind": "feat", "name": "铁驭骑士", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.擅长配件", "kind": "feat", "name": "擅长配件", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.对人立体机动装置", "kind": "feat", "name": "对人立体机动装置", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "feat.浮光掠影", "kind": "feat", "name": "浮光掠影", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "feat.浮光掠影", "kind": "feat", "name": "浮光掠影", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "feat.死与匿", "kind": "feat", "name": "死与匿", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.战法宝钻", "kind": "feat", "name": "战法宝钻", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.宝石核心", "kind": "feat", "name": "宝石核心", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
@@ -1121,16 +1121,16 @@
 {"id": "feat.扰魔盾", "kind": "feat", "name": "扰魔盾", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
 {"id": "feat.精通盔甲训练", "kind": "feat", "name": "精通盔甲训练", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.双重施法者", "kind": "feat", "name": "双重施法者", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.融汇百家", "kind": "feat", "name": "融汇百家", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "feat.苍翠守望者", "kind": "feat", "name": "苍翠守望者", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "feat.圣堂审判官", "kind": "feat", "name": "圣堂审判官", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "feat.灵念开拓师", "kind": "feat", "name": "灵念开拓师", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "feat.融汇百家", "kind": "feat", "name": "融汇百家", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
+{"id": "feat.苍翠守望者", "kind": "feat", "name": "苍翠守望者", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
+{"id": "feat.圣堂审判官", "kind": "feat", "name": "圣堂审判官", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
+{"id": "feat.灵念开拓师", "kind": "feat", "name": "灵念开拓师", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "feat.杂技表演家", "kind": "feat", "name": "杂技表演家", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.武道腕力家", "kind": "feat", "name": "武道腕力家", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.奥秘手工匠", "kind": "feat", "name": "奥秘手工匠", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.额外指令点", "kind": "feat", "name": "额外指令点", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.传授法术列表", "kind": "feat", "name": "传授法术列表", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.高效指令", "kind": "feat", "name": "高效指令", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "feat.高效指令", "kind": "feat", "name": "高效指令", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.偏爱", "kind": "feat", "name": "偏爱", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.兼爱", "kind": "feat", "name": "兼爱", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.心意相通", "kind": "feat", "name": "心意相通", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -1139,7 +1139,7 @@
 {"id": "feat.额外吟唱", "kind": "feat", "name": "额外吟唱", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.渐强音浪", "kind": "feat", "name": "渐强音浪", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.雪花战舞", "kind": "feat", "name": "雪花战舞", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
-{"id": "feat.神力澎湃", "kind": "feat", "name": "神力澎湃", "score": 5, "tier": "B", "signals": ["economy", "hit", "resource"], "status": "screened"}
+{"id": "feat.神力澎湃", "kind": "feat", "name": "神力澎湃", "score": 9, "tier": "A", "signals": ["economy", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.系挂灵光", "kind": "feat", "name": "系挂灵光", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.破邪斩", "kind": "feat", "name": "破邪斩", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
 {"id": "feat.破善斩", "kind": "feat", "name": "破善斩", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
@@ -1179,19 +1179,19 @@
 {"id": "feat.动作如潮", "kind": "feat", "name": "动作如潮", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
 {"id": "feat.扩展战斗风格", "kind": "feat", "name": "扩展战斗风格", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.精通武器动作", "kind": "feat", "name": "精通武器动作", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "feat.爆发式攻击", "kind": "feat", "name": "爆发式攻击", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "feat.斗气护体", "kind": "feat", "name": "斗气护体", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
-{"id": "feat.斗气外放", "kind": "feat", "name": "斗气外放", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "feat.斗气化翼", "kind": "feat", "name": "斗气化翼", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "feat.斗气灵压", "kind": "feat", "name": "斗气灵压", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
-{"id": "feat.军团式作战", "kind": "feat", "name": "军团式作战", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
-{"id": "feat.横扫千军", "kind": "feat", "name": "横扫千军", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
+{"id": "feat.爆发式攻击", "kind": "feat", "name": "爆发式攻击", "score": 5, "tier": "A", "signals": ["multiplier", "resource"], "status": "screened"}
+{"id": "feat.斗气护体", "kind": "feat", "name": "斗气护体", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
+{"id": "feat.斗气外放", "kind": "feat", "name": "斗气外放", "score": 5, "tier": "A", "signals": ["move", "multiplier"], "status": "screened"}
+{"id": "feat.斗气化翼", "kind": "feat", "name": "斗气化翼", "score": 5, "tier": "A", "signals": ["move", "multiplier"], "status": "screened"}
+{"id": "feat.斗气灵压", "kind": "feat", "name": "斗气灵压", "score": 9, "tier": "A", "signals": ["damage", "economy", "multiplier"], "status": "screened"}
+{"id": "feat.军团式作战", "kind": "feat", "name": "军团式作战", "score": 11, "tier": "A", "signals": ["damage", "economy", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.横扫千军", "kind": "feat", "name": "横扫千军", "score": 8, "tier": "A", "signals": ["damage", "move", "multiplier"], "status": "screened"}
 {"id": "feat.奥法斗士", "kind": "feat", "name": "奥法斗士", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.进阶法术位", "kind": "feat", "name": "进阶法术位", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.战法兼修", "kind": "feat", "name": "战法兼修", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.魔武齐攻", "kind": "feat", "name": "魔武齐攻", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.法术引导", "kind": "feat", "name": "法术引导", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
-{"id": "feat.兵戈无常", "kind": "feat", "name": "兵戈无常", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "feat.兵戈无常", "kind": "feat", "name": "兵戈无常", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "feat.拜师学艺", "kind": "feat", "name": "拜师学艺", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.精进武艺", "kind": "feat", "name": "精进武艺", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.气海充盈", "kind": "feat", "name": "气海充盈", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -1203,7 +1203,7 @@
 {"id": "feat.真气小成", "kind": "feat", "name": "真气小成", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "feat.凛冽", "kind": "feat", "name": "凛冽", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.真气大成", "kind": "feat", "name": "真气大成", "score": 7, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
-{"id": "feat.真气圆满", "kind": "feat", "name": "真气圆满", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
+{"id": "feat.真气圆满", "kind": "feat", "name": "真气圆满", "score": 9, "tier": "A", "signals": ["economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.离奇先见", "kind": "feat", "name": "离奇先见", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "feat.离奇先见之明", "kind": "feat", "name": "离奇先见之明", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.专精法师", "kind": "feat", "name": "专精法师", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
@@ -1276,15 +1276,15 @@
 {"id": "feat.轻甲守御", "kind": "feat", "name": "轻甲守御", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.无惧苦痛", "kind": "feat", "name": "无惧苦痛", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.警惕防线", "kind": "feat", "name": "警惕防线", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
-{"id": "feat.鲁莽投掷", "kind": "feat", "name": "鲁莽投掷", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "feat.鲁莽投掷", "kind": "feat", "name": "鲁莽投掷", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "feat.神速力", "kind": "feat", "name": "神速力", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "feat.刹那波流", "kind": "feat", "name": "刹那波流", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "feat.刹那波流", "kind": "feat", "name": "刹那波流", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "feat.义结金兰", "kind": "feat", "name": "义结金兰", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
 {"id": "feat.空手道忍者", "kind": "feat", "name": "空手道忍者", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
-{"id": "feat.致命精准", "kind": "feat", "name": "致命精准", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "feat.致命精准", "kind": "feat", "name": "致命精准", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.散兵战术", "kind": "feat", "name": "散兵战术", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "feat.猝然发难", "kind": "feat", "name": "猝然发难", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "feat.多重偷袭", "kind": "feat", "name": "多重偷袭", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "feat.多重偷袭", "kind": "feat", "name": "多重偷袭", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.暗行者", "kind": "feat", "name": "暗行者", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "feat.精通杂技花招", "kind": "feat", "name": "精通杂技花招", "score": 4, "tier": "B", "signals": ["economy", "hit"], "status": "screened"}
 {"id": "feat.毒师", "kind": "feat", "name": "毒师", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
@@ -1340,7 +1340,7 @@
 {"id": "feat.高等卓尔魔法", "kind": "feat", "name": "高等卓尔魔法", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.蛛化卓尔", "kind": "feat", "name": "蛛化卓尔", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.矮人之坚毅", "kind": "feat", "name": "矮人之坚毅", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "feat.精灵之准", "kind": "feat", "name": "精灵之准", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "feat.精灵之准", "kind": "feat", "name": "精灵之准", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "feat.绿皮兽人", "kind": "feat", "name": "绿皮兽人", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.绿皮兽人战猪小子", "kind": "feat", "name": "绿皮兽人战猪小子", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.绿皮兽人大只佬", "kind": "feat", "name": "绿皮兽人大只佬", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -1348,9 +1348,9 @@
 {"id": "feat.鳞裔改造", "kind": "feat", "name": "鳞裔改造", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.弗莱格索斯之焰", "kind": "feat", "name": "弗莱格索斯之焰", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "feat.兽人式狂怒", "kind": "feat", "name": "兽人式狂怒", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
-{"id": "feat.旗舰", "kind": "feat", "name": "旗舰", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.旗舰", "kind": "feat", "name": "旗舰", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.点化使徒", "kind": "feat", "name": "点化使徒", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.人马骑兵", "kind": "feat", "name": "人马骑兵", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
+{"id": "feat.人马骑兵", "kind": "feat", "name": "人马骑兵", "score": 9, "tier": "A", "signals": ["economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.天界升格", "kind": "feat", "name": "天界升格", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.地狱升格", "kind": "feat", "name": "地狱升格", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.创造孢子奴仆", "kind": "feat", "name": "创造孢子奴仆", "score": 0, "tier": "C", "signals": [], "status": "screened"}
@@ -1380,7 +1380,7 @@
 {"id": "feat.沟通万物", "kind": "feat", "name": "沟通万物", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.千变万化", "kind": "feat", "name": "千变万化", "score": 5, "tier": "B", "signals": ["damage", "economy"], "status": "screened"}
 {"id": "feat.独特易形", "kind": "feat", "name": "独特易形", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.超级巫妖", "kind": "feat", "name": "超级巫妖", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "feat.超级巫妖", "kind": "feat", "name": "超级巫妖", "score": 16, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.打造传奇", "kind": "feat", "name": "打造传奇", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "feat.令咒", "kind": "feat", "name": "令咒", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "feat.超级加速术", "kind": "feat", "name": "超级加速术", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
@@ -1392,7 +1392,7 @@
 {"id": "feat.异次元折返跃迁", "kind": "feat", "name": "异次元折返跃迁", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "feat.瞬间易容", "kind": "feat", "name": "瞬间易容", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "feat.四神共选", "kind": "feat", "name": "四神共选", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.超古代光之巨人", "kind": "feat", "name": "超古代光之巨人", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "feat.超古代光之巨人", "kind": "feat", "name": "超古代光之巨人", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "feat.漩涡之门", "kind": "feat", "name": "漩涡之门", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.奈非天型貌", "kind": "feat", "name": "奈非天型貌", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.庞加莱回归", "kind": "feat", "name": "庞加莱回归", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
@@ -1408,7 +1408,7 @@
 {"id": "feat.召唤行动力", "kind": "feat", "name": "召唤行动力", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.位面契约者", "kind": "feat", "name": "位面契约者", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.守备表示召唤", "kind": "feat", "name": "守备表示召唤", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "feat.攻击表示召唤", "kind": "feat", "name": "攻击表示召唤", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
+{"id": "feat.攻击表示召唤", "kind": "feat", "name": "攻击表示召唤", "score": 4, "tier": "A", "signals": ["multiplier"], "status": "screened"}
 {"id": "feat.精通获得坐骑", "kind": "feat", "name": "精通获得坐骑", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.末日征兆", "kind": "feat", "name": "末日征兆", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.凯丰的邪教徒", "kind": "feat", "name": "凯丰的邪教徒", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -1416,14 +1416,14 @@
 {"id": "feat.天照", "kind": "feat", "name": "天照", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.神威", "kind": "feat", "name": "神威", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "feat.伊邪那美", "kind": "feat", "name": "伊邪那美", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "feat.须佐能乎", "kind": "feat", "name": "须佐能乎", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
+{"id": "feat.须佐能乎", "kind": "feat", "name": "须佐能乎", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "multiplier"], "status": "screened"}
 {"id": "feat.心中有剑", "kind": "feat", "name": "心中有剑", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
 {"id": "feat.剑艺", "kind": "feat", "name": "剑艺", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "feat.无解诅咒", "kind": "feat", "name": "无解诅咒", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.不可饶恕咒", "kind": "feat", "name": "不可饶恕咒", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "feat.蹦蹦炸弹", "kind": "feat", "name": "蹦蹦炸弹", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.缭乱斩", "kind": "feat", "name": "缭乱斩", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
-{"id": "feat.万箭穿心", "kind": "feat", "name": "万箭穿心", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "feat.万箭穿心", "kind": "feat", "name": "万箭穿心", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "feat.百宝箭袋", "kind": "feat", "name": "百宝箭袋", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
 {"id": "feat.夺取真名", "kind": "feat", "name": "夺取真名", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.魔法增幅斗士", "kind": "feat", "name": "魔法增幅斗士", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
@@ -1452,7 +1452,7 @@
 {"id": "feat.圣光爆发", "kind": "feat", "name": "圣光爆发", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "feat.多重保险", "kind": "feat", "name": "多重保险", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "feat.真正的镜影术", "kind": "feat", "name": "真正的镜影术", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "feat.屠神法术", "kind": "feat", "name": "屠神法术", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "feat.屠神法术", "kind": "feat", "name": "屠神法术", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.结阵超魔", "kind": "feat", "name": "结阵超魔", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.月球影响", "kind": "feat", "name": "月球影响", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "feat.国土大阵", "kind": "feat", "name": "国土大阵", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
@@ -1466,10 +1466,10 @@
 {"id": "feat.绿缚召唤", "kind": "feat", "name": "绿缚召唤", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.瑟奥瑞特召唤", "kind": "feat", "name": "瑟奥瑞特召唤", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.撒法拉斯召唤", "kind": "feat", "name": "撒法拉斯召唤", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
-{"id": "feat.尸体工艺", "kind": "feat", "name": "尸体工艺", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
+{"id": "feat.尸体工艺", "kind": "feat", "name": "尸体工艺", "score": 6, "tier": "A", "signals": ["move", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.真实幻术", "kind": "feat", "name": "真实幻术", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.赝造灵光", "kind": "feat", "name": "赝造灵光", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.重振精神", "kind": "feat", "name": "重振精神", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "feat.重振精神", "kind": "feat", "name": "重振精神", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.甄选解除", "kind": "feat", "name": "甄选解除", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.封锁记忆", "kind": "feat", "name": "封锁记忆", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.盲感法术", "kind": "feat", "name": "盲感法术", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
@@ -1478,7 +1478,7 @@
 {"id": "feat.曲咒射术", "kind": "feat", "name": "曲咒射术", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "feat.蓝银缠绕", "kind": "feat", "name": "蓝银缠绕", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "feat.分离传送", "kind": "feat", "name": "分离传送", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
-{"id": "feat.真名法术", "kind": "feat", "name": "真名法术", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
+{"id": "feat.真名法术", "kind": "feat", "name": "真名法术", "score": 7, "tier": "A", "signals": ["hit", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.瘫痪诅咒", "kind": "feat", "name": "瘫痪诅咒", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "feat.瘟疫之源", "kind": "feat", "name": "瘟疫之源", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.混沌浪涌", "kind": "feat", "name": "混沌浪涌", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
@@ -1494,8 +1494,8 @@
 {"id": "feat.法术追踪", "kind": "feat", "name": "法术追踪", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
 {"id": "feat.强劲法术", "kind": "feat", "name": "强劲法术", "score": 3, "tier": "B", "signals": ["hit", "resource"], "status": "screened"}
 {"id": "feat.末路法术", "kind": "feat", "name": "末路法术", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
-{"id": "feat.法术强效", "kind": "feat", "name": "法术强效", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "resource"], "status": "screened"}
-{"id": "feat.法术极效", "kind": "feat", "name": "法术极效", "score": 6, "tier": "A", "signals": ["damage", "economy", "resource"], "status": "screened"}
+{"id": "feat.法术强效", "kind": "feat", "name": "法术强效", "score": 10, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
+{"id": "feat.法术极效", "kind": "feat", "name": "法术极效", "score": 8, "tier": "A", "signals": ["damage", "multiplier", "resource"], "status": "screened"}
 {"id": "feat.元素导师", "kind": "feat", "name": "元素导师", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.能量替代", "kind": "feat", "name": "能量替代", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "feat.能量专精", "kind": "feat", "name": "能量专精", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
@@ -1554,7 +1554,7 @@
 {"id": "sp.提升抗性", "kind": "spell", "name": "提升抗性", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.圣火术", "kind": "spell", "name": "圣火术", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.橡棍术", "kind": "spell", "name": "橡棍术", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "sp.电爪", "kind": "spell", "name": "电爪", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
+{"id": "sp.电爪", "kind": "spell", "name": "电爪", "score": 14, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.维生术", "kind": "spell", "name": "维生术", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.奇术", "kind": "spell", "name": "奇术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.荆棘之鞭", "kind": "spell", "name": "荆棘之鞭", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
@@ -1574,7 +1574,7 @@
 {"id": "sp.思想编码", "kind": "spell", "name": "思想编码", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.削弱芒刺", "kind": "spell", "name": "削弱芒刺", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.竹节术", "kind": "spell", "name": "竹节术", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
-{"id": "sp.好言相劝", "kind": "spell", "name": "好言相劝", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.好言相劝", "kind": "spell", "name": "好言相劝", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.法兰快剑", "kind": "spell", "name": "法兰快剑", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.魔导术", "kind": "spell", "name": "魔导术", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "sp.彩虹", "kind": "spell", "name": "彩虹", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -1630,14 +1630,14 @@
 {"id": "sp.诱捕打击", "kind": "spell", "name": "诱捕打击", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.纠缠术", "kind": "spell", "name": "纠缠术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.脚底抹油", "kind": "spell", "name": "脚底抹油", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "sp.妖火", "kind": "spell", "name": "妖火", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "sp.妖火", "kind": "spell", "name": "妖火", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.虚假生命", "kind": "spell", "name": "虚假生命", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "sp.羽落术", "kind": "spell", "name": "羽落术", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.获得魔宠", "kind": "spell", "name": "获得魔宠", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "sp.云雾术", "kind": "spell", "name": "云雾术", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.神莓术", "kind": "spell", "name": "神莓术", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.油腻术", "kind": "spell", "name": "油腻术", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.曳光弹", "kind": "spell", "name": "曳光弹", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.曳光弹", "kind": "spell", "name": "曳光弹", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.棘雹术", "kind": "spell", "name": "棘雹术", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.治愈真言", "kind": "spell", "name": "治愈真言", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.炼狱叱喝", "kind": "spell", "name": "炼狱叱喝", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -1668,14 +1668,14 @@
 {"id": "sp.巫术箭", "kind": "spell", "name": "巫术箭", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.激愤斩", "kind": "spell", "name": "激愤斩", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "sp.吸收元素", "kind": "spell", "name": "吸收元素", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
-{"id": "sp.兽之联结", "kind": "spell", "name": "兽之联结", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "sp.兽之联结", "kind": "spell", "name": "兽之联结", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "sp.弹射", "kind": "spell", "name": "弹射", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.造成恐惧", "kind": "spell", "name": "造成恐惧", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.典礼术", "kind": "spell", "name": "典礼术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.混乱箭", "kind": "spell", "name": "混乱箭", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.地颤", "kind": "spell", "name": "地颤", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.冰刃", "kind": "spell", "name": "冰刃", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.西风打击", "kind": "spell", "name": "西风打击", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.西风打击", "kind": "spell", "name": "西风打击", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.扩大重力", "kind": "spell", "name": "扩大重力", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.吉姆的魔法飞弹", "kind": "spell", "name": "吉姆的魔法飞弹", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.银光锐语", "kind": "spell", "name": "银光锐语", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
@@ -1696,15 +1696,15 @@
 {"id": "sp.兽性凶残", "kind": "spell", "name": "兽性凶残", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.瞬间力量", "kind": "spell", "name": "瞬间力量", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.站立术", "kind": "spell", "name": "站立术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "sp.兽性大发", "kind": "spell", "name": "兽性大发", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.兽性大发", "kind": "spell", "name": "兽性大发", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.获得晶仆", "kind": "spell", "name": "获得晶仆", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "sp.创造星质物件", "kind": "spell", "name": "创造星质物件", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "sp.同步术", "kind": "spell", "name": "同步术", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
+{"id": "sp.同步术", "kind": "spell", "name": "同步术", "score": 8, "tier": "A", "signals": ["economy", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.滑动术", "kind": "spell", "name": "滑动术", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
 {"id": "sp.心灵戳痛", "kind": "spell", "name": "心灵戳痛", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.物质激灼", "kind": "spell", "name": "物质激灼", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.隐匿思想", "kind": "spell", "name": "隐匿思想", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
-{"id": "sp.能量射线", "kind": "spell", "name": "能量射线", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.能量射线", "kind": "spell", "name": "能量射线", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.能量弧", "kind": "spell", "name": "能量弧", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.活力术", "kind": "spell", "name": "活力术", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "sp.控制浮力", "kind": "spell", "name": "控制浮力", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
@@ -1806,7 +1806,7 @@
 {"id": "sp.治愈之魂", "kind": "spell", "name": "治愈之魂", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "sp.麦克斯米利安的地之攫", "kind": "spell", "name": "麦克斯米利安的地之攫", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.心灵尖刺", "kind": "spell", "name": "心灵尖刺", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.幽影刃", "kind": "spell", "name": "幽影刃", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "sp.幽影刃", "kind": "spell", "name": "幽影刃", "score": 13, "tier": "A", "signals": ["damage", "hit", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.写入空中", "kind": "spell", "name": "写入空中", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.守护之风", "kind": "spell", "name": "守护之风", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "sp.塔莎心灵鞭", "kind": "spell", "name": "塔莎心灵鞭", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -1898,10 +1898,10 @@
 {"id": "sp.圣盾术", "kind": "spell", "name": "圣盾术", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "sp.闪光治疗", "kind": "spell", "name": "闪光治疗", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.风刃术", "kind": "spell", "name": "风刃术", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "sp.半身失调", "kind": "spell", "name": "半身失调", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "sp.半身失调", "kind": "spell", "name": "半身失调", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.凯丰之援助", "kind": "spell", "name": "凯丰之援助", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.永恒的祝福", "kind": "spell", "name": "永恒的祝福", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "sp.塔罗牌的启示", "kind": "spell", "name": "塔罗牌的启示", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "sp.塔罗牌的启示", "kind": "spell", "name": "塔罗牌的启示", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.生命屏障", "kind": "spell", "name": "生命屏障", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
 {"id": "sp.阿祖斯的洞察", "kind": "spell", "name": "阿祖斯的洞察", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "sp.司马昭之心", "kind": "spell", "name": "司马昭之心", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -1976,9 +1976,9 @@
 {"id": "sp.册封", "kind": "spell", "name": "册封", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "sp.卡罗尔的加速术", "kind": "spell", "name": "卡罗尔的加速术", "score": 5, "tier": "B", "signals": ["economy", "hit", "move"], "status": "screened"}
 {"id": "sp.米萨卡的加速术", "kind": "spell", "name": "米萨卡的加速术", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
-{"id": "sp.创造幽灵船", "kind": "spell", "name": "创造幽灵船", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.创造幽灵船", "kind": "spell", "name": "创造幽灵船", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.狡兔三窟", "kind": "spell", "name": "狡兔三窟", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
-{"id": "sp.骑士的史诗", "kind": "spell", "name": "骑士的史诗", "score": 6, "tier": "B", "signals": ["economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.骑士的史诗", "kind": "spell", "name": "骑士的史诗", "score": 10, "tier": "A", "signals": ["economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.战灵冲锋", "kind": "spell", "name": "战灵冲锋", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "sp.驻步术", "kind": "spell", "name": "驻步术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.冰冻长枪", "kind": "spell", "name": "冰冻长枪", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
@@ -1994,8 +1994,8 @@
 {"id": "sp.星质蔓生团块", "kind": "spell", "name": "星质蔓生团块", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.心电窃听", "kind": "spell", "name": "心电窃听", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.能量锥", "kind": "spell", "name": "能量锥", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
-{"id": "sp.能量枪", "kind": "spell", "name": "能量枪", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
-{"id": "sp.操纵肢体", "kind": "spell", "name": "操纵肢体", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.能量枪", "kind": "spell", "name": "能量枪", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
+{"id": "sp.操纵肢体", "kind": "spell", "name": "操纵肢体", "score": 13, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.巫毒替身", "kind": "spell", "name": "巫毒替身", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.星质茧", "kind": "spell", "name": "星质茧", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.念控投掷", "kind": "spell", "name": "念控投掷", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
@@ -2034,7 +2034,7 @@
 {"id": "sp.律令移动", "kind": "spell", "name": "律令移动", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.非线性移动", "kind": "spell", "name": "非线性移动", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.冰霜新星", "kind": "spell", "name": "冰霜新星", "score": 7, "tier": "A", "signals": ["damage", "resource"], "status": "screened"}
-{"id": "sp.群体嘲讽", "kind": "spell", "name": "群体嘲讽", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "sp.群体嘲讽", "kind": "spell", "name": "群体嘲讽", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.团队灵魂", "kind": "spell", "name": "团队灵魂", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.护门者的蔚蓝徽记", "kind": "spell", "name": "护门者的蔚蓝徽记", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.弱能射线", "kind": "spell", "name": "弱能射线", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
@@ -2100,7 +2100,7 @@
 {"id": "sp.魅惑怪物", "kind": "spell", "name": "魅惑怪物", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "sp.元素灾祸", "kind": "spell", "name": "元素灾祸", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.获得高等坐骑", "kind": "spell", "name": "获得高等坐骑", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
-{"id": "sp.自然守卫", "kind": "spell", "name": "自然守卫", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.自然守卫", "kind": "spell", "name": "自然守卫", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.莫伊之影", "kind": "spell", "name": "莫伊之影", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "sp.致病辐射", "kind": "spell", "name": "致病辐射", "score": 9, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "sp.召唤高等邪魔", "kind": "spell", "name": "召唤高等邪魔", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -2109,19 +2109,19 @@
 {"id": "sp.劳洛希姆心灵长枪", "kind": "spell", "name": "劳洛希姆心灵长枪", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.魔绳术", "kind": "spell", "name": "魔绳术", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.引力裂沟", "kind": "spell", "name": "引力裂沟", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.兵装融合", "kind": "spell", "name": "兵装融合", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "sp.兵装融合", "kind": "spell", "name": "兵装融合", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.剑油", "kind": "spell", "name": "剑油", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.灵魂沙", "kind": "spell", "name": "灵魂沙", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.神能", "kind": "spell", "name": "神能", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "sp.降灵糖", "kind": "spell", "name": "降灵糖", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
-{"id": "sp.焊接", "kind": "spell", "name": "焊接", "score": 9, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
+{"id": "sp.焊接", "kind": "spell", "name": "焊接", "score": 13, "tier": "A", "signals": ["damage", "economy", "move", "multiplier"], "status": "screened"}
 {"id": "sp.生命显现", "kind": "spell", "name": "生命显现", "score": 8, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "sp.重雾术", "kind": "spell", "name": "重雾术", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.传送预知", "kind": "spell", "name": "传送预知", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "sp.烹煮术", "kind": "spell", "name": "烹煮术", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.不死尉官", "kind": "spell", "name": "不死尉官", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.化岩术", "kind": "spell", "name": "化岩术", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "sp.招魂曲", "kind": "spell", "name": "招魂曲", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "sp.招魂曲", "kind": "spell", "name": "招魂曲", "score": 9, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.活体炸弹", "kind": "spell", "name": "活体炸弹", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.觉晓城市", "kind": "spell", "name": "觉晓城市", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "sp.阵营之墙", "kind": "spell", "name": "阵营之墙", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
@@ -2138,7 +2138,7 @@
 {"id": "sp.追踪传送", "kind": "spell", "name": "追踪传送", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.晦暗心境", "kind": "spell", "name": "晦暗心境", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.晦暗崩裂", "kind": "spell", "name": "晦暗崩裂", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.活化箭矢", "kind": "spell", "name": "活化箭矢", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
+{"id": "sp.活化箭矢", "kind": "spell", "name": "活化箭矢", "score": 7, "tier": "A", "signals": ["hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.界门封锁", "kind": "spell", "name": "界门封锁", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.恐惧鸦群", "kind": "spell", "name": "恐惧鸦群", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.伤害无效化", "kind": "spell", "name": "伤害无效化", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
@@ -2181,9 +2181,9 @@
 {"id": "sp.决斗领域", "kind": "spell", "name": "决斗领域", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.高等守护之链", "kind": "spell", "name": "高等守护之链", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "sp.集群逃逸", "kind": "spell", "name": "集群逃逸", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
-{"id": "sp.原始神话", "kind": "spell", "name": "原始神话", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
+{"id": "sp.原始神话", "kind": "spell", "name": "原始神话", "score": 11, "tier": "A", "signals": ["damage", "economy", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.心理共振", "kind": "spell", "name": "心理共振", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
-{"id": "sp.信念武装", "kind": "spell", "name": "信念武装", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
+{"id": "sp.信念武装", "kind": "spell", "name": "信念武装", "score": 14, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.意识扫描", "kind": "spell", "name": "意识扫描", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "sp.塞壬的诱惑", "kind": "spell", "name": "塞壬的诱惑", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.凡庸", "kind": "spell", "name": "凡庸", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
@@ -2277,21 +2277,21 @@
 {"id": "sp.以太密探", "kind": "spell", "name": "以太密探", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "sp.钢铁意志之塔", "kind": "spell", "name": "钢铁意志之塔", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}
 {"id": "sp.能量乱流", "kind": "spell", "name": "能量乱流", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.机遇再现", "kind": "spell", "name": "机遇再现", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
+{"id": "sp.机遇再现", "kind": "spell", "name": "机遇再现", "score": 6, "tier": "A", "signals": ["hit", "multiplier"], "status": "screened"}
 {"id": "sp.水晶雹", "kind": "spell", "name": "水晶雹", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.超能共鸣", "kind": "spell", "name": "超能共鸣", "score": 3, "tier": "B", "signals": ["economy", "resource"], "status": "screened"}
 {"id": "sp.晦暗掌控", "kind": "spell", "name": "晦暗掌控", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "sp.能量爪", "kind": "spell", "name": "能量爪", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "sp.众生狂怒", "kind": "spell", "name": "众生狂怒", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "sp.肌体融合", "kind": "spell", "name": "肌体融合", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.肌体融合", "kind": "spell", "name": "肌体融合", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.诱导专注", "kind": "spell", "name": "诱导专注", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.末日形态", "kind": "spell", "name": "末日形态", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.石化之锤", "kind": "spell", "name": "石化之锤", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.力场吐息", "kind": "spell", "name": "力场吐息", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
-{"id": "sp.盾牌免疫", "kind": "spell", "name": "盾牌免疫", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
+{"id": "sp.盾牌免疫", "kind": "spell", "name": "盾牌免疫", "score": 8, "tier": "A", "signals": ["damage", "move", "multiplier"], "status": "screened"}
 {"id": "sp.驱离术", "kind": "spell", "name": "驱离术", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "sp.搬家术", "kind": "spell", "name": "搬家术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "sp.统御机车", "kind": "spell", "name": "统御机车", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "sp.统御机车", "kind": "spell", "name": "统御机车", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.剑刃护壁", "kind": "spell", "name": "剑刃护壁", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.隔离术", "kind": "spell", "name": "隔离术", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.律令痛苦", "kind": "spell", "name": "律令痛苦", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
@@ -2305,7 +2305,7 @@
 {"id": "sp.生理隔离", "kind": "spell", "name": "生理隔离", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.胎教", "kind": "spell", "name": "胎教", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.操纵鬼魂", "kind": "spell", "name": "操纵鬼魂", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
-{"id": "sp.虚境契约", "kind": "spell", "name": "虚境契约", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.虚境契约", "kind": "spell", "name": "虚境契约", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.寻找盟友", "kind": "spell", "name": "寻找盟友", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.精金钵", "kind": "spell", "name": "精金钵", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.重力场", "kind": "spell", "name": "重力场", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
@@ -2322,7 +2322,7 @@
 {"id": "sp.腐蚀泥沼", "kind": "spell", "name": "腐蚀泥沼", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.埋葬之地", "kind": "spell", "name": "埋葬之地", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.躲避吐息灵光", "kind": "spell", "name": "躲避吐息灵光", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "sp.魔族型貌", "kind": "spell", "name": "魔族型貌", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
+{"id": "sp.魔族型貌", "kind": "spell", "name": "魔族型貌", "score": 15, "tier": "A", "signals": ["damage", "economy", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.聚能成炮", "kind": "spell", "name": "聚能成炮", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.植物工厂", "kind": "spell", "name": "植物工厂", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.索命咒", "kind": "spell", "name": "索命咒", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
@@ -2362,7 +2362,7 @@
 {"id": "sp.魔魂壶", "kind": "spell", "name": "魔魂壶", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "sp.群体暗示术", "kind": "spell", "name": "群体暗示术", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "sp.欧提路克冰封法球", "kind": "spell", "name": "欧提路克冰封法球", "score": 8, "tier": "A", "signals": ["damage", "move", "resource"], "status": "screened"}
-{"id": "sp.奥图迷舞", "kind": "spell", "name": "奥图迷舞", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.奥图迷舞", "kind": "spell", "name": "奥图迷舞", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.异界盟友", "kind": "spell", "name": "异界盟友", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.预置幻影", "kind": "spell", "name": "预置幻影", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.阳炎射线", "kind": "spell", "name": "阳炎射线", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
@@ -2374,7 +2374,7 @@
 {"id": "sp.德鲁伊林地", "kind": "spell", "name": "德鲁伊林地", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.元素赋权", "kind": "spell", "name": "元素赋权", "score": 11, "tier": "A", "signals": ["damage", "economy", "hit", "move"], "status": "screened"}
 {"id": "sp.精神监狱", "kind": "spell", "name": "精神监狱", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
-{"id": "sp.灵魂牢笼", "kind": "spell", "name": "灵魂牢笼", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
+{"id": "sp.灵魂牢笼", "kind": "spell", "name": "灵魂牢笼", "score": 14, "tier": "A", "signals": ["damage", "economy", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.谭森变形术", "kind": "spell", "name": "谭森变形术", "score": 9, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
 {"id": "sp.费茨本铂金盾", "kind": "spell", "name": "费茨本铂金盾", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.塔莎超凡形态", "kind": "spell", "name": "塔莎超凡形态", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
@@ -2386,8 +2386,8 @@
 {"id": "sp.完美从者", "kind": "spell", "name": "完美从者", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.欧提路克压制领域", "kind": "spell", "name": "欧提路克压制领域", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.行影术", "kind": "spell", "name": "行影术", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
-{"id": "sp.冰火风暴", "kind": "spell", "name": "冰火风暴", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "sp.骨之箭", "kind": "spell", "name": "骨之箭", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "sp.冰火风暴", "kind": "spell", "name": "冰火风暴", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
+{"id": "sp.骨之箭", "kind": "spell", "name": "骨之箭", "score": 12, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.转能医疗", "kind": "spell", "name": "转能医疗", "score": 6, "tier": "A", "signals": ["damage"], "status": "screened"}
 {"id": "sp.延缓死亡", "kind": "spell", "name": "延缓死亡", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.大地掌握", "kind": "spell", "name": "大地掌握", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -2407,7 +2407,7 @@
 {"id": "sp.机械降神", "kind": "spell", "name": "机械降神", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.虽死不悔", "kind": "spell", "name": "虽死不悔", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.搜魂术", "kind": "spell", "name": "搜魂术", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "sp.行棋", "kind": "spell", "name": "行棋", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.行棋", "kind": "spell", "name": "行棋", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.八卦阵", "kind": "spell", "name": "八卦阵", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.怨恨之鬼", "kind": "spell", "name": "怨恨之鬼", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.异端审判", "kind": "spell", "name": "异端审判", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
@@ -2429,7 +2429,7 @@
 {"id": "sp.弗兰肯斯坦的造物", "kind": "spell", "name": "弗兰肯斯坦的造物", "score": 1, "tier": "C", "signals": ["resource"], "status": "screened"}
 {"id": "sp.暴食", "kind": "spell", "name": "暴食", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.嫉妒", "kind": "spell", "name": "嫉妒", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "sp.提尔的三重枷锁", "kind": "spell", "name": "提尔的三重枷锁", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
+{"id": "sp.提尔的三重枷锁", "kind": "spell", "name": "提尔的三重枷锁", "score": 8, "tier": "A", "signals": ["economy", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.雷霆蝙蝠授力", "kind": "spell", "name": "雷霆蝙蝠授力", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.冥河的传说", "kind": "spell", "name": "冥河的传说", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.哈达的寄生", "kind": "spell", "name": "哈达的寄生", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
@@ -2454,7 +2454,7 @@
 {"id": "sp.神庙术", "kind": "spell", "name": "神庙术", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.旋风", "kind": "spell", "name": "旋风", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.系结本源", "kind": "spell", "name": "系结本源", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
-{"id": "sp.七星瞳", "kind": "spell", "name": "七星瞳", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
+{"id": "sp.七星瞳", "kind": "spell", "name": "七星瞳", "score": 8, "tier": "A", "signals": ["hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.漫卷", "kind": "spell", "name": "漫卷", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.高等秘法门", "kind": "spell", "name": "高等秘法门", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.法术防护符", "kind": "spell", "name": "法术防护符", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -2491,7 +2491,7 @@
 {"id": "sp.此处有龙", "kind": "spell", "name": "此处有龙", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.真正的脆弱诅咒", "kind": "spell", "name": "真正的脆弱诅咒", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.天火焚城", "kind": "spell", "name": "天火焚城", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
-{"id": "sp.契术师射线", "kind": "spell", "name": "契术师射线", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.契术师射线", "kind": "spell", "name": "契术师射线", "score": 14, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.耗尽", "kind": "spell", "name": "耗尽", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.千音迭奏", "kind": "spell", "name": "千音迭奏", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
 {"id": "sp.坠入地狱", "kind": "spell", "name": "坠入地狱", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
@@ -2561,18 +2561,18 @@
 {"id": "sp.拉德的临终关怀", "kind": "spell", "name": "拉德的临终关怀", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.冰封法阵", "kind": "spell", "name": "冰封法阵", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.大眼的召雷弹", "kind": "spell", "name": "大眼的召雷弹", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
-{"id": "sp.伽刚特尔授力", "kind": "spell", "name": "伽刚特尔授力", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
+{"id": "sp.伽刚特尔授力", "kind": "spell", "name": "伽刚特尔授力", "score": 10, "tier": "A", "signals": ["damage", "economy", "move", "multiplier"], "status": "screened"}
 {"id": "sp.一岁荣枯", "kind": "spell", "name": "一岁荣枯", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.藏于时间的缝隙", "kind": "spell", "name": "藏于时间的缝隙", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.敏感度激增", "kind": "spell", "name": "敏感度激增", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "sp.平行自我", "kind": "spell", "name": "平行自我", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
-{"id": "sp.风怒术", "kind": "spell", "name": "风怒术", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
-{"id": "sp.能量转换结界", "kind": "spell", "name": "能量转换结界", "score": 9, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.风怒术", "kind": "spell", "name": "风怒术", "score": 5, "tier": "A", "signals": ["move", "multiplier"], "status": "screened"}
+{"id": "sp.能量转换结界", "kind": "spell", "name": "能量转换结界", "score": 13, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.旅行契约", "kind": "spell", "name": "旅行契约", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "sp.晦暗面纱", "kind": "spell", "name": "晦暗面纱", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "sp.密斯特拉圣星", "kind": "spell", "name": "密斯特拉圣星", "score": 10, "tier": "A", "signals": ["damage", "economy", "hit"], "status": "screened"}
 {"id": "sp.变换魔契恩泽", "kind": "spell", "name": "变换魔契恩泽", "score": 2, "tier": "C", "signals": ["economy"], "status": "screened"}
-{"id": "sp.死神形态", "kind": "spell", "name": "死神形态", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "sp.死神形态", "kind": "spell", "name": "死神形态", "score": 11, "tier": "A", "signals": ["damage", "hit", "move", "multiplier", "resource"], "status": "screened"}
 {"id": "sp.贪婪", "kind": "spell", "name": "贪婪", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.重导术", "kind": "spell", "name": "重导术", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "sp.绝对庇护", "kind": "spell", "name": "绝对庇护", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
@@ -2600,7 +2600,7 @@
 {"id": "sp.人间神国", "kind": "spell", "name": "人间神国", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
 {"id": "sp.瞬息庇护", "kind": "spell", "name": "瞬息庇护", "score": 6, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
 {"id": "sp.传奇术", "kind": "spell", "name": "传奇术", "score": 9, "tier": "A", "signals": ["damage", "economy", "move"], "status": "screened"}
-{"id": "sp.本源术", "kind": "spell", "name": "本源术", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "sp.本源术", "kind": "spell", "name": "本源术", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "multiplier"], "status": "screened"}
 {"id": "sp.地火", "kind": "spell", "name": "地火", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.高等超态变化", "kind": "spell", "name": "高等超态变化", "score": 7, "tier": "A", "signals": ["damage", "economy", "move", "resource"], "status": "screened"}
 {"id": "sp.晦暗之炎", "kind": "spell", "name": "晦暗之炎", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
@@ -2621,7 +2621,7 @@
 {"id": "sp.冥河大潮", "kind": "spell", "name": "冥河大潮", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.活力浪潮", "kind": "spell", "name": "活力浪潮", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "sp.卡尔的瞬间购物", "kind": "spell", "name": "卡尔的瞬间购物", "score": 0, "tier": "C", "signals": [], "status": "screened"}
-{"id": "sp.绯色之月", "kind": "spell", "name": "绯色之月", "score": 8, "tier": "A", "signals": ["damage", "hit"], "status": "screened"}
+{"id": "sp.绯色之月", "kind": "spell", "name": "绯色之月", "score": 12, "tier": "A", "signals": ["damage", "hit", "multiplier"], "status": "screened"}
 {"id": "sp.大眼的魂之接力", "kind": "spell", "name": "大眼的魂之接力", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "sp.高等先发制人Anticipatory Strike，", "kind": "spell", "name": "高等先发制人Anticipatory Strike，", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "sp.天人五衰", "kind": "spell", "name": "天人五衰", "score": 7, "tier": "A", "signals": ["damage", "move"], "status": "screened"}

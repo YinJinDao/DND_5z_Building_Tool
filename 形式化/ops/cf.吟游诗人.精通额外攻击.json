@@ -1,0 +1,28 @@
+{
+  "id": "cf.吟游诗人.精通额外攻击",
+  "name": "精通额外攻击",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "吟游诗人",
+    "class_id": "class.bard",
+    "level": 14,
+    "subclass": "剑舞"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "attack_count": 3
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/吟游诗人/剑舞.htm",
+    "anchor": "精通额外攻击"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -22,10 +22,11 @@
 | `data/class_tables.jsonl` | 180 | 等级→特性 + 资源曲线 |
 | `data/feats.jsonl` | 672 | A 档完成 |
 | `data/spells.jsonl` | 1103 | A 档完成，读规则书正文（已弃用 1.49 版 xlsx） |
-| `data/relevance.jsonl` | 2640 | 相关性粗筛 |
-| `data/feat_compile_status.jsonl` | 139 | 专长 A 档编译结论（modeled 4 / needs_ruling 114 / out_of_scope 21） |
+| `data/relevance.jsonl` | 2640 | 相关性粗筛（A 档 904） |
+| `data/feat_compile_status.jsonl` | 181 | 专长 A 档编译结论（modeled 4 / needs_ruling 153 / out_of_scope 24） |
+| `data/class_feature_compile_status.jsonl` | 192 | 职业特性 A 档编译结论（modeled 22 / needs_ruling 152 / out_of_scope 18） |
 | `data/feat_triage.jsonl` | 672 | 专长按 F1–F12 分诊：in 330 / manual 170 / unclear 128 / defensive 26 / out 18 |
-| `ops/*.json` | 272 | B 档算子：战技 16、专长 6、法术 244、复合动作 1、职业特性 5、子职特性 1 |
+| `ops/*.json` | 288 | B 档算子：战技 15、专长 6、法术 244、复合动作 1、职业特性 21、子职特性 1 |
 | `data/maneuver_compile_status.jsonl` | 59 | 战技 A 档逐条编译结论（modeled 16 / needs_ruling 36 / out_of_scope 7） |
 | `data/spell_compile_status.jsonl` | 455 | 法术 A 档逐条编译结论（modeled 244 / needs_ruling 116 / out_of_scope 95） |
 

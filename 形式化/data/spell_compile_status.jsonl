@@ -1,318 +1,327 @@
 {"id": "sp.冻寒之触", "name": "冻寒之触", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.魔能爆", "name": "魔能爆", "status": "modeled", "reason": "法术攻击，1d10 force", "source": "compiler"}
-{"id": "sp.火焰箭", "name": "火焰箭", "status": "modeled", "reason": "法术攻击，1d10 fire", "source": "compiler"}
-{"id": "sp.毒气喷溅", "name": "毒气喷溅", "status": "modeled", "reason": "con 豁免，1d12 poison", "source": "compiler"}
-{"id": "sp.燃火术", "name": "燃火术", "status": "modeled", "reason": "法术攻击，1d8 fire", "source": "compiler"}
-{"id": "sp.冷冻射线", "name": "冷冻射线", "status": "modeled", "reason": "法术攻击，1d8 cold", "source": "compiler"}
+{"id": "sp.魔能爆", "name": "魔能爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.火焰箭", "name": "火焰箭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.毒气喷溅", "name": "毒气喷溅", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.燃火术", "name": "燃火术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.冷冻射线", "name": "冷冻射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.圣火术", "name": "圣火术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.电爪", "name": "电爪", "status": "modeled", "reason": "法术攻击，1d8 lightning", "source": "compiler"}
-{"id": "sp.荆棘之鞭", "name": "荆棘之鞭", "status": "modeled", "reason": "str 豁免，1d6 slashing", "source": "compiler"}
-{"id": "sp.恶言相加", "name": "恶言相加", "status": "modeled", "reason": "wis 豁免，1d6 psychic", "source": "compiler"}
-{"id": "sp.霜噬", "name": "霜噬", "status": "modeled", "reason": "con 豁免，1d6 cold", "source": "compiler"}
-{"id": "sp.虫群孳生", "name": "虫群孳生", "status": "modeled", "reason": "con 豁免，1d10 poison", "source": "compiler"}
-{"id": "sp.魔石术", "name": "魔石术", "status": "modeled", "reason": "法术攻击，1d6 bludgeoning", "source": "compiler"}
-{"id": "sp.原初蛮击", "name": "原初蛮击", "status": "modeled", "reason": "法术攻击，1d12 acid", "source": "compiler"}
-{"id": "sp.亡者丧钟", "name": "亡者丧钟", "status": "modeled", "reason": "wis 豁免，1d8 necrotic", "source": "compiler"}
+{"id": "sp.电爪", "name": "电爪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.荆棘之鞭", "name": "荆棘之鞭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.恶言相加", "name": "恶言相加", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.霜噬", "name": "霜噬", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.虫群孳生", "name": "虫群孳生", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.魔石术", "name": "魔石术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.原初蛮击", "name": "原初蛮击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.亡者丧钟", "name": "亡者丧钟", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.光耀祷言", "name": "光耀祷言", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.轰雷剑", "name": "轰雷剑", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
 {"id": "sp.翠炎剑", "name": "翠炎剑", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.闪电牵引", "name": "闪电牵引", "status": "modeled", "reason": "dex 豁免，1d6 lightning", "source": "compiler"}
-{"id": "sp.心灵之楔", "name": "心灵之楔", "status": "modeled", "reason": "int 豁免，1d6 psychic", "source": "compiler"}
+{"id": "sp.闪电牵引", "name": "闪电牵引", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.心灵之楔", "name": "心灵之楔", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.剑刃爆发", "name": "剑刃爆发", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.削弱芒刺", "name": "削弱芒刺", "status": "modeled", "reason": "con 豁免，1d4 necrotic", "source": "compiler"}
+{"id": "sp.削弱芒刺", "name": "削弱芒刺", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.好言相劝", "name": "好言相劝", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
-{"id": "sp.法兰快剑", "name": "法兰快剑", "status": "modeled", "reason": "法术攻击，1d8 cold", "source": "compiler"}
+{"id": "sp.法兰快剑", "name": "法兰快剑", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.魔导术", "name": "魔导术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
 {"id": "sp.水晶箭", "name": "水晶箭", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.感受情绪", "name": "感受情绪", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.法能屏障", "name": "法能屏障", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发；对自身造成伤害", "source": "compiler"}
 {"id": "sp.分析术", "name": "分析术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
-{"id": "sp.琉璃的月光射线", "name": "琉璃的月光射线", "status": "modeled", "reason": "法术攻击，1d4 radiant", "source": "compiler"}
-{"id": "sp.遥控球", "name": "遥控球", "status": "modeled", "reason": "str 豁免，2d8 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.琉璃的月光射线", "name": "琉璃的月光射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.遥控球", "name": "遥控球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.艾嘉西斯之铠", "name": "艾嘉西斯之铠", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.哈达之臂", "name": "哈达之臂", "status": "modeled", "reason": "str 豁免，2d6 necrotic（半伤）", "source": "compiler"}
+{"id": "sp.哈达之臂", "name": "哈达之臂", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.祝福术", "name": "祝福术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.燃烧之手", "name": "燃烧之手", "status": "modeled", "reason": "dex 豁免，3d6 fire（半伤）", "source": "compiler"}
+{"id": "sp.燃烧之手", "name": "燃烧之手", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.魅惑人类", "name": "魅惑人类", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.繁彩球", "name": "繁彩球", "status": "modeled", "reason": "法术攻击，3d8 poison", "source": "compiler"}
+{"id": "sp.繁彩球", "name": "繁彩球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.七彩喷射", "name": "七彩喷射", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.疗伤术", "name": "疗伤术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.不谐低语", "name": "不谐低语", "status": "modeled", "reason": "wis 豁免，3d6 psychic（半伤）", "source": "compiler"}
+{"id": "sp.不谐低语", "name": "不谐低语", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.神恩", "name": "神恩", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.诱捕打击", "name": "诱捕打击", "status": "modeled", "reason": "str 豁免，1d6 piercing", "source": "compiler"}
+{"id": "sp.诱捕打击", "name": "诱捕打击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.妖火", "name": "妖火", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.获得魔宠", "name": "获得魔宠", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.油腻术", "name": "油腻术", "status": "modeled", "reason": "dex 豁免，1d6 fire", "source": "compiler"}
-{"id": "sp.曳光弹", "name": "曳光弹", "status": "modeled", "reason": "法术攻击，3d6 radiant", "source": "compiler"}
-{"id": "sp.棘雹术", "name": "棘雹术", "status": "modeled", "reason": "dex 豁免，2d8 piercing（半伤）", "source": "compiler"}
+{"id": "sp.油腻术", "name": "油腻术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.曳光弹", "name": "曳光弹", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.棘雹术", "name": "棘雹术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.治愈真言", "name": "治愈真言", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.炼狱叱喝", "name": "炼狱叱喝", "status": "modeled", "reason": "dex 豁免，3d10 fire（半伤）", "source": "compiler"}
-{"id": "sp.猎人印记", "name": "猎人印记", "status": "modeled", "reason": "dex 豁免，1d6 force", "source": "compiler"}
-{"id": "sp.致伤术", "name": "致伤术", "status": "modeled", "reason": "法术攻击，3d10 necrotic", "source": "compiler"}
+{"id": "sp.炼狱叱喝", "name": "炼狱叱喝", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.猎人印记", "name": "猎人印记", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.致伤术", "name": "致伤术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.魔法飞弹", "name": "魔法飞弹", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.炽焰斩", "name": "炽焰斩", "status": "modeled", "reason": "con 豁免，1d10 fire", "source": "compiler"}
+{"id": "sp.炽焰斩", "name": "炽焰斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.护盾术", "name": "护盾术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.睡眠术", "name": "睡眠术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.雷鸣斩", "name": "雷鸣斩", "status": "modeled", "reason": "str 豁免，2d6 thunder", "source": "compiler"}
-{"id": "sp.雷鸣波", "name": "雷鸣波", "status": "modeled", "reason": "con 豁免，2d8 thunder（半伤）", "source": "compiler"}
+{"id": "sp.雷鸣斩", "name": "雷鸣斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.雷鸣波", "name": "雷鸣波", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.隐形仆役", "name": "隐形仆役", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.巫术箭", "name": "巫术箭", "status": "modeled", "reason": "法术攻击，2d12 lightning", "source": "compiler"}
-{"id": "sp.激愤斩", "name": "激愤斩", "status": "modeled", "reason": "wis 豁免，1d6 psychic", "source": "compiler"}
+{"id": "sp.巫术箭", "name": "巫术箭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.激愤斩", "name": "激愤斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.吸收元素", "name": "吸收元素", "status": "needs_ruling", "reason": "对自身造成伤害", "source": "compiler"}
-{"id": "sp.弹射", "name": "弹射", "status": "modeled", "reason": "dex 豁免，3d8 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.造成恐惧", "name": "造成恐惧", "status": "modeled", "reason": "wis 豁免，2d6 psychic", "source": "compiler"}
-{"id": "sp.混乱箭", "name": "混乱箭", "status": "modeled", "reason": "法术攻击，3d8 acid", "source": "compiler"}
-{"id": "sp.地颤", "name": "地颤", "status": "modeled", "reason": "dex 豁免，2d6 bludgeoning", "source": "compiler"}
+{"id": "sp.兽之联结", "name": "兽之联结", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.弹射", "name": "弹射", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.造成恐惧", "name": "造成恐惧", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.混乱箭", "name": "混乱箭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.地颤", "name": "地颤", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.冰刃", "name": "冰刃", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.西风打击", "name": "西风打击", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.扩大重力", "name": "扩大重力", "status": "modeled", "reason": "con 豁免，2d8 force", "source": "compiler"}
+{"id": "sp.扩大重力", "name": "扩大重力", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.吉姆的魔法飞弹", "name": "吉姆的魔法飞弹", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.锦囊妙计", "name": "锦囊妙计", "status": "modeled", "reason": "dex 豁免，3d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.地雷", "name": "地雷", "status": "modeled", "reason": "con 豁免，3d6 thunder（半伤）", "source": "compiler"}
+{"id": "sp.锦囊妙计", "name": "锦囊妙计", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.地雷", "name": "地雷", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.活化绳", "name": "活化绳", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.瞬间力量", "name": "瞬间力量", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.兽性大发", "name": "兽性大发", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.获得晶仆", "name": "获得晶仆", "status": "modeled", "reason": "dex 豁免，1d4 psychic", "source": "compiler"}
-{"id": "sp.心灵戳痛", "name": "心灵戳痛", "status": "modeled", "reason": "int 豁免，3d8 psychic（半伤）", "source": "compiler"}
-{"id": "sp.物质激灼", "name": "物质激灼", "status": "modeled", "reason": "con 豁免，2d6 fire", "source": "compiler"}
-{"id": "sp.能量射线", "name": "能量射线", "status": "modeled", "reason": "法术攻击，3d8 fire", "source": "compiler"}
-{"id": "sp.能量弧", "name": "能量弧", "status": "modeled", "reason": "dex 豁免，2d8 fire（半伤）", "source": "compiler"}
+{"id": "sp.获得晶仆", "name": "获得晶仆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.同步术", "name": "同步术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.心灵戳痛", "name": "心灵戳痛", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.物质激灼", "name": "物质激灼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.能量射线", "name": "能量射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.能量弧", "name": "能量弧", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.命运术", "name": "命运术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.狂野生长", "name": "狂野生长", "status": "modeled", "reason": "con 豁免，1d10 poison", "source": "compiler"}
+{"id": "sp.狂野生长", "name": "狂野生长", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.修补飞针", "name": "修补飞针", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.定罪", "name": "定罪", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.吸血鬼之吻", "name": "吸血鬼之吻", "status": "modeled", "reason": "法术攻击，2d10 piercing", "source": "compiler"}
+{"id": "sp.吸血鬼之吻", "name": "吸血鬼之吻", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.晦暗伤疤", "name": "晦暗伤疤", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.大眼的狂笑术", "name": "大眼的狂笑术", "status": "modeled", "reason": "con 豁免，1d6 poison（半伤）", "source": "compiler"}
+{"id": "sp.大眼的狂笑术", "name": "大眼的狂笑术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.伏击猎物", "name": "伏击猎物", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.疗伤箭", "name": "疗伤箭", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.猎魔者的法印", "name": "猎魔者的法印", "status": "modeled", "reason": "str 豁免，4d8 thunder（半伤）", "source": "compiler"}
+{"id": "sp.猎魔者的法印", "name": "猎魔者的法印", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.静电术", "name": "静电术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.死亡缠绕", "name": "死亡缠绕", "status": "modeled", "reason": "法术攻击，4d6 necrotic", "source": "compiler"}
+{"id": "sp.死亡缠绕", "name": "死亡缠绕", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.显露创伤", "name": "显露创伤", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.变身术", "name": "变身术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.朦胧术", "name": "朦胧术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.印记斩", "name": "印记斩", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.匕首之云", "name": "匕首之云", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.强化属性", "name": "强化属性", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.火焰刀", "name": "火焰刀", "status": "modeled", "reason": "法术攻击，4d8 fire", "source": "compiler"}
-{"id": "sp.炽焰法球", "name": "炽焰法球", "status": "modeled", "reason": "dex 豁免，4d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.灼热金属", "name": "灼热金属", "status": "modeled", "reason": "con 豁免，2d8 fire", "source": "compiler"}
+{"id": "sp.火焰刀", "name": "火焰刀", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.炽焰法球", "name": "炽焰法球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.灼热金属", "name": "灼热金属", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.人类定身术", "name": "人类定身术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.魔化武器", "name": "魔化武器", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.镜影术", "name": "镜影术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.月华之光", "name": "月华之光", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.魅影之力", "name": "魅影之力", "status": "modeled", "reason": "int 豁免，1d6 psychic", "source": "compiler"}
+{"id": "sp.魅影之力", "name": "魅影之力", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.治疗祷言", "name": "治疗祷言", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.衰弱射线", "name": "衰弱射线", "status": "modeled", "reason": "法术攻击，1d6 force", "source": "compiler"}
-{"id": "sp.笨拙射线", "name": "笨拙射线", "status": "modeled", "reason": "法术攻击，1d6 force", "source": "compiler"}
+{"id": "sp.衰弱射线", "name": "衰弱射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.笨拙射线", "name": "笨拙射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.灼热射线", "name": "灼热射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.粉碎音波", "name": "粉碎音波", "status": "modeled", "reason": "con 豁免，3d8 thunder（半伤）", "source": "compiler"}
+{"id": "sp.粉碎音波", "name": "粉碎音波", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.荆棘丛生", "name": "荆棘丛生", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.灵体武器", "name": "灵体武器", "status": "modeled", "reason": "法术攻击，1d8 force", "source": "compiler"}
-{"id": "sp.蛛网术", "name": "蛛网术", "status": "modeled", "reason": "dex 豁免，2d4 fire", "source": "compiler"}
-{"id": "sp.龙息术", "name": "龙息术", "status": "modeled", "reason": "dex 豁免，3d6 acid", "source": "compiler"}
-{"id": "sp.龙卷尘爆", "name": "龙卷尘爆", "status": "modeled", "reason": "str 豁免，3d8 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.灵体武器", "name": "灵体武器", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.蛛网术", "name": "蛛网术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.龙息术", "name": "龙息术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.龙卷尘爆", "name": "龙卷尘爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.治愈之魂", "name": "治愈之魂", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.麦克斯米利安的地之攫", "name": "麦克斯米利安的地之攫", "status": "modeled", "reason": "str 豁免，4d10 bludgeoning", "source": "compiler"}
-{"id": "sp.心灵尖刺", "name": "心灵尖刺", "status": "modeled", "reason": "wis 豁免，3d8 psychic（半伤）", "source": "compiler"}
+{"id": "sp.麦克斯米利安的地之攫", "name": "麦克斯米利安的地之攫", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.心灵尖刺", "name": "心灵尖刺", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.幽影刃", "name": "幽影刃", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.塔莎心灵鞭", "name": "塔莎心灵鞭", "status": "modeled", "reason": "int 豁免，3d6 psychic（半伤）", "source": "compiler"}
+{"id": "sp.塔莎心灵鞭", "name": "塔莎心灵鞭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.动力短行", "name": "动力短行", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.靡叶生华", "name": "靡叶生华", "status": "modeled", "reason": "con 豁免，2d6 necrotic（半伤）", "source": "compiler"}
-{"id": "sp.莱姆束缚之霜", "name": "莱姆束缚之霜", "status": "modeled", "reason": "con 豁免，3d8 cold（半伤）", "source": "compiler"}
+{"id": "sp.靡叶生华", "name": "靡叶生华", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.莱姆束缚之霜", "name": "莱姆束缚之霜", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.诺姆之鳞", "name": "诺姆之鳞", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.沙拉曼达之爪", "name": "沙拉曼达之爪", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.玷污生命", "name": "玷污生命", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.宙斯盾系统", "name": "宙斯盾系统", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
 {"id": "sp.战斗续行", "name": "战斗续行", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.白骨之弦", "name": "白骨之弦", "status": "modeled", "reason": "con 豁免，3d6 thunder（半伤）", "source": "compiler"}
-{"id": "sp.蟾蜍之吻", "name": "蟾蜍之吻", "status": "modeled", "reason": "con 豁免，1d4 poison", "source": "compiler"}
+{"id": "sp.白骨之弦", "name": "白骨之弦", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.蟾蜍之吻", "name": "蟾蜍之吻", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.此身为剑", "name": "此身为剑", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.遮蔽心灵", "name": "遮蔽心灵", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.念力冲击", "name": "念力冲击", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.自性鞭击", "name": "自性鞭击", "status": "modeled", "reason": "int 豁免，1d6 force", "source": "compiler"}
-{"id": "sp.能量冲撞", "name": "能量冲撞", "status": "modeled", "reason": "法术攻击，3d8 fire", "source": "compiler"}
-{"id": "sp.水晶针雨", "name": "水晶针雨", "status": "modeled", "reason": "dex 豁免，3d4 slashing（半伤）", "source": "compiler"}
-{"id": "sp.仿生术", "name": "仿生术", "status": "modeled", "reason": "con 豁免，1d8 piercing（半伤）", "source": "compiler"}
+{"id": "sp.自性鞭击", "name": "自性鞭击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.能量冲撞", "name": "能量冲撞", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.水晶针雨", "name": "水晶针雨", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.仿生术", "name": "仿生术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.亡灵再起", "name": "亡灵再起", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.完全修复术", "name": "完全修复术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.吾敌之力", "name": "吾敌之力", "status": "modeled", "reason": "con 豁免，2d4 force", "source": "compiler"}
+{"id": "sp.吾敌之力", "name": "吾敌之力", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.晦暗武器", "name": "晦暗武器", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.卡牌喷射", "name": "卡牌喷射", "status": "modeled", "reason": "dex 豁免，2d10 force（半伤）", "source": "compiler"}
-{"id": "sp.柳絮纷飞", "name": "柳絮纷飞", "status": "modeled", "reason": "con 豁免，4d8 fire", "source": "compiler"}
-{"id": "sp.植入梦境", "name": "植入梦境", "status": "modeled", "reason": "wis 豁免，1d8 force", "source": "compiler"}
-{"id": "sp.摧心射线", "name": "摧心射线", "status": "modeled", "reason": "法术攻击，1d6 force", "source": "compiler"}
-{"id": "sp.激光眼", "name": "激光眼", "status": "modeled", "reason": "dex 豁免，3d6 radiant", "source": "compiler"}
-{"id": "sp.抗拒火环", "name": "抗拒火环", "status": "modeled", "reason": "str 豁免，2d8 fire", "source": "compiler"}
-{"id": "sp.赐予解脱", "name": "赐予解脱", "status": "modeled", "reason": "wis 豁免，2d4 necrotic（半伤）", "source": "compiler"}
+{"id": "sp.卡牌喷射", "name": "卡牌喷射", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.柳絮纷飞", "name": "柳絮纷飞", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.植入梦境", "name": "植入梦境", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.摧心射线", "name": "摧心射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.激光眼", "name": "激光眼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.抗拒火环", "name": "抗拒火环", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.赐予解脱", "name": "赐予解脱", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.闪光治疗", "name": "闪光治疗", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.风刃术", "name": "风刃术", "status": "modeled", "reason": "法术攻击，1d10 slashing", "source": "compiler"}
+{"id": "sp.风刃术", "name": "风刃术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.半身失调", "name": "半身失调", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.凯丰之援助", "name": "凯丰之援助", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.永恒的祝福", "name": "永恒的祝福", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.塔罗牌的启示", "name": "塔罗牌的启示", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.生命屏障", "name": "生命屏障", "status": "modeled", "reason": "con 豁免，4d6 radiant（半伤）", "source": "compiler"}
+{"id": "sp.生命屏障", "name": "生命屏障", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.天堂叱喝", "name": "天堂叱喝", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.猩红腐败的诅咒", "name": "猩红腐败的诅咒", "status": "modeled", "reason": "wis 豁免，1d10 poison（半伤）", "source": "compiler"}
+{"id": "sp.猩红腐败的诅咒", "name": "猩红腐败的诅咒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.金刚龟授力", "name": "金刚龟授力", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.活力灵光", "name": "活力灵光", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.希望信标", "name": "希望信标", "status": "modeled", "reason": "wis 豁免，1d8 force", "source": "compiler"}
-{"id": "sp.降咒", "name": "降咒", "status": "modeled", "reason": "wis 豁免，1d8 necrotic", "source": "compiler"}
-{"id": "sp.致盲斩", "name": "致盲斩", "status": "modeled", "reason": "con 豁免，3d8 radiant", "source": "compiler"}
-{"id": "sp.召雷术", "name": "召雷术", "status": "modeled", "reason": "dex 豁免，4d10 lightning（半伤）", "source": "compiler"}
-{"id": "sp.召唤箭雨", "name": "召唤箭雨", "status": "modeled", "reason": "dex 豁免，6d8 force（半伤）", "source": "compiler"}
+{"id": "sp.希望信标", "name": "希望信标", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.降咒", "name": "降咒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.致盲斩", "name": "致盲斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.召雷术", "name": "召雷术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.召唤箭雨", "name": "召唤箭雨", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.十字军披风", "name": "十字军披风", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.火球术", "name": "火球术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.气化形体", "name": "气化形体", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.守卫刻文", "name": "守卫刻文", "status": "modeled", "reason": "str 豁免，8d10 fire（半伤）", "source": "compiler"}
+{"id": "sp.守卫刻文", "name": "守卫刻文", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.哈达之欲", "name": "哈达之欲", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.闪电束", "name": "闪电束", "status": "modeled", "reason": "dex 豁免，8d6 lightning（半伤）", "source": "compiler"}
+{"id": "sp.闪电束", "name": "闪电束", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.群体治愈真言", "name": "群体治愈真言", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.魅影驹", "name": "魅影驹", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.灵体卫士", "name": "灵体卫士", "status": "modeled", "reason": "wis 豁免，3d8 radiant（半伤）", "source": "compiler"}
-{"id": "sp.吸血鬼之触", "name": "吸血鬼之触", "status": "modeled", "reason": "法术攻击，4d12 necrotic", "source": "compiler"}
-{"id": "sp.风墙术", "name": "风墙术", "status": "modeled", "reason": "str 豁免，3d8 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.土石喷发", "name": "土石喷发", "status": "modeled", "reason": "dex 豁免，6d6 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.马友夫微流星", "name": "马友夫微流星", "status": "modeled", "reason": "dex 豁免，3d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.雷霆步", "name": "雷霆步", "status": "modeled", "reason": "con 豁免，4d10 thunder", "source": "compiler"}
-{"id": "sp.潮涌", "name": "潮涌", "status": "modeled", "reason": "dex 豁免，5d8 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.灵体卫士", "name": "灵体卫士", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.吸血鬼之触", "name": "吸血鬼之触", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.风墙术", "name": "风墙术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.土石喷发", "name": "土石喷发", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.马友夫微流星", "name": "马友夫微流星", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.雷霆步", "name": "雷霆步", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.潮涌", "name": "潮涌", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.智能壁垒", "name": "智能壁垒", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.脉冲波动", "name": "脉冲波动", "status": "modeled", "reason": "con 豁免，6d6 force（半伤）", "source": "compiler"}
+{"id": "sp.脉冲波动", "name": "脉冲波动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.阿莎德隆奔行", "name": "阿莎德隆奔行", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.册封", "name": "册封", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.米萨卡的加速术", "name": "米萨卡的加速术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.创造幽灵船", "name": "创造幽灵船", "status": "modeled", "reason": "wis 豁免，4d6 psychic", "source": "compiler"}
+{"id": "sp.创造幽灵船", "name": "创造幽灵船", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.骑士的史诗", "name": "骑士的史诗", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.冰冻长枪", "name": "冰冻长枪", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.天族型貌", "name": "天族型貌", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.控制声音", "name": "控制声音", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.星质蔓生团块", "name": "星质蔓生团块", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.能量锥", "name": "能量锥", "status": "modeled", "reason": "dex 豁免，5d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.能量枪", "name": "能量枪", "status": "modeled", "reason": "con 豁免，5d6 fire", "source": "compiler"}
+{"id": "sp.能量锥", "name": "能量锥", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.能量枪", "name": "能量枪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.操纵肢体", "name": "操纵肢体", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.念控投掷", "name": "念控投掷", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.次元扭曲", "name": "次元扭曲", "status": "modeled", "reason": "str 豁免，5d6 force", "source": "compiler"}
+{"id": "sp.次元扭曲", "name": "次元扭曲", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.丰收", "name": "丰收", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.穿刺之死棘枪", "name": "穿刺之死棘枪", "status": "modeled", "reason": "con 豁免，6d6 piercing", "source": "compiler"}
-{"id": "sp.铁砂领域", "name": "铁砂领域", "status": "modeled", "reason": "dex 豁免，5d6 slashing（半伤）", "source": "compiler"}
+{"id": "sp.穿刺之死棘枪", "name": "穿刺之死棘枪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.铁砂领域", "name": "铁砂领域", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.大嘴花", "name": "大嘴花", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.贯穿触须", "name": "贯穿触须", "status": "modeled", "reason": "str 豁免，2d6 piercing", "source": "compiler"}
-{"id": "sp.反噬漩涡", "name": "反噬漩涡", "status": "modeled", "reason": "con 豁免，12d12 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.贯穿触须", "name": "贯穿触须", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.反噬漩涡", "name": "反噬漩涡", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.塔莎冒泡大锅", "name": "塔莎冒泡大锅", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.会心一击！Critical Hit！", "name": "会心一击！Critical Hit！", "status": "modeled", "reason": "wis 豁免，1d4 force", "source": "compiler"}
+{"id": "sp.会心一击！Critical Hit！", "name": "会心一击！Critical Hit！", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.灵能师屏障", "name": "灵能师屏障", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.明光之域", "name": "明光之域", "status": "modeled", "reason": "dex 豁免，8d8 radiant（半伤）", "source": "compiler"}
-{"id": "sp.冰霜新星", "name": "冰霜新星", "status": "modeled", "reason": "con 豁免，4d8 cold（半伤）", "source": "compiler"}
-{"id": "sp.骇人恶兽", "name": "骇人恶兽", "status": "modeled", "reason": "dex 豁免，1d4 bludgeoning", "source": "compiler"}
-{"id": "sp.神圣新星", "name": "神圣新星", "status": "modeled", "reason": "con 豁免，3d8 radiant（半伤）", "source": "compiler"}
-{"id": "sp.狂热术", "name": "狂热术", "status": "modeled", "reason": "wis 豁免，2d8 force", "source": "compiler"}
+{"id": "sp.明光之域", "name": "明光之域", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.冰霜新星", "name": "冰霜新星", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.群体嘲讽", "name": "群体嘲讽", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.骇人恶兽", "name": "骇人恶兽", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.神圣新星", "name": "神圣新星", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.狂热术", "name": "狂热术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.瞬袭之箭", "name": "瞬袭之箭", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.法力增幅", "name": "法力增幅", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.弧月之刃", "name": "弧月之刃", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.蓄力治疗", "name": "蓄力治疗", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.鲨蜥兽授力", "name": "鲨蜥兽授力", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.净化灵光", "name": "净化灵光", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.枯萎术", "name": "枯萎术", "status": "modeled", "reason": "con 豁免，8d12 necrotic（半伤）", "source": "compiler"}
-{"id": "sp.操控水体", "name": "操控水体", "status": "modeled", "reason": "str 豁免，2d8 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.枯萎术", "name": "枯萎术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.操控水体", "name": "操控水体", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.任意门", "name": "任意门", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.艾伐黑触手", "name": "艾伐黑触手", "status": "modeled", "reason": "str 豁免，3d10 bludgeoning", "source": "compiler"}
+{"id": "sp.艾伐黑触手", "name": "艾伐黑触手", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.温度护盾", "name": "温度护盾", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.擒抱藤", "name": "擒抱藤", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.冰风暴", "name": "冰风暴", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.魔邓肯忠犬", "name": "魔邓肯忠犬", "status": "modeled", "reason": "法术攻击，4d8 piercing", "source": "compiler"}
+{"id": "sp.魔邓肯忠犬", "name": "魔邓肯忠犬", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.变形术", "name": "变形术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.惊惧斩", "name": "惊惧斩", "status": "modeled", "reason": "wis 豁免，4d6 psychic", "source": "compiler"}
+{"id": "sp.惊惧斩", "name": "惊惧斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.石肤术", "name": "石肤术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.火墙术", "name": "火墙术", "status": "modeled", "reason": "dex 豁免，5d8 fire（半伤）", "source": "compiler"}
-{"id": "sp.元素灾祸", "name": "元素灾祸", "status": "modeled", "reason": "con 豁免，6d6 acid", "source": "compiler"}
-{"id": "sp.自然守卫", "name": "自然守卫", "status": "modeled", "reason": "con 豁免，1d8 force", "source": "compiler"}
+{"id": "sp.火墙术", "name": "火墙术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.元素灾祸", "name": "元素灾祸", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.自然守卫", "name": "自然守卫", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.莫伊之影", "name": "莫伊之影", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.致病辐射", "name": "致病辐射", "status": "modeled", "reason": "con 豁免，4d10 radiant", "source": "compiler"}
-{"id": "sp.浓酸球", "name": "浓酸球", "status": "modeled", "reason": "dex 豁免，10d4 acid（半伤）", "source": "compiler"}
-{"id": "sp.劳洛希姆心灵长枪", "name": "劳洛希姆心灵长枪", "status": "modeled", "reason": "int 豁免，7d6 psychic（半伤）", "source": "compiler"}
-{"id": "sp.引力裂沟", "name": "引力裂沟", "status": "modeled", "reason": "con 豁免，6d10 force（半伤）", "source": "compiler"}
+{"id": "sp.致病辐射", "name": "致病辐射", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.浓酸球", "name": "浓酸球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.劳洛希姆心灵长枪", "name": "劳洛希姆心灵长枪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.引力裂沟", "name": "引力裂沟", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.兵装融合", "name": "兵装融合", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.剑油", "name": "剑油", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.焊接", "name": "焊接", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.生命显现", "name": "生命显现", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.烹煮术", "name": "烹煮术", "status": "modeled", "reason": "con 豁免，6d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.化岩术", "name": "化岩术", "status": "modeled", "reason": "dex 豁免，3d6 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.能量墙", "name": "能量墙", "status": "modeled", "reason": "dex 豁免，4d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.星质墙", "name": "星质墙", "status": "modeled", "reason": "dex 豁免，1d6 bludgeoning", "source": "compiler"}
+{"id": "sp.烹煮术", "name": "烹煮术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.化岩术", "name": "化岩术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.招魂曲", "name": "招魂曲", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.能量墙", "name": "能量墙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.星质墙", "name": "星质墙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.超态变化", "name": "超态变化", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.水晶雕像", "name": "水晶雕像", "status": "modeled", "reason": "法术攻击，4d6 psychic", "source": "compiler"}
-{"id": "sp.晦暗崩裂", "name": "晦暗崩裂", "status": "modeled", "reason": "int 豁免，6d6 force", "source": "compiler"}
+{"id": "sp.水晶雕像", "name": "水晶雕像", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.晦暗崩裂", "name": "晦暗崩裂", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.活化箭矢", "name": "活化箭矢", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.热感应魔法飞弹", "name": "热感应魔法飞弹", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.魔影迷踪", "name": "魔影迷踪", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.腐蚀射线", "name": "腐蚀射线", "status": "modeled", "reason": "法术攻击，18d10 acid", "source": "compiler"}
-{"id": "sp.骷髅球", "name": "骷髅球", "status": "modeled", "reason": "str 豁免，5d8 bludgeoning", "source": "compiler"}
-{"id": "sp.零件球", "name": "零件球", "status": "modeled", "reason": "str 豁免，5d8 slashing", "source": "compiler"}
-{"id": "sp.生命传输", "name": "生命传输", "status": "modeled", "reason": "con 豁免，7d10 necrotic（半伤）", "source": "compiler"}
-{"id": "sp.重力扭曲", "name": "重力扭曲", "status": "modeled", "reason": "str 豁免，1d6 bludgeoning", "source": "compiler"}
-{"id": "sp.爱丽丝的摇篮", "name": "爱丽丝的摇篮", "status": "modeled", "reason": "wis 豁免，1d4 force", "source": "compiler"}
-{"id": "sp.浪之自由", "name": "浪之自由", "status": "modeled", "reason": "str 豁免，4d8 bludgeoning", "source": "compiler"}
+{"id": "sp.腐蚀射线", "name": "腐蚀射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.骷髅球", "name": "骷髅球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.零件球", "name": "零件球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.生命传输", "name": "生命传输", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.重力扭曲", "name": "重力扭曲", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.爱丽丝的摇篮", "name": "爱丽丝的摇篮", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.浪之自由", "name": "浪之自由", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.惩戒", "name": "惩戒", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.绞杀之藤", "name": "绞杀之藤", "status": "modeled", "reason": "str 豁免，1d4 force", "source": "compiler"}
-{"id": "sp.悠兰德王者威仪", "name": "悠兰德王者威仪", "status": "modeled", "reason": "wis 豁免，4d6 psychic（半伤）", "source": "compiler"}
+{"id": "sp.绞杀之藤", "name": "绞杀之藤", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.悠兰德王者威仪", "name": "悠兰德王者威仪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.夺躯", "name": "夺躯", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.决斗领域", "name": "决斗领域", "status": "modeled", "reason": "wis 豁免，8d10 psychic（半伤）", "source": "compiler"}
+{"id": "sp.决斗领域", "name": "决斗领域", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.高等守护之链", "name": "高等守护之链", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.集群逃逸", "name": "集群逃逸", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.原始神话", "name": "原始神话", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.信念武装", "name": "信念武装", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.彗星激流", "name": "彗星激流", "status": "modeled", "reason": "dex 豁免，7d8 radiant（半伤）", "source": "compiler"}
+{"id": "sp.彗星激流", "name": "彗星激流", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.元素箭", "name": "元素箭", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.九头蛇授力", "name": "九头蛇授力", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.迎战的祷告", "name": "迎战的祷告", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.放逐斩", "name": "放逐斩", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.毕格比之手", "name": "毕格比之手", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.原力法阵", "name": "原力法阵", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.死云术", "name": "死云术", "status": "modeled", "reason": "con 豁免，7d8 poison（半伤）", "source": "compiler"}
-{"id": "sp.寒冰锥", "name": "寒冰锥", "status": "modeled", "reason": "con 豁免，8d8 cold（半伤）", "source": "compiler"}
-{"id": "sp.万箭齐发", "name": "万箭齐发", "status": "modeled", "reason": "dex 豁免，10d8 force（半伤）", "source": "compiler"}
-{"id": "sp.异界探知", "name": "异界探知", "status": "modeled", "reason": "int 豁免，6d6 psychic", "source": "compiler"}
+{"id": "sp.死云术", "name": "死云术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.寒冰锥", "name": "寒冰锥", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.万箭齐发", "name": "万箭齐发", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.异界探知", "name": "异界探知", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.疫病术", "name": "疫病术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.湮灭波", "name": "湮灭波", "status": "modeled", "reason": "con 豁免，6d6 thunder（半伤）", "source": "compiler"}
+{"id": "sp.湮灭波", "name": "湮灭波", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.反制异界", "name": "反制异界", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.托梦术", "name": "托梦术", "status": "modeled", "reason": "wis 豁免，3d6 psychic", "source": "compiler"}
+{"id": "sp.托梦术", "name": "托梦术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.焰击术", "name": "焰击术", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.疫病虫群", "name": "疫病虫群", "status": "modeled", "reason": "con 豁免，5d10 piercing（半伤）", "source": "compiler"}
+{"id": "sp.疫病虫群", "name": "疫病虫群", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.群体疗伤术", "name": "群体疗伤术", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.石墙术", "name": "石墙术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.操控风力", "name": "操控风力", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.拂晓", "name": "拂晓", "status": "modeled", "reason": "con 豁免，5d10 radiant", "source": "compiler"}
-{"id": "sp.汲能术", "name": "汲能术", "status": "modeled", "reason": "dex 豁免，4d8 necrotic", "source": "compiler"}
-{"id": "sp.焚烧", "name": "焚烧", "status": "modeled", "reason": "dex 豁免，5d6 fire（半伤）", "source": "compiler"}
+{"id": "sp.拂晓", "name": "拂晓", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.汲能术", "name": "汲能术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.焚烧", "name": "焚烧", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.地狱呼唤", "name": "地狱呼唤", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.大漩涡", "name": "大漩涡", "status": "modeled", "reason": "str 豁免，6d6 bludgeoning", "source": "compiler"}
-{"id": "sp.负能量洪流", "name": "负能量洪流", "status": "modeled", "reason": "con 豁免，1d100 force", "source": "compiler"}
-{"id": "sp.钢风斩", "name": "钢风斩", "status": "modeled", "reason": "法术攻击，6d10 force", "source": "compiler"}
-{"id": "sp.突触静止", "name": "突触静止", "status": "modeled", "reason": "int 豁免，8d6 psychic", "source": "compiler"}
-{"id": "sp.自然之怒", "name": "自然之怒", "status": "modeled", "reason": "dex 豁免，4d6 slashing", "source": "compiler"}
+{"id": "sp.大漩涡", "name": "大漩涡", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.负能量洪流", "name": "负能量洪流", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.钢风斩", "name": "钢风斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.突触静止", "name": "突触静止", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.自然之怒", "name": "自然之怒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.时流刹转", "name": "时流刹转", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.光电激流", "name": "光电激流", "status": "modeled", "reason": "con 豁免，3d10 radiant（半伤）", "source": "compiler"}
+{"id": "sp.光电激流", "name": "光电激流", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.创造人偶", "name": "创造人偶", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.残影斩", "name": "残影斩", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.武器复活术", "name": "武器复活术", "status": "modeled", "reason": "dex 豁免，2d8 piercing", "source": "compiler"}
+{"id": "sp.武器复活术", "name": "武器复活术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.双剑合璧", "name": "双剑合璧", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.剧痛", "name": "剧痛", "status": "modeled", "reason": "con 豁免，4d10 psychic", "source": "compiler"}
-{"id": "sp.音波护盾", "name": "音波护盾", "status": "modeled", "reason": "con 豁免，2d8 thunder", "source": "compiler"}
+{"id": "sp.剧痛", "name": "剧痛", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.音波护盾", "name": "音波护盾", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.压制超自然", "name": "压制超自然", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.虹光之弓", "name": "虹光之弓", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.长生术", "name": "长生术", "status": "modeled", "reason": "con 豁免，3d10 necrotic", "source": "compiler"}
+{"id": "sp.长生术", "name": "长生术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.抑制魔法", "name": "抑制魔法", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.心灵碾压", "name": "心灵碾压", "status": "modeled", "reason": "wis 豁免，2d6 psychic", "source": "compiler"}
-{"id": "sp.能量乱流", "name": "能量乱流", "status": "modeled", "reason": "dex 豁免，9d8 fire（半伤）", "source": "compiler"}
+{"id": "sp.心灵碾压", "name": "心灵碾压", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.能量乱流", "name": "能量乱流", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.机遇再现", "name": "机遇再现", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.水晶雹", "name": "水晶雹", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.晦暗掌控", "name": "晦暗掌控", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.能量爪", "name": "能量爪", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.众生狂怒", "name": "众生狂怒", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.肌体融合", "name": "肌体融合", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.末日形态", "name": "末日形态", "status": "modeled", "reason": "wis 豁免，2d8 bludgeoning", "source": "compiler"}
+{"id": "sp.末日形态", "name": "末日形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.石化之锤", "name": "石化之锤", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.力场吐息", "name": "力场吐息", "status": "modeled", "reason": "str 豁免，8d8 force（半伤）", "source": "compiler"}
+{"id": "sp.力场吐息", "name": "力场吐息", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.盾牌免疫", "name": "盾牌免疫", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.驱离术", "name": "驱离术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.统御机车", "name": "统御机车", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.剑刃护壁", "name": "剑刃护壁", "status": "modeled", "reason": "dex 豁免，6d10 slashing（半伤）", "source": "compiler"}
+{"id": "sp.剑刃护壁", "name": "剑刃护壁", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.律令痛苦", "name": "律令痛苦", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.雪之歌", "name": "雪之歌", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.蛇发", "name": "蛇发", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
@@ -320,97 +329,99 @@
 {"id": "sp.精金钵", "name": "精金钵", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.再生术", "name": "再生术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.五内俱焚", "name": "五内俱焚", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.炎之自由", "name": "炎之自由", "status": "modeled", "reason": "dex 豁免，3d8 fire（半伤）", "source": "compiler"}
+{"id": "sp.炎之自由", "name": "炎之自由", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.贾拉兹的光辉风暴", "name": "贾拉兹的光辉风暴", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.腐蚀泥沼", "name": "腐蚀泥沼", "status": "modeled", "reason": "str 豁免，5d8 acid（半伤）", "source": "compiler"}
-{"id": "sp.魔族型貌", "name": "魔族型貌", "status": "modeled", "reason": "wis 豁免，1d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.聚能成炮", "name": "聚能成炮", "status": "modeled", "reason": "dex 豁免，5d6 force（半伤）", "source": "compiler"}
+{"id": "sp.腐蚀泥沼", "name": "腐蚀泥沼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.魔族型貌", "name": "魔族型貌", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.聚能成炮", "name": "聚能成炮", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.索命咒", "name": "索命咒", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.十字军东征", "name": "十字军东征", "status": "modeled", "reason": "str 豁免，6d6 force（半伤）", "source": "compiler"}
-{"id": "sp.回旋飞刃", "name": "回旋飞刃", "status": "modeled", "reason": "dex 豁免，4d8 force", "source": "compiler"}
-{"id": "sp.希伦的剧毒灵蛇", "name": "希伦的剧毒灵蛇", "status": "modeled", "reason": "法术攻击，1d6 poison", "source": "compiler"}
+{"id": "sp.十字军东征", "name": "十字军东征", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.回旋飞刃", "name": "回旋飞刃", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.希伦的剧毒灵蛇", "name": "希伦的剧毒灵蛇", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.维克那的涌动黑暗", "name": "维克那的涌动黑暗", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.魂灵环绕", "name": "魂灵环绕", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
-{"id": "sp.血之潮汐", "name": "血之潮汐", "status": "modeled", "reason": "con 豁免，4d8 necrotic（半伤）", "source": "compiler"}
+{"id": "sp.血之潮汐", "name": "血之潮汐", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.水银魔像授力", "name": "水银魔像授力", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.连锁闪电", "name": "连锁闪电", "status": "modeled", "reason": "dex 豁免，10d10 lightning（半伤）", "source": "compiler"}
-{"id": "sp.死亡法阵", "name": "死亡法阵", "status": "modeled", "reason": "con 豁免，12d6 necrotic（半伤）", "source": "compiler"}
+{"id": "sp.连锁闪电", "name": "连锁闪电", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.死亡法阵", "name": "死亡法阵", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.触发术", "name": "触发术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.解离术", "name": "解离术", "status": "modeled", "reason": "dex 豁免，16d8 force", "source": "compiler"}
+{"id": "sp.解离术", "name": "解离术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.禁制术", "name": "禁制术", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
 {"id": "sp.医疗术", "name": "医疗术", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.魔魂壶", "name": "魔魂壶", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.欧提路克冰封法球", "name": "欧提路克冰封法球", "status": "modeled", "reason": "con 豁免，10d8 cold（半伤）", "source": "compiler"}
+{"id": "sp.欧提路克冰封法球", "name": "欧提路克冰封法球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.奥图迷舞", "name": "奥图迷舞", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.阳炎射线", "name": "阳炎射线", "status": "modeled", "reason": "con 豁免，6d8 radiant（半伤）", "source": "compiler"}
+{"id": "sp.阳炎射线", "name": "阳炎射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.冰墙术", "name": "冰墙术", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.棘墙术", "name": "棘墙术", "status": "modeled", "reason": "dex 豁免，7d8 piercing（半伤）", "source": "compiler"}
-{"id": "sp.地之骨", "name": "地之骨", "status": "modeled", "reason": "dex 豁免，6d10 bludgeoning", "source": "compiler"}
-{"id": "sp.元素赋权", "name": "元素赋权", "status": "modeled", "reason": "dex 豁免，1d10 fire（半伤）", "source": "compiler"}
-{"id": "sp.精神监狱", "name": "精神监狱", "status": "modeled", "reason": "int 豁免，5d10 psychic", "source": "compiler"}
+{"id": "sp.棘墙术", "name": "棘墙术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.地之骨", "name": "地之骨", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.元素赋权", "name": "元素赋权", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.精神监狱", "name": "精神监狱", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.灵魂牢笼", "name": "灵魂牢笼", "status": "needs_ruling", "reason": "持续伤害，需按轮结算；按回合复发", "source": "compiler"}
-{"id": "sp.谭森变形术", "name": "谭森变形术", "status": "modeled", "reason": "str 豁免，2d12 force", "source": "compiler"}
+{"id": "sp.谭森变形术", "name": "谭森变形术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.塔莎超凡形态", "name": "塔莎超凡形态", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.末日", "name": "末日", "status": "modeled", "reason": "con 豁免，7d8 poison（半伤）", "source": "compiler"}
+{"id": "sp.末日", "name": "末日", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.碳基呼唤", "name": "碳基呼唤", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.行影术", "name": "行影术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.冰火风暴", "name": "冰火风暴", "status": "modeled", "reason": "dex 豁免，6d6 cold（半伤）", "source": "compiler"}
-{"id": "sp.骨之箭", "name": "骨之箭", "status": "modeled", "reason": "con 豁免，3d6 necrotic", "source": "compiler"}
+{"id": "sp.冰火风暴", "name": "冰火风暴", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.骨之箭", "name": "骨之箭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.转能医疗", "name": "转能医疗", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.思想钢印", "name": "思想钢印", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.能量弹幕", "name": "能量弹幕", "status": "modeled", "reason": "dex 豁免，8d8 fire（半伤）", "source": "compiler"}
-{"id": "sp.晦暗光束", "name": "晦暗光束", "status": "modeled", "reason": "dex 豁免，2d6 force", "source": "compiler"}
-{"id": "sp.切脑术", "name": "切脑术", "status": "modeled", "reason": "con 豁免，5d8 slashing", "source": "compiler"}
+{"id": "sp.能量弹幕", "name": "能量弹幕", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.晦暗光束", "name": "晦暗光束", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.切脑术", "name": "切脑术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.心脏粉碎", "name": "心脏粉碎", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.龙类变形", "name": "龙类变形", "status": "modeled", "reason": "dex 豁免，6d8 force（半伤）", "source": "compiler"}
+{"id": "sp.龙类变形", "name": "龙类变形", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.操控天气", "name": "操控天气", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.行棋", "name": "行棋", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.律令互联网", "name": "律令互联网", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.真正的魔能爆", "name": "真正的魔能爆", "status": "modeled", "reason": "法术攻击，1d100 force", "source": "compiler"}
+{"id": "sp.真正的魔能爆", "name": "真正的魔能爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.天命之子", "name": "天命之子", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
-{"id": "sp.光之巨人形态", "name": "光之巨人形态", "status": "modeled", "reason": "dex 豁免，5d10 radiant（半伤）", "source": "compiler"}
+{"id": "sp.光之巨人形态", "name": "光之巨人形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.回春法阵", "name": "回春法阵", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
-{"id": "sp.徘徊火焰", "name": "徘徊火焰", "status": "modeled", "reason": "dex 豁免，7d10 fire（半伤）", "source": "compiler"}
-{"id": "sp.日曜", "name": "日曜", "status": "modeled", "reason": "法术攻击，10d8 radiant", "source": "compiler"}
+{"id": "sp.徘徊火焰", "name": "徘徊火焰", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.日曜", "name": "日曜", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.暴食", "name": "暴食", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.雷霆蝙蝠授力", "name": "雷霆蝙蝠授力", "status": "modeled", "reason": "con 豁免，6d8 thunder（半伤）", "source": "compiler"}
-{"id": "sp.延迟爆裂火球", "name": "延迟爆裂火球", "status": "modeled", "reason": "dex 豁免，12d10 fire（半伤）", "source": "compiler"}
-{"id": "sp.死亡一指", "name": "死亡一指", "status": "modeled", "reason": "con 豁免，10d8 necrotic", "source": "compiler"}
-{"id": "sp.火焰风暴", "name": "火焰风暴", "status": "modeled", "reason": "dex 豁免，14d10 fire（半伤）", "source": "compiler"}
-{"id": "sp.魔邓肯之剑", "name": "魔邓肯之剑", "status": "modeled", "reason": "法术攻击，14d10 force", "source": "compiler"}
-{"id": "sp.虹光喷射", "name": "虹光喷射", "status": "modeled", "reason": "dex 豁免，10d12 fire（半伤）", "source": "compiler"}
+{"id": "sp.提尔的三重枷锁", "name": "提尔的三重枷锁", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.雷霆蝙蝠授力", "name": "雷霆蝙蝠授力", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.延迟爆裂火球", "name": "延迟爆裂火球", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.死亡一指", "name": "死亡一指", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.火焰风暴", "name": "火焰风暴", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.魔邓肯之剑", "name": "魔邓肯之剑", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.虹光喷射", "name": "虹光喷射", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.传送术", "name": "传送术", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
-{"id": "sp.众星冠冕", "name": "众星冠冕", "status": "modeled", "reason": "法术攻击，5d12 radiant", "source": "compiler"}
+{"id": "sp.众星冠冕", "name": "众星冠冕", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.神庙术", "name": "神庙术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.旋风", "name": "旋风", "status": "modeled", "reason": "dex 豁免，10d10 bludgeoning", "source": "compiler"}
+{"id": "sp.旋风", "name": "旋风", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.系结本源", "name": "系结本源", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.七星瞳", "name": "七星瞳", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.冰晶城堡", "name": "冰晶城堡", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.悲叹之种", "name": "悲叹之种", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.琥珀石棺", "name": "琥珀石棺", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.升天的狂喜", "name": "升天的狂喜", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.玫瑰花雨", "name": "玫瑰花雨", "status": "modeled", "reason": "con 豁免，1d6 force", "source": "compiler"}
-{"id": "sp.超频震爆", "name": "超频震爆", "status": "modeled", "reason": "wis 豁免，5d6 psychic", "source": "compiler"}
+{"id": "sp.玫瑰花雨", "name": "玫瑰花雨", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.超频震爆", "name": "超频震爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.晦暗之触", "name": "晦暗之触", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.弱智术", "name": "弱智术", "status": "modeled", "reason": "int 豁免，4d6 psychic", "source": "compiler"}
+{"id": "sp.弱智术", "name": "弱智术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.水华_赤潮术", "name": "水华_赤潮术", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.雷部显圣", "name": "雷部显圣", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.天火焚城", "name": "天火焚城", "status": "modeled", "reason": "dex 豁免，5d10 radiant（半伤）", "source": "compiler"}
-{"id": "sp.契术师射线", "name": "契术师射线", "status": "modeled", "reason": "法术攻击，2d10 force", "source": "compiler"}
-{"id": "sp.命定一劫", "name": "命定一劫", "status": "modeled", "reason": "wis 豁免，10d8 necrotic", "source": "compiler"}
-{"id": "sp.爱丽丝的自由落体", "name": "爱丽丝的自由落体", "status": "modeled", "reason": "dex 豁免，10d6 bludgeoning", "source": "compiler"}
+{"id": "sp.天火焚城", "name": "天火焚城", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.契术师射线", "name": "契术师射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.命定一劫", "name": "命定一劫", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.爱丽丝的自由落体", "name": "爱丽丝的自由落体", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.身外化身", "name": "身外化身", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.傲慢", "name": "傲慢", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.愤怒", "name": "愤怒", "status": "needs_ruling", "reason": "对自身造成伤害", "source": "compiler"}
-{"id": "sp.地狱引渡车", "name": "地狱引渡车", "status": "modeled", "reason": "dex 豁免，12d10 bludgeoning（半伤）", "source": "compiler"}
+{"id": "sp.地狱引渡车", "name": "地狱引渡车", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.英雄信标", "name": "英雄信标", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
-{"id": "sp.心灵尖啸", "name": "心灵尖啸", "status": "modeled", "reason": "int 豁免，14d6 psychic（半伤）", "source": "compiler"}
-{"id": "sp.地震术", "name": "地震术", "status": "modeled", "reason": "dex 豁免，10d10 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.焚云术", "name": "焚云术", "status": "modeled", "reason": "dex 豁免，10d12 fire（半伤）", "source": "compiler"}
-{"id": "sp.阳炎爆", "name": "阳炎爆", "status": "modeled", "reason": "con 豁免，20d6 radiant（半伤）", "source": "compiler"}
-{"id": "sp.海啸术", "name": "海啸术", "status": "modeled", "reason": "str 豁免，12d10 bludgeoning（半伤）", "source": "compiler"}
-{"id": "sp.幻影巨龙", "name": "幻影巨龙", "status": "modeled", "reason": "wis 豁免，8d12 radiant（半伤）", "source": "compiler"}
+{"id": "sp.心灵尖啸", "name": "心灵尖啸", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.地震术", "name": "地震术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.焚云术", "name": "焚云术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.阳炎爆", "name": "阳炎爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.海啸术", "name": "海啸术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.幻影巨龙", "name": "幻影巨龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.疯狂之暗", "name": "疯狂之暗", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.暗黑星辰", "name": "暗黑星辰", "status": "modeled", "reason": "con 豁免，8d10 force", "source": "compiler"}
+{"id": "sp.暗黑星辰", "name": "暗黑星辰", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.崩坏现实", "name": "崩坏现实", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.圣子降临", "name": "圣子降临", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.死或生的兆星", "name": "死或生的兆星", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
@@ -418,38 +429,39 @@
 {"id": "sp.深渊狂怒", "name": "深渊狂怒", "status": "needs_ruling", "reason": "含多段伤害或附带伤害，需人工区分主伤害", "source": "compiler"}
 {"id": "sp.炼狱风暴", "name": "炼狱风暴", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.合体术", "name": "合体术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.天象华服", "name": "天象华服", "status": "modeled", "reason": "con 豁免，5d8 lightning（半伤）", "source": "compiler"}
-{"id": "sp.炎爆术", "name": "炎爆术", "status": "modeled", "reason": "dex 豁免，10d6 fire", "source": "compiler"}
+{"id": "sp.天象华服", "name": "天象华服", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.炎爆术", "name": "炎爆术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.拉德的临终关怀", "name": "拉德的临终关怀", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.冰封法阵", "name": "冰封法阵", "status": "modeled", "reason": "con 豁免，4d6 cold", "source": "compiler"}
+{"id": "sp.冰封法阵", "name": "冰封法阵", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.伽刚特尔授力", "name": "伽刚特尔授力", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.敏感度激增", "name": "敏感度激增", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.能量转换结界", "name": "能量转换结界", "status": "modeled", "reason": "wis 豁免，6d8 fire", "source": "compiler"}
-{"id": "sp.密斯特拉圣星", "name": "密斯特拉圣星", "status": "modeled", "reason": "法术攻击，4d10 force", "source": "compiler"}
+{"id": "sp.风怒术", "name": "风怒术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.能量转换结界", "name": "能量转换结界", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.密斯特拉圣星", "name": "密斯特拉圣星", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.死神形态", "name": "死神形态", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.流星爆", "name": "流星爆", "status": "modeled", "reason": "dex 豁免，20d6 fire（半伤）", "source": "compiler"}
-{"id": "sp.虹光法墙", "name": "虹光法墙", "status": "modeled", "reason": "dex 豁免，8d6 fire（半伤）", "source": "compiler"}
+{"id": "sp.流星爆", "name": "流星爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.虹光法墙", "name": "虹光法墙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.形体变化", "name": "形体变化", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.复仇风暴", "name": "复仇风暴", "status": "modeled", "reason": "dex 豁免，10d6 lightning（半伤）", "source": "compiler"}
+{"id": "sp.复仇风暴", "name": "复仇风暴", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.时间停止", "name": "时间停止", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.完全变形术", "name": "完全变形术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.群体变形术", "name": "群体变形术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.时光蹂躏", "name": "时光蹂躏", "status": "modeled", "reason": "con 豁免，12d10 necrotic", "source": "compiler"}
-{"id": "sp.饕餮虚空", "name": "饕餮虚空", "status": "modeled", "reason": "str 豁免，12d10 force", "source": "compiler"}
-{"id": "sp.灾厄之刃", "name": "灾厄之刃", "status": "modeled", "reason": "法术攻击，8d12 force", "source": "compiler"}
-{"id": "sp.人间神国", "name": "人间神国", "status": "modeled", "reason": "法术攻击，1d8 force", "source": "compiler"}
+{"id": "sp.时光蹂躏", "name": "时光蹂躏", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.饕餮虚空", "name": "饕餮虚空", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.灾厄之刃", "name": "灾厄之刃", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.人间神国", "name": "人间神国", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.瞬息庇护", "name": "瞬息庇护", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.传奇术", "name": "传奇术", "status": "needs_ruling", "reason": "骰子用于治疗而非伤害", "source": "compiler"}
 {"id": "sp.本源术", "name": "本源术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.地火", "name": "地火", "status": "modeled", "reason": "dex 豁免，20d6 fire（半伤）", "source": "compiler"}
+{"id": "sp.地火", "name": "地火", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.高等超态变化", "name": "高等超态变化", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.晦暗之炎", "name": "晦暗之炎", "status": "modeled", "reason": "wis 豁免，4d3 necrotic", "source": "compiler"}
+{"id": "sp.晦暗之炎", "name": "晦暗之炎", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.时间信箱", "name": "时间信箱", "status": "needs_ruling", "reason": "有骰式但未匹配攻击/豁免结构", "source": "compiler"}
 {"id": "sp.乐园", "name": "乐园", "status": "needs_ruling", "reason": "持续伤害，需按轮结算", "source": "compiler"}
 {"id": "sp.巫妖化", "name": "巫妖化", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.雪国", "name": "雪国", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
-{"id": "sp.深渊裂隙", "name": "深渊裂隙", "status": "modeled", "reason": "str 豁免，4d10 force", "source": "compiler"}
-{"id": "sp.冥河大潮", "name": "冥河大潮", "status": "modeled", "reason": "int 豁免，3d8 force", "source": "compiler"}
-{"id": "sp.绯色之月", "name": "绯色之月", "status": "modeled", "reason": "wis 豁免，1d8 necrotic", "source": "compiler"}
-{"id": "sp.天人五衰", "name": "天人五衰", "status": "modeled", "reason": "dex 豁免，1d6 force", "source": "compiler"}
-{"id": "sp.冰山撞", "name": "冰山撞", "status": "modeled", "reason": "con 豁免，20d6 cold（半伤）", "source": "compiler"}
+{"id": "sp.深渊裂隙", "name": "深渊裂隙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.冥河大潮", "name": "冥河大潮", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.绯色之月", "name": "绯色之月", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.天人五衰", "name": "天人五衰", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.冰山撞", "name": "冰山撞", "status": "modeled", "reason": "已手工编译", "source": "manual"}
