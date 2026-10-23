@@ -1,0 +1,50 @@
+{
+  "id": "sp.心灵之楔",
+  "name": "心灵之楔",
+  "kind": "spell",
+  "level": 0,
+  "school": "附魔",
+  "casting_time": "1动作",
+  "range": "60 尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "心灵之楔"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "int",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "1d6",
+    "damage_type": "psychic",
+    "half_on_save": false
+  },
+  "scaling": [
+    {
+      "level": 5,
+      "dice": "2d6"
+    },
+    {
+      "level": 11,
+      "dice": "3d6"
+    },
+    {
+      "level": 17,
+      "dice": "4d6"
+    }
+  ]
+}

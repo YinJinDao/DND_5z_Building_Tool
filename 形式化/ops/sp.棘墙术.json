@@ -1,0 +1,40 @@
+{
+  "id": "sp.棘墙术",
+  "name": "棘墙术",
+  "kind": "spell",
+  "level": 6,
+  "school": "咒法",
+  "casting_time": "1 动作",
+  "range": "120 尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "棘墙术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "7d8",
+    "damage_type": "piercing",
+    "half_on_save": true,
+    "type_choice": [
+      "piercing",
+      "slashing"
+    ]
+  }
+}

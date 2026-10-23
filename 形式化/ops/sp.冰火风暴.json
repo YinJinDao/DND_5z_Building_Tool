@@ -1,0 +1,40 @@
+{
+  "id": "sp.冰火风暴",
+  "name": "冰火风暴",
+  "kind": "spell",
+  "level": 6,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "300尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "冰火风暴"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "6d6",
+    "damage_type": "cold",
+    "half_on_save": true,
+    "type_choice": [
+      "cold",
+      "fire"
+    ]
+  }
+}

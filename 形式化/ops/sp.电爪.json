@@ -1,0 +1,48 @@
+{
+  "id": "sp.电爪",
+  "name": "电爪",
+  "kind": "spell",
+  "level": 0,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "电爪"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "1d8",
+      "damage_type": "lightning"
+    }
+  },
+  "scaling": [
+    {
+      "level": 5,
+      "dice": "2d8"
+    },
+    {
+      "level": 11,
+      "dice": "3d8"
+    },
+    {
+      "level": 17,
+      "dice": "4d8"
+    }
+  ]
+}

@@ -489,15 +489,36 @@ def spell_attack_instances(op, slot_level=None):
     return count
 
 
-def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None):
+def pick_damage_type(choices, target):
+    """在可选伤害类型中挑对目标最有利的一种。
+
+    「繁彩球」「能量射线」这类法术由施法者自选类型，打桩下应对着目标的
+    抗性/免疫来选——取第一个出现的类型会系统性低估。
+    """
+    def score(t):
+        if t in target.absorb:
+            return 3          # 反而给目标回血，最优
+        if t in target.immune:
+            return 0
+        if t in target.vuln:
+            return 3
+        if t in target.resist:
+            return 1
+        return 2
+    return max(choices, key=score) if choices else None
+
+
+def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None, target=None):
     """攻击型法术（如冻寒之触）：法术攻击加值 + 法术伤害骰。"""
     if resolved.derived.spell_attack is None:
         raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
     spec = op["attack"]
     dice = spell_dice(op, resolved.derived.level, slot_level)
-    comp = DamageComponent(dice, flat=0,
-                           dtype=spec["damage"]["damage_type"],
-                           slot=op["id"])
+    dtype = spec["damage"]["damage_type"]
+    if spec["damage"].get("type_choice"):
+        if target is not None:
+            dtype = pick_damage_type(spec["damage"]["type_choice"], target)
+    comp = DamageComponent(dice, flat=0, dtype=dtype, slot=op["id"])
     return Attack(attack_bonus=resolved.derived.spell_attack.total,
                   adv_tiers=adv_tiers, components=[comp],
                   auto_hit=bool(spec.get("auto_hit", False)))
@@ -540,6 +561,8 @@ def save_effect_from_op(resolved, op, target, slot_level=None,
         exp += p_fail * extra
 
     dtype = op["damage"]["damage_type"]
+    if op["damage"].get("type_choice"):
+        dtype = pick_damage_type(op["damage"]["type_choice"], target)
     dmg, _ = apply_target_pipeline(exp, dtype, target)
     return dmg, dice
 
@@ -692,8 +715,16 @@ _TABLES_CACHE = {}
 
 
 def _range_ft(text):
-    """'120尺' → 120；'自身' → None（自身法术无需距离判定）。"""
-    m = RANGE_RE.search(str(text or ""))
+    """施法距离。'120尺' → 120；'自身' → None（无需距离判定）。
+
+    注意"自身（半径10尺）"这类写法里的 10 尺是**区域半径**，不是施法距离。
+    早期实现直接取第一个"数字+尺"，把区域法术误判成 10 尺射程，
+    30 尺外就一律判为超出距离而记 0 伤害。
+    """
+    s = str(text or "")
+    if "自身" in s:
+        return None
+    m = RANGE_RE.search(s)
     return int(m.group(1)) if m else None
 
 
@@ -924,7 +955,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 trace.append(f"第 {rnum} 轮 {sop['name']} 产生 {instances} 次攻击")
             for i in range(instances):
                 a = build_spell_attack(resolved, sop, adv_tiers=adv,
-                                       slot_level=slot_level)
+                                       slot_level=slot_level, target=round_target)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")

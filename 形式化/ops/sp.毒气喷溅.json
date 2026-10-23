@@ -1,0 +1,50 @@
+{
+  "id": "sp.毒气喷溅",
+  "name": "毒气喷溅",
+  "kind": "spell",
+  "level": 0,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "自身（10尺锥形）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "毒气喷溅"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "1d12",
+    "damage_type": "poison",
+    "half_on_save": false
+  },
+  "scaling": [
+    {
+      "level": 5,
+      "dice": "2d12"
+    },
+    {
+      "level": 11,
+      "dice": "3d12"
+    },
+    {
+      "level": 17,
+      "dice": "4d12"
+    }
+  ]
+}

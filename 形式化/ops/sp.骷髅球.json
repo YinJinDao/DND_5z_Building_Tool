@@ -1,0 +1,40 @@
+{
+  "id": "sp.骷髅球",
+  "name": "骷髅球",
+  "kind": "spell",
+  "level": 4,
+  "school": "死灵",
+  "casting_time": "1附赠动作",
+  "range": "90尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 4
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/4环.htm",
+    "anchor": "骷髅球"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "str",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "5d8",
+    "damage_type": "bludgeoning",
+    "half_on_save": false,
+    "type_choice": [
+      "bludgeoning",
+      "necrotic"
+    ]
+  }
+}

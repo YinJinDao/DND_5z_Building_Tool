@@ -1,0 +1,36 @@
+{
+  "id": "sp.召唤箭雨",
+  "name": "召唤箭雨",
+  "kind": "spell",
+  "level": 3,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "自身（60尺锥状）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "召唤箭雨"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "6d8",
+    "damage_type": "force",
+    "half_on_save": true
+  }
+}

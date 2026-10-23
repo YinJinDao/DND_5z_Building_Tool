@@ -24,8 +24,9 @@
 | `data/spells.jsonl` | 1103 | A 档完成，读规则书正文（已弃用 1.49 版 xlsx） |
 | `data/relevance.jsonl` | 2508 | 相关性粗筛 |
 | `data/feat_triage.jsonl` | 672 | 专长按 F1–F12 分诊：in 330 / manual 170 / unclear 128 / defensive 26 / out 18 |
-| `ops/*.json` | 30 | B 档算子：战技 12、专长 6、法术 5、复合动作 1、职业特性 5、子职特性 1 |
-| `data/maneuver_compile_status.jsonl` | 59 | 战技 A 档逐条编译结论（modeled 12 / needs_ruling 40 / out_of_scope 7） |
+| `ops/*.json` | 272 | B 档算子：战技 16、专长 6、法术 244、复合动作 1、职业特性 5、子职特性 1 |
+| `data/maneuver_compile_status.jsonl` | 59 | 战技 A 档逐条编译结论（modeled 16 / needs_ruling 36 / out_of_scope 7） |
+| `data/spell_compile_status.jsonl` | 455 | 法术 A 档逐条编译结论（modeled 244 / needs_ruling 116 / out_of_scope 95） |
 
 接口一致性检查：`python -I 形式化/tools/check_interfaces.py`（算子字段、溯源、样例引用、资源声明）。
 

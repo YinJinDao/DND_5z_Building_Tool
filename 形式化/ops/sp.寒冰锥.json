@@ -1,0 +1,36 @@
+{
+  "id": "sp.寒冰锥",
+  "name": "寒冰锥",
+  "kind": "spell",
+  "level": 5,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "自身（60尺锥状）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "寒冰锥"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "8d8",
+    "damage_type": "cold",
+    "half_on_save": true
+  }
+}

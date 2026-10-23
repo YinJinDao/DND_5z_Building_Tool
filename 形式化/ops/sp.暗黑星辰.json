@@ -1,0 +1,40 @@
+{
+  "id": "sp.暗黑星辰",
+  "name": "暗黑星辰",
+  "kind": "spell",
+  "level": 8,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "150尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "暗黑星辰"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "8d10",
+    "damage_type": "force",
+    "half_on_save": false,
+    "type_choice": [
+      "force",
+      "thunder"
+    ]
+  }
+}

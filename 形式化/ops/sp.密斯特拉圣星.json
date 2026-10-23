@@ -1,0 +1,38 @@
+{
+  "id": "sp.密斯特拉圣星",
+  "name": "密斯特拉圣星",
+  "kind": "spell",
+  "level": 8,
+  "school": "塑能",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "密斯特拉圣星"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "4d10",
+      "damage_type": "force",
+      "type_choice": [
+        "force",
+        "radiant"
+      ]
+    }
+  }
+}

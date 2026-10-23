@@ -1,0 +1,40 @@
+{
+  "id": "sp.武器复活术",
+  "name": "武器复活术",
+  "kind": "spell",
+  "level": 5,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "武器复活术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "2d8",
+    "damage_type": "piercing",
+    "half_on_save": false,
+    "type_choice": [
+      "piercing",
+      "slashing"
+    ]
+  }
+}

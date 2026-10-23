@@ -1,0 +1,48 @@
+{
+  "id": "sp.燃火术",
+  "name": "燃火术",
+  "kind": "spell",
+  "level": 0,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "燃火术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "1d8",
+      "damage_type": "fire"
+    }
+  },
+  "scaling": [
+    {
+      "level": 5,
+      "dice": "2d8"
+    },
+    {
+      "level": 11,
+      "dice": "3d8"
+    },
+    {
+      "level": 17,
+      "dice": "4d8"
+    }
+  ]
+}

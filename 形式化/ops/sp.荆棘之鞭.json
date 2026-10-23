@@ -1,0 +1,36 @@
+{
+  "id": "sp.荆棘之鞭",
+  "name": "荆棘之鞭",
+  "kind": "spell",
+  "level": 0,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "特殊",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "荆棘之鞭"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "str",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "1d6",
+    "damage_type": "slashing",
+    "half_on_save": false
+  }
+}

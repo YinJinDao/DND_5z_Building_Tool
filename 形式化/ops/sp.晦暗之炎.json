@@ -1,0 +1,40 @@
+{
+  "id": "sp.晦暗之炎",
+  "name": "晦暗之炎",
+  "kind": "spell",
+  "level": 9,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "300尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 9
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/9环.htm",
+    "anchor": "晦暗之炎"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "wis",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "4d3",
+    "damage_type": "necrotic",
+    "half_on_save": false,
+    "type_choice": [
+      "fire",
+      "necrotic"
+    ]
+  }
+}
