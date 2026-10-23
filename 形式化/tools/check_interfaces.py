@@ -79,6 +79,23 @@ def check_ops():
         if not src.get("version") or not src.get("file"):
             err(f"[A3] {fname}: source 缺 version 或 file（溯源强制，D-015）")
 
+        # A6：职业特性算子必须能与构筑的 class id 对上
+        acq = op.get("acquisition") or {}
+        if acq.get("type") == "class_level":
+            if not acq.get("class_id"):
+                err(f"[A6] {fname}: class_level 算子缺 acquisition.class_id"
+                    f"（构筑用 class.barbarian，特性数据用 狂战士，必须有显式映射）")
+            if not isinstance(acq.get("level"), int):
+                err(f"[A6] {fname}: acquisition.level 必须是整数")
+
+        # A7：攻击次数的类型与取值
+        proj = op.get("projection") or {}
+        if "attack_count" in proj:
+            if not isinstance(proj["attack_count"], int) or proj["attack_count"] < 1:
+                err(f"[A7] {fname}: attack_count 必须是 ≥1 的整数")
+            if proj.get("attack_count_mode") not in ("max", None):
+                err(f"[A7] {fname}: attack_count_mode 目前只支持 max")
+
         if op.get("kind") == "spell":
             # A4：scaling / upcast 必须写在顶层。写在 attack 内部会让等级成长静默失效。
             if "scaling" in (op.get("attack") or {}):

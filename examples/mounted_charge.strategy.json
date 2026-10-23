@@ -1,31 +1,57 @@
 {
   "meta": {
     "name": "骑乘冲刺 + 鲁莽攻击 + 威力攻击",
-    "note": "演示复合动作：直线移动 ≥30 尺后发动 1 次攻击，覆盖额外攻击并附加优势",
-    "requires_build": "barbarian_l4.build.json"
+    "note": "5 级有额外攻击（2 次），骑乘冲刺把它压回 1 次",
+    "requires_build": "barbarian_l5.build.json"
   },
   "rounds": [
     {
       "round": 1,
-      "buffs": ["rage"],
+      "buffs": [
+        "rage"
+      ],
       "action": "act.mounted_charge",
-      "move": { "toward": true, "ft": 30 },
-      "attacks": 2,
+      "move": {
+        "toward": true,
+        "ft": 30
+      },
       "per_attack": {
-        "ops": ["feat.凶蛮打手", "feat.威力攻击"]
+        "ops": [
+          "feat.凶蛮打手",
+          "feat.威力攻击"
+        ]
       },
       "contingencies": [
         {
           "trigger": "hit_or_crit",
           "attack": 0,
-          "spend": { "superiority": 1 },
-          "extra_dice": [ { "dice": "1d8", "damage_type": "slashing" } ],
+          "spend": {
+            "superiority": 1
+          },
+          "extra_dice": [
+            {
+              "dice": "1d8",
+              "damage_type": "slashing"
+            }
+          ],
           "name": "卓越骰加伤"
         }
       ],
       "steps": [
-        { "name": "骑乘冲刺", "cost": { "action": 1 }, "group": "charge" },
-        { "name": "攻击", "cost": { "replace_attack": 1 }, "group": "charge" }
+        {
+          "name": "骑乘冲刺",
+          "cost": {
+            "action": 1
+          },
+          "group": "charge"
+        },
+        {
+          "name": "攻击",
+          "cost": {
+            "replace_attack": 1
+          },
+          "group": "charge"
+        }
       ]
     }
   ]

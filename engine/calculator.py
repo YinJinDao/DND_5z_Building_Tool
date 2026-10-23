@@ -329,6 +329,53 @@ def _has_feat(build_doc, op_id):
     return any(f.get("id") == op_id for f in build_doc.get("feats", []))
 
 
+# 策略里可用的短名 → 正式算子 id。保留短名是为了让策略可读，
+# 但解析后一律落到算子 id，避免"魔法字符串"散落在各处。
+BUFF_ALIASES = {
+    "rage": "cf.狂战士.狂暴",
+    "reckless": "cf.狂战士.鲁莽攻击",
+}
+
+
+def _build_level(build_doc):
+    meta = build_doc.get("meta", {})
+    if meta.get("level"):
+        return int(meta["level"])
+    return sum(int(c.get("level", 0)) for c in build_doc.get("classes", [])) or 1
+
+
+def granted_class_ops(build_doc, ops):
+    """构筑在给定等级下**自动获得**的职业特性算子。
+
+    这是动作经济与算子数据之间的接缝：构筑只写"职业 + 等级"，
+    能发动几次攻击由职业特性算子决定，不由策略里写死的数字决定。
+    """
+    class_ids = {c.get("id") for c in build_doc.get("classes", [])}
+    level = _build_level(build_doc)
+    granted = []
+    for op in ops.values():
+        acq = op.get("acquisition") or {}
+        if acq.get("type") != "class_level":
+            continue
+        if acq.get("class_id") not in class_ids:
+            continue
+        if int(acq.get("level", 99)) > level:
+            continue
+        granted.append(op)
+    return granted
+
+
+def derive_attack_count(build_doc, ops):
+    """攻击动作内可发动的攻击次数：取所有已获得特性中的最大值。"""
+    counts = [(1, "基础")]
+    for op in granted_class_ops(build_doc, ops):
+        proj = op.get("projection") or {}
+        if "attack_count" in proj:
+            counts.append((int(proj["attack_count"]), op["name"]))
+    value, src = max(counts, key=lambda x: x[0])
+    return value, src
+
+
 def _with_vulnerability(target, types):
     """返回一个"额外具有若干易伤类型"的目标副本，不修改原对象。"""
     import copy
@@ -404,9 +451,25 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     per_round = []
     spends = []
 
+    derived_attacks, attack_src = derive_attack_count(build_doc, ops)
+    trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
+
     for rnd in strategy_doc.get("rounds", []):
         rnum = rnd.get("round", len(per_round) + 1)
-        buffs = set(rnd.get("buffs", []))
+        buffs = {BUFF_ALIASES.get(b, b) for b in rnd.get("buffs", [])}
+
+        # 增益类职业特性算子：按 buffs 启用，其投影直接作用于本轮攻击
+        buff_adv = 0
+        for bid in buffs:
+            bop = ops.get(bid)
+            if not bop:
+                warnings.append(f"第 {rnum} 轮未知增益 {bid}")
+                continue
+            proj = bop.get("projection") or {}
+            if "adv_tiers" in proj:
+                buff_adv += int(proj["adv_tiers"])
+                trace.append(f"第 {rnum} 轮 {bop['name']}：+{proj['adv_tiers']} 重优势")
+        rage_active = "cf.狂战士.狂暴" in buffs
 
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
@@ -425,7 +488,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
 
         per_attack = rnd.get("per_attack", {})
         op_ids = per_attack.get("ops", [])
-        adv = int(per_attack.get("adv_tiers", 0))
+        adv = int(per_attack.get("adv_tiers", 0)) + buff_adv
 
         kind = per_attack.get("kind", "weapon")
         spell_id = per_attack.get("spell")
@@ -439,7 +502,15 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             profile = range_profile
         in_range = profile.can_reach(state.distance_ft)
 
-        attacks_n = int(rnd.get("attacks", 1))
+        # 攻击次数：未声明时由职业特性推导；声明值超过推导值则告警
+        if rnd.get("attacks") is None:
+            attacks_n = derived_attacks
+        else:
+            attacks_n = int(rnd["attacks"])
+            if attacks_n > derived_attacks:
+                warnings.append(
+                    f"第 {rnum} 轮策略声明 {attacks_n} 次攻击，"
+                    f"但职业特性只允许 {derived_attacks} 次（{attack_src}），按声明值计算")
         if attacks_n and not in_range:
             warnings.append(f"第 {rnum} 轮距离 {state.distance_ft} 尺超出触及/射程，本回合无攻击")
             attacks_n = 0
@@ -517,7 +588,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                        slot_level=slot_level)
             else:
                 a = build_base_attack(resolved, adv_tiers=adv,
-                                      rage_active="rage" in buffs)
+                                      rage_active=rage_active)
             for oid in op_ids:
                 if oid not in ops:
                     raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")

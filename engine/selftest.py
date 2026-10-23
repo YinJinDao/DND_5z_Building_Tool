@@ -437,12 +437,12 @@ def test_composite_and_contingency():
         with open(os.path.join(ex, name), encoding="utf-8") as fh:
             return _json.load(fh)
 
-    build = load("barbarian_l4.build.json")
+    build = load("barbarian_l5.build.json")   # 5 级才有额外攻击，才能检验覆盖
     env = load("dummy_ac15.env.json")
     strat = load("mounted_charge.strategy.json")
     res = calc.evaluate(build, env, strat)
 
-    # 骑乘冲刺把 2 次攻击压成 1 次，并附加 1 重优势
+    # 骑乘冲刺把额外攻击给出的 2 次压成 1 次，并附加 1 重优势
     charge_line = next((t for t in res.trace if "覆盖额外攻击" in t), "")
     if "2 次 → 1 次" in charge_line:
         print("  OK   覆盖额外攻击：2 次 → 1 次")
@@ -450,10 +450,20 @@ def test_composite_and_contingency():
         FAILS.append("骑乘冲刺未覆盖额外攻击")
         print("  FAIL 覆盖额外攻击")
 
-    # 手算校验：命中 32.5、重击额外骰 14.5、易伤翻倍
-    p_hit = 1 - Fraction(13, 20) ** 2          # +1 攻击加值、1 重优势
-    p_crit = 1 - Fraction(19, 20) ** 2
-    hit_dmg = Fraction(65, 10) + 4 + 2 + 12 + Fraction(7, 2) + Fraction(9, 2)
+    # 手算校验。各项由构筑推导，不写死等级常数，避免换等级后测试失真。
+    resolved = calc.resolve_build(build, calc.load_rage_table())
+    op_ops = calc.load_ops()
+    pa = op_ops["feat.威力攻击"]["projection"]["attack_bonus"]
+    atk_bonus = resolved.derived.attack.total + pa        # 威力攻击
+    ac = 15
+    t_hit = ac - atk_bonus
+    single_hit = _clamp01(Fraction(21 - t_hit, 20))
+    single_both = _clamp01(Fraction(21 - max(t_hit, 20), 20))
+    p_hit = 1 - (1 - single_hit) ** 2                    # 1 重优势（骑乘冲刺）
+    p_crit = 1 - (1 - single_both) ** 2
+
+    rage = resolved.rage_bonus
+    hit_dmg = Fraction(65, 10) + 4 + rage + 12 + Fraction(7, 2) + Fraction(9, 2)
     crit_extra = Fraction(65, 10) + Fraction(7, 2) + Fraction(9, 2)
     expected = (p_hit * hit_dmg + p_crit * crit_extra) * 2   # 骑乘战斗易伤
     check("骑乘冲刺期望伤害", res.total, expected, tol=1e-9)
@@ -470,6 +480,10 @@ def test_composite_and_contingency():
     else:
         FAILS.append("移动不足时冲刺未拦截")
         print("  FAIL 移动不足时冲刺未拦截")
+
+
+def _clamp01(x):
+    return max(Fraction(0), min(Fraction(1), x))
 
 
 def test_charge_cycle():

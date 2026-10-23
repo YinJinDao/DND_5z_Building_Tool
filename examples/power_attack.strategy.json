@@ -17,7 +17,6 @@
       },
       "attacks": 1,
       "per_attack": {
-        "adv_tiers": 1,
         "ops": [
           "feat.凶蛮打手",
           "feat.威力攻击"
