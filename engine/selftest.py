@@ -862,6 +862,27 @@ def test_extra_attack():
             FAILS.append(f"刺剑大师在 AC{ac} 应优于普通攻击")
     build["combat"]["weapon"]["kind"] = "巨斧"
 
+    # 限次专长：使用次数进资源预算，超额要告警
+    build["feats"].append({"id": "feat.刺剑大师", "at_level": 1})
+    seen = []
+    for n in (3, 4):
+        rounds = []
+        for i in range(1, n + 1):
+            r = {"round": i, "buffs": ["rage"], "attacks": 1,
+                 "per_attack": {"ops": ["feat.刺剑大师"]}}
+            if i == 1:
+                r["move"] = {"toward": True, "ft": 25}
+            rounds.append(r)
+        res = calc.evaluate(build, {"target": {"ac": 15}, "long_rests": 1},
+                            {"rounds": rounds})
+        over = any("超过" in w for w in res.warnings)
+        seen.append(over)
+    if seen == [False, True]:
+        print("  OK   刺剑大师 3 轮内不超额、4 轮超额告警")
+    else:
+        FAILS.append(f"限次专长预算校验不符: {seen}")
+        print(f"  FAIL 限次专长预算校验 {seen}")
+
     # 结果树叶子数应因动态插入而增加
     if run(15, ["feat.疯狂连击"]).leaves > run(15, []).leaves:
         print("  OK   动态插入攻击使结果树叶子数增加")

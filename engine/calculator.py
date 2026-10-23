@@ -619,9 +619,41 @@ class Result:
     warnings: list = field(default_factory=list)
 
 
-def load_budget(build_doc, env_doc):
-    """从构筑的 resources 声明 + 环境的短休次数构造资源预算。"""
+def derive_feat_resources(build_doc, ops, attack_count):
+    """从专长的 `uses` 声明推导资源池。
+
+    例：「刺剑大师」的精准连刺每长休 1 次，拥有「额外攻击」后 3 次，
+    拥有「精通额外攻击」后无限。这类"用几次"的限制和卓越骰一样是资源，
+    必须进预算，否则策略可以无限制地使用。
+
+    条件的表达用 `has_attack_count_gte`——因为"额外攻击/精通额外攻击"本身
+    就是攻击次数的门槛，用它做判据比再引一层特性名匹配更直接。
+    """
     pools = {}
+    for f in build_doc.get("feats", []):
+        op = ops.get(f.get("id"))
+        uses = (op.get("projection") or {}).get("uses") if op else None
+        if not uses:
+            continue
+        cap = uses.get("capacity", 1)
+        unlimited = False
+        for rule in uses.get("capacity_if", []):
+            if attack_count >= int(rule.get("has_attack_count_gte", 99)):
+                cap = rule.get("capacity")
+                unlimited = cap is None
+                break
+        pid = uses.get("pool") or f"uses:{op['id']}"
+        pools[pid] = ResourcePool(
+            id=pid, name=op["name"],
+            capacity=10 ** 6 if unlimited else int(cap),
+            recharge=uses.get("recharge", "long_rest"),
+            unlimited_from_level=uses.get("unlimited_from_level"))
+    return pools
+
+
+def load_budget(build_doc, env_doc, extra_pools=None):
+    """从构筑的 resources 声明 + 环境的短休次数构造资源预算。"""
+    pools = dict(extra_pools or {})
     for pid, spec in (build_doc.get("resources") or {}).items():
         pools[pid] = ResourcePool(
             id=pid,
@@ -857,21 +889,23 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         trace_speed = f"{speed_ft} 尺（坐骑：{mount.get('name', '未命名')}）"
     else:
         trace_speed = f"{speed_ft} 尺"
-    budget = load_budget(build_doc, env_doc)
+    derived_attacks, attack_src = derive_attack_count(build_doc, ops)
+
+    feat_pools = derive_feat_resources(build_doc, ops, derived_attacks)
+    budget = load_budget(build_doc, env_doc, feat_pools)
 
     trace = build_trace + list(resolved.trace) + [
         f"目标 AC {target.ac}",
         f"初始距离 {state.distance_ft} 尺｜速度 {trace_speed}"
         f"｜触及 {weapon_reach} 尺" + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
     ]
+    trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
+
     warnings = []
     per_round = []
     spends = []
     concentration_active = None      # 当前维持专注的法术名
     sustained_op = None              # 维持中的专注算子（用于逐轮结算）
-
-    derived_attacks, attack_src = derive_attack_count(build_doc, ops)
-    trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
 
     for rnd in strategy_doc.get("rounds", []):
         rnum = rnd.get("round", len(per_round) + 1)
@@ -1065,6 +1099,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                         warnings.append(f"第 {rnum} 轮 {ops[oid]['name']} 前置条件不满足"
                                         f"（缺 {'/'.join(miss)}），未生效")
                         continue
+                    # 限次专长：每被使用一次就记一次消耗，由预算校验是否超额
+                    uses = (ops[oid].get("projection") or {}).get("uses")
+                    if uses:
+                        pool_id = uses.get("pool") or f"uses:{oid}"
+                        # 构筑里没选该专长时不会有对应资源池——此时用量不受限，
+                        # 说明构筑与策略不一致，必须告警而不是静默放行
+                        if pool_id not in budget.pools:
+                            warnings.append(
+                                f"第 {rnum} 轮使用了 {ops[oid]['name']}，"
+                                f"但构筑未包含该专长，使用次数不受限制")
+                        else:
+                            spends.append((rnum, pool_id, 1))
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
                     all_rules_built.extend(rs)
                 attacks.append(a)
@@ -1088,6 +1134,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                         warnings.append(f"第 {rnum} 轮 {ops[oid]['name']} 前置条件不满足"
                                         f"（缺 {'/'.join(miss)}），未生效")
                         continue
+                    # 限次专长：每被使用一次就记一次消耗，由预算校验是否超额
+                    uses = (ops[oid].get("projection") or {}).get("uses")
+                    if uses:
+                        pool_id = uses.get("pool") or f"uses:{oid}"
+                        # 构筑里没选该专长时不会有对应资源池——此时用量不受限，
+                        # 说明构筑与策略不一致，必须告警而不是静默放行
+                        if pool_id not in budget.pools:
+                            warnings.append(
+                                f"第 {rnum} 轮使用了 {ops[oid]['name']}，"
+                                f"但构筑未包含该专长，使用次数不受限制")
+                        else:
+                            spends.append((rnum, pool_id, 1))
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
                     all_rules_built.extend(rs)
                 attacks.append(a)
