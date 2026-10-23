@@ -20,8 +20,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from evaluator import (Attack, DamageComponent, TargetProfile,
                        apply_target_pipeline, dice_mean, expected_damage)
-from combat import (CombatState, RangeProfile, Step, expected_save_damage,
-                    save_fail_probability, validate_turn)
+from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
+                    expected_save_damage, save_fail_probability,
+                    super_maneuver_uses, validate_turn)
+from character import (Build, ability_mod, armor_class, derive, max_hp,
+                       proficiency_bonus)
 from strategy import CRIT, HIT, MISS, Rule, check_feasible, evaluate_turn
 
 N = 200_000
@@ -266,6 +269,57 @@ def test_strategy():
     check("资源不足报警", Fraction(len(problems)), Fraction(1), tol=1e-9)
 
 
+def test_character():
+    print("\n[10] 角色基础数值")
+    for lv, want in ((1, 2), (4, 2), (5, 3), (9, 4), (13, 5), (17, 6), (21, 7)):
+        check(f"熟练加值 L{lv}", Fraction(proficiency_bonus(lv)), Fraction(want), tol=1e-9)
+    for score, want in ((8, -1), (11, 0), (13, 1), (16, 3)):
+        check(f"调整值 {score}", Fraction(ability_mod(score)), Fraction(want), tol=1e-9)
+
+    # AC：5z 的 AC 含熟练加值（与 5e 不同）
+    check("无甲 AC", Fraction(armor_class("none", 2, 2)), Fraction(12), tol=1e-9)
+    check("轻甲 AC", Fraction(armor_class("light", 2, 3)), Fraction(15), tol=1e-9)
+    check("中甲 敏捷上限2", Fraction(armor_class("medium", 2, 4)), Fraction(17), tol=1e-9)
+    check("重甲 忽略敏捷", Fraction(armor_class("heavy", 2, 5)), Fraction(18), tol=1e-9)
+    check("狂战士无甲防御", Fraction(armor_class("barbarian_unarmored", 2, 3, con_mod=3)),
+          Fraction(16), tol=1e-9)
+    check("盾牌 +2", Fraction(armor_class("light", 2, 3, shield=True)), Fraction(17), tol=1e-9)
+
+    # 生命值：10 + 等级 ×（生命骰期望 + 体质调整值）
+    check("L1 d12 体质+3", Fraction(max_hp(1, 12, 3)), Fraction(19), tol=1e-9)
+    check("L4 d12 体质+3", Fraction(max_hp(4, 12, 3)), Fraction(46), tol=1e-9)
+
+    # 派生值的可追溯性：分项之和必须等于总值
+    b = Build(level=4, base_scores={"str": 17, "dex": 13, "con": 16},
+              hit_die_faces=12, armor="barbarian_unarmored",
+              proficient_saves=("str", "con"), weapon_enhancement=1)
+    d = derive(b)
+    check("攻击加值合计", Fraction(d.attack.total), Fraction(6), tol=1e-9)
+    check("分项与总值一致", Fraction(sum(p.value for p in d.attack.parts)),
+          Fraction(d.attack.total), tol=1e-9)
+    print(f"       {d.attack.explain()}")
+    check("力量豁免含熟练", Fraction(d.saves["str"]), Fraction(5), tol=1e-9)
+    check("敏捷豁免无熟练", Fraction(d.saves["dex"]), Fraction(1), tol=1e-9)
+
+
+def test_resources():
+    print("\n[11] 资源时钟")
+    dice = ResourcePool("卓越骰", 3, recharge="short_rest")
+    check("短休池 无短休", Fraction(dice.effective_capacity(short_rests=0)), Fraction(3), tol=1e-9)
+    check("短休池 1 次短休", Fraction(dice.effective_capacity(short_rests=1)), Fraction(6), tol=1e-9)
+
+    super_mv = ResourcePool("超级战技", 2, recharge="per_n_long_rests", interval=2)
+    check("每两次长休 1 次", Fraction(super_mv.effective_capacity(long_rests=1)), Fraction(0), tol=1e-9)
+    check("每两次长休 2 次", Fraction(super_mv.effective_capacity(long_rests=2)), Fraction(2), tol=1e-9)
+    check("超级战技次数", Fraction(super_maneuver_uses(25)), Fraction(2), tol=1e-9)
+
+    budget = Budget(pools={"卓越骰": dice}, short_rests=1)
+    check("预算内", Fraction(len(budget.check_schedule(
+        [(1, "卓越骰", 3), (2, "卓越骰", 3)]))), Fraction(0), tol=1e-9)
+    check("超总量", Fraction(len(budget.check_schedule(
+        [(1, "卓越骰", 4), (2, "卓越骰", 4)]))), Fraction(1), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -279,6 +333,8 @@ def main():
     test_action_economy()
     test_saves()
     test_strategy()
+    test_character()
+    test_resources()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

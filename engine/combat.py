@@ -134,6 +134,66 @@ def validate_turn(steps, state: CombatState):
     return errors
 
 
+# ---------------------------------------------------------------- 资源时钟
+
+@dataclass
+class ResourcePool:
+    """一个资源池。恢复节奏决定它在整场战斗中的有效容量（方案 §9）。"""
+    name: str
+    capacity: int
+    recharge: str = "long_rest"     # short_rest | long_rest | per_n_long_rests | per_turn
+    interval: int = 1               # recharge == per_n_long_rests 时的间隔
+
+    def effective_capacity(self, short_rests=0, long_rests=1):
+        if self.recharge == "short_rest":
+            return self.capacity * (short_rests + 1)
+        if self.recharge == "per_n_long_rests":
+            return self.capacity * (long_rests // max(1, self.interval))
+        return self.capacity
+
+    def per_round_cap(self):
+        """每回合门控；未声明则无单轮上限。"""
+        return self.capacity if self.recharge == "per_turn" else None
+
+
+def super_maneuver_uses(superiority_dice):
+    """超级战技次数 = floor(可用卓越骰 / 10)。通过物品获得的卓越骰不计入。"""
+    return superiority_dice // 10
+
+
+@dataclass
+class Budget:
+    """跨轮资源预算：总量约束 + 每轮门控约束，两者都要满足。"""
+    pools: dict = field(default_factory=dict)    # name -> ResourcePool
+    short_rests: int = 0
+    long_rests: int = 1
+
+    def available(self, name):
+        pool = self.pools.get(name)
+        if pool is None:
+            raise KeyError(f"未声明资源池: {name}")
+        return pool.effective_capacity(self.short_rests, self.long_rests)
+
+    def check_schedule(self, per_round_spend):
+        """per_round_spend: [(轮次, 池名, 数量)]。返回违规列表。"""
+        errors = []
+        totals, per_round = {}, {}
+        for rnd, name, amount in per_round_spend:
+            totals[name] = totals.get(name, 0) + amount
+            per_round[(name, rnd)] = per_round.get((name, rnd), 0) + amount
+
+        for name, used in totals.items():
+            cap = self.available(name)
+            if used > cap:
+                errors.append(f"{name} 全程消耗 {used} 超过有效容量 {cap}")
+        for (name, rnd), used in per_round.items():
+            pool = self.pools[name]
+            cap = pool.per_round_cap()
+            if cap is not None and used > cap:
+                errors.append(f"{name} 第 {rnd} 轮消耗 {used} 超过每轮上限 {cap}")
+        return errors
+
+
 # ---------------------------------------------------------------- 豁免型伤害
 
 def save_fail_probability(dc, save_bonus):
