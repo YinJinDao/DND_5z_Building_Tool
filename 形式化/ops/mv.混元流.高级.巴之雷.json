@@ -1,0 +1,41 @@
+{
+  "id": "mv.混元流.高级.巴之雷",
+  "name": "巴之雷",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 3
+  },
+  "cost": {
+    "action": 1,
+    "superiority": 3
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "金属制成的武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "2dS",
+        "damage_type": "lightning",
+        "crit_doubles": true,
+        "note": "命中后额外造成两枚卓越骰的骰值的闪电伤害；打桩为单目标"
+      }
+    ],
+    "area": {
+      "shape": "cone",
+      "range_ft": 30
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "巴之雷"
+  },
+  "status": "modeled",
+  "ruling": null
+}

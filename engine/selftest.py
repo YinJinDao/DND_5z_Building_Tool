@@ -625,6 +625,59 @@ def test_gates():
         print("  FAIL 狂暴前后伤害无差异")
 
 
+def test_maneuvers():
+    print("\n[18] 战技：卓越骰伤害 / 不可减伤")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    build["resources"]["superiority"] = {
+        "name": "卓越骰", "capacity": 4, "recharge": "short_rest", "die_faces": 6}
+    ops = calc.load_ops()
+
+    def run(op_ids, target=None):
+        s = {"rounds": [{"round": 1, "buffs": ["rage"],
+                         "move": {"toward": True, "ft": 25}, "attacks": 1,
+                         "per_attack": {"ops": op_ids}}]}
+        return calc.evaluate(build, {"target": target or {"ac": 15}}, s)
+
+    base = run([])
+    # 5 级卓越骰为 d6，1 枚 = 3.5
+    check("卓越骰面 d6", Fraction(calc.superiority_faces(5)), Fraction(6), tol=1e-9)
+    for lv, faces in ((1, 4), (5, 6), (11, 8), (17, 10)):
+        if calc.superiority_faces(lv) != faces:
+            FAILS.append(f"卓越骰面 L{lv} 应为 d{faces}")
+    print("  OK   卓越骰面随等级 d4→d6→d8→d10")
+
+    with_die = run(["mv.开山流.低级.英勇冲锋"])
+    if with_die.total > base.total:
+        print(f"  OK   英勇冲锋加卓越骰：{float(base.total):.3f} → {float(with_die.total):.3f}")
+    else:
+        FAILS.append("英勇冲锋未增加伤害")
+        print("  FAIL 英勇冲锋未增加伤害")
+
+    # 「dS」要按等级解析，不能写死骰面
+    if calc.resolve_superiority_dice("2dS", 11) == "2d8":
+        print("  OK   dS 按等级解析为 2d8（11 级）")
+    else:
+        FAILS.append("dS 解析错误")
+        print("  FAIL dS 解析")
+
+    # 力劈华山：不可减伤，对斩击抗性目标应与无抗性相同
+    irreducible = run(["mv.开山流.高级.力劈华山"],
+                      {"ac": 15, "resist": ["slashing"]})
+    plain = run([], {"ac": 15, "resist": ["slashing"]})
+    no_resist = run([])
+    check("不可减伤无视抗性", irreducible.total, no_resist.total, tol=1e-9)
+    if plain.total < no_resist.total:
+        print(f"  OK   普通攻击受抗性影响：{float(no_resist.total):.3f} → {float(plain.total):.3f}")
+    else:
+        FAILS.append("普通攻击未受抗性影响")
+        print("  FAIL 抗性未生效")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -646,6 +699,7 @@ def main():
     test_charge_cycle()
     test_expanded_ops()
     test_gates()
+    test_maneuvers()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

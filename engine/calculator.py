@@ -190,6 +190,29 @@ def weapon_dice_for(resolved, ops, buffs):
     return dice
 
 
+def superiority_faces(level):
+    """卓越骰的骰面：初始 d4，5 级 d6，11 级 d8，17 级 d10。"""
+    if level >= 17:
+        return 10
+    if level >= 11:
+        return 8
+    if level >= 5:
+        return 6
+    return 4
+
+
+def resolve_superiority_dice(expr, level):
+    """把 '1dS' 解析成具体骰式。
+
+    战技里大量写成「N 枚卓越骰的骰值」——骰面随等级变化，
+    因此不能把 d4/d6/d8/d10 写死在算子里，必须按角色等级解析。
+    """
+    e = str(expr)
+    if "dS" not in e:
+        return e
+    return e.replace("dS", f"d{superiority_faces(level)}")
+
+
 def eval_level_expr(expr, level):
     """极小的等级表达式求值。目前支持 `level//N` 与 `level`。"""
     e = str(expr).replace(" ", "")
@@ -226,6 +249,11 @@ def apply_op(op, attack, resolved, attack_index=0):
     if "adv_tiers" in proj:
         attack.adv_tiers += int(proj["adv_tiers"])
 
+    # 整次攻击不可减伤（「力劈华山」：伤害无法被任何方式减少、免疫或转移）
+    if proj.get("attack_irreducible"):
+        for comp in attack.components:
+            comp.irreducible = True
+
     for slot in proj.get("damage_slots", []):
         if slot.get("applies_on", "on_hit") not in ("on_hit", "always"):
             continue
@@ -240,7 +268,8 @@ def apply_op(op, attack, resolved, attack_index=0):
         if dtype == "same_as_weapon":
             dtype = resolved.weapon["damage_type"]
         attack.components.append(
-            DamageComponent("0", flat=value, dtype=dtype, slot=op["id"]))
+            DamageComponent("0", flat=value, dtype=dtype, slot=op["id"],
+                            irreducible=bool(slot.get("irreducible", False))))
 
     for extra in proj.get("extra_dice", []):
         dice = extra["dice"]
@@ -253,9 +282,11 @@ def apply_op(op, attack, resolved, attack_index=0):
         flat = int(extra.get("flat", 0))
         if extra.get("flat_expr"):          # 如「狂战士等级的一半」
             flat = eval_level_expr(extra["flat_expr"], resolved.derived.level)
+        dice = resolve_superiority_dice(dice, resolved.derived.level)
         comp = DamageComponent(dice, flat=flat, dtype=dtype,
                                slot=extra.get("slot") or op["id"],
-                               crit_doubles=bool(extra.get("crit_doubles", True)))
+                               crit_doubles=bool(extra.get("crit_doubles", True)),
+                               irreducible=bool(extra.get("irreducible", False)))
         if extra.get("limit") == "每回合一次":
             # 每回合一次：只有本回合第一次攻击享有，其余攻击靠结果树分支处理
             rules.append(Rule(trigger="hit_or_crit", on_attack=attack_index,
@@ -599,6 +630,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     warnings = []
     per_round = []
     spends = []
+    concentration_active = None      # 当前维持专注的法术名
 
     derived_attacks, attack_src = derive_attack_count(build_doc, ops)
     trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
@@ -840,6 +872,24 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             moved = state.move(int(post.get("ft", 0)),
                                toward=bool(post.get("toward", False)))
             trace.append(f"第 {rnum} 轮攻击后移动 {moved} 尺 → 距离 {state.distance_ft} 尺")
+
+        # 专注：同时只能维持一个。打桩下没有持续效果模型，因此这里只做冲突检测，
+        # 待专注类法术编译后，未中断的专注效果应跨轮继续生效。
+        for eff in rnd.get("save_effects", []):
+            sid = eff.get("spell")
+            if sid and ops.get(sid, {}).get("concentration"):
+                if concentration_active:
+                    warnings.append(f"第 {rnum} 轮施放 {ops[sid]['name']}（专注），"
+                                    f"但 {concentration_active} 的专注尚未结束")
+                concentration_active = ops[sid]["name"]
+        pa_spell = (rnd.get("per_attack") or {}).get("spell")
+        if pa_spell and ops.get(pa_spell, {}).get("concentration"):
+            if concentration_active:
+                warnings.append(f"第 {rnum} 轮施放 {ops[pa_spell]['name']}（专注），"
+                                f"但 {concentration_active} 的专注尚未结束")
+            concentration_active = ops[pa_spell]["name"]
+        if rnd.get("end_concentration"):
+            concentration_active = None
 
         per_round.append((rnum, dmg))
         trace.append(f"第 {rnum} 轮：{attacks_n} 次攻击"

@@ -47,13 +47,17 @@ def _damage_for_outcome(attack, outcome, target, extra):
         return Fraction(0)
     by_type = {}
     for comp in list(attack.components) + list(extra):
-        d = by_type.setdefault(comp.dtype, {"mean": Fraction(0), "dbl": Fraction(0)})
+        key = (comp.dtype, comp.irreducible)
+        d = by_type.setdefault(key, {"mean": Fraction(0), "dbl": Fraction(0)})
         d["mean"] += comp.mean
         if comp.crit_doubles:
             d["dbl"] += dice_mean(comp.dice)
     total = Fraction(0)
-    for dtype, d in by_type.items():
+    for (dtype, irreducible), d in by_type.items():
         amount = d["mean"] + (d["dbl"] if outcome == CRIT else Fraction(0))
+        if irreducible:
+            total += amount
+            continue
         dmg, _ = apply_target_pipeline(amount, dtype, target)
         total += dmg
     return total

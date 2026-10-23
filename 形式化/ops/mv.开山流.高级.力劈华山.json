@@ -1,0 +1,30 @@
+{
+  "id": "mv.开山流.高级.力劈华山",
+  "name": "力劈华山",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 0
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 0
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "近战武器"
+  },
+  "projection": {
+    "attack_irreducible": true,
+    "note": "命中后造成的伤害无法被任何方式减少、免疫或转移；首次使用 0 枚，重复使用 1 枚"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "力劈华山"
+  },
+  "status": "modeled",
+  "ruling": null
+}

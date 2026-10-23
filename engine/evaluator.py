@@ -48,6 +48,7 @@ class DamageComponent:
     dtype: str = "physical"      # 伤害类型；physical 为占位，实际应给出具体类型
     slot: str = "other"
     crit_doubles: bool = True    # 重击时骰子是否翻倍（固定值一律不翻）
+    irreducible: bool = False    # 不可被抗性/免疫/减伤影响（如「力劈华山」）
 
     @property
     def mean(self):
@@ -134,18 +135,23 @@ def expected_damage(attack: Attack, target: TargetProfile):
     total = Fraction(0)
     doubled = Fraction(0)
 
-    # 按类型聚合：抗性/免疫/吸收都按类型作用
+    # 按 (类型, 是否不可减伤) 聚合：抗性/免疫/吸收都按类型作用，
+    # 而「不可减伤」的部分要绕过整个目标端结算。
     by_type = {}
     for comp in attack.components:
-        d = by_type.setdefault(comp.dtype, {"mean": Fraction(0), "double": Fraction(0)})
+        key = (comp.dtype, comp.irreducible)
+        d = by_type.setdefault(key, {"mean": Fraction(0), "double": Fraction(0)})
         d["mean"] += comp.mean
         if comp.crit_doubles:
             d["double"] += dice_mean(comp.dice)
 
     healed = Fraction(0)
-    for dtype, d in by_type.items():
+    for (dtype, irreducible), d in by_type.items():
         # 重击只翻骰子，不翻固定加值
         exp_amount = p_hit * d["mean"] + p_crit * d["double"]
+        if irreducible:
+            total += exp_amount
+            continue
         dmg, heal = apply_target_pipeline(exp_amount, dtype, target)
         total += dmg
         healed += heal
