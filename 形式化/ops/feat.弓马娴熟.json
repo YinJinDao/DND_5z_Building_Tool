@@ -1,0 +1,30 @@
+{
+  "id": "feat.弓马娴熟",
+  "name": "弓马娴熟",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "骑乘战斗"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {
+    "mounted": true
+  },
+  "projection": {
+    "adv_tiers": 1,
+    "note": "骑乘时对『体型比你的坐骑更小的未骑乘生物』发动远程攻击具有优势。adv_tiers 属主动引用型投影：策略必须在本轮的 per_attack.ops 中显式引用本算子，引擎才会加上这一重优势；gate.mounted 由引擎校验。未建模：①『远程攻击』与『目标体型小于坐骑』这两个条件（引擎的 gate 没有攻击方式与目标体型项，需策略自行限定使用场景，否则会对近战攻击误加优势）；②坐骑可改用骑手的敏捷豁免加值——属防御，不进伤害链"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/骑乘专长.htm",
+    "anchor": "弓马娴熟"
+  },
+  "status": "approximated",
+  "ruling": null
+}

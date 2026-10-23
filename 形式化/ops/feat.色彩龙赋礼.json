@@ -1,0 +1,40 @@
+{
+  "id": "feat.色彩龙赋礼",
+  "name": "色彩龙赋礼",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "1d4",
+        "type": "same_as_weapon",
+        "crit_doubles": true,
+        "note": "繁彩注魔：附赠动作触碰一把武器，之后 1 分钟内该武器命中时额外 1d4。伤害类型由使用者从强酸/寒冷/火焰/闪电/毒素中选定；引擎无法表达『同一效果多种可选伤害类型』，此处按武器自身的伤害类型结算，故面对特定抗性时会偏差"
+      }
+    ],
+    "uses": {
+      "pool": "chromatic_dragon_gift",
+      "recharge": "long_rest",
+      "capacity": 1,
+      "note": "繁彩注魔每次长休 1 次；生物类型为龙类时改为长休或短休"
+    },
+    "note": "已建模：繁彩注魔的 +1d4 附伤与每长休一次的限次。未建模：①附赠动作的宣告与 1 分钟持续时间（引擎把附伤当作全程常驻，多轮打桩会重复计入，只有长休次数作为资源池约束）；②反应抗性（受到强酸/寒冷/火焰/闪电/毒素伤害时用反应取得对应抗性，次数=熟练加值，每长休重置）——属防御，不进伤害链"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/泛用性的专长.htm",
+    "anchor": "色彩龙赋礼"
+  },
+  "status": "approximated",
+  "ruling": null
+}

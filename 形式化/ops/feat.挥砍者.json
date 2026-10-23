@@ -1,0 +1,33 @@
+{
+  "id": "feat.挥砍者",
+  "name": "挥砍者",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "str",
+        "dex"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "note": "已建模：力量或敏捷 +1（不能超过 24），构筑期结算。未建模：①每回合一次，造成挥砍伤害的攻击命中后使目标速度 -10 尺（纯控制，不进伤害链）；②可用目标的一次体质豁免替代攻击检定（DC=8+熟练加值+攻击关键属性调整值+魔法武器的攻击检定加值，失败即视为被该次攻击命中）——引擎没有『以豁免替代攻击检定』的判定路径，该用法的命中率无法建模。原文另注明与穿刺者、钝击者互为可变体，并通过「威力豁免」与威力攻击联动，均未建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "挥砍者"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -263,6 +263,7 @@ ALLOWED_PROJECTION = {
     "weapon_dice_override", "weapon_dice_min", "weapon_dice_min_applies_to",
     "weapon_dice_step_up",
     "bonus_action_attack", "bonus_action_attack_dice", "bonus_action_attack_type",
+    "bonus_action_attack_spec",    # 附赠攻击自带的劣势 / 去属性调整值
     "on_hit_extra_attack", "on_all_hit_extra_attack", "on_hit_target_vuln",
     "damage_replaces_weapon", "damage_table", "formula_damage", "attack_irreducible",
     "save_dc_modifier", "on_fail_extra", "requires_contest",

@@ -315,7 +315,8 @@ def eval_condition(when, ctx):
 
 def apply_condition_effects(attack, effects, resolved, op_id):
     """把条件满足时的效果施加到攻击上（只允许伤害相关字段）。"""
-    ALLOWED = {"extra_dice", "damage_slots", "attack_bonus", "damage_mult", "crit_range"}
+    # damage_mult 尚未实现，故意不在白名单里——用了要报错而不是静默忽略
+    ALLOWED = {"extra_dice", "damage_slots", "attack_bonus", "crit_range"}
     for key in effects:
         if key not in ALLOWED and key != "note":
             raise ValueError(f"条件效果字段 {key!r} 不在 {sorted(ALLOWED)} 中")
@@ -349,6 +350,8 @@ def build_condition_context(resolved, gate_ctx, extras=None):
     """把构筑与回合状态整理成条件求值用的扁平上下文。"""
     ctx = dict(gate_ctx or {})
     ctx["attacker_state"] = ("raging" if ctx.get("rage_active") else None)
+    if int(ctx.get("net_adv_tiers", 0)) > 0:
+        ctx["attacker_state"] = "has_adv"     # 有净优势时覆盖为 has_adv
     ctx.setdefault("target_hp", "below_max")      # 打桩目标默认满血
     if extras:
         ctx.update(extras)
@@ -435,6 +438,9 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
 
     if "adv_tiers" in proj:
         attack.adv_tiers += int(proj["adv_tiers"])
+
+    if "crit_range" in proj:
+        attack.crit_range += int(proj["crit_range"])
 
     # 整次攻击不可减伤（「力劈华山」：伤害无法被任何方式减少、免疫或转移）
     # 对抗检定：战技要求"胜出"才生效（如泰山压顶的推撞），按胜率加权
@@ -530,7 +536,10 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
         for step in extra.get("dice_scaling", []):
             if resolved.derived.level >= step["level"]:
                 dice = step["dice"]
-        dtype = extra.get("type") or resolved.weapon["damage_type"]
+        # 类型键有两种写法：`type` 与 `damage_type`。早期只读 `type`，
+        # 导致「穿刺者」「巨人打击」写的 damage_type 被静默忽略、
+        # 回落到武器类型——穿刺者的 +2 实际按挥砍结算。
+        dtype = extra.get("type") or extra.get("damage_type") or resolved.weapon["damage_type"]
         if dtype == "same_as_weapon":
             dtype = resolved.weapon["damage_type"]
         flat = int(extra.get("flat", 0))
@@ -782,6 +791,7 @@ def apply_build_time_effects(build_doc, ops, trace=None):
     feat_scores = dict(scores.get("feat") or {})
     choices = doc.get("choices") or {}
 
+    missing_warnings = []
     for f in doc.get("feats", []):
         op = ops.get(f.get("id"))
         bonus = (op.get("projection") or {}).get("ability_bonus") if op else None
@@ -797,16 +807,30 @@ def apply_build_time_effects(build_doc, ops, trace=None):
         elif "choose_one_of" in bonus:
             candidates, amount = tuple(bonus["choose_one_of"]), int(bonus.get("amount", 1))
         if candidates:
-            target = choices.get("ability_bonus") or candidates[0]
+            # choices.ability_bonus 可以是字符串（对所有加值专长生效），
+            # 也可以是 {算子 id: 属性} 的映射——同一构筑可能同时有
+            # 「挥砍者(str/dex)」与「敏锐心灵(int/wis)」，单一字段表达不了。
+            raw = choices.get("ability_bonus")
+            if isinstance(raw, dict):
+                target = raw.get(op["id"])
+            else:
+                target = raw
+            if target is None:
+                target = candidates[0]
             if target not in candidates:
-                raise ValueError(
-                    f"{op['name']} 需要 choices.ability_bonus 指定 "
-                    f"{' 或 '.join(candidates)}，当前为 {target!r}")
+                # 抛错会让"构筑里有一条参数不合的专长"整体不可算，
+                # 改为跳过并告警：其余效果照常结算
+                missing_warnings.append(
+                    f"{op['name']} 需要的属性加值候选为 "
+                    f"{'/'.join(candidates)}，构筑选择的是 {target!r}，该加值跳过")
+                continue
             feat_scores[target] = feat_scores.get(target, 0) + amount
             if trace is not None:
                 trace.append(f"构筑期：{op['name']} {target.upper()} +{amount}")
 
     scores["feat"] = feat_scores
+    if trace is not None:
+        trace.extend(missing_warnings)
     return doc
 
 
@@ -860,8 +884,13 @@ def granted_feat_ops(build_doc, ops):
     out = []
     for f in build_doc.get("feats", []):
         op = ops.get(f.get("id"))
-        if op:
-            out.append(op)
+        if not op:
+            continue
+        # `passive_choice` 的专长（威力攻击、疯狂连击）需要**每次攻击自主决定**
+        # 是否使用，不能因为选进了构筑就无条件生效——那会给每一击都挂上 -5。
+        if (op.get("cost") or {}).get("passive_choice"):
+            continue
+        out.append(op)
     return out
 
 
@@ -1181,7 +1210,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         # 条件上下文：构筑/回合状态 → 扁平键值，供 conditions 求值
         cond_ctx = build_condition_context(
             resolved, gate_ctx,
-            {"size": resolved.size,
+            {"size": resolved.size, "net_adv_tiers": adv,
              "prior_action": "moved" if state.travel_this_turn > 0 else None})
         wdice = weapon_dice_for(resolved, passive_ops)
         if wdice != resolved.weapon["dice"]:
@@ -1201,17 +1230,17 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                        slot_level=slot_level, target=round_target)
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
-                explicit = set(op_ids)
+                # 本轮增益（buffs）已由 buff_adv / rage_active 单独结算，
+                # 这里再走一遍会把 adv_tiers 之类算两次。
+                explicit = set(op_ids) | buffs
                 for pop in passive_ops:
                     if pop["id"] in explicit:
                         continue
-                    pproj = pop.get("projection") or {}
-                    if "crit_range" in pproj:
-                        a.crit_range += int(pproj["crit_range"])
-                    if "extra_dice" in pproj:
-                        a, rs = apply_op(pop, a, resolved, attack_index=i,
-                                         condition_ctx=cond_ctx)
-                        all_rules_built.extend(rs)
+                    # 无条件调用 apply_op：条件、命中加值、命中后追加都靠它生效。
+                    # 早期只在含 extra_dice 时调用，其余写法全部静默失效。
+                    a, rs = apply_op(pop, a, resolved, attack_index=i,
+                                     condition_ctx=cond_ctx)
+                    all_rules_built.extend(rs)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")
@@ -1239,14 +1268,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         else:
             bonus_dice = None
             bonus_type = None
+            bonus_spec = None
             for pop in passive_ops:
                 pproj = pop.get("projection") or {}
+                if pproj.get("bonus_action_attack"):
+                    bonus_spec = pproj.get("bonus_action_attack_spec") or {}
                 if pproj.get("bonus_action_attack_dice"):
                     bonus_dice = pproj["bonus_action_attack_dice"]
                     bonus_type = pproj.get("bonus_action_attack_type")
             for i in range(attacks_n + bonus_attacks):
                 use_dice = wdice
-                is_bonus = bool(bonus_dice) and i >= attacks_n
+                # 附赠攻击的判定只取决于位置，不取决于是否另设了骰式
+                is_bonus = i >= attacks_n and bonus_attacks > 0
                 if is_bonus:
                     use_dice = bonus_dice          # 附赠动作攻击用指定骰式
                 a = build_base_attack(resolved, adv_tiers=adv,
@@ -1255,18 +1288,28 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     # 附赠动作攻击可指定伤害类型（长柄武器末端为钝击）
                     for comp in a.components:
                         comp.dtype = bonus_type
+                if is_bonus and bonus_spec:
+                    # 附赠攻击可自带劣势、且/或不享属性调整值
+                    # （双武器低级战士：副手攻击具有劣势，且无双武器战斗风格时不吃属性加值）
+                    if "adv_tiers" in bonus_spec:
+                        a.adv_tiers += int(bonus_spec["adv_tiers"])
+                    if bonus_spec.get("no_ability_mod"):
+                        ability = resolved.derived.mods["str"]
+                        for comp in a.components:
+                            comp.flat = max(0, comp.flat - ability)
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
-                explicit = set(op_ids)
+                # 本轮增益（buffs）已由 buff_adv / rage_active 单独结算，
+                # 这里再走一遍会把 adv_tiers 之类算两次。
+                explicit = set(op_ids) | buffs
                 for pop in passive_ops:
                     if pop["id"] in explicit:
                         continue
-                    pproj = pop.get("projection") or {}
-                    if "crit_range" in pproj:
-                        a.crit_range += int(pproj["crit_range"])
-                    if "extra_dice" in pproj:
-                        a, rs = apply_op(pop, a, resolved, attack_index=i)
-                        all_rules_built.extend(rs)
+                    # 无条件调用 apply_op：条件、命中加值、命中后追加都靠它生效。
+                    # 早期只在含 extra_dice 时调用，其余写法全部静默失效。
+                    a, rs = apply_op(pop, a, resolved, attack_index=i,
+                                     condition_ctx=cond_ctx)
+                    all_rules_built.extend(rs)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
@@ -1287,7 +1330,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                 f"但构筑未包含该专长，使用次数不受限制")
                         else:
                             spends.append((rnum, pool_id, 1))
-                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
+                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i,
+                                     condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
                 attacks.append(a)
         all_rules.extend(all_rules_built)

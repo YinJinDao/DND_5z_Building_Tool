@@ -1,0 +1,36 @@
+{
+  "id": "feat.龙族天生武器",
+  "name": "龙族天生武器",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "真龙",
+      "只能在1级时选择"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_dice_override": {
+      "applies_to": [
+        "啃咬",
+        "爪击",
+        "尾击"
+      ],
+      "all": "1d8"
+    },
+    "note": "三种天生武器（啃咬/爪击/尾击）的伤害骰均固定为 1d8。第5/11/17级起对上述天生武器的攻击检定与伤害掷骰 +1/+2/+3 加值（与魔法物品加值取高）未建模——现有词汇无法把攻击加值限定到特定天生武器。"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/限定物种的专长.htm",
+    "anchor": "龙族天生武器"
+  },
+  "status": "approximated",
+  "ruling": null
+}

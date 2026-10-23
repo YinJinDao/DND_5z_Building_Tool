@@ -1,0 +1,33 @@
+{
+  "id": "feat.蛛化卓尔",
+  "name": "蛛化卓尔",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "卓尔精灵"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_dice_override": {
+      "applies_to": [
+        "啮咬"
+      ],
+      "all": "1d8"
+    },
+    "note": "毒牙（啮咬天生武器）造成 1d8 穿刺伤害，已按天生武器建模。其余部分未建模：命中后的体质豁免中毒（控制）、生物类型改为怪兽、蛛行/攀爬速度、蛛网术与星质茧加入法术列表及每两次长休免费施展一次（法术/资源）。"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/限定物种的专长.htm",
+    "anchor": "蛛化卓尔"
+  },
+  "status": "approximated",
+  "ruling": null
+}
