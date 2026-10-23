@@ -50,10 +50,12 @@ def make_build(level, str_score, weapon_enhancement):
 def make_attack(derived, level, weapon_dice, use_power_attack, adv_tiers):
     """组装一次攻击：伤害构成与攻击加值都保留来源。"""
     parts = list(derived.attack.parts)
+    # 魔法武器的增强加值同时作用于攻击检定与伤害（原先只加在攻击加值上，是 bug）
+    enhancements = sum(p.value for p in derived.attack.parts if p.source == "武器增强")
     components = [
         DamageComponent(weapon_dice,
-                        flat=derived.mods["str"] + RAGE_BONUS[level],
-                        dtype="slashing", slot="weapon+str+rage"),
+                        flat=derived.mods["str"] + enhancements + RAGE_BONUS[level],
+                        dtype="slashing", slot="weapon+str+enhancement+rage"),
     ]
 
     if use_power_attack:

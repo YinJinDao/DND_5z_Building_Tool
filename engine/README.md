@@ -8,6 +8,7 @@
 
 | 文件 | 作用 |
 | --- | --- |
+| `calculator.py` | **伤害计算器（一期）**：三份固定格式输入 → 期望伤害 + 输入追溯 |
 | `character.py` | 基础数值：构筑 → 派生值（属性/熟练/AC/HP/豁免/攻击加值） |
 | `evaluator.py` | 伤害管线：命中率/重击率、按类型分账、目标端结算 |
 | `combat.py` | 战斗状态、距离与移动、动作经济校验、资源时钟、豁免型伤害 |
@@ -18,9 +19,15 @@
 ## 运行
 
 ```bash
-python -I engine/selftest.py   # 自检
-python -I engine/demo.py       # 演示
+python -I engine/selftest.py   # 自检（12 组）
+python -I engine/demo.py       # 演示：构筑 → 派生值 → 四组对比
+
+# 一期伤害计算器：构筑 + 输出策略 + 输出环境 → 期望伤害
+python -I engine/calculator.py examples/barbarian_l4.build.json \
+        examples/dummy_ac15.env.json examples/power_attack.strategy.json
 ```
+
+三份输入的格式见 [../形式化/输入格式.md](../形式化/输入格式.md)。
 
 ## 基础数值与命中：当前的处理方式
 

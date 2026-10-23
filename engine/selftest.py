@@ -320,6 +320,45 @@ def test_resources():
         [(1, "卓越骰", 4), (2, "卓越骰", 4)]))), Fraction(1), tol=1e-9)
 
 
+def test_calculator():
+    print("\n[12] 伤害计算器（三份输入 → 期望伤害）")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ex = os.path.join(root, "examples")
+
+    def load(name):
+        with open(os.path.join(ex, name), encoding="utf-8") as fh:
+            return _json.load(fh)
+
+    build, env, strategy = (load("barbarian_l4.build.json"),
+                            load("dummy_ac15.env.json"),
+                            load("power_attack.strategy.json"))
+    res = calc.evaluate(build, env, strategy)
+
+    # 派生值
+    resolved = calc.resolve_build(build, calc.load_rage_table())
+    check("计算器攻击加值", Fraction(resolved.derived.attack.total), Fraction(6), tol=1e-9)
+    check("计算器 AC", Fraction(resolved.derived.ac), Fraction(14), tol=1e-9)
+    check("计算器 HP", Fraction(resolved.derived.hp), Fraction(46), tol=1e-9)
+    check("狂暴伤害加值", Fraction(resolved.rage_bonus), Fraction(2), tol=1e-9)
+
+    # 与"手工搭 Attack"的路径交叉验证：两条路必须给出同一个数
+    from evaluator import Attack, DamageComponent, TargetProfile
+    target = TargetProfile(ac=15)
+    atk = Attack(attack_bonus=1, adv_tiers=1)      # +6 −5（威力攻击）
+    atk.components = [
+        DamageComponent("1d12", flat=4, dtype="slashing"),          # 武器+增强
+        DamageComponent("0", flat=2, dtype="slashing"),             # 狂暴
+        DamageComponent("0", flat=12, dtype="slashing"),            # 威力攻击
+        DamageComponent("1d6", dtype="slashing"),                   # 凶蛮打手
+    ]
+    manual, _ = expected_damage(atk, target)
+    check("计算器与手工路径一致", res.total, manual, tol=1e-9)
+    print(f"       期望伤害 {float(res.total):.3f}｜结果树叶子 {res.leaves}")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -335,6 +374,7 @@ def main():
     test_strategy()
     test_character()
     test_resources()
+    test_calculator()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
