@@ -1,0 +1,31 @@
+{
+  "id": "sp.感受情绪",
+  "name": "感受情绪",
+  "kind": "spell",
+  "level": 0,
+  "school": "预言",
+  "casting_time": "1动作",
+  "range": "自身（半径30尺）",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "情绪侦测与交涉加值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "感受情绪"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "情绪侦测与交涉加值"
+}

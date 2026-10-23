@@ -1,0 +1,29 @@
+{
+  "id": "sp.时间信箱",
+  "name": "时间信箱",
+  "kind": "spell",
+  "level": 9,
+  "school": "咒法",
+  "casting_time": "10分钟",
+  "range": "无限",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 9
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "传递信息"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/9环.htm",
+    "anchor": "时间信箱"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "传递信息"
+}

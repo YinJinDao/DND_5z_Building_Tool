@@ -149,9 +149,14 @@ def main():
         if rel.get(sp["id"], {}).get("tier") != "A":
             continue
         if sp["id"] in existing:
-            rows.append({"id": sp["id"], "name": sp["name"], "status": "modeled",
-                         "reason": "已手工编译", "source": "manual"})
-            stat["modeled"] = stat.get("modeled", 0) + 1
+            # 已有算子：状态以算子声明为准（与职业特性/专长编译器一致）
+            op_doc = json.load(open(os.path.join(OPS, sp["id"] + ".json"),
+                                    encoding="utf-8"))
+            st = op_doc.get("scope") or "modeled"
+            rows.append({"id": sp["id"], "name": sp["name"], "status": st,
+                         "reason": op_doc.get("scope_reason") or "已手工编译",
+                         "source": "manual"})
+            stat[st] = stat.get(st, 0) + 1
             continue
         status, op, reason = compile_one(sp)
         rows.append({"id": sp["id"], "name": sp["name"], "status": status,

@@ -1,0 +1,35 @@
+{
+  "id": "sp.印记斩",
+  "name": "印记斩",
+  "kind": "spell",
+  "level": 2,
+  "school": "塑能",
+  "casting_time": "1 附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "2d6",
+        "damage_type": "radiant"
+      }
+    ],
+    "note": "下一次武器攻击命中额外 2d6 光耀；每升一环 +2d6"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "印记斩"
+  },
+  "status": "approximated",
+  "ruling": null
+}

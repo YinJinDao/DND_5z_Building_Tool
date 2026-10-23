@@ -1,0 +1,31 @@
+{
+  "id": "sp.强化属性",
+  "name": "强化属性",
+  "kind": "spell",
+  "level": 2,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "属性检定优势与临时生命值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "强化属性"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "属性检定优势与临时生命值"
+}

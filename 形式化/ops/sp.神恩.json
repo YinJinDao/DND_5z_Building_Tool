@@ -1,0 +1,35 @@
+{
+  "id": "sp.神恩",
+  "name": "神恩",
+  "kind": "spell",
+  "level": 1,
+  "school": "塑能",
+  "casting_time": "1 附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d4",
+        "damage_type": "radiant"
+      }
+    ],
+    "note": "武器命中额外 1d4 光耀；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "神恩"
+  },
+  "status": "approximated",
+  "ruling": null
+}

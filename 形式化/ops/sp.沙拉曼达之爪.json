@@ -1,0 +1,36 @@
+{
+  "id": "sp.沙拉曼达之爪",
+  "name": "沙拉曼达之爪",
+  "kind": "spell",
+  "level": 2,
+  "school": "塑能",
+  "casting_time": "1附赠动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d4",
+        "damage_type": "fire"
+      }
+    ],
+    "attack_bonus": 1,
+    "note": "武器命中额外 1d4 火焰；伤害骰每超过 1 枚 2 枚则攻击检定 +1"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "沙拉曼达之爪"
+  },
+  "status": "approximated",
+  "ruling": null
+}

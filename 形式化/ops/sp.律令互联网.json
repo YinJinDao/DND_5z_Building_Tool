@@ -1,0 +1,31 @@
+{
+  "id": "sp.律令互联网",
+  "name": "律令互联网",
+  "kind": "spell",
+  "level": 6,
+  "school": "附魔",
+  "casting_time": "1动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "对他人行为的反制评论"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "律令互联网"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "对他人行为的反制评论"
+}

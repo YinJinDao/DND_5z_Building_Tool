@@ -1,0 +1,35 @@
+{
+  "id": "sp.放逐斩",
+  "name": "放逐斩",
+  "kind": "spell",
+  "level": 5,
+  "school": "防护",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "5d10",
+        "damage_type": "force"
+      }
+    ],
+    "note": "下一次武器攻击命中额外 5d10 力场，并可能放逐目标"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "放逐斩"
+  },
+  "status": "approximated",
+  "ruling": null
+}

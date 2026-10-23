@@ -1,0 +1,36 @@
+{
+  "id": "sp.虹光之弓",
+  "name": "虹光之弓",
+  "kind": "spell",
+  "level": 5,
+  "school": "塑能",
+  "casting_time": "1附赠动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "每枚虹光箭 3d6，共七枚，颜色决定伤害类型与附加效果；此处按红箭建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "虹光之弓"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "3d6",
+      "damage_type": "fire"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.统御机车",
+  "name": "统御机车",
+  "kind": "spell",
+  "level": 5,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "30尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "载具变形为构装体"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "统御机车"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "载具变形为构装体"
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.乐园",
+  "name": "乐园",
+  "kind": "spell",
+  "level": 9,
+  "school": "幻术",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 9
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "控制目标行为，结束时的伤害取决于持续轮数"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/9环.htm",
+    "anchor": "乐园"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "控制目标行为，结束时的伤害取决于持续轮数"
+}

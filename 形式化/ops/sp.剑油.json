@@ -1,0 +1,29 @@
+{
+  "id": "sp.剑油",
+  "name": "剑油",
+  "kind": "spell",
+  "level": 4,
+  "school": "变化",
+  "casting_time": "10分钟",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 4
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "为武器附加对特定生物类型的额外伤害——需先涂抹并指定生物类型"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/4环.htm",
+    "anchor": "剑油"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "为武器附加对特定生物类型的额外伤害——需先涂抹并指定生物类型"
+}

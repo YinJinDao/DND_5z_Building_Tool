@@ -1,0 +1,40 @@
+{
+  "id": "sp.冰刃",
+  "name": "冰刃",
+  "kind": "spell",
+  "level": 1,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "1d10 穿刺；无论命中与否都爆裂，周围 5 尺（含目标）敏捷豁免受 2d6 寒冷——打桩单目标时通常两次都吃"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "冰刃"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "1d10",
+      "damage_type": "piercing"
+    }
+  },
+  "upcast": {
+    "per_slot_above": 1,
+    "add_dice": "2d6"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.静电术",
+  "name": "静电术",
+  "kind": "spell",
+  "level": 1,
+  "school": "塑能",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "被命中时反伤，属被动触发"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "静电术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "被命中时反伤，属被动触发"
+}

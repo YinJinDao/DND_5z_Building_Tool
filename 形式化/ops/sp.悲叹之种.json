@@ -1,0 +1,29 @@
+{
+  "id": "sp.悲叹之种",
+  "name": "悲叹之种",
+  "kind": "spell",
+  "level": 7,
+  "school": "死灵",
+  "casting_time": "1分钟",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 7
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "吊坠被取下或摧毁时造成 10d10 心灵伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/7环.htm",
+    "anchor": "悲叹之种"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "吊坠被取下或摧毁时造成 10d10 心灵伤害"
+}

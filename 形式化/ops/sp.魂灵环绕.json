@@ -1,0 +1,35 @@
+{
+  "id": "sp.魂灵环绕",
+  "name": "魂灵环绕",
+  "kind": "spell",
+  "level": 5,
+  "school": "死灵",
+  "casting_time": "1附赠动作",
+  "range": "自身（半径10尺）",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "2d8",
+        "damage_type": "necrotic"
+      }
+    ],
+    "note": "攻击命中区域内生物额外 2d8（七环 3d8、九环 4d8）；豁免失败 4d8。在策略 buffs 中列出即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "魂灵环绕"
+  },
+  "status": "approximated",
+  "ruling": null
+}

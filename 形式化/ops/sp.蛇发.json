@@ -1,0 +1,42 @@
+{
+  "id": "sp.蛇发",
+  "name": "蛇发",
+  "kind": "spell",
+  "level": 5,
+  "school": "变化",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "毒蛇为魔法近战天生武器：2d4 穿刺 + 4d6 毒素，命中后体质豁免否则中毒"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "蛇发"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "2d4",
+      "damage_type": "piercing",
+      "additional": [
+        {
+          "dice": "4d6",
+          "damage_type": "poison"
+        }
+      ]
+    }
+  }
+}

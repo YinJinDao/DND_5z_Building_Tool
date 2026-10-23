@@ -1,0 +1,31 @@
+{
+  "id": "sp.塔罗牌的启示",
+  "name": "塔罗牌的启示",
+  "kind": "spell",
+  "level": 2,
+  "school": "预言",
+  "casting_time": "1附赠动作",
+  "range": "30尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "随机抽牌的四种效果"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "塔罗牌的启示"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "随机抽牌的四种效果"
+}

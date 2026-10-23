@@ -1,0 +1,40 @@
+{
+  "id": "sp.水晶雹",
+  "name": "水晶雹",
+  "kind": "spell",
+  "level": 5,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "150尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "命中 8d6 钝击；随后爆炸，20 尺内敏捷豁免受 8d6 挥砍（半伤）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "水晶雹"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "8d6",
+      "damage_type": "bludgeoning"
+    }
+  },
+  "upcast": {
+    "per_slot_above": 5,
+    "add_dice": "8d6"
+  }
+}

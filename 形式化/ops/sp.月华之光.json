@@ -1,0 +1,43 @@
+{
+  "id": "sp.月华之光",
+  "name": "月华之光",
+  "kind": "spell",
+  "level": 2,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "进入或在其内开始回合时体质豁免，失败 2d10 光耀、成功减半；可每回合用动作移动区域"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "月华之光"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "2d10",
+    "damage_type": "radiant",
+    "half_on_save": true
+  },
+  "area": {
+    "shape": "cylinder",
+    "radius_ft": 5,
+    "height_ft": 40
+  }
+}

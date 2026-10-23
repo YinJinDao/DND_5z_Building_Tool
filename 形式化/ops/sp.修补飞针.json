@@ -1,0 +1,31 @@
+{
+  "id": "sp.修补飞针",
+  "name": "修补飞针",
+  "kind": "spell",
+  "level": 1,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "45尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "治疗"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "修补飞针"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "治疗"
+}

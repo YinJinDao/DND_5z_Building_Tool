@@ -1,0 +1,29 @@
+{
+  "id": "sp.丰收",
+  "name": "丰收",
+  "kind": "spell",
+  "level": 3,
+  "school": "咒法",
+  "casting_time": "1小时",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "种植与收获，无战斗数值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "丰收"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "种植与收获，无战斗数值"
+}

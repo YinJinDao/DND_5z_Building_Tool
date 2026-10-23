@@ -1,0 +1,36 @@
+{
+  "id": "sp.轰雷剑",
+  "name": "轰雷剑",
+  "kind": "spell",
+  "level": 0,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "近战攻击命中后额外 1d8 雷鸣（5/11/17 级升为 2d8/3d8/4d8）；目标移动时再受一次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "轰雷剑"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "0",
+      "damage_type": "thunder"
+    }
+  }
+}

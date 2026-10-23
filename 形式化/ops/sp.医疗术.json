@@ -1,0 +1,31 @@
+{
+  "id": "sp.医疗术",
+  "name": "医疗术",
+  "kind": "spell",
+  "level": 6,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "治疗"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "医疗术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "治疗"
+}

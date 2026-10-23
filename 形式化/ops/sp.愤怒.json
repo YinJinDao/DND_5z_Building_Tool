@@ -1,0 +1,35 @@
+{
+  "id": "sp.愤怒",
+  "name": "愤怒",
+  "kind": "spell",
+  "level": 7,
+  "school": "附魔",
+  "casting_time": "1反应",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 7
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "attack_count": 2,
+    "extra_dice": [
+      {
+        "dice": "1d12",
+        "damage_type": "force",
+        "note": "每击额外 1d12×消耗的法术位环阶"
+      }
+    ],
+    "note": "嗜血状态下攻击动作可用人造武器发动四次武器攻击，每命中一次消耗法术位额外造成 1d12×环阶 力场伤害；九环版为五次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/7环.htm",
+    "anchor": "愤怒"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.定罪",
+  "name": "定罪",
+  "kind": "spell",
+  "level": 1,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "按目标的违法行为逐项触发伤害，取决于目标做了什么"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "定罪"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "按目标的违法行为逐项触发伤害，取决于目标做了什么"
+}

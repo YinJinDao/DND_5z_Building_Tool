@@ -1,0 +1,30 @@
+{
+  "id": "sp.雪之歌",
+  "name": "雪之歌",
+  "kind": "spell",
+  "level": 5,
+  "school": "附魔",
+  "casting_time": "1动作",
+  "range": "30尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "attack_bonus": 0,
+    "note": "区域增益法术，效果取决于目标是否听懂所选语言；此处无法给出统一数值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "雪之歌"
+  },
+  "status": "approximated",
+  "ruling": null
+}

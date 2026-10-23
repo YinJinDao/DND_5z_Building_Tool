@@ -132,6 +132,13 @@ def check_ops():
                     err(f"[A5] {fname}: 豁免型法术缺 damage.dice")
                 if "ability" not in (op.get("save") or {}):
                     err(f"[A5] {fname}: save 缺 ability")
+            elif op.get("scope") == "out_of_scope":
+                # 明确排除的法术本来就不进伤害链路，没有 attack/save 是对的
+                pass
+            elif op.get("projection"):
+                # 增益/续航类法术（神恩、印记斩、祝福术）：效果写在 projection 里，
+                # 由策略把它们列进 buffs 作用于攻击，本身不产生独立的伤害实例
+                pass
             else:
                 err(f"[A5] {fname}: 法术必须有 attack 或 save")
 

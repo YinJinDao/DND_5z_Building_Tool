@@ -1,0 +1,29 @@
+{
+  "id": "sp.宙斯盾系统",
+  "name": "宙斯盾系统",
+  "kind": "spell",
+  "level": 2,
+  "school": "防护",
+  "casting_time": "1反应",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "拦截魔法飞弹与线型效应"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "宙斯盾系统"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "拦截魔法飞弹与线型效应"
+}

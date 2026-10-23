@@ -1,0 +1,38 @@
+{
+  "id": "sp.元素箭",
+  "name": "元素箭",
+  "kind": "spell",
+  "level": 4,
+  "school": "塑能",
+  "casting_time": "替换一次攻击",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 4
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "替换一次武器攻击，命中后**只**造成 8d8，伤害类型从火/闪/冷/雷/酸中选；此处取火焰占位"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/4环.htm",
+    "anchor": "元素箭"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "8d8",
+      "damage_type": "fire"
+    }
+  },
+  "upcast": {
+    "per_slot_above": 4,
+    "add_dice": "1d8"
+  }
+}

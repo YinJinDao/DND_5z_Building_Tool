@@ -1,0 +1,31 @@
+{
+  "id": "sp.任意门",
+  "name": "任意门",
+  "kind": "spell",
+  "level": 4,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "500尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 4
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "传送；仅在目的地被占据时造成 4d6 力场"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/4环.htm",
+    "anchor": "任意门"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "传送；仅在目的地被占据时造成 4d6 力场"
+}

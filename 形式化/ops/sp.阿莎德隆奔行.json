@@ -1,0 +1,38 @@
+{
+  "id": "sp.阿莎德隆奔行",
+  "name": "阿莎德隆奔行",
+  "kind": "spell",
+  "level": 3,
+  "school": "变化",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "移动到生物或物件 5 尺内时受 1d6 火焰，每个先攻轮一次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "阿莎德隆奔行"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "1d6",
+    "damage_type": "fire",
+    "half_on_save": false
+  }
+}
