@@ -18,10 +18,24 @@
 | 表 | 条数 | 状态 |
 | --- | --- | --- |
 | `data/maneuvers.jsonl` | 252 | A 档完成 |
-| `data/class_features.jsonl` | 512 | A 档完成（仅 9 个打击者职业） |
+| `data/class_features.jsonl` | 475 | A 档完成（仅 9 个打击者职业），464 条有等级门槛 |
+| `data/class_tables.jsonl` | 180 | 等级→特性 + 资源曲线 |
 | `data/feats.jsonl` | 672 | A 档完成 |
 | `data/spells.jsonl` | 1103 | A 档完成，读规则书正文（已弃用 1.49 版 xlsx） |
-| `data/relevance.jsonl` | 2539 | 相关性初筛完成，A 档 773 条 |
+| `data/relevance.jsonl` | 2539 | 相关性粗筛 |
+| `data/feat_triage.jsonl` | 672 | 专长按 F1–F12 分诊：in 267 / manual 185 / unclear 174 / defensive 27 / out 19 |
+
+**重建顺序**（有依赖关系）：
+
+```bash
+python -I 形式化/tools/parse_class_tables.py   # 先生成职业表
+python -I 形式化/tools/extract_classes.py      # 再抽特性（用职业表补门槛）
+python -I 形式化/tools/extract_maneuvers.py
+python -I 形式化/tools/extract_feats.py
+python -I 形式化/tools/extract_spells.py
+python -I 形式化/tools/screen_relevance.py
+python -I 形式化/tools/screen_feats.py
+```
 
 下一步：继续 A 档抽取（职业表、专长、种族、装备），并开始 B 档算子编译。
 

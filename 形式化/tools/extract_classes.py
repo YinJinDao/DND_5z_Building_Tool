@@ -25,7 +25,29 @@ STRIKER_CLASSES = ["圣武士", "奇械师", "契术师", "武僧", "法师",
                    "游侠", "灵能武士", "狂战士", "盗贼"]
 # 非特性的一般性小节标题，不进入特性库
 SKIP_HEADINGS = {"定位", "生命值", "熟练项", "兼职", "子职", "职业法术",
-                 "施法", "法术列表", "职业表", "简介", "概述"}
+                 "施法", "法术列表", "职业表", "简介", "概述",
+                 "先决条件", "附录", "目录", "行为准则", "门派戒律"}
+SKILL_RE = re.compile(r"^(力量|敏捷|体质|智力|感知|魅力)（[^）]+）$")
+
+
+def is_non_feature(name):
+    """职业页里混在特性章节中的非特性标题。
+
+    - 「XX职业表」等表格标题
+    - 「附录」「目录」等版面标题
+    - 「敏捷（体操）」这类技能熟练列表项
+    - 「通用祈唤」「刃之魔契专属祈唤」这类选项分组标题
+    - 「战士职业特性替换」这类变体说明标题
+    """
+    if name in SKIP_HEADINGS:
+        return True
+    if name.endswith("职业表"):
+        return True
+    if name.endswith("祈唤") or name.endswith("职业特性替换"):
+        return True
+    if SKILL_RE.match(name):
+        return True
+    return False
 MAX_NAME_LEN = 24
 CN_NUM = {"一": 1, "二": 2, "三": 3, "四": 4, "五": 5,
           "六": 6, "七": 7, "八": 8, "九": 9, "十": 10}
@@ -120,7 +142,7 @@ def walk_class(job_dir, class_name, subclass_dir):
         starts = [i for i, (is_name, _) in enumerate(paras) if is_name]
         for n, idx in enumerate(starts):
             name = paras[idx][1]
-            if name in SKIP_HEADINGS:
+            if is_non_feature(name):
                 continue
             end = starts[n + 1] if n + 1 < len(starts) else len(paras)
             body = [t for _, t in paras[idx + 1:end]]
@@ -177,6 +199,36 @@ def main():
             merged[key] = rec
     final = list(merged.values())
 
+    # 正文没写「第 X 级起」的特性，用职业表（parse_class_tables.py 的产物）补门槛。
+    table_path = os.path.join(os.path.dirname(args.out), "class_tables.jsonl")
+    filled = 0
+    conflicts = 0
+    if os.path.isfile(table_path):
+        index = {}
+        for line in open(table_path, encoding="utf-8"):
+            row = json.loads(line)
+            for feat in row["features"]:
+                index.setdefault((row["class"], feat), row["level"])
+        for rec in final:
+            lvl = index.get((rec["class"], rec["name"]))
+            if lvl is not None:
+                # 职业表是权威来源：即使正文已推出等级，也以表为准，并记录差异
+                if rec.get("level") is not None and rec["level"] != lvl:
+                    rec["level_conflict"] = {"text": rec["level"], "table": lvl}
+                    conflicts += 1
+                rec["level"] = lvl
+                rec["level_source"] = "class_table"
+                if rec.get("needs_review"):
+                    rec.pop("needs_review")
+                if rec.get("level") == lvl and rec["level_source"] == "class_table":
+                    filled += 1
+            elif rec.get("level") is None:
+                # 正文与职业表都没有给出门槛，进人工复核队列
+                rec["needs_review"] = True
+    else:
+        print(f"提示：未找到 {table_path}，跳过职业表补全（先运行 parse_class_tables.py）",
+              file=sys.stderr)
+
     os.makedirs(os.path.dirname(args.out), exist_ok=True)
     with open(args.out, "w", encoding="utf-8", newline="\n") as fh:
         for rec in final:
@@ -188,7 +240,8 @@ def main():
     no_level = sum(1 for r in final if r["level"] is None)
     print(f"写入 {len(final)} 条 → {args.out}")
     print("按职业:", by_class)
-    print(f"未提取到等级门槛: {no_level} / {len(final)}")
+    print(f"以职业表为准的条目: {filled} 条（其中与正文冲突 {conflicts} 条）")
+    print(f"仍未提取到等级门槛: {no_level} / {len(final)}")
 
 
 if __name__ == "__main__":

@@ -1,0 +1,180 @@
+{"id": "ct.圣武士.1", "class": "圣武士", "level": 1, "features": ["神圣感知", "圣疗", "战斗风格"], "columns": {"法术位": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.2", "class": "圣武士", "level": 2, "features": ["施法", "守护圣印"], "columns": {"法术位": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.3", "class": "圣武士", "level": 3, "features": ["子职特性", "引导神力", "引导神力：法力再生"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.4", "class": "圣武士", "level": 4, "features": ["神佑", "圣印枷锁"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.5", "class": "圣武士", "level": 5, "features": ["额外攻击"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.6", "class": "圣武士", "level": 6, "features": ["守护灵光"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.7", "class": "圣武士", "level": 7, "features": ["子职特性"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.8", "class": "圣武士", "level": 8, "features": ["引导神力：弃绝众敌"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.9", "class": "圣武士", "level": 9, "features": ["勇气灵光"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.10", "class": "圣武士", "level": 10, "features": ["光耀打击", "额外专长"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.11", "class": "圣武士", "level": 11, "features": ["精通额外攻击"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.12", "class": "圣武士", "level": 12, "features": ["子职特性", "灵光扩大"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.13", "class": "圣武士", "level": 13, "features": ["引导神力"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.14", "class": "圣武士", "level": 14, "features": ["净化之触"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.15", "class": "圣武士", "level": 15, "features": ["子职特性"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.16", "class": "圣武士", "level": 16, "features": ["公理之躯", "额外专长"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.17", "class": "圣武士", "level": 17, "features": ["非凡额外攻击", "引导神力"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.18", "class": "圣武士", "level": 18, "features": ["灵光扩大", "光耀打击增效"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.19", "class": "圣武士", "level": 19, "features": ["圣印追击", "额外专长"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.圣武士.20", "class": "圣武士", "level": 20, "features": ["至高圣武士", "子职特性"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/圣武士.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.1", "class": "奇械师", "level": 1, "features": ["施法", "称手工具", "魔法工艺"], "columns": {"已知戏法": "3", "法术位": "3", "制造物品": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.2", "class": "奇械师", "level": 2, "features": ["制造物品"], "columns": {"已知戏法": "3", "法术位": "3", "制造物品": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.3", "class": "奇械师", "level": 3, "features": [], "columns": {"已知戏法": "3", "法术位": "4", "制造物品": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.4", "class": "奇械师", "level": 4, "features": ["掌握物品"], "columns": {"已知戏法": "3", "法术位": "4", "制造物品": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.5", "class": "奇械师", "level": 5, "features": ["子职特性"], "columns": {"已知戏法": "4", "法术位": "4", "制造物品": "2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.6", "class": "奇械师", "level": 6, "features": ["拆解萃取", "改良魔法物品"], "columns": {"已知戏法": "4", "法术位": "4", "制造物品": "2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.7", "class": "奇械师", "level": 7, "features": ["灵光一闪"], "columns": {"已知戏法": "4", "法术位": "5", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.8", "class": "奇械师", "level": 8, "features": ["使用魔法装置"], "columns": {"已知戏法": "4", "法术位": "5", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.9", "class": "奇械师", "level": 9, "features": ["魔法物品专家"], "columns": {"已知戏法": "4", "法术位": "5", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.10", "class": "奇械师", "level": 10, "features": ["扫描鉴定", "额外专长"], "columns": {"已知戏法": "4", "法术位": "5", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.11", "class": "奇械师", "level": 11, "features": ["子职特性"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.12", "class": "奇械师", "level": 12, "features": ["物品超魔"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.13", "class": "奇械师", "level": 13, "features": ["人工智能协力"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.14", "class": "奇械师", "level": 14, "features": ["可靠才能"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.15", "class": "奇械师", "level": 15, "features": ["制造神器", "子职特性"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.16", "class": "奇械师", "level": 16, "features": ["魔法物品专家", "额外专长"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.17", "class": "奇械师", "level": 17, "features": ["压缩储法"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.18", "class": "奇械师", "level": 18, "features": ["物品融合"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.19", "class": "奇械师", "level": 19, "features": ["魔法物品专家", "额外专长"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.奇械师.20", "class": "奇械师", "level": 20, "features": ["奇械之魂"], "columns": {"已知戏法": "5", "法术位": "6", "制造物品": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/奇械师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.1", "class": "契术师", "level": 1, "features": ["契约魔法"], "columns": {"已知戏法": "2", "已知环法": "3", "法术位": "1", "环阶": "1", "已知祈唤": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.2", "class": "契术师", "level": 2, "features": ["魔能祈唤"], "columns": {"已知戏法": "2", "已知环法": "4", "法术位": "2", "环阶": "1", "已知祈唤": "2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.3", "class": "契术师", "level": 3, "features": ["魔契恩泽"], "columns": {"已知戏法": "2", "已知环法": "5", "法术位": "2", "环阶": "2", "已知祈唤": "2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.4", "class": "契术师", "level": 4, "features": ["契与焰的回响"], "columns": {"已知戏法": "3", "已知环法": "6", "法术位": "2", "环阶": "2", "已知祈唤": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.5", "class": "契术师", "level": 5, "features": [], "columns": {"已知戏法": "3", "已知环法": "7", "法术位": "2", "环阶": "3", "已知祈唤": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.6", "class": "契术师", "level": 6, "features": ["子职特性"], "columns": {"已知戏法": "3", "已知环法": "8", "法术位": "2", "环阶": "3", "已知祈唤": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.7", "class": "契术师", "level": 7, "features": [], "columns": {"已知戏法": "3", "已知环法": "9", "法术位": "2", "环阶": "4", "已知祈唤": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.8", "class": "契术师", "level": 8, "features": ["魔焰塑形"], "columns": {"已知戏法": "3", "已知环法": "10", "法术位": "3", "环阶": "4", "已知祈唤": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.9", "class": "契术师", "level": 9, "features": [], "columns": {"已知戏法": "3", "已知环法": "11", "法术位": "3", "环阶": "5", "已知祈唤": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.10", "class": "契术师", "level": 10, "features": ["子职特性"], "columns": {"已知戏法": "4", "已知环法": "11", "法术位": "3", "环阶": "5", "已知祈唤": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.11", "class": "契术师", "level": 11, "features": ["玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "12", "法术位": "3", "环阶": "5", "已知祈唤": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.12", "class": "契术师", "level": 12, "features": ["魔焰塑形", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "12", "法术位": "4", "环阶": "5", "已知祈唤": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.13", "class": "契术师", "level": 13, "features": ["玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "13", "法术位": "4", "环阶": "5", "已知祈唤": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.14", "class": "契术师", "level": 14, "features": ["子职特性", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "13", "法术位": "4", "环阶": "5", "已知祈唤": "7"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.15", "class": "契术师", "level": 15, "features": ["玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "14", "法术位": "4", "环阶": "5", "已知祈唤": "7"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.16", "class": "契术师", "level": 16, "features": ["契与焰的回响", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "14", "法术位": "4", "环阶": "5", "已知祈唤": "7"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.17", "class": "契术师", "level": 17, "features": ["玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "15", "法术位": "5", "环阶": "5", "已知祈唤": "8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.18", "class": "契术师", "level": 18, "features": ["契约熔炉", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "15", "法术位": "5", "环阶": "5", "已知祈唤": "8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.19", "class": "契术师", "level": 19, "features": ["子职特性", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "16", "法术位": "5", "环阶": "5", "已知祈唤": "8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.契术师.20", "class": "契术师", "level": 20, "features": ["魔能掌控", "玄奥秘法"], "columns": {"已知戏法": "4", "已知环法": "16", "法术位": "5", "环阶": "5", "已知祈唤": "9"}, "source": {"book": "5z", "version": "1.63", "file": "职业/契术师.htm", "anchor": "等级"}}
+{"id": "ct.武僧.1", "class": "武僧", "level": 1, "features": ["武艺", "无甲防御"], "columns": {"气": "—", "无甲移动": "—", "武艺骰": "D4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.2", "class": "武僧", "level": 2, "features": ["气", "无甲移动"], "columns": {"气": "2", "无甲移动": "+10尺", "武艺骰": "D4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.3", "class": "武僧", "level": 3, "features": ["佛门术法"], "columns": {"气": "3", "无甲移动": "+10尺", "武艺骰": "D4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.4", "class": "武僧", "level": 4, "features": ["伏魔狱", "驭气以击"], "columns": {"气": "4", "无甲移动": "+10尺", "武艺骰": "D4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.5", "class": "武僧", "level": 5, "features": ["额外攻击", "震慑拳"], "columns": {"气": "5", "无甲移动": "+10尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.6", "class": "武僧", "level": 6, "features": ["子职特性", "罗汉金身"], "columns": {"气": "6", "无甲移动": "+15尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.7", "class": "武僧", "level": 7, "features": ["反射闪避", "心如止水"], "columns": {"气": "7", "无甲移动": "+15尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.8", "class": "武僧", "level": 8, "features": ["业力反噬"], "columns": {"气": "8", "无甲移动": "+15尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.9", "class": "武僧", "level": 9, "features": ["百病不侵", "明王怒相"], "columns": {"气": "9", "无甲移动": "+15尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.10", "class": "武僧", "level": 10, "features": ["子职特性", "额外专长"], "columns": {"气": "10", "无甲移动": "+20尺", "武艺骰": "D6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.11", "class": "武僧", "level": 11, "features": ["精通额外攻击"], "columns": {"气": "11", "无甲移动": "+20尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.12", "class": "武僧", "level": 12, "features": ["慧海气藏"], "columns": {"气": "12+感知调整值", "无甲移动": "+20尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.13", "class": "武僧", "level": 13, "features": ["天语通", "心识"], "columns": {"气": "13+感知调整值", "无甲移动": "+20尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.14", "class": "武僧", "level": 14, "features": ["菩提觉悟"], "columns": {"气": "14+感知调整值", "无甲移动": "+25尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.15", "class": "武僧", "level": 15, "features": ["应缘而击"], "columns": {"气": "15+感知调整值", "无甲移动": "+25尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.16", "class": "武僧", "level": 16, "features": ["子职特性", "额外专长"], "columns": {"气": "16+感知调整值", "无甲移动": "+25尺", "武艺骰": "D8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.17", "class": "武僧", "level": 17, "features": ["非凡额外攻击", "万法归宗"], "columns": {"气": "17+感知调整值", "无甲移动": "+25尺", "武艺骰": "D10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.18", "class": "武僧", "level": 18, "features": ["六道业火"], "columns": {"气": "18+感知调整值", "无甲移动": "+30尺", "武艺骰": "D10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.19", "class": "武僧", "level": 19, "features": ["十方法界", "额外专长"], "columns": {"气": "19+感知调整值", "无甲移动": "+30尺", "武艺骰": "D10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.武僧.20", "class": "武僧", "level": 20, "features": ["即身成佛"], "columns": {"气": "20+感知调整值", "无甲移动": "+30尺", "武艺骰": "D10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/武僧.htm", "anchor": "等级"}}
+{"id": "ct.法师.1", "class": "法师", "level": 1, "features": ["施法", "法术风格"], "columns": {"已知戏法": "5", "法术位": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.2", "class": "法师", "level": 2, "features": ["奥术回想"], "columns": {"已知戏法": "5", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.3", "class": "法师", "level": 3, "features": [], "columns": {"已知戏法": "5", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.4", "class": "法师", "level": 4, "features": ["闪回记忆"], "columns": {"已知戏法": "6", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.5", "class": "法师", "level": 5, "features": [], "columns": {"已知戏法": "6", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.6", "class": "法师", "level": 6, "features": ["子职特性"], "columns": {"已知戏法": "6", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.7", "class": "法师", "level": 7, "features": [], "columns": {"已知戏法": "6", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.8", "class": "法师", "level": 8, "features": ["学者之触"], "columns": {"已知戏法": "6", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.9", "class": "法师", "level": 9, "features": [], "columns": {"已知戏法": "6", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.10", "class": "法师", "level": 10, "features": ["子职特性"], "columns": {"已知戏法": "7", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.11", "class": "法师", "level": 11, "features": [], "columns": {"已知戏法": "7", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.12", "class": "法师", "level": 12, "features": ["创造法术"], "columns": {"已知戏法": "7", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.13", "class": "法师", "level": 13, "features": [], "columns": {"已知戏法": "7", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.14", "class": "法师", "level": 14, "features": ["子职特性"], "columns": {"已知戏法": "7", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.15", "class": "法师", "level": 15, "features": [], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.16", "class": "法师", "level": 16, "features": ["法术精通"], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.17", "class": "法师", "level": 17, "features": [], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.18", "class": "法师", "level": 18, "features": ["传道法师"], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.19", "class": "法师", "level": 19, "features": ["抵御魔法"], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.法师.20", "class": "法师", "level": 20, "features": ["奥术融合"], "columns": {"已知戏法": "8", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/法师.htm", "anchor": "等级"}}
+{"id": "ct.游侠.1", "class": "游侠", "level": 1, "features": ["战斗风格", "怪物学识"], "columns": {"已知法术": "—", "法术位": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.2", "class": "游侠", "level": 2, "features": ["施法", "瞄准猎物"], "columns": {"已知法术": "2+感知调整值", "法术位": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.3", "class": "游侠", "level": 3, "features": ["引导神力", "引导神力：永恒训练"], "columns": {"已知法术": "3+感知调整值", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.4", "class": "游侠", "level": 4, "features": ["专精", "无踪步"], "columns": {"已知法术": "3+感知调整值", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.5", "class": "游侠", "level": 5, "features": ["额外攻击"], "columns": {"已知法术": "4+感知调整值", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.6", "class": "游侠", "level": 6, "features": ["战术掩护", "引导神力：火力掩护"], "columns": {"已知法术": "5+感知调整值", "法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.7", "class": "游侠", "level": 7, "features": ["子职特性"], "columns": {"已知法术": "5+感知调整值", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.8", "class": "游侠", "level": 8, "features": ["怪物学识增效"], "columns": {"已知法术": "6+感知调整值", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.9", "class": "游侠", "level": 9, "features": ["战斗专注"], "columns": {"已知法术": "7+感知调整值", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.10", "class": "游侠", "level": 10, "features": ["自然面纱", "引导神力", "额外专长"], "columns": {"已知法术": "7+感知调整值", "法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.11", "class": "游侠", "level": 11, "features": ["精通额外攻击"], "columns": {"已知法术": "8+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.12", "class": "游侠", "level": 12, "features": ["子职特性"], "columns": {"已知法术": "9+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.13", "class": "游侠", "level": 13, "features": ["野性感官", "防守战术"], "columns": {"已知法术": "9+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.14", "class": "游侠", "level": 14, "features": ["大地行者"], "columns": {"已知法术": "10+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.15", "class": "游侠", "level": 15, "features": ["子职特性"], "columns": {"已知法术": "11+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.16", "class": "游侠", "level": 16, "features": ["天罗地网", "额外专长", "引导神力"], "columns": {"已知法术": "11+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.17", "class": "游侠", "level": 17, "features": ["非凡额外攻击", "战斗专注"], "columns": {"已知法术": "12+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.18", "class": "游侠", "level": 18, "features": ["引导神力：自然律动"], "columns": {"已知法术": "13+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.19", "class": "游侠", "level": 19, "features": ["防守战术增效", "额外专长"], "columns": {"已知法术": "13+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.游侠.20", "class": "游侠", "level": 20, "features": ["截灭众敌"], "columns": {"已知法术": "14+感知调整值", "法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/游侠.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.1", "class": "灵能武士", "level": 1, "features": ["魂铸武器", "战斗风格", "探灵"], "columns": {"法术位": "—"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.2", "class": "灵能武士", "level": 2, "features": ["施法", "谋而后动"], "columns": {"法术位": "3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.3", "class": "灵能武士", "level": 3, "features": ["心路回馈"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.4", "class": "灵能武士", "level": 4, "features": ["斩业", "魂铸武器"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.5", "class": "灵能武士", "level": 5, "features": ["额外攻击"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.6", "class": "灵能武士", "level": 6, "features": ["并行思维"], "columns": {"法术位": "4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.7", "class": "灵能武士", "level": 7, "features": ["子职特性"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.8", "class": "灵能武士", "level": 8, "features": ["魂铸武器"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.9", "class": "灵能武士", "level": 9, "features": ["援驰"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.10", "class": "灵能武士", "level": 10, "features": ["意念守护", "额外专长"], "columns": {"法术位": "5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.11", "class": "灵能武士", "level": 11, "features": ["精通额外攻击"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.12", "class": "灵能武士", "level": 12, "features": ["子职特性"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.13", "class": "灵能武士", "level": 13, "features": ["魂铸武器"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.14", "class": "灵能武士", "level": 14, "features": ["心墙"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.15", "class": "灵能武士", "level": 15, "features": ["子职特性"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.16", "class": "灵能武士", "level": 16, "features": ["魂铸武器", "额外专长"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.17", "class": "灵能武士", "level": 17, "features": ["非凡额外攻击", "开源网络"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.18", "class": "灵能武士", "level": 18, "features": ["代行希望"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.19", "class": "灵能武士", "level": 19, "features": ["灵容", "额外专长"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.灵能武士.20", "class": "灵能武士", "level": 20, "features": ["世界线"], "columns": {"法术位": "6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/灵能武士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.1", "class": "狂战士", "level": 1, "features": ["狂暴", "无甲防御", "战斗风格"], "columns": {"狂暴次数": "2", "狂暴伤害加值": "+2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.2", "class": "狂战士", "level": 2, "features": ["怒不可遏", "险境感知"], "columns": {"狂暴次数": "2", "狂暴伤害加值": "+2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.3", "class": "狂战士", "level": 3, "features": ["原初学识"], "columns": {"狂暴次数": "2", "狂暴伤害加值": "+2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.4", "class": "狂战士", "level": 4, "features": ["鲁莽攻击"], "columns": {"狂暴次数": "3", "狂暴伤害加值": "+2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.5", "class": "狂战士", "level": 5, "features": ["额外攻击", "快速移动"], "columns": {"狂暴次数": "3", "狂暴伤害加值": "+2"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.6", "class": "狂战士", "level": 6, "features": ["子职特性"], "columns": {"狂暴次数": "3", "狂暴伤害加值": "+3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.7", "class": "狂战士", "level": 7, "features": ["野性直觉", "直觉猛扑"], "columns": {"狂暴次数": "4", "狂暴伤害加值": "+3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.8", "class": "狂战士", "level": 8, "features": ["原初学识"], "columns": {"狂暴次数": "4", "狂暴伤害加值": "+3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.9", "class": "狂战士", "level": 9, "features": ["子职特性"], "columns": {"狂暴次数": "4", "狂暴伤害加值": "+3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.10", "class": "狂战士", "level": 10, "features": ["哨卫之铭", "额外专长"], "columns": {"狂暴次数": "5", "狂暴伤害加值": "+3"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.11", "class": "狂战士", "level": 11, "features": ["精通额外攻击"], "columns": {"狂暴次数": "5", "狂暴伤害加值": "+4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.12", "class": "狂战士", "level": 12, "features": ["坚韧狂暴"], "columns": {"狂暴次数": "5", "狂暴伤害加值": "+4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.13", "class": "狂战士", "level": 13, "features": ["狂暴之心"], "columns": {"狂暴次数": "6", "狂暴伤害加值": "+4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.14", "class": "狂战士", "level": 14, "features": ["子职特性"], "columns": {"狂暴次数": "6", "狂暴伤害加值": "+4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.15", "class": "狂战士", "level": 15, "features": ["哨卫之铭"], "columns": {"狂暴次数": "6", "狂暴伤害加值": "+4"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.16", "class": "狂战士", "level": 16, "features": ["不屈勇武", "额外专长"], "columns": {"狂暴次数": "6", "狂暴伤害加值": "+5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.17", "class": "狂战士", "level": 17, "features": ["非凡额外攻击", "无限狂暴"], "columns": {"狂暴次数": "∞", "狂暴伤害加值": "+5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.18", "class": "狂战士", "level": 18, "features": ["陷阵之志"], "columns": {"狂暴次数": "∞", "狂暴伤害加值": "+5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.19", "class": "狂战士", "level": 19, "features": ["狂暴之心增效", "额外专长"], "columns": {"狂暴次数": "∞", "狂暴伤害加值": "+5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.狂战士.20", "class": "狂战士", "level": 20, "features": ["力战不息"], "columns": {"狂暴次数": "∞", "狂暴伤害加值": "+5"}, "source": {"book": "5z", "version": "1.63", "file": "职业/狂战士.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.1", "class": "盗贼", "level": 1, "features": ["偷袭", "专精", "盗贼黑话"], "columns": {"偷袭": "1d6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.2", "class": "盗贼", "level": 2, "features": ["灵巧动作"], "columns": {"偷袭": "1d6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.3", "class": "盗贼", "level": 3, "features": ["杂技花招", "擅长配件"], "columns": {"偷袭": "2d6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.4", "class": "盗贼", "level": 4, "features": ["直觉闪避", "怪物毒素"], "columns": {"偷袭": "2d6"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.5", "class": "盗贼", "level": 5, "features": ["子职特性", "诡诈打击", "武器改装"], "columns": {"偷袭": "3d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.6", "class": "盗贼", "level": 6, "features": ["专精"], "columns": {"偷袭": "3d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.7", "class": "盗贼", "level": 7, "features": ["杂技花招", "反射闪避"], "columns": {"偷袭": "4d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.8", "class": "盗贼", "level": 8, "features": ["蓄势待发", "可靠才能"], "columns": {"偷袭": "4d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.9", "class": "盗贼", "level": 9, "features": ["子职特性"], "columns": {"偷袭": "5d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.10", "class": "盗贼", "level": 10, "features": ["精通附赠动作", "额外专长"], "columns": {"偷袭": "5d8"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.11", "class": "盗贼", "level": 11, "features": ["杂技花招", "诡诈打击增效"], "columns": {"偷袭": "6d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.12", "class": "盗贼", "level": 12, "features": ["趁势攻击", "夺命攻击"], "columns": {"偷袭": "6d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.13", "class": "盗贼", "level": 13, "features": ["子职特性"], "columns": {"偷袭": "7d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.14", "class": "盗贼", "level": 14, "features": ["听音辨位", "使用魔法装置"], "columns": {"偷袭": "7d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.15", "class": "盗贼", "level": 15, "features": ["杂技花招", "圆滑心智"], "columns": {"偷袭": "8d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.16", "class": "盗贼", "level": 16, "features": ["诡诈打击增效", "额外专长"], "columns": {"偷袭": "8d10"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.17", "class": "盗贼", "level": 17, "features": ["子职特性", "双重反应"], "columns": {"偷袭": "9d12"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.18", "class": "盗贼", "level": 18, "features": ["诡诈打击增效", "闪现突袭"], "columns": {"偷袭": "9d12"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.19", "class": "盗贼", "level": 19, "features": ["杂技花招", "飘忽不定", "额外专长"], "columns": {"偷袭": "10d12"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
+{"id": "ct.盗贼.20", "class": "盗贼", "level": 20, "features": ["幸运一击"], "columns": {"偷袭": "10d12"}, "source": {"book": "5z", "version": "1.63", "file": "职业/盗贼.htm", "anchor": "等级"}}
