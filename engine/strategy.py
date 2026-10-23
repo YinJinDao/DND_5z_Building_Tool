@@ -33,6 +33,7 @@ class Rule:
     spends: dict = field(default_factory=dict)        # 资源消耗（仅用于可行性校验）
     extra_attack: dict | None = None                  # 命中后追加一次攻击
     extra_attack_all_hit: dict | None = None          # 本轮所有攻击都命中才追加
+    once_per_turn: bool = False                       # 整轮只结算一次（偷袭）
     name: str = ""
 
     def matches(self, outcome, index):
@@ -106,6 +107,13 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
             for rule in rules:
                 if not rule.matches(outcome, i):
                     continue
+                # 每回合一次（偷袭）：本分支已用掉就不再给。
+                # 用 ctx 记录而不是跳过固定序号——第一击失手时，第二击仍应吃到偷袭。
+                once_key = f"once:{rule.name}"
+                if rule.once_per_turn:
+                    if next_ctx.get(once_key):
+                        continue
+                    next_ctx[once_key] = True
                 extra.extend(rule.extra_dice)
                 if rule.next_adv:
                     next_ctx["adv_bonus"] = next_ctx.get("adv_bonus", 0) + rule.next_adv

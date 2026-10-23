@@ -1,10 +1,10 @@
 {"id": "cf.圣武士.战斗风格", "name": "战斗风格", "status": "needs_ruling", "reason": "条件分支；多选一；涉及优势层数", "source": "compiler"}
 {"id": "cf.圣武士.守护圣印", "name": "守护圣印", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.圣武士.引导神力", "name": "引导神力", "status": "needs_ruling", "reason": "多选一；限次使用", "source": "compiler"}
-{"id": "cf.圣武士.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "攻击次数 = 2", "source": "compiler"}
+{"id": "cf.圣武士.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.圣武士.光耀打击", "name": "光耀打击", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
-{"id": "cf.圣武士.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
-{"id": "cf.圣武士.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "攻击次数 = 4", "source": "compiler"}
+{"id": "cf.圣武士.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.圣武士.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.圣武士.救赎之舞", "name": "救赎之舞", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "cf.圣武士.仁慈之剑", "name": "仁慈之剑", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
 {"id": "cf.圣武士.仁慈之弯月", "name": "仁慈之弯月", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
@@ -19,8 +19,8 @@
 {"id": "cf.奇械师.构装体改造", "name": "构装体改造", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.奇械师.灵丹妙药", "name": "灵丹妙药", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.奇械师.贤者之石", "name": "贤者之石", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
-{"id": "cf.奇械师.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "攻击次数 = 2", "source": "compiler"}
-{"id": "cf.奇械师.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
+{"id": "cf.奇械师.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.奇械师.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.奇械师.子弹式压缩球", "name": "子弹式压缩球", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.奇械师.多重攻击", "name": "多重攻击", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
 {"id": "cf.奇械师.完美装甲", "name": "完美装甲", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用；涉及优势层数", "source": "compiler"}
@@ -32,10 +32,10 @@
 {"id": "cf.契术师.过界信仰", "name": "过界信仰", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
 {"id": "cf.武僧.武艺", "name": "武艺", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.武僧.气", "name": "气", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
-{"id": "cf.武僧.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "攻击次数 = 2", "source": "compiler"}
+{"id": "cf.武僧.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.明王怒相", "name": "明王怒相", "status": "needs_ruling", "reason": "多选一", "source": "compiler"}
-{"id": "cf.武僧.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
-{"id": "cf.武僧.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "攻击次数 = 4", "source": "compiler"}
+{"id": "cf.武僧.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.武僧.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.六道业火", "name": "六道业火", "status": "needs_ruling", "reason": "多选一", "source": "compiler"}
 {"id": "cf.武僧.即身成佛", "name": "即身成佛", "status": "needs_ruling", "reason": "多选一；涉及优势层数", "source": "compiler"}
 {"id": "cf.武僧.龙岛秘传", "name": "龙岛秘传", "status": "needs_ruling", "reason": "条件分支；多选一；涉及优势层数", "source": "compiler"}
@@ -56,18 +56,18 @@
 {"id": "cf.法师.法术风格", "name": "法术风格", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.法师.创造法术", "name": "创造法术", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "cf.法师.奥术融合", "name": "奥术融合", "status": "out_of_scope", "reason": "召唤物/部署物相关，按协作约定排除", "source": "compiler"}
-{"id": "cf.法师.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
+{"id": "cf.法师.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.法师.时间变幻", "name": "时间变幻", "status": "needs_ruling", "reason": "条件分支；限次使用；涉及优势层数", "source": "compiler"}
 {"id": "cf.法师.时间旅行者", "name": "时间旅行者", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "cf.法师.凶兆猎犬", "name": "凶兆猎犬", "status": "out_of_scope", "reason": "召唤物/部署物相关，按协作约定排除", "source": "compiler"}
 {"id": "cf.法师.信仰之跃", "name": "信仰之跃", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.游侠.战斗风格", "name": "战斗风格", "status": "needs_ruling", "reason": "条件分支；多选一；涉及优势层数", "source": "compiler"}
 {"id": "cf.游侠.引导神力", "name": "引导神力", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
-{"id": "cf.游侠.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "攻击次数 = 2", "source": "compiler"}
-{"id": "cf.游侠.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
+{"id": "cf.游侠.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.游侠.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.游侠.大地行者", "name": "大地行者", "status": "needs_ruling", "reason": "涉及优势层数", "source": "compiler"}
 {"id": "cf.游侠.天罗地网", "name": "天罗地网", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
-{"id": "cf.游侠.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "攻击次数 = 4", "source": "compiler"}
+{"id": "cf.游侠.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.游侠.情绪轮转", "name": "情绪轮转", "status": "out_of_scope", "reason": "召唤物/部署物相关，按协作约定排除", "source": "compiler"}
 {"id": "cf.游侠.审判", "name": "审判", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.游侠.猎杀时刻", "name": "猎杀时刻", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
@@ -78,10 +78,10 @@
 {"id": "cf.灵能武士.战斗风格", "name": "战斗风格", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.灵能武士.谋而后动", "name": "谋而后动", "status": "needs_ruling", "reason": "条件分支；多选一；涉及优势层数", "source": "compiler"}
 {"id": "cf.灵能武士.斩业", "name": "斩业", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
-{"id": "cf.灵能武士.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "攻击次数 = 2", "source": "compiler"}
+{"id": "cf.灵能武士.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.灵能武士.援驰", "name": "援驰", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
-{"id": "cf.灵能武士.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
-{"id": "cf.灵能武士.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "攻击次数 = 4", "source": "compiler"}
+{"id": "cf.灵能武士.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.灵能武士.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.灵能武士.剑魂", "name": "剑魂", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.灵能武士.盾牌打击", "name": "盾牌打击", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.灵能武士.剑气心魂", "name": "剑气心魂", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
@@ -127,12 +127,12 @@
 {"id": "cf.狂战士.彼岸双生", "name": "彼岸双生", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.狂战士.龙骑士", "name": "龙骑士", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "cf.狂战士.不折将官", "name": "不折将官", "status": "needs_ruling", "reason": "条件分支；涉及优势层数", "source": "compiler"}
-{"id": "cf.盗贼.偷袭", "name": "偷袭", "status": "needs_ruling", "reason": "条件分支；多选一；涉及优势层数", "source": "compiler"}
+{"id": "cf.盗贼.偷袭", "name": "偷袭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.盗贼.直觉闪避", "name": "直觉闪避", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "cf.盗贼.怪物毒素", "name": "怪物毒素", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.盗贼.武器改装", "name": "武器改装", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "cf.盗贼.战场支援", "name": "战场支援", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
-{"id": "cf.盗贼.决斗", "name": "决斗", "status": "needs_ruling", "reason": "涉及优势层数", "source": "compiler"}
+{"id": "cf.盗贼.决斗", "name": "决斗", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.盗贼.迅捷优雅", "name": "迅捷优雅", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.盗贼.翻涌的尘与光", "name": "翻涌的尘与光", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "cf.盗贼.悄无声息的吻", "name": "悄无声息的吻", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
@@ -164,7 +164,7 @@
 {"id": "cf.德鲁伊.天壤劫火", "name": "天壤劫火", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
 {"id": "cf.吟游诗人.先发激励", "name": "先发激励", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用；涉及优势层数", "source": "compiler"}
 {"id": "cf.吟游诗人.狂热应援", "name": "狂热应援", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
-{"id": "cf.吟游诗人.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "攻击次数 = 3", "source": "compiler"}
+{"id": "cf.吟游诗人.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.吟游诗人.聚义同心", "name": "聚义同心", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "cf.吟游诗人.挽歌", "name": "挽歌", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.灵能师.法术风格", "name": "法术风格", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}

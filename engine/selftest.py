@@ -1198,6 +1198,67 @@ def test_adv_scaling():
           run(["feat.死亡收割"], 4, sword), run([], 4, sword), tol=1e-9)
 
 
+def test_sneak_attack():
+    print("\n[28] 偷袭")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                          encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["combat"]["armor"] = "none"
+    base["feats"] = []
+
+    def run(level, adv, ally=False, attacks=1, rogue=True):
+        doc = _json.loads(_json.dumps(base))
+        doc["classes"] = ([{"id": "class.rogue", "level": level, "subclass": None}]
+                          if rogue else [{"id": "class.barbarian", "level": 5,
+                                          "subclass": None}])
+        strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                             "attacks": attacks,
+                             "per_attack": {"ops": [], "adv_tiers": adv}}]}
+        env = {"target": {"ac": 15}, "ally_within_5ft_of_target": ally}
+        return float(calc.evaluate(doc, env, strat).total)
+
+    plain = run(5, 0, rogue=False)
+    # 1 级盗贼还没有「决斗」：没有优势、没有友方，就吃不到偷袭
+    check("无优势无友方（1 级）不偷袭", run(1, 0), run(1, 0, rogue=False), tol=1e-9)
+    if run(1, 1) > run(1, 1, rogue=False):
+        print(f"  OK   优势触发偷袭：{float(run(1, 1, rogue=False)):.3f} → {float(run(1, 1)):.3f}")
+    else:
+        FAILS.append("优势未触发偷袭")
+        print("  FAIL 优势未触发偷袭")
+    if run(1, 0, ally=True) > run(1, 0, rogue=False):
+        print("  OK   友方夹击触发偷袭")
+    else:
+        FAILS.append("友方夹击未触发偷袭")
+        print("  FAIL 友方夹击未触发偷袭")
+
+    # 2 级起「决斗」：贴身单挑即可偷袭
+    if run(2, 0) > run(1, 0):
+        print("  OK   「决斗」让贴身无优势也能偷袭")
+    else:
+        FAILS.append("决斗未接到偷袭")
+        print("  FAIL 决斗未接到偷袭")
+
+    # 每回合一次：两击的偷袭增量不应翻倍
+    one = run(1, 1) - run(1, 1, rogue=False)
+    two = run(1, 1, attacks=2) - run(1, 1, attacks=2, rogue=False)
+    if one < two < one * 1.6:
+        print(f"  OK   每回合一次：一击增量 {one:.3f}，两击增量 {two:.3f}（未翻倍）")
+    else:
+        FAILS.append("偷袭未按每回合一次结算")
+        print(f"  FAIL 偷袭每回合一次的判定异常：{one:.3f} vs {two:.3f}")
+
+    # 骰式按职业等级成长
+    if run(19, 1) > run(11, 1) > run(1, 1):
+        print("  OK   偷袭骰随等级成长（1/11/19 级）")
+    else:
+        FAILS.append("偷袭骰未随等级成长")
+        print("  FAIL 偷袭骰未随等级成长")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1229,6 +1290,7 @@ def main():
     test_opportunity_attacks()
     test_reach_and_speed()
     test_adv_scaling()
+    test_sneak_attack()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

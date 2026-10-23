@@ -1,0 +1,44 @@
+{
+  "id": "cf.盗贼.偷袭",
+  "name": "偷袭",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "sneak_attack": {
+      "extra_dice": {
+        "value": "1d6",
+        "scale": {
+          "3": "2d6",
+          "5": "3d8",
+          "7": "4d8",
+          "9": "5d8",
+          "11": "6d10",
+          "13": "7d10",
+          "15": "8d10",
+          "17": "9d12",
+          "19": "10d12"
+        }
+      }
+    },
+    "note": "每回合一次，人造武器攻击命中且满足偷袭方式时加骰。骰式取自盗贼职业表「偷袭」一栏；条件见 build_sneak_rules——优势、友方夹击（环境声明 ally_within_5ft_of_target）、或「决斗」"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "偷袭"
+  },
+  "status": "modeled",
+  "ruling": null
+}

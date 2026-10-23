@@ -369,14 +369,14 @@ def build_condition_context(resolved, gate_ctx, extras=None):
 # ---------------------------------------------------------------- 触及与速度
 
 def scaled_value(spec, op, build_doc):
-    """数值字段支持按**本职业等级**分段：`{"value": 10, "scale": {"6": 15}}`。
+    """字段值支持按**本职业等级**分段：`{"value": 10, "scale": {"6": 15}}`。
 
     一个特性只能有一个算子（检查 A10），所以等级成长不能靠多写几个算子，
-    只能把分段表放在字段里。
+    只能把分段表放在字段里。**保持原类型**——骰式（`1d6 → 3d8`）同样走这条路。
     """
     if not isinstance(spec, dict):
-        return int(spec)
-    out = int(spec.get("value", 0))
+        return spec
+    out = spec.get("value", 0)
     scale = spec.get("scale") or {}
     if not scale:
         return out
@@ -390,8 +390,45 @@ def scaled_value(spec, op, build_doc):
         return out
     for k, v in scale.items():
         if level >= int(k):
-            out = int(v)
+            out = v
     return out
+
+
+def build_sneak_rules(resolved, build_doc, ops, attacks, distance_ft, env_doc):
+    """偷袭：每回合一次，满足条件时加骰。
+
+    条件有两条互斥路径（规则书「偷袭方式」），环境负责声明后者：
+
+      优势        —— 该次攻击的净优势层数 ≥ 1
+      友方夹击    —— `ally_within_5ft_of_target` 为真，且该次攻击没有劣势
+      「决斗」    —— 目标 5 尺内没有别的生物，且没有劣势（需 2 级盗贼）
+
+    **一次都没命中的回合不该白拿偷袭**，所以挂在命中结果树上而不是直接加到
+    伤害里：第一击失手时，第二击仍然吃得到——这正是 `once_per_turn` 按
+    分支记账、而不是钉死在某一击上的原因。
+    """
+    class_ops = {op["id"]: op for op in granted_class_ops(build_doc, ops)}
+    op = class_ops.get("cf.盗贼.偷袭")
+    if not op:
+        return []
+    spec = (op.get("projection") or {}).get("sneak_attack") or {}
+    dice = scaled_value(spec.get("extra_dice", "0"), op, build_doc)
+    if not dice or dice == "0":
+        return []
+    ally = bool(env_doc.get("ally_within_5ft_of_target", False))
+    duel = "cf.盗贼.决斗" in class_ops and distance_ft <= 5
+    rules = []
+    for i, a in enumerate(attacks):
+        ok = (a.adv_tiers >= 1
+              or (ally and a.adv_tiers >= 0)
+              or (duel and not ally and a.adv_tiers >= 0))
+        if not ok:
+            continue
+        rules.append(Rule(
+            trigger="hit_or_crit", on_attack=i, once_per_turn=True, name="盗贼.偷袭",
+            extra_dice=[DamageComponent(dice, dtype=resolved.weapon["damage_type"],
+                                        slot="sneak_attack")]))
+    return rules
 
 
 def _scale_dice(dice, n):
@@ -1628,6 +1665,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 apply_adv_scaling(a, passive_ops + [ops[o] for o in op_ids
                                                     if o in ops], resolved)
                 attacks.append(a)
+            if attacks:
+                all_rules_built.extend(build_sneak_rules(
+                    resolved, build_doc, ops, attacks, state.distance_ft, env_doc))
         all_rules.extend(all_rules_built)
 
         # 借机攻击：打桩默认目标不动不还手，**触发次数由环境显式声明**（默认 0）。
