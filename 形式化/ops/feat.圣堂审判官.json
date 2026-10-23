@@ -1,0 +1,45 @@
+{
+  "id": "feat.圣堂审判官",
+  "name": "圣堂审判官",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "grants_attack_count": {
+      "classes": [
+        "class.paladin",
+        "class.cleric"
+      ],
+      "half_of": "class.cleric",
+      "tiers": [
+        {
+          "min_level_sum": 11,
+          "count": 3,
+          "grants": "精通额外攻击"
+        },
+        {
+          "min_level_sum": 17,
+          "count": 4,
+          "grants": "非凡额外攻击"
+        }
+      ],
+      "note": "把牧师等级的一半加在圣武士等级上，用于判定额外攻击的获取"
+    },
+    "note": "同时把圣武士等级的一半加在牧师等级上决定可准备环阶（法术侧，未建模）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "圣堂审判官"
+  },
+  "status": "approximated",
+  "ruling": null
+}

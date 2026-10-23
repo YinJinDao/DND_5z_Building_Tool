@@ -1,0 +1,55 @@
+{
+  "id": "feat.光之符文",
+  "name": "光之符文",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "choice_key": "rune_pair",
+    "options": {
+      "威力": {
+        "projection": {
+          "note": "力量检定与豁免 +1"
+        }
+      },
+      "优雅": {
+        "projection": {
+          "note": "敏捷检定与豁免 +1"
+        }
+      },
+      "根源": {
+        "projection": {
+          "note": "体质检定与豁免 +1"
+        }
+      },
+      "魔法": {
+        "projection": {
+          "note": "智力检定与豁免 +1"
+        }
+      },
+      "意志": {
+        "projection": {
+          "note": "感知检定与豁免 +1"
+        }
+      }
+    },
+    "note": "从五个符文中选两个；单符文只给检定/豁免加值，组合效果见规则书表格（多为防御与辅助）"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "符文与组合效果均为属性检定/豁免加值，不改变伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "光之符文"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "feat.屠神法术",
+  "name": "屠神法术",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "只对神祇与神器生效"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "只对神祇与神器生效",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "屠神法术"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "feat.创生圣言",
+  "name": "创生圣言",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "真名体系：透支生命换取法术约束力"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "真名体系：透支生命换取法术约束力",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "创生圣言"
+  },
+  "status": "modeled",
+  "ruling": null
+}

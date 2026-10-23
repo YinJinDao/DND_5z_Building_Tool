@@ -1,0 +1,27 @@
+{
+  "id": "feat.人马骑兵",
+  "name": "人马骑兵",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "adv_tiers": 1,
+    "note": "直线移动至少 30 尺并停止后，用攻击动作发动的近战武器攻击具有优势（且每动作只能一次）。需在策略 buffs 中声明"
+  },
+  "activation": "buff",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "人马骑兵"
+  },
+  "status": "approximated",
+  "ruling": null
+}

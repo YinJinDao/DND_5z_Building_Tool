@@ -1,0 +1,32 @@
+{
+  "id": "feat.青年龙",
+  "name": "青年龙",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d4",
+        "damage_type": "dragon",
+        "note": "啃咬命中时额外 1d4 龙种伤害"
+      }
+    ],
+    "note": "体型变大型、获得飞行速度；啃咬额外 1d4 龙种伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "青年龙"
+  },
+  "status": "approximated",
+  "ruling": null
+}

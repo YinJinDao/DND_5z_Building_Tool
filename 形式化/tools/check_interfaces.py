@@ -274,6 +274,13 @@ ALLOWED_PROJECTION = {
     "damage_type_override",        # 改写武器伤害类型（龙焰铸就、野兽之形）
     "weapon_enhancement_bonus",    # 武器增强加值（强化天生武器 +1/+2/+3）
     "advantage_to_attacks",        # 放弃每重优势换额外攻击（飞燕斩）
+    "is_power_attack",             # 标记威力攻击类算子，供减值减免识别
+    "power_attack_penalty_reduction",  # 削减威力攻击的减值（战神降临、死神降临）
+    "next_adv_on_miss",            # 失手后下一次攻击的优势层数（森林射手）
+    "weapon_dice_maximize",        # 把武器基础伤害骰取满（过载震颤）
+    "sneak_attack_bonus_dice",     # 每多一种偷袭触发条件，偷袭骰 +N（多重偷袭）
+    "sneak_dice_to_attack_bonus",  # 放弃偷袭骰换攻击加值（致命精准）
+    "spell_attack_bonus_by_hp",    # 按目标剩余生命给法术攻击加值（末路法术）
     "natural_weapon",              # 天生武器形态：{dice, damage_type, properties}
     "opportunity_attack_budget_add",  # 每轮额外借机攻击次数
     "opportunity_attack_adv",        # 借机攻击的优势层数

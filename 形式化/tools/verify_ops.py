@@ -136,9 +136,14 @@ def main():
             continue
         ops.append(op)
 
-    stat = {"CHANGED": 0, "INERT": 0, "ERROR": 0, "SKIP": 0}
+    stat = {"CHANGED": 0, "INERT": 0, "ERROR": 0, "SKIP": 0, "SCOPED": 0}
     inert, errors = [], []
     for op in ops:
+        # 已明确判定 out_of_scope 的算子不产生伤害是**预期结果**，
+        # 不该混进 INERT 里冒充待查项——那会让真正的静默失效被淹没。
+        if op.get("scope") == "out_of_scope":
+            stat["SCOPED"] += 1
+            continue
         scen = scenario(op)
         if scen is None:
             stat["SKIP"] += 1

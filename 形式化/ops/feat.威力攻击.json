@@ -23,14 +23,24 @@
         "expr": "max_die(base_damage)",
         "cap": 15,
         "cap_scaling": [
-          { "level": 7, "cap": 20 },
-          { "level": 11, "cap": 25 },
-          { "level": 15, "cap": 30 }
+          {
+            "level": 7,
+            "cap": 20
+          },
+          {
+            "level": 11,
+            "cap": 25
+          },
+          {
+            "level": 15,
+            "cap": 30
+          }
         ],
         "applies_on": "on_hit",
         "note": "只吃基础伤害骰的最大值；焰舌、神圣武器、超魔、战技、重击、偷袭等额外伤害骰都不影响"
       }
-    ]
+    ],
+    "is_power_attack": true
   },
   "source": {
     "book": "5z",

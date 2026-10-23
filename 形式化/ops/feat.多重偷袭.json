@@ -1,0 +1,26 @@
+{
+  "id": "feat.多重偷袭",
+  "name": "多重偷袭",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "sneak_attack_bonus_dice": 1,
+    "note": "每多满足一种偷袭触发条件，偷袭伤害骰 +1；另增加一条偷袭触发方式（对尚未行动过的生物，攻击无劣势即可）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "多重偷袭"
+  },
+  "status": "approximated",
+  "ruling": null
+}

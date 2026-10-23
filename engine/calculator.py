@@ -192,6 +192,8 @@ def weapon_dice_for(resolved, passive_ops, build_doc=None):
         nat = proj.get("natural_weapon")
         if nat and nat.get("dice"):
             dice = nat["dice"]
+        if proj.get("weapon_dice_maximize"):
+            dice = str(int(dice_mean(dice) * 2 - 0.5))
         over = proj.get("weapon_dice_override")
         if over:
             kinds = over.get("applies_to")
@@ -279,13 +281,23 @@ def build_formula_context(resolved, extra=None):
     return ctx
 
 
-def eval_level_expr(expr, level):
-    """极小的等级表达式求值。目前支持 `level//N` 与 `level`。"""
+def eval_level_expr(expr, level, mods=None, prof=None):
+    """极小的表达式求值。
+
+    支持 `level`、`level//N`，以及属性调整值与熟练加值名
+    （`str`/`dex`/…/`cha`、`prof`）。早期只认等级，导致「毒触」写
+    `prof`、「贯手著棼」写 `dex` 时直接抛错——这两个本可以用 `flat` +
+    `flat_by_ability` 表达，但数据已经这么写了，就让求值器认识它们。
+    """
     e = str(expr).replace(" ", "")
     if e == "level":
         return level
     if e.startswith("level//"):
         return level // int(e.split("//")[1])
+    if e == "prof" and prof is not None:
+        return int(prof)
+    if mods and e in mods:
+        return int(mods[e])
     raise ValueError(f"不支持的等级表达式: {expr!r}")
 
 
@@ -687,6 +699,21 @@ def weapon_profile(resolved, active_ops, build_doc=None):
     return dtype, enhancement
 
 
+_OPS = {}
+
+
+def _power_attack_relief(resolved):
+    """构筑里所有源对威力攻击减值的减免总量（取最大，不叠加）。"""
+    best = 0
+    for f in resolved.raw.get("feats", []):
+        op = (_OPS or {}).get(f.get("id"))
+        if not op:
+            continue
+        best = max(best, int((op.get("projection") or {})
+                             .get("power_attack_penalty_reduction", 0)))
+    return best
+
+
 def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None,
                       dtype=None, enhancement=None):
     """武器基础攻击：武器骰 + 属性调整值 + 武器增强 + 狂暴加值。"""
@@ -764,7 +791,13 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
     rules = []
 
     if "attack_bonus" in proj:
-        attack.attack_bonus += int(proj["attack_bonus"])
+        bonus = int(proj["attack_bonus"])
+        # 「战神降临」「死神降临」不改变威力攻击本身，而是**削减它的减值**。
+        # 减值写在威力攻击算子的 attack_bonus 上，减免必须在这里结算，
+        # 否则这两个专长只能写进 note 里当摆设。
+        if proj.get("is_power_attack") and bonus < 0:
+            bonus += _power_attack_relief(resolved)
+        attack.attack_bonus += bonus
 
     if "adv_tiers" in proj:
         attack.adv_tiers += int(proj["adv_tiers"])
@@ -877,8 +910,10 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
         flat = int(resolved.derived.prof) if raw_flat == "proficiency" else int(raw_flat)
         if extra.get("flat_by_size"):        # 按自身体型给固定加值（泰坦弓手）
             flat += int(extra["flat_by_size"].get(resolved.size, 0))
-        if extra.get("flat_expr"):          # 如「狂战士等级的一半」
-            flat = eval_level_expr(extra["flat_expr"], resolved.derived.level)
+        if extra.get("flat_expr"):          # 如「狂战士等级的一半」「熟练加值」
+            flat = eval_level_expr(extra["flat_expr"], resolved.derived.level,
+                                   mods=resolved.derived.mods,
+                                   prof=resolved.derived.prof)
         dice = resolve_superiority_dice(dice, resolved.derived.level)
         comp = DamageComponent(dice, flat=flat, dtype=dtype,
                                slot=extra.get("slot") or op["id"],
@@ -1407,6 +1442,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     if rage_table is None:
         rage_table = load_rage_table()
 
+    global _OPS
+    _OPS = ops
     build_trace = []
     build_doc = apply_build_time_effects(build_doc, ops, build_trace)
     ops = apply_choices(ops, build_doc)
@@ -1830,6 +1867,13 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 apply_adv_scaling(a, passive_ops + [ops[o] for o in op_ids
                                                     if o in ops], resolved)
                 attacks.append(a)
+            # 「失手后下一次攻击具有优势」：挂在结果树的 miss 分支上。
+            # 它本来就是为"打丢了"准备的补偿，若假设首击必中就没有意义
+            for pop in move_ops:
+                n = int((pop.get("projection") or {}).get("next_adv_on_miss", 0))
+                if n:
+                    all_rules_built.append(Rule(trigger="miss", next_adv=n,
+                                                name=pop["id"] + ".next_adv"))
             if attacks:
                 all_rules_built.extend(build_sneak_rules(
                     resolved, build_doc, ops, attacks, state.distance_ft, env_doc))

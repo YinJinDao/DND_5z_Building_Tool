@@ -1,0 +1,41 @@
+{
+  "id": "feat.戏法过载",
+  "name": "戏法过载",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "int",
+        "wis"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "extra_dice": [
+      {
+        "dice": "1d8",
+        "damage_type": "same_as_weapon",
+        "limit": "每回合一次",
+        "note": "戏法造成伤害时对其中一个生物额外 1d8，类型同该戏法"
+      }
+    ],
+    "note": "仅对戏法生效；此处以每回合一次 1d8 近似"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "戏法过载"
+  },
+  "status": "approximated",
+  "ruling": null
+}

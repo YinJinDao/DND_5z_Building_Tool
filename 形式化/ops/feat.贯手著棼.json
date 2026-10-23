@@ -1,0 +1,38 @@
+{
+  "id": "feat.贯手著棼",
+  "name": "贯手著棼",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "dex",
+        "damage_type": "same_as_weapon",
+        "note": "每额外消耗一次攻击次数，伤害再加一次敏捷调整值"
+      }
+    ],
+    "note": "使用巨弓时按额外消耗的攻击次数叠加敏捷调整值；也可放弃优势换取击倒/钉死等效果",
+    "weapon_selector": {
+      "kinds": [
+        "巨弓"
+      ]
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "贯手著棼"
+  },
+  "status": "approximated",
+  "ruling": null
+}

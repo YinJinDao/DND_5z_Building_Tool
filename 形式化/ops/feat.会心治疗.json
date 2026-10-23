@@ -1,0 +1,27 @@
+{
+  "id": "feat.会心治疗",
+  "name": "会心治疗",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "治疗改为法术攻击命中后生效，属治疗侧"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "治疗改为法术攻击命中后生效，属治疗侧",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "会心治疗"
+  },
+  "status": "modeled",
+  "ruling": null
+}
