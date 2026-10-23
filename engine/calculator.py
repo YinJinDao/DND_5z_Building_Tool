@@ -688,16 +688,20 @@ def granted_class_ops(build_doc, ops):
     这是动作经济与算子数据之间的接缝：构筑只写"职业 + 等级"，
     能发动几次攻击由职业特性算子决定，不由策略里写死的数字决定。
     """
-    class_ids = {c.get("id") for c in build_doc.get("classes", [])}
-    level = _build_level(build_doc)
+    # 必须用**该职业自己的等级**判断，而不是总等级。
+    # 早期用总等级会让 6 级狂战士拿到 11 级的「精通额外攻击」——
+    # 单人职业时看不出来，兼职构筑会全错。
+    class_levels = {c.get("id"): int(c.get("level", 0))
+                    for c in build_doc.get("classes", [])}
     granted = []
     for op in ops.values():
         acq = op.get("acquisition") or {}
         if acq.get("type") != "class_level":
             continue
-        if acq.get("class_id") not in class_ids:
+        cid = acq.get("class_id")
+        if cid not in class_levels:
             continue
-        if int(acq.get("level", 99)) > level:
+        if int(acq.get("level", 99)) > class_levels[cid]:
             continue
         granted.append(op)
     return granted
@@ -718,13 +722,38 @@ def granted_feat_ops(build_doc, ops):
     return out
 
 
+def multiclass_level_sum(build_doc, classes):
+    """指定职业的等级总和（用于「融汇百家」这类按多职业等级判定的规则）。"""
+    total = 0
+    for c in build_doc.get("classes", []):
+        if c.get("id") in classes:
+            total += int(c.get("level", 0))
+    return total
+
+
 def derive_attack_count(build_doc, ops):
-    """攻击动作内可发动的攻击次数：取所有已获得特性中的最大值。"""
+    """攻击动作内可发动的攻击次数：取所有已获得特性中的最大值。
+
+    除了职业特性直接给出的次数，还处理「元规则」——像「融汇百家」那样
+    按多职业等级总和**授予**其他职业的特性。这类规则改的不是数值而是
+    "你能不能获得某个特性"，因此必须在获取阶段结算，不能当作伤害投影。
+    """
     counts = [(1, "基础")]
     for op in granted_class_ops(build_doc, ops):
         proj = op.get("projection") or {}
         if "attack_count" in proj:
             counts.append((int(proj["attack_count"]), op["name"]))
+
+    for f in build_doc.get("feats", []):
+        op = ops.get(f.get("id"))
+        grants = (op.get("projection") or {}).get("grants_attack_count") if op else None
+        if not grants:
+            continue
+        level_sum = multiclass_level_sum(build_doc, grants.get("classes", []))
+        for rule in grants.get("tiers", []):
+            if level_sum >= int(rule["min_level_sum"]):
+                counts.append((int(rule["count"]), f"{op['name']}（职业等级和 {level_sum}）"))
+
     value, src = max(counts, key=lambda x: x[0])
     return value, src
 

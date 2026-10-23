@@ -859,6 +859,35 @@ def test_extra_attack():
         print("  FAIL 动态插入未影响结果树")
 
 
+def test_meta_rules():
+    print("\n[23] 元规则：按多职业等级授予特性")
+    import calculator as calc
+
+    ops = calc.load_ops()
+    cases = [(5, 5, 2), (6, 5, 3), (9, 8, 4)]
+    for brb, mnk, want in cases:
+        b = {"meta": {"level": brb + mnk},
+             "classes": [{"id": "class.barbarian", "level": brb},
+                         {"id": "class.monk", "level": mnk}],
+             "feats": [{"id": "feat.融汇百家"}]}
+        got, src = calc.derive_attack_count(b, ops)
+        tag = "OK  " if got == want else "FAIL"
+        print(f"  {tag} 狂战士{brb}+武僧{mnk}（和 {brb+mnk}）→ {got} 次（{src}）")
+        if got != want:
+            FAILS.append(f"融汇百家 {brb}+{mnk} 应为 {want} 次")
+
+    # 没有该专长时不应获得额外次数
+    b = {"meta": {"level": 11},
+         "classes": [{"id": "class.barbarian", "level": 6}, {"id": "class.monk", "level": 5}],
+         "feats": []}
+    got, _ = calc.derive_attack_count(b, ops)
+    if got == 2:
+        print("  OK   无「融汇百家」时不跨职业授予")
+    else:
+        FAILS.append("未选专长却跨职业授予了攻击次数")
+        print("  FAIL 未选专长却跨职业授予")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -885,6 +914,7 @@ def main():
     test_opposed_check()
     test_concentration()
     test_extra_attack()
+    test_meta_rules()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
