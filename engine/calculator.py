@@ -173,22 +173,40 @@ def _eval_expr(expr, resolved):
     raise ValueError(f"不支持的算子表达式: {expr!r}（可在 calculator._eval_expr 扩展）")
 
 
-def weapon_dice_for(resolved, ops, buffs):
-    """武器伤害骰。算子可覆盖（如「巨大武器师」按体型把巨斧提升到 2d8/2d10/2d12）。"""
+def weapon_dice_for(resolved, passive_ops):
+    """武器伤害骰。被动算子可覆盖或抬高下限。
+
+    例：「巨大武器师」按体型把巨斧提升到 2d8/2d10/2d12；
+        「斗殴高手」把临时武器/徒手的伤害骰抬到至少 1d6。
+    """
     dice = resolved.weapon["dice"]
-    for bid in buffs:
-        op = ops.get(bid)
-        if not op:
-            continue
-        over = (op.get("projection") or {}).get("weapon_dice_override")
-        if not over:
-            continue
-        kinds = over.get("applies_to")
-        if kinds and resolved.weapon.get("kind") not in kinds:
-            continue
-        if resolved.size in over:
-            dice = over[resolved.size]
+    for op in passive_ops:
+        proj = op.get("projection") or {}
+        over = proj.get("weapon_dice_override")
+        if over:
+            kinds = over.get("applies_to")
+            if not kinds or resolved.weapon.get("kind") in kinds:
+                if resolved.size in over:
+                    dice = over[resolved.size]
+        # 「伤害骰变为 1d6，若原本已是 1d6 或更高则升一阶」（斗殴高手）
+        minimum = proj.get("weapon_dice_min")
+        if minimum:
+            kinds = proj.get("weapon_dice_min_applies_to")
+            if not kinds or resolved.weapon.get("kind") in kinds:
+                cur = dice_mean(dice)
+                floor_val = dice_mean(minimum)
+                if cur < floor_val:
+                    dice = minimum
+                elif proj.get("weapon_dice_step_up"):
+                    dice = _step_up_dice(dice)
     return dice
+
+
+def _step_up_dice(dice):
+    """伤害骰升一阶：d6→d8，d8→d10，d10→d12。"""
+    steps = {"d6": "d8", "d8": "d10", "d10": "d12"}
+    n, _, faces = str(dice).lower().partition("d")
+    return f"{n or 1}d{steps.get('d' + faces, faces)}"
 
 
 def superiority_faces(level):
@@ -676,6 +694,21 @@ def granted_class_ops(build_doc, ops):
     return granted
 
 
+def granted_feat_ops(build_doc, ops):
+    """构筑里已选专长对应的算子。
+
+    被动专长（改武器骰、给附赠动作攻击、加优势）应当因为"在构筑里"就自动生效，
+    不需要策略再显式引用——早期的做法会让玩家漏写而少算伤害。
+    需要主动宣告的专长（如威力攻击）仍由策略的 per_attack.ops 显式引用。
+    """
+    out = []
+    for f in build_doc.get("feats", []):
+        op = ops.get(f.get("id"))
+        if op:
+            out.append(op)
+    return out
+
+
 def derive_attack_count(build_doc, ops):
     """攻击动作内可发动的攻击次数：取所有已获得特性中的最大值。"""
     counts = [(1, "基础")]
@@ -814,6 +847,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if "rage" in proj:
                 rage_active = True
 
+        # 被动算子 = 构筑已选专长 + 本轮增益；被动专长应自动生效，无需策略引用
+        passive_ops = granted_feat_ops(build_doc, ops) + [
+            ops[b] for b in buffs if b in ops]
+
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
             spends.append((rnum, pid, int(amount)))
@@ -931,16 +968,14 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
 
         # 附赠动作攻击：来自增益算子（如「狂怒」），不占攻击动作的次数上限
         bonus_attacks = 0
-        for bid in buffs:
-            bop = ops.get(bid)
-            if bop:
-                bonus_attacks += int((bop.get("projection") or {})
-                                     .get("bonus_action_attack", 0))
+        for pop in passive_ops:
+            bonus_attacks += int((pop.get("projection") or {})
+                                 .get("bonus_action_attack", 0))
         if bonus_attacks and attacks_n:
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
         gate_ctx = {"rage_active": rage_active, "mounted": bool(mount)}
-        wdice = weapon_dice_for(resolved, ops, buffs)
+        wdice = weapon_dice_for(resolved, passive_ops)
         if wdice != resolved.weapon["dice"]:
             trace.append(f"第 {rnum} 轮武器伤害骰被替换："
                          f"{resolved.weapon['dice']} → {wdice}")
@@ -968,9 +1003,17 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     all_rules_built.extend(rs)
                 attacks.append(a)
         else:
+            bonus_dice = None
+            for pop in passive_ops:
+                bd = (pop.get("projection") or {}).get("bonus_action_attack_dice")
+                if bd:
+                    bonus_dice = bd
             for i in range(attacks_n + bonus_attacks):
+                use_dice = wdice
+                if bonus_dice and i >= attacks_n:
+                    use_dice = bonus_dice          # 附赠动作攻击用指定骰式
                 a = build_base_attack(resolved, adv_tiers=adv,
-                                      rage_active=rage_active, weapon_dice=wdice)
+                                      rage_active=rage_active, weapon_dice=use_dice)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
