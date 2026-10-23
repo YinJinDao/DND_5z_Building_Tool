@@ -1,0 +1,26 @@
+{
+  "id": "feat.重击大师",
+  "name": "重击大师",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "crit_range": 1,
+    "note": "重击范围 +1；另有三选一的重击后收益（移动/临时生命值/…），未建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "重击大师"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -633,6 +633,8 @@ def test_maneuvers():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
                             encoding="utf-8"))
+    # 清空专长：本组只测战技本身，被动专长会自动生效并干扰对照
+    build["feats"] = []
     build["resources"]["superiority"] = {
         "name": "卓越骰", "capacity": 4, "recharge": "short_rest", "die_faces": 6}
     ops = calc.load_ops()
@@ -780,14 +782,21 @@ def test_opposed_check():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
                             encoding="utf-8"))
+    build["feats"] = []          # 同上：隔离被动专长的影响
     build.setdefault("resources", {})["superiority"] = {
         "name": "卓越骰", "capacity": 9, "recharge": "short_rest", "die_faces": 6}
     strat = {"rounds": [{"round": 1, "buffs": ["rage"],
                          "move": {"toward": True, "ft": 25}, "attacks": 1,
                          "per_attack": {"ops": ["mv.开山流.中级.泰山压顶"]}}]}
     res = calc.evaluate(build, {"target": {"ac": 15}}, strat)
+    # 期望值由构筑推导：伤害取查表结果（中型/血肉 4d6），胜率取对抗检定
+    resolved = calc.resolve_build_full(build, calc.load_ops(), calc.load_rage_table())
+    tables = calc.load_damage_tables()
+    dmg_dice = calc.resolve_damage_table(tables["tbl.泰山压顶"], resolved)
+    contest_bonus = resolved.derived.mods["str"] + resolved.derived.prof
     check("泰山压顶按胜率加权", res.total,
-          Fraction(21, 2) * opposed_win_probability(7, 0, (1, 6)), tol=1e-9)
+          dice_mean(dmg_dice) * opposed_win_probability(contest_bonus, 0, (1, 6)),
+          tol=1e-9)
 
 
 def test_concentration():
@@ -920,6 +929,44 @@ def test_meta_rules():
         print("  FAIL 未选专长却跨职业授予")
 
 
+def test_passive_feats():
+    print("\n[24] 被动专长自动生效")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    build["combat"]["weapon"]["damage_type"] = "piercing"
+    build["choices"] = {"ability_bonus": "str"}
+    strat = {"rounds": [{"round": 1, "buffs": ["rage"],
+                         "move": {"toward": True, "ft": 25}, "attacks": 1,
+                         "per_attack": {"ops": []}}]}
+
+    def run(doc):
+        return calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+
+    plain = run(build)
+    build["feats"].append({"id": "feat.穿刺者", "at_level": 1})
+    pierce = run(build)
+    build["feats"].append({"id": "feat.重击大师", "at_level": 1})
+    crit = run(build)
+
+    # 穿刺者：每回合一次 +2 穿刺伤害。自动生效，无需策略引用
+    if pierce.total > plain.total:
+        print(f"  OK   穿刺者自动生效：{float(plain.total):.3f} → {float(pierce.total):.3f}")
+    else:
+        FAILS.append("被动专长未自动生效")
+        print("  FAIL 穿刺者未自动生效")
+
+    # 重击大师：重击范围 +1，期望应再提高
+    if crit.total > pierce.total:
+        print(f"  OK   重击大师：{float(pierce.total):.3f} → {float(crit.total):.3f}")
+    else:
+        FAILS.append("重击范围 +1 未提高期望")
+        print("  FAIL 重击范围未生效")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -947,6 +994,7 @@ def main():
     test_concentration()
     test_extra_attack()
     test_meta_rules()
+    test_passive_feats()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

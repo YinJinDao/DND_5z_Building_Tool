@@ -368,6 +368,9 @@ def apply_op(op, attack, resolved, attack_index=0):
             defenders = 0
         win = opposed_win_probability(atk_bonus, defenders, dice, adv_tiers=0)
         _CONTEST_FACTOR = win
+        # 对抗检定型战技（如推撞）**没有攻击检定**，成败只由对抗决定。
+        # 若不关闭命中掷骰，会额外乘一次命中率——双重门控，结果系统性偏低。
+        attack.auto_hit = True
     else:
         _CONTEST_FACTOR = None
 
@@ -692,16 +695,24 @@ def apply_build_time_effects(build_doc, ops, trace=None):
         bonus = (op.get("projection") or {}).get("ability_bonus") if op else None
         if not bonus:
             continue
-        # str_or_con 表示"择一"，实际选择由构筑的 choices 指定
+        # 属性加值有两种写法：
+        #   str_or_con: 1                     —— 固定的一组候选（历史写法）
+        #   choose_one_of: [str, dex], amount —— 通用写法
+        amount = None
+        candidates = None
         if "str_or_con" in bonus:
-            target = choices.get("ability_bonus") or "str"
-            if target not in ("str", "con"):
+            candidates, amount = ("str", "con"), int(bonus["str_or_con"])
+        elif "choose_one_of" in bonus:
+            candidates, amount = tuple(bonus["choose_one_of"]), int(bonus.get("amount", 1))
+        if candidates:
+            target = choices.get("ability_bonus") or candidates[0]
+            if target not in candidates:
                 raise ValueError(
-                    f"{op['name']} 需要 choices.ability_bonus 指定 str 或 con，"
-                    f"当前为 {target!r}")
-            feat_scores[target] = feat_scores.get(target, 0) + int(bonus["str_or_con"])
+                    f"{op['name']} 需要 choices.ability_bonus 指定 "
+                    f"{' 或 '.join(candidates)}，当前为 {target!r}")
+            feat_scores[target] = feat_scores.get(target, 0) + amount
             if trace is not None:
-                trace.append(f"构筑期：{op['name']} {target.upper()} +{bonus['str_or_con']}")
+                trace.append(f"构筑期：{op['name']} {target.upper()} +{amount}")
 
     scores["feat"] = feat_scores
     return doc
@@ -1091,6 +1102,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             for i in range(instances):
                 a = build_spell_attack(resolved, sop, adv_tiers=adv,
                                        slot_level=slot_level, target=round_target)
+                # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
+                # 但若策略已显式列出同一个算子则不重复应用。
+                explicit = set(op_ids)
+                for pop in passive_ops:
+                    if pop["id"] in explicit:
+                        continue
+                    pproj = pop.get("projection") or {}
+                    if "crit_range" in pproj:
+                        a.crit_range += int(pproj["crit_range"])
+                    if "extra_dice" in pproj:
+                        a, rs = apply_op(pop, a, resolved, attack_index=i)
+                        all_rules_built.extend(rs)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")
@@ -1126,6 +1149,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     use_dice = bonus_dice          # 附赠动作攻击用指定骰式
                 a = build_base_attack(resolved, adv_tiers=adv,
                                       rage_active=rage_active, weapon_dice=use_dice)
+                # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
+                # 但若策略已显式列出同一个算子则不重复应用。
+                explicit = set(op_ids)
+                for pop in passive_ops:
+                    if pop["id"] in explicit:
+                        continue
+                    pproj = pop.get("projection") or {}
+                    if "crit_range" in pproj:
+                        a.crit_range += int(pproj["crit_range"])
+                    if "extra_dice" in pproj:
+                        a, rs = apply_op(pop, a, resolved, attack_index=i)
+                        all_rules_built.extend(rs)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
