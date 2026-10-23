@@ -383,13 +383,21 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     weapon_range = combat.get("weapon", {}).get("range_ft")
     range_profile = RangeProfile(reach_ft=weapon_reach, range_ft=weapon_range)
 
+    # 骑乘时移动力来自坐骑（方案 §2.3）。坐骑速度取自其资料表：
+    # 矮马 50 尺、挽马 60 尺、乘用马 75 尺。
+    mount = combat.get("mount") or {}
+    speed_ft = int(mount.get("speed_ft") or combat.get("speed_ft", 30))
     state = CombatState(distance_ft=int(env_doc.get("initial_distance_ft", 30)),
-                        speed_ft=int(combat.get("speed_ft", 30)))
+                        speed_ft=speed_ft)
+    if mount:
+        trace_speed = f"{speed_ft} 尺（坐骑：{mount.get('name', '未命名')}）"
+    else:
+        trace_speed = f"{speed_ft} 尺"
     budget = load_budget(build_doc, env_doc)
 
     trace = list(resolved.trace) + [
         f"目标 AC {target.ac}",
-        f"初始距离 {state.distance_ft} 尺｜速度 {state.speed_ft} 尺"
+        f"初始距离 {state.distance_ft} 尺｜速度 {trace_speed}"
         f"｜触及 {weapon_reach} 尺" + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
     ]
     warnings = []
@@ -449,6 +457,13 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 warnings.append(
                     f"第 {rnum} 轮 {ops[action_id]['name']} 要求本回合直线移动 ≥{min_travel} 尺，"
                     f"实际 {state.travel_this_turn} 尺，未生效")
+                attacks_n = 0
+            # 冲刺需要足够的空间：跑不出 30 尺就冲不起来
+            start_distance = state.distance_ft + state.travel_this_turn
+            if min_travel and attacks_n and start_distance < min_travel:
+                warnings.append(
+                    f"第 {rnum} 轮起点距目标仅 {start_distance} 尺，"
+                    f"不足以完成 ≥{min_travel} 尺的直线冲刺，未生效")
                 attacks_n = 0
             atk_spec = comp.get("attack") or {}
             if attacks_n:
@@ -534,6 +549,14 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 sd = _save_effect_damage(eff, target, resolved)
                 trace.append(f"第 {rnum} 轮豁免效果 {eff.get('dice')} → {float(sd):.3f}")
             dmg += sd
+
+        # 步骤 5：攻击之后才能用剩余移动力（骑乘冲刺流程的第 5 步）。
+        # 「反复拉冲」的可持续性取决于这里——退开的距离决定了下一轮能否再冲。
+        post = rnd.get("post_move")
+        if post:
+            moved = state.move(int(post.get("ft", 0)),
+                               toward=bool(post.get("toward", False)))
+            trace.append(f"第 {rnum} 轮攻击后移动 {moved} 尺 → 距离 {state.distance_ft} 尺")
 
         per_round.append((rnum, dmg))
         trace.append(f"第 {rnum} 轮：{attacks_n} 次攻击"

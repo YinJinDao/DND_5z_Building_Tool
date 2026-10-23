@@ -472,6 +472,42 @@ def test_composite_and_contingency():
         print("  FAIL 移动不足时冲刺未拦截")
 
 
+def test_charge_cycle():
+    print("\n[15] 拉冲循环与坐骑速度")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ex = os.path.join(root, "examples")
+    build = _json.load(open(os.path.join(ex, "barbarian_l4.build.json"), encoding="utf-8"))
+    env = _json.load(open(os.path.join(ex, "dummy_ac15.env.json"), encoding="utf-8"))
+    strat = _json.load(open(os.path.join(ex, "charge_cycle.strategy.json"), encoding="utf-8"))
+
+    # 挽马 60 尺：冲刺 30 + 退开 30 → 每轮都能冲
+    res60 = calc.evaluate(build, env, strat)
+    hits60 = sum(1 for _, d in res60.per_round if d > 0)
+    check("60 尺坐骑 3 轮全冲", Fraction(hits60), Fraction(3), tol=1e-9)
+
+    # 矮马 50 尺：冲刺 30 后只剩 20 尺退开，下一轮空间不足 → 隔轮才能冲
+    pony = _json.loads(_json.dumps(build))
+    pony["combat"]["mount"] = {"name": "矮马", "speed_ft": 50, "controllable": True}
+    res50 = calc.evaluate(pony, env, strat)
+    hits50 = sum(1 for _, d in res50.per_round if d > 0)
+    check("50 尺坐骑 3 轮只冲 2 次", Fraction(hits50), Fraction(2), tol=1e-9)
+    if res50.total < res60.total:
+        print(f"  OK   坐骑速度影响输出：50 尺 {float(res50.total):.2f} < 60 尺 {float(res60.total):.2f}")
+    else:
+        FAILS.append("坐骑速度未影响输出")
+        print("  FAIL 坐骑速度未影响输出")
+
+    # 靠近时实际位移受距离限制：距 20 尺走 30 尺，只应移动 20 尺
+    s = CombatState(distance_ft=20, speed_ft=50)
+    s.start_turn()
+    moved = s.move(30, toward=True)
+    check("位移受距离限制", Fraction(moved), Fraction(20), tol=1e-9)
+    check("记录的实际移动量", Fraction(s.travel_this_turn), Fraction(20), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -490,6 +526,7 @@ def main():
     test_calculator()
     test_spells()
     test_composite_and_contingency()
+    test_charge_cycle()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

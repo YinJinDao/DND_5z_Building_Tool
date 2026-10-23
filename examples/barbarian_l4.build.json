@@ -5,26 +5,56 @@
     "point_buy": 32
   },
   "classes": [
-    { "id": "class.barbarian", "level": 4, "subclass": "path.punisher" }
+    {
+      "id": "class.barbarian",
+      "level": 4,
+      "subclass": "path.punisher"
+    }
   ],
   "feats": [
-    { "id": "feat.威力攻击", "at_level": 1 },
-    { "id": "feat.凶蛮打手", "at_level": 1 },
-    { "id": "feat.骑乘战斗", "at_level": 3 }
+    {
+      "id": "feat.威力攻击",
+      "at_level": 1
+    },
+    {
+      "id": "feat.凶蛮打手",
+      "at_level": 1
+    },
+    {
+      "id": "feat.骑乘战斗",
+      "at_level": 3
+    }
   ],
-  "maneuvers": { "known": [], "prepared": [] },
-  "spells": { "known": [], "prepared": [] },
+  "maneuvers": {
+    "known": [],
+    "prepared": []
+  },
+  "spells": {
+    "known": [],
+    "prepared": []
+  },
   "items": [
-    { "id": "item.greataxe_plus1" }
+    {
+      "id": "item.greataxe_plus1"
+    }
   ],
   "scores": {
-    "base": { "str": 17, "dex": 13, "con": 16, "int": 10, "wis": 10, "cha": 8 },
+    "base": {
+      "str": 17,
+      "dex": 13,
+      "con": 16,
+      "int": 10,
+      "wis": 10,
+      "cha": 8
+    },
     "racial": {},
     "level_ups": {},
     "feat": {},
     "item": {}
   },
-  "choices": { "fighting_style": null },
+  "choices": {
+    "fighting_style": null
+  },
   "variants": [],
   "resources": {
     "superiority": {
@@ -45,6 +75,15 @@
     "armor": "barbarian_unarmored",
     "shield": false,
     "hit_die_faces": 12,
-    "proficient_saves": ["str", "con"]
+    "proficient_saves": [
+      "str",
+      "con"
+    ],
+    "mount": {
+      "name": "挽马",
+      "speed_ft": 60,
+      "size": "large",
+      "controllable": true
+    }
   }
 }

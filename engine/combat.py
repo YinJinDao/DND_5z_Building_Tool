@@ -59,13 +59,21 @@ class CombatState:
         self.start_turn(speed_ft)
 
     def move(self, ft, toward=False):
-        """移动。toward=True 靠近目标，False 远离。返回实际移动距离。"""
+        """移动。toward=True 靠近目标，False 远离。返回**实际**移动距离。
+
+        靠近时实际位移受当前距离限制：距目标 20 尺时，走 30 尺的指令
+        只会实际移动 20 尺。早期实现把距离钳制到 0 却按满额计入
+        `travel_this_turn`，导致"退开不足 30 尺仍能满足冲锋条件"，
+        使慢速坐骑的冲刺可持续性被高估。
+        """
         usable = min(ft, self.movement_left)
+        if toward:
+            usable = min(usable, self.distance_ft)
         if usable <= 0:
             return 0
         self.movement_left -= usable
         self.travel_this_turn += usable
-        self.distance_ft = max(0, self.distance_ft - usable) if toward \
+        self.distance_ft = (self.distance_ft - usable) if toward \
             else self.distance_ft + usable
         return usable
 
