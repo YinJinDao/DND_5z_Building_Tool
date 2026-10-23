@@ -851,6 +851,17 @@ def test_extra_attack():
         if won != should_win:
             FAILS.append(f"疯狂连击在 AC{ac} 的取舍方向不符")
 
+    # 刺剑大师：-2 命中，本轮所有攻击都命中后追加一次
+    build["combat"]["weapon"]["kind"] = "刺剑"
+    for ac in (10, 15, 19):
+        plain = run(ac, [])
+        rapier = run(ac, ["feat.刺剑大师"])
+        tag = "OK  " if rapier.total > plain.total else "FAIL"
+        print(f"  {tag} AC{ac} 刺剑大师: {float(plain.total):.3f} → {float(rapier.total):.3f}")
+        if rapier.total <= plain.total:
+            FAILS.append(f"刺剑大师在 AC{ac} 应优于普通攻击")
+    build["combat"]["weapon"]["kind"] = "巨斧"
+
     # 结果树叶子数应因动态插入而增加
     if run(15, ["feat.疯狂连击"]).leaves > run(15, []).leaves:
         print("  OK   动态插入攻击使结果树叶子数增加")

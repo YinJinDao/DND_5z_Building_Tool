@@ -1,0 +1,35 @@
+{
+  "id": "feat.刺剑大师",
+  "name": "刺剑大师",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "刺剑熟练项"
+    ]
+  },
+  "cost": {
+    "passive_choice": true
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_kind": "刺剑"
+  },
+  "projection": {
+    "attack_bonus": -2,
+    "on_all_hit_extra_attack": {
+      "count": 1,
+      "attack_bonus_mod": 0,
+      "note": "精准连刺：本动作内所有攻击均命中同一目标时，立刻再用刺剑对该目标发动一次攻击"
+    },
+    "note": "使用次数：1 次/长休；拥有「额外攻击」后改为 3 次；拥有「精通额外攻击」后无限。使用次数未接入资源系统；心眼防守与迅捷反击不属于伤害链路"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/异种武器专长.htm",
+    "anchor": "刺剑大师"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -415,6 +415,14 @@ def apply_op(op, attack, resolved, attack_index=0):
                                              slot=op["id"],
                                              weight=_CONTEST_FACTOR)]
 
+    # 本轮所有攻击均命中后追加一次（刺剑大师的精准连刺）
+    all_hit = proj.get("on_all_hit_extra_attack")
+    if all_hit:
+        rules.append(Rule(trigger="hit_or_crit",
+                          extra_attack_all_hit={"count": int(all_hit.get("count", 1)),
+                                                "attack_bonus_mod": int(all_hit.get("attack_bonus_mod", 0))},
+                          name=op["id"]))
+
     # 命中后追加一次攻击（疯狂连击、巨武器大师的旋风顺劈等）
     follow = proj.get("on_hit_extra_attack")
     if follow:

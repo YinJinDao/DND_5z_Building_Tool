@@ -32,6 +32,7 @@ class Rule:
     next_adv: int = 0                                 # 影响后续攻击的优势层数
     spends: dict = field(default_factory=dict)        # 资源消耗（仅用于可行性校验）
     extra_attack: dict | None = None                  # 命中后追加一次攻击
+    extra_attack_all_hit: dict | None = None          # 本轮所有攻击都命中才追加
     name: str = ""
 
     def matches(self, outcome, index):
@@ -97,6 +98,11 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
             extra = []
             next_ctx = dict(ctx)
             next_seq = seq
+            # 跨攻击条件：本轮到目前为止是否全部命中（「刺剑大师」的精准连刺）
+            if outcome == MISS:
+                next_ctx["all_hit"] = False
+            else:
+                next_ctx.setdefault("all_hit", True)
             for rule in rules:
                 if not rule.matches(outcome, i):
                     continue
@@ -112,6 +118,22 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
                         next_seq = next_seq + [replace(a, attack_bonus=a.attack_bonus + bonus,
                                                        components=list(a.components))]
                     next_ctx[f"fired:{rule.name}"] = True
+            # 序列走完且全程命中 → 追加一次攻击（该攻击本身不再触发本条件）
+            last = (i + 1 >= len(next_seq))
+            if last and next_ctx.get("all_hit", True):
+                for rule in rules:
+                    if not rule.extra_attack_all_hit:
+                        continue
+                    key = f"fired_all:{rule.name}"
+                    if next_ctx.get(key):
+                        continue
+                    spec = rule.extra_attack_all_hit
+                    bonus = int(spec.get("attack_bonus_mod", 0))
+                    for _ in range(int(spec.get("count", 1))):
+                        next_seq = next_seq + [replace(a, attack_bonus=a.attack_bonus + bonus,
+                                                       components=list(a.components))]
+                    next_ctx[key] = True
+
             dmg = _damage_for_outcome(a, outcome, target, extra)
             acc += prob * p * dmg
             dfs(i + 1, next_ctx, prob * p, next_seq)
