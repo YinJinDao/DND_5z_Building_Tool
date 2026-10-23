@@ -70,9 +70,9 @@
 {"id": "feat.空中连携", "name": "空中连携", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.反击风暴", "name": "反击风暴", "status": "needs_ruling", "reason": "条件分支；限次使用", "source": "compiler"}
 {"id": "feat.贯手著棼", "name": "贯手著棼", "status": "needs_ruling", "reason": "多选一；条件分支；限次使用；随优势层数变化", "source": "compiler"}
-{"id": "feat.阵地狙击", "name": "阵地狙击", "status": "needs_ruling", "reason": "条件分支；随优势层数变化", "source": "compiler"}
+{"id": "feat.阵地狙击", "name": "阵地狙击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.倒钩大师", "name": "倒钩大师", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
-{"id": "feat.死亡收割", "name": "死亡收割", "status": "needs_ruling", "reason": "条件分支；随优势层数变化", "source": "compiler"}
+{"id": "feat.死亡收割", "name": "死亡收割", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.定点爆破", "name": "定点爆破", "status": "needs_ruling", "reason": "多选一；条件分支", "source": "compiler"}
 {"id": "feat.霹雳车", "name": "霹雳车", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "feat.大厨", "name": "大厨", "status": "needs_ruling", "reason": "条件分支；限次使用；需前置动作/位移", "source": "compiler"}

@@ -57,11 +57,28 @@ ENV = {"target": {"ac": 15, "saves": {"str": 0, "dex": 0, "con": 0,
 def scenario(op):
     """为每个算子构造能触发它的最小场景。"""
     kind = op.get("kind")
+    proj = op.get("projection") or {}
     build = json.loads(json.dumps(BASE_BUILD))
+    # 武器门控的算子：把基线武器换成它能用的那一把，否则对拍必然 INERT
+    sel = proj.get("weapon_selector") or {}
+    kinds = sel.get("kinds") or []
+    if kinds:
+        build["combat"]["weapon"]["kind"] = kinds[0]
+        build["combat"]["weapon"]["name"] = kinds[0]
+        build["combat"]["weapon"]["properties"] = list(sel.get("properties") or [])
+    # 按优势层数结算的算子：不给足层数就永远看不到变化
+    extra_adv = 3 if proj.get("scales_with_adv") else 0
     if kind == "feat":
         build["feats"] = [{"id": op["id"], "at_level": 1}]
-        strat = {"rounds": [{"round": 1, "buffs": ["rage"], "attacks": 1,
-                             "per_attack": {"ops": []}}]}
+        rnd = {"round": 1, "buffs": ["rage"], "attacks": 1,
+               "per_attack": {"ops": [], "adv_tiers": extra_adv}}
+        # 触及类：起点 20 尺、只前进 10 尺，正好卡在「基础触及够不着」的边界上
+        if proj.get("reach_bonus_ft"):
+            rnd["move"] = {"toward": True, "ft": 10}
+        # 速度类：起点 40 尺、要走 40 尺，基础速度 30 差 10 尺打不到
+        elif proj.get("speed_bonus_ft"):
+            rnd["move"] = {"toward": True, "ft": 40}
+        strat = {"rounds": [rnd]}
     elif kind == "maneuver":
         strat = {"rounds": [{"round": 1, "buffs": ["rage"], "attacks": 1,
                              "per_attack": {"ops": [op["id"]]}}]}
@@ -94,6 +111,11 @@ def scenario_env(op):
     if (proj.get("opportunity_attack_budget_add") or srcs
             or proj.get("opportunity_attack_adv")):
         env["enemy_triggers"] = {s: 3 for s in (srcs or ["retreat"])}
+    # 触及类算子：基线起点只有 5 尺，触及再长也看不出差别
+    if proj.get("reach_bonus_ft"):
+        env["initial_distance_ft"] = 20
+    elif proj.get("speed_bonus_ft"):
+        env["initial_distance_ft"] = 40
     return env
 
 

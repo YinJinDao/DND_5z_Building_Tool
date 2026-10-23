@@ -1144,6 +1144,60 @@ def test_reach_and_speed():
         print("  FAIL 无甲移动未按等级分段")
 
 
+def test_adv_scaling():
+    print("\n[27] 按优势层数结算")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                          encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["combat"]["armor"] = "none"
+
+    def run(feats, adv, weapon):
+        doc = _json.loads(_json.dumps(base))
+        doc["feats"] = [{"id": f, "at_level": 1} for f in feats]
+        doc["combat"]["weapon"] = dict(weapon)
+        strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                             "attacks": 1,
+                             "per_attack": {"ops": [], "adv_tiers": adv}}]}
+        return float(calc.evaluate(doc, {"target": {"ac": 15}}, strat).total)
+
+    scythe = {"name": "巨镰", "kind": "巨镰", "dice": "2d4",
+              "damage_type": "slashing", "enhancement": 0, "ability": "str",
+              "properties": ["双手"]}
+    # 二重以下不给：2 重才开始 +2 重击范围
+    check("死亡收割在 1 重优势不生效",
+          run(["feat.死亡收割"], 1, scythe), run([], 1, scythe), tol=1e-9)
+    d2 = run([], 2, scythe)
+    d2f = run(["feat.死亡收割"], 2, scythe)
+    d3f = run(["feat.死亡收割"], 3, scythe)
+    d4f = run(["feat.死亡收割"], 4, scythe)
+    if d2f > d2 and d3f > d2f and d4f > d3f:
+        print(f"  OK   2/3/4 重优势递进：{d2:.3f} → {d2f:.3f} → {d3f:.3f} → {d4f:.3f}")
+    else:
+        FAILS.append("死亡收割未按优势层数递进")
+        print("  FAIL 死亡收割未按优势层数递进")
+
+    # 每重优势 +1d10（阵地狙击）
+    bow = {"name": "巨弓", "kind": "巨弓", "dice": "1d8",
+           "damage_type": "piercing", "enhancement": 0, "ability": "str",
+           "properties": ["弹药", "双手"]}
+    b1 = run(["feat.阵地狙击"], 1, bow)
+    b2 = run(["feat.阵地狙击"], 2, bow)
+    if b2 - b1 > 4:                      # 1d10 期望 5.5，扣命中率后仍应 > 4
+        print(f"  OK   阵地狙击每重优势 +1d10：{b1:.3f} → {b2:.3f}")
+    else:
+        FAILS.append("阵地狙击未按层数叠加骰")
+        print("  FAIL 阵地狙击未按层数叠加骰")
+
+    # 武器不符（拿巨剑）时两条都不生效
+    sword = dict(scythe, name="巨剑", kind="巨剑", dice="2d6")
+    check("死亡收割在巨剑上不生效",
+          run(["feat.死亡收割"], 4, sword), run([], 4, sword), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1174,6 +1228,7 @@ def main():
     test_passive_feats()
     test_opportunity_attacks()
     test_reach_and_speed()
+    test_adv_scaling()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

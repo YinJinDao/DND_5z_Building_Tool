@@ -266,6 +266,7 @@ ALLOWED_PROJECTION = {
     "bonus_action_attack_spec",    # 附赠攻击自带的劣势 / 去属性调整值
     "opportunity_attack_budget_add",  # 每轮额外借机攻击次数
     "opportunity_attack_adv",        # 借机攻击的优势层数
+    "scales_with_adv",               # 按最终优势层数结算：per_tier / steps
     "reach_bonus_ft",                # 触及距离加值（F12 判据）
     "speed_bonus_ft",                # 移动速度加值
     "weapon_selector",               # 限定武器：{kinds, properties}，满足其一即可

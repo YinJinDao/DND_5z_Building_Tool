@@ -136,6 +136,8 @@ def resolve_build(build_doc, rage_table=None):
         "damage_type": combat.get("weapon", {}).get("damage_type", "bludgeoning"),
         "enhancement": int(combat.get("weapon", {}).get("enhancement", 0)),
         "kind": combat.get("weapon", {}).get("kind"),      # 巨斧/巨剑/巨锤 等，供算子判断
+        # 武器属性（双手/两用/轻型/触及…）：武器门控与 weapon_property 条件都靠它
+        "properties": list(combat.get("weapon", {}).get("properties") or []),
     }
     size = combat.get("size", "medium")
     # 狂暴伤害加值取自职业表；是否生效由策略的 buffs 决定
@@ -390,6 +392,67 @@ def scaled_value(spec, op, build_doc):
         if level >= int(k):
             out = int(v)
     return out
+
+
+def _scale_dice(dice, n):
+    """把 `1d10` 按层数放大成 `2d10`；纯加值写法原样返回。"""
+    if n <= 0:
+        return "0"
+    head, sep, tail = str(dice).partition("d")
+    if not sep or not head.isdigit():
+        return dice
+    return f"{int(head) * n}d{tail}"
+
+
+def apply_adv_scaling(attack, active_ops, resolved):
+    """按**最终**优势层数结算「N 重优势时……」类效果。
+
+    必须在所有算子都作用完之后调用：优势层数会被狂暴、鲁莽攻击、条件效果叠加，
+    早一步读到的层数是半成品。「死亡收割」在 2/3/4 重优势下分别 +2/+6/+19
+    重击范围，读错层数就不是"差一点"，而是整个重击概率都错。
+
+    两种写法：
+      `per_tier`  每层线性（阵地狙击：每重优势 +1d10）
+      `steps`     按档跳跃（死亡收割：{2: 2, 3: 6, 4: 19}），取不超过当前层数的最大档
+    """
+    tiers = max(0, attack.adv_tiers)
+    seen = set()
+    for op in active_ops:
+        if op["id"] in seen:
+            continue
+        seen.add(op["id"])
+        proj = op.get("projection") or {}
+        spec = proj.get("scales_with_adv")
+        if not spec:
+            continue
+        sel = proj.get("weapon_selector")
+        if sel and not weapon_matches(resolved.weapon, sel):
+            continue
+        per = spec.get("per_tier") or {}
+        steps = spec.get("steps") or {}
+        if per:
+            effect, times = per, tiers
+        elif steps:
+            applicable = [int(k) for k in steps if tiers >= int(k)]
+            if not applicable:
+                continue
+            effect, times = steps[str(max(applicable))], 1
+        else:
+            raise ValueError(f"{op['name']} 的 scales_with_adv 既无 per_tier 也无 steps")
+        for key in effect:
+            if key not in ("crit_range", "extra_dice", "flat", "damage_type", "note"):
+                raise ValueError(
+                    f"{op['name']} 的 scales_with_adv 不支持字段 {key!r}"
+                    f"（可用：crit_range / extra_dice / flat / damage_type）")
+        if "crit_range" in effect:
+            attack.crit_range += int(effect["crit_range"]) * times
+        if "extra_dice" in effect or "flat" in effect:
+            dtype = effect.get("damage_type") or resolved.weapon["damage_type"]
+            attack.components.append(DamageComponent(
+                _scale_dice(effect.get("extra_dice", "0"), times),
+                flat=int(effect.get("flat", 0)) * times,
+                dtype=dtype, slot=op["id"]))
+    return attack
 
 
 def collect_movement(active_ops, weapon, build_doc=None, armored=False):
@@ -1491,6 +1554,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i,
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
+                apply_adv_scaling(a, passive_ops + [ops[o] for o in op_ids
+                                                    if o in ops], resolved)
                 attacks.append(a)
         else:
             bonus_dice = None
@@ -1560,6 +1625,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i,
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
+                apply_adv_scaling(a, passive_ops + [ops[o] for o in op_ids
+                                                    if o in ops], resolved)
                 attacks.append(a)
         all_rules.extend(all_rules_built)
 
@@ -1590,6 +1657,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             for _ in range(count):
                 a = build_base_attack(resolved, adv_tiers=adv + oa_adv,
                                       rage_active=rage_active, weapon_dice=wdice)
+                apply_adv_scaling(a, granted_ops, resolved)
                 attacks.append(a)
             trace.append(f"第 {rnum} 轮借机攻击 {count} 次"
                          f"（触发 {'、'.join(oa_used)}，预算 {budget}："
