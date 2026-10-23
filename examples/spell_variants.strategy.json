@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "name": "魔法飞弹 / 灼热射线 / 威力豁免火球",
+    "note": "验证自动命中不重击、多射线实例、升环加射线、豁免DC修正",
+    "requires_build": "wizard_l5.build.json"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "attacks": 1,
+      "per_attack": {
+        "kind": "spell_attack",
+        "spell": "sp.魔法飞弹",
+        "slot_level": 1
+      }
+    },
+    {
+      "round": 2,
+      "attacks": 1,
+      "per_attack": {
+        "kind": "spell_attack",
+        "spell": "sp.灼热射线",
+        "slot_level": 2
+      }
+    },
+    {
+      "round": 3,
+      "attacks": 1,
+      "per_attack": {
+        "kind": "spell_attack",
+        "spell": "sp.灼热射线",
+        "slot_level": 4
+      }
+    },
+    {
+      "round": 4,
+      "attacks": 0,
+      "save_ops": [
+        "feat.威力豁免"
+      ],
+      "save_effects": [
+        {
+          "spell": "sp.火球术",
+          "slot_level": 3
+        }
+      ]
+    }
+  ]
+}

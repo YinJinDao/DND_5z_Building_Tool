@@ -1,0 +1,45 @@
+{
+  "name": "魔法飞弹",
+  "kind": "spell",
+  "level": 1,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "slot": 1
+  },
+  "decision_point": "before_roll",
+  "attack": {
+    "type": "auto_hit",
+    "auto_hit": true,
+    "count": 3,
+    "count_by_slot": {
+      "2": 5,
+      "3": 7,
+      "4": 9,
+      "5": 12,
+      "6": 15,
+      "7": 19,
+      "8": 23,
+      "9": 30
+    },
+    "damage": {
+      "dice": "1d6",
+      "damage_type": "force"
+    },
+    "note": "不需要攻击检定，因此无法重击"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "魔法飞弹"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "id": "sp.魔法飞弹"
+}

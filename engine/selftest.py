@@ -522,6 +522,68 @@ def test_charge_cycle():
     check("记录的实际移动量", Fraction(s.travel_this_turn), Fraction(20), tol=1e-9)
 
 
+def test_expanded_ops():
+    print("\n[16] 扩面算子：自动命中 / 多射线 / 豁免修正")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ex = os.path.join(root, "examples")
+    build = _json.load(open(os.path.join(ex, "wizard_l5.build.json"), encoding="utf-8"))
+    target = TargetProfile(ac=15)
+    target.saves = {"dex": 0, "con": 0, "wis": 0, "int": 0, "str": 0, "cha": 0}
+    resolved = calc.resolve_build(build, calc.load_rage_table())
+    ops = calc.load_ops()
+
+    # 自动命中：3 枚 1d6，不掷攻击、不能重击 → 3×3.5 = 10.5
+    res1 = calc.evaluate(build, {"target": {"ac": 15}}, {
+        "rounds": [{"round": 1, "attacks": 1,
+                    "per_attack": {"kind": "spell_attack", "spell": "sp.魔法飞弹",
+                                   "slot_level": 1}}]})
+    check("魔法飞弹 1 环", res1.total, Fraction(21, 2), tol=1e-9)
+
+    # 升环加枚数（不是加骰）：2 环 5 枚 → 17.5
+    res2 = calc.evaluate(build, {"target": {"ac": 15}}, {
+        "rounds": [{"round": 1, "attacks": 1,
+                    "per_attack": {"kind": "spell_attack", "spell": "sp.魔法飞弹",
+                                   "slot_level": 2}}]})
+    check("魔法飞弹 2 环（5 枚）", res2.total, Fraction(35, 2), tol=1e-9)
+
+    # 多射线：每道 2d6，法术攻击 +7 对 AC 15
+    single = Fraction(13, 20) * 7 + Fraction(1, 20) * 7
+    res3 = calc.evaluate(build, {"target": {"ac": 15}}, {
+        "rounds": [{"round": 1, "attacks": 1,
+                    "per_attack": {"kind": "spell_attack", "spell": "sp.灼热射线",
+                                   "slot_level": 2}}]})
+    check("灼热射线 3 道", res3.total, single * 3, tol=1e-9)
+    res4 = calc.evaluate(build, {"target": {"ac": 15}}, {
+        "rounds": [{"round": 1, "attacks": 1,
+                    "per_attack": {"kind": "spell_attack", "spell": "sp.灼热射线",
+                                   "slot_level": 4}}]})
+    check("灼热射线 4 环（5 道）", res4.total, single * 5, tol=1e-9)
+
+    # 威力豁免：DC −5 换取豁免失败时额外伤害
+    normal, _ = calc.save_effect_from_op(resolved, ops["sp.火球术"], target, 3)
+    power, _ = calc.save_effect_from_op(resolved, ops["sp.火球术"], target, 3,
+                                        dc_modifier=-5, on_fail_extra={"expr": "max_die(base_damage)", "cap": 30})
+    # 火球术：基础骰多、半伤，降 DC 的损失大于 +6 的收益 → 反而更差
+    if power < normal:
+        print(f"  OK   威力豁免对火球术是负收益：{float(normal):.2f} → {float(power):.2f}")
+    else:
+        FAILS.append("威力豁免对火球术的预期收益不符")
+        print("  FAIL 威力豁免对火球术")
+
+    # 圣火术：骰数少、无半伤，额外伤害更值 → 正收益
+    normal2, _ = calc.save_effect_from_op(resolved, ops["sp.圣火术"], target)
+    power2, _ = calc.save_effect_from_op(resolved, ops["sp.圣火术"], target,
+                                         dc_modifier=-5, on_fail_extra={"expr": "max_die(base_damage)", "cap": 30})
+    if power2 > normal2:
+        print(f"  OK   威力豁免对圣火术是正收益：{float(normal2):.2f} → {float(power2):.2f}")
+    else:
+        FAILS.append("威力豁免对圣火术应为正收益")
+        print("  FAIL 威力豁免对圣火术")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -541,6 +603,7 @@ def main():
     test_spells()
     test_composite_and_contingency()
     test_charge_cycle()
+    test_expanded_ops()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

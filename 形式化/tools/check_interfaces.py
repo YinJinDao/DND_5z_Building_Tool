@@ -97,6 +97,19 @@ def check_ops():
                 err(f"[A7] {fname}: attack_count_mode 目前只支持 max")
 
         if op.get("kind") == "spell":
+            # A8：多实例法术的字段形态
+            atk = op.get("attack") or {}
+            if "count_by_slot" in atk:
+                bad_keys = [k for k in atk["count_by_slot"] if not str(k).isdigit()]
+                if bad_keys:
+                    err(f"[A8] {fname}: count_by_slot 的键必须是环阶数字，发现 {bad_keys}")
+            if atk.get("auto_hit") and atk.get("crucial") is None:
+                pass   # auto_hit 无额外要求，但不得与需要攻击检定的字段混用
+            # A9：upcast 必须说明加什么，否则升环无效果
+            up = op.get("upcast") or {}
+            if up and not any(k in up for k in ("add_dice", "add_count_per_slot")):
+                err(f"[A9] {fname}: upcast 缺 add_dice 或 add_count_per_slot，升环不会产生任何效果")
+
             # A4：scaling / upcast 必须写在顶层。写在 attack 内部会让等级成长静默失效。
             if "scaling" in (op.get("attack") or {}):
                 err(f"[A4] {fname}: scaling 写在了 attack 内，必须移到顶层")

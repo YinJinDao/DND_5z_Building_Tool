@@ -1,0 +1,40 @@
+{
+  "name": "神性之怒",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": "神罚者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {
+    "requires_rage": true
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "class.神性之怒",
+        "dice": "1d6",
+        "flat_expr": "level//2",
+        "damage_type": "radiant",
+        "crit_doubles": true,
+        "limit": "每回合一次",
+        "note": "狂暴中每回合首次武器命中，额外造成 1d6+等级一半 的神罚伤害"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/狂战士/神罚者.htm",
+    "anchor": "神性之怒"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "id": "cf.神罚者.神性之怒"
+}

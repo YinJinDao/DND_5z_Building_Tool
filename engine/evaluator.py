@@ -68,9 +68,13 @@ class Attack:
         return t_hit, max(t_hit, t_crit)
 
     def probs(self, ac):
-        """返回 (P_hit, P_crit)。"""
+        """返回 (P_hit, P_crit)。
+
+        自动命中的攻击**没有攻击检定**，因此不会重击（魔法飞弹即为此类）。
+        早期实现把它当成"必定重击"，会让自动命中类法术的期望值虚高。
+        """
         if self.auto_hit:
-            return Fraction(1), Fraction(1)
+            return Fraction(1), Fraction(0)
         t_hit, t_both = self.thresholds(ac)
         p_hit = _clamp01(Fraction(21 - t_hit, 20))
         p_both = _clamp01(Fraction(21 - t_both, 20))

@@ -32,7 +32,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from character import Bonus, Build, Contribution, derive
 from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
-                    expected_save_damage, validate_turn)
+                    expected_save_damage, save_fail_probability, validate_turn)
 from evaluator import (Attack, DamageComponent, TargetProfile,
                        apply_target_pipeline, dice_mean, expected_damage)
 from strategy import Rule, evaluate_turn
@@ -89,6 +89,7 @@ class ResolvedBuild:
     weapon: dict
     rage_bonus: int
     trace: list = field(default_factory=list)
+    size: str = "medium"
 
 
 def resolve_build(build_doc, rage_table=None):
@@ -120,7 +121,9 @@ def resolve_build(build_doc, rage_table=None):
         "dice": combat.get("weapon", {}).get("dice", "1d4"),
         "damage_type": combat.get("weapon", {}).get("damage_type", "bludgeoning"),
         "enhancement": int(combat.get("weapon", {}).get("enhancement", 0)),
+        "kind": combat.get("weapon", {}).get("kind"),      # 巨斧/巨剑/巨锤 等，供算子判断
     }
+    size = combat.get("size", "medium")
     # 狂暴伤害加值取自职业表；是否生效由策略的 buffs 决定
     rage_bonus = int((rage_table or {}).get(str(level), 0))
 
@@ -131,7 +134,7 @@ def resolve_build(build_doc, rage_table=None):
         trace.append(f"法术攻击加值：{d.spell_attack.explain()}｜"
                      f"法术豁免 DC {d.spell_dc}")
     return ResolvedBuild(raw=build_doc, build=b, derived=d, weapon=weapon,
-                         rage_bonus=rage_bonus, trace=trace)
+                         rage_bonus=rage_bonus, trace=trace, size=size)
 
 
 # ---------------------------------------------------------------- 算子应用
@@ -156,11 +159,39 @@ def _eval_expr(expr, resolved):
     raise ValueError(f"不支持的算子表达式: {expr!r}（可在 calculator._eval_expr 扩展）")
 
 
-def build_base_attack(resolved, adv_tiers=0, rage_active=False):
+def weapon_dice_for(resolved, ops, buffs):
+    """武器伤害骰。算子可覆盖（如「巨大武器师」按体型把巨斧提升到 2d8/2d10/2d12）。"""
+    dice = resolved.weapon["dice"]
+    for bid in buffs:
+        op = ops.get(bid)
+        if not op:
+            continue
+        over = (op.get("projection") or {}).get("weapon_dice_override")
+        if not over:
+            continue
+        kinds = over.get("applies_to")
+        if kinds and resolved.weapon.get("kind") not in kinds:
+            continue
+        if resolved.size in over:
+            dice = over[resolved.size]
+    return dice
+
+
+def eval_level_expr(expr, level):
+    """极小的等级表达式求值。目前支持 `level//N` 与 `level`。"""
+    e = str(expr).replace(" ", "")
+    if e == "level":
+        return level
+    if e.startswith("level//"):
+        return level // int(e.split("//")[1])
+    raise ValueError(f"不支持的等级表达式: {expr!r}")
+
+
+def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None):
     """武器基础攻击：武器骰 + 属性调整值 + 武器增强 + 狂暴加值。"""
     d = resolved.derived
     flat = d.mods["str"] + resolved.weapon["enhancement"]
-    components = [DamageComponent(resolved.weapon["dice"], flat=flat,
+    components = [DamageComponent(weapon_dice or resolved.weapon["dice"], flat=flat,
                                   dtype=resolved.weapon["damage_type"],
                                   slot="weapon+str+enhancement")]
     if rage_active and resolved.rage_bonus:
@@ -206,7 +237,10 @@ def apply_op(op, attack, resolved, attack_index=0):
         dtype = extra.get("type") or resolved.weapon["damage_type"]
         if dtype == "same_as_weapon":
             dtype = resolved.weapon["damage_type"]
-        comp = DamageComponent(dice, flat=int(extra.get("flat", 0)), dtype=dtype,
+        flat = int(extra.get("flat", 0))
+        if extra.get("flat_expr"):          # 如「狂战士等级的一半」
+            flat = eval_level_expr(extra["flat_expr"], resolved.derived.level)
+        comp = DamageComponent(dice, flat=flat, dtype=dtype,
                                slot=op["id"],
                                crit_doubles=bool(extra.get("crit_doubles", True)))
         if extra.get("limit") == "每回合一次":
@@ -258,11 +292,31 @@ def spell_dice(op, char_level, slot_level=None):
         if char_level >= step["level"]:
             base = step["dice"]
 
+    # 升环有两种形态：加骰（火球术）与加实例（灼热射线加射线、魔法飞弹加枚数）。
+    # 后者不改骰式，因此这里必须判断 add_dice 是否存在。
     upcast = op.get("upcast")
-    if upcast and slot_level and slot_level > upcast["per_slot_above"]:
+    if (upcast and slot_level and "add_dice" in upcast
+            and slot_level > upcast["per_slot_above"]):
         base = _add_dice(base, upcast["add_dice"],
                          slot_level - upcast["per_slot_above"])
     return base
+
+
+def spell_attack_instances(op, slot_level=None):
+    """攻击实例数，含升环增加的射线（灼热射线每高一环 +1 道）。
+
+    魔法飞弹的枚数按法术位查表（2 环 5 枚、3 环 7 枚……），不是线性增长，
+    因此额外支持 count_by_slot。
+    """
+    attack = op.get("attack") or {}
+    count = int(attack.get("count", 1))
+    by_slot = attack.get("count_by_slot")
+    if slot_level and by_slot:
+        return int(by_slot.get(str(slot_level), count))
+    up = op.get("upcast") or {}
+    if slot_level and up.get("add_count_per_slot"):
+        count += (slot_level - up["per_slot_above"]) * up["add_count_per_slot"]
+    return count
 
 
 def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None):
@@ -275,11 +329,22 @@ def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None):
                            dtype=spec["damage"]["damage_type"],
                            slot=op["id"])
     return Attack(attack_bonus=resolved.derived.spell_attack.total,
-                  adv_tiers=adv_tiers, components=[comp])
+                  adv_tiers=adv_tiers, components=[comp],
+                  auto_hit=bool(spec.get("auto_hit", False)))
 
 
-def save_effect_from_op(resolved, op, target, slot_level=None):
-    """豁免型法术的期望伤害。DC 取自角色，豁免加值取自目标。"""
+def spell_attack_count(op):
+    """法术产生的攻击实例数（灼热射线为 3 道、升环再加）。"""
+    return int((op.get("attack") or {}).get("count", 1))
+
+
+def save_effect_from_op(resolved, op, target, slot_level=None,
+                        dc_modifier=0, on_fail_extra=None):
+    """豁免型法术的期望伤害。DC 取自角色，豁免加值取自目标。
+
+    dc_modifier / on_fail_extra 供「威力豁免」这类修正专长使用：
+    承受 -5 DC，换取豁免失败时额外伤害。
+    """
     if resolved.derived.spell_dc is None:
         raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
     spec = op.get("save") or {}
@@ -288,11 +353,32 @@ def save_effect_from_op(resolved, op, target, slot_level=None):
     amount = dice_mean(dice)
     half = bool(op.get("damage", {}).get("half_on_save", False))
     save_bonus = int(getattr(target, "saves", {}).get(ability, 0))
-    exp = expected_save_damage(resolved.derived.spell_dc, save_bonus, amount,
-                               half_on_save=half)
+    dc = resolved.derived.spell_dc + int(dc_modifier)
+
+    exp = expected_save_damage(dc, save_bonus, amount, half_on_save=half)
+
+    if on_fail_extra:
+        p_fail = save_fail_probability(dc, save_bonus)
+        extra = _eval_expr(on_fail_extra["expr"],
+                           _MaxDieProxy(dice))
+        cap = on_fail_extra.get("cap")
+        for step in on_fail_extra.get("cap_scaling", []):
+            if resolved.derived.level >= step["level"]:
+                cap = step["cap"]
+        if cap is not None:
+            extra = min(extra, int(cap))
+        exp += p_fail * extra
+
     dtype = op["damage"]["damage_type"]
     dmg, _ = apply_target_pipeline(exp, dtype, target)
     return dmg, dice
+
+
+class _MaxDieProxy:
+    """让 _eval_expr 能取到"该法术基础伤害骰的最大值"。"""
+
+    def __init__(self, dice_expr):
+        self.weapon = {"dice": dice_expr}
 
 
 @dataclass
@@ -579,26 +665,65 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             for msg in validate_turn(steps, state):
                 warnings.append(f"第 {rnum} 轮动作经济：{msg}")
 
+        # 附赠动作攻击：来自增益算子（如「狂怒」），不占攻击动作的次数上限
+        bonus_attacks = 0
+        for bid in buffs:
+            bop = ops.get(bid)
+            if bop:
+                bonus_attacks += int((bop.get("projection") or {})
+                                     .get("bonus_action_attack", 0))
+        if bonus_attacks and attacks_n:
+            trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
+
+        wdice = weapon_dice_for(resolved, ops, buffs)
+        if wdice != resolved.weapon["dice"]:
+            trace.append(f"第 {rnum} 轮武器伤害骰被替换："
+                         f"{resolved.weapon['dice']} → {wdice}")
+
         attacks, all_rules_built = [], []
-        for i in range(attacks_n):
-            if kind == "spell_attack":
-                if spell_id not in ops:
-                    raise KeyError(f"未知法术算子: {spell_id}")
-                a = build_spell_attack(resolved, ops[spell_id], adv_tiers=adv,
+        if kind == "spell_attack" and attacks_n:
+            if spell_id not in ops:
+                raise KeyError(f"未知法术算子: {spell_id}")
+            sop = ops[spell_id]
+            instances = spell_attack_instances(sop, slot_level)
+            if instances > 1:
+                trace.append(f"第 {rnum} 轮 {sop['name']} 产生 {instances} 次攻击")
+            for i in range(instances):
+                a = build_spell_attack(resolved, sop, adv_tiers=adv,
                                        slot_level=slot_level)
-            else:
+                for oid in op_ids:
+                    if oid not in ops:
+                        raise KeyError(f"未知算子: {oid}")
+                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
+                    all_rules_built.extend(rs)
+                attacks.append(a)
+        else:
+            for i in range(attacks_n + bonus_attacks):
                 a = build_base_attack(resolved, adv_tiers=adv,
-                                      rage_active=rage_active)
-            for oid in op_ids:
-                if oid not in ops:
-                    raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
-                a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
-                all_rules_built.extend(rs)
-            attacks.append(a)
+                                      rage_active=rage_active, weapon_dice=wdice)
+                for oid in op_ids:
+                    if oid not in ops:
+                        raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
+                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
+                    all_rules_built.extend(rs)
+                attacks.append(a)
         all_rules.extend(all_rules_built)
 
         dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
                        else (Fraction(0), 0))
+
+        # 作用于本轮所有豁免效果的修正专长（如「威力豁免」）
+        dc_modifier = 0
+        on_fail_extra = None
+        for soid in rnd.get("save_ops", []):
+            sop = ops.get(soid)
+            if not sop:
+                raise KeyError(f"未知豁免修正算子: {soid}")
+            proj = sop.get("projection") or {}
+            dc_modifier += int(proj.get("save_dc_modifier", 0))
+            if proj.get("on_fail_extra"):
+                on_fail_extra = proj["on_fail_extra"]
+            trace.append(f"第 {rnum} 轮 {sop['name']}：豁免 DC {dc_modifier:+d}")
 
         # 豁免型效果：可按法术算子 id 引用，也可内联写明
         for eff in rnd.get("save_effects", []):
@@ -613,7 +738,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                         f"超出施法距离 {srng} 尺，未计入")
                     continue
                 sd, dice = save_effect_from_op(resolved, ops[sid], target,
-                                               eff.get("slot_level"))
+                                               eff.get("slot_level"),
+                                               dc_modifier=dc_modifier,
+                                               on_fail_extra=on_fail_extra)
                 trace.append(f"第 {rnum} 轮 {ops[sid]['name']}（{dice}，豁免）"
                              f" → {float(sd):.3f}")
             else:
