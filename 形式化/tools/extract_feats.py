@@ -129,8 +129,10 @@ def main():
                     "is_variant": is_variant,
                     "prerequisite": prereq,
                     "prerequisite_list": [p.strip() for p in re.split(r"[，、,]", prereq)] if prereq else [],
-                    "flavor": body[0] if body else None,
-                    "effect": "\n".join(body[1:]) if len(body) > 1 else "",
+                    # 专长多数没有风味段，首段往往就是规则正文（如「威力攻击」）。
+                    # 因此 effect 取完整正文，flavor 只是启发式提示，不可据此裁剪。
+                    "flavor_hint": body[0] if body else None,
+                    "effect": "\n".join(body),
                     "body": "\n".join(body),
                     "source": {
                         "book": "5z",

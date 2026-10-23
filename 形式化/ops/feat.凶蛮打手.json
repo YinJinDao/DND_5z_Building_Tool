@@ -1,0 +1,40 @@
+{
+  "id": "feat.凶蛮打手",
+  "name": "凶蛮打手",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {
+    "attack_kind": "melee_weapon"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "1d6",
+        "dice_scaling": [
+          { "level": 7, "dice": "2d6" },
+          { "level": 14, "dice": "3d6" }
+        ],
+        "crit_doubles": true,
+        "limit": "每回合一次",
+        "applies_on": "on_hit"
+      }
+    ],
+    "ability_bonus": { "str_or_con": 1, "cap": 24 }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "凶蛮打手"
+  },
+  "status": "modeled",
+  "ruling": null
+}

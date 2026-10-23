@@ -156,8 +156,9 @@ def walk_class(job_dir, class_name, subclass_dir):
                 "level": parse_level(full),
                 "is_variant": name.startswith("玩家可选变体"),
                 "body": full,
-                "flavor": body[0] if body else None,
-                "effect": "\n".join(body[1:]) if len(body) > 1 else "",
+                # 职业特性同样以规则正文为主，首段未必是风味。effect 取完整正文。
+                "flavor_hint": body[0] if body else None,
+                "effect": full,
                 "source": {
                     "book": "5z",
                     "version": RULES_VERSION,
