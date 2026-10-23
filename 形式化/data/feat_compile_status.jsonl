@@ -23,7 +23,7 @@
 {"id": "feat.心理控制大师", "name": "心理控制大师", "status": "needs_ruling", "reason": "条件分支；随优势层数变化", "source": "compiler"}
 {"id": "feat.生理控制大师", "name": "生理控制大师", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.群战专家", "name": "群战专家", "status": "needs_ruling", "reason": "多选一；条件分支；随优势层数变化", "source": "compiler"}
-{"id": "feat.进阶灵活移动", "name": "进阶灵活移动", "status": "needs_ruling", "reason": "条件分支；需前置动作/位移", "source": "compiler"}
+{"id": "feat.进阶灵活移动", "name": "进阶灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.完美生物", "name": "完美生物", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "feat.创生圣言", "name": "创生圣言", "status": "needs_ruling", "reason": "多选一；条件分支；限次使用；随优势层数变化；伤害查表", "source": "compiler"}
 {"id": "feat.毁灭真言", "name": "毁灭真言", "status": "needs_ruling", "reason": "条件分支；限次使用；随优势层数变化；伤害查表", "source": "compiler"}
@@ -48,7 +48,7 @@
 {"id": "feat.巨武器大师", "name": "巨武器大师", "status": "needs_ruling", "reason": "条件分支；随优势层数变化；对特定装备的目标才生效", "source": "compiler"}
 {"id": "feat.巨大武器师", "name": "巨大武器师", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.长柄武器大师", "name": "长柄武器大师", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "feat.长度优势", "name": "长度优势", "status": "needs_ruling", "reason": "条件分支；随优势层数变化", "source": "compiler"}
+{"id": "feat.长度优势", "name": "长度优势", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.森林射手", "name": "森林射手", "status": "needs_ruling", "reason": "条件分支；随优势层数变化", "source": "compiler"}
 {"id": "feat.泰坦弓手", "name": "泰坦弓手", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.灵箭", "name": "灵箭", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
@@ -98,7 +98,7 @@
 {"id": "feat.魔能爆大师", "name": "魔能爆大师", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "feat.爆发式攻击", "name": "爆发式攻击", "status": "needs_ruling", "reason": "多选一；条件分支；限次使用", "source": "compiler"}
 {"id": "feat.斗气护体", "name": "斗气护体", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
-{"id": "feat.斗气外放", "name": "斗气外放", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
+{"id": "feat.斗气外放", "name": "斗气外放", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.斗气化翼", "name": "斗气化翼", "status": "needs_ruling", "reason": "结构未匹配到已知模式", "source": "compiler"}
 {"id": "feat.斗气灵压", "name": "斗气灵压", "status": "needs_ruling", "reason": "条件分支", "source": "compiler"}
 {"id": "feat.军团式作战", "name": "军团式作战", "status": "needs_ruling", "reason": "条件分支；限次使用；对特定装备的目标才生效", "source": "compiler"}

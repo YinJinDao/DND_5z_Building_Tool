@@ -1,0 +1,26 @@
+{
+  "id": "feat.运动员",
+  "name": "运动员",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 10,
+    "note": "移动速度 +10 尺；若有运动专精改为 +15 尺——专精不在构筑输入里，取基础值 10，专精构筑会少算 5 尺"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/技能熟练专长.htm",
+    "anchor": "运动员"
+  },
+  "status": "approximated",
+  "ruling": null
+}

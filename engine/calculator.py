@@ -285,7 +285,7 @@ CONDITION_KEYS = {
     "target_hp",        # below_max | below_half | zero_or_below
     "target_state",     # prone | restrained | frightened | unaware
     "target_size",      # smaller_than_you | at_most_your_size
-    "weapon_property",  # two_handed | light | reach | thrown | ammunition
+    "weapon_property",  # 双手 | 两用 | 轻型 | 触及 | 投掷 | 弹药（取值是列表）
     "once_per_turn",    # 本回合是否尚未用过同类效果
 }
 CONDITION_VALUES = {
@@ -294,7 +294,8 @@ CONDITION_VALUES = {
     "target_hp": {"below_max", "below_half", "zero_or_below"},
     "target_state": {"prone", "restrained", "frightened", "unaware"},
     "target_size": {"smaller_than_you", "at_most_your_size"},
-    "weapon_property": {"two_handed", "light", "reach", "thrown", "ammunition"},
+    # 取值用中文：数据层与武器条目都是中文，混用两套词汇迟早对不上
+    "weapon_property": {"双手", "两用", "轻型", "触及", "投掷", "弹药"},
 }
 
 
@@ -308,7 +309,12 @@ def eval_condition(when, ctx):
         allowed = CONDITION_VALUES.get(key)
         if allowed and want not in allowed:
             raise ValueError(f"条件 {key} 的取值 {want!r} 不在 {sorted(allowed)} 中")
-        if ctx.get(key) != want:
+        got = ctx.get(key)
+        # 集合型条件（武器属性）判包含：武器可能同时是「两用」和「轻型」
+        if isinstance(got, (list, tuple, set)):
+            if want not in got:
+                return False
+        elif got != want:
             return False
     return True
 
@@ -356,6 +362,89 @@ def build_condition_context(resolved, gate_ctx, extras=None):
     if extras:
         ctx.update(extras)
     return ctx
+
+
+# ---------------------------------------------------------------- 触及与速度
+
+def scaled_value(spec, op, build_doc):
+    """数值字段支持按**本职业等级**分段：`{"value": 10, "scale": {"6": 15}}`。
+
+    一个特性只能有一个算子（检查 A10），所以等级成长不能靠多写几个算子，
+    只能把分段表放在字段里。
+    """
+    if not isinstance(spec, dict):
+        return int(spec)
+    out = int(spec.get("value", 0))
+    scale = spec.get("scale") or {}
+    if not scale:
+        return out
+    acq = op.get("acquisition") or {}
+    cid = acq.get("class_id")
+    level = None
+    for c in build_doc.get("classes", []):
+        if c.get("id") == cid:
+            level = int(c.get("level", 0))
+    if level is None:
+        return out
+    for k, v in scale.items():
+        if level >= int(k):
+            out = int(v)
+    return out
+
+
+def collect_movement(active_ops, weapon, build_doc=None, armored=False):
+    """把一批生效算子的触及/速度修正加起来。
+
+    返回 `{"reach", "speed", "reach_notes", "speed_notes", "skipped"}`。
+    `skipped` 是被武器门控挡下的条目——**必须报出来**，否则用户会以为
+    「长度优势」给了 5 尺，其实他拿的是巨剑。
+
+    武器门控（`weapon_selector`）必须在这里生效：「长度优势」只在长棍或
+    触及武器上给 +5，拿巨剑时给它就会凭空多出 5 尺触及。
+    """
+    out = {"reach": 0, "speed": 0, "reach_notes": [], "speed_notes": [],
+           "skipped": []}
+    for op in active_ops:
+        if (op.get("cost") or {}).get("passive_choice"):
+            continue
+        proj = op.get("projection") or {}
+        sel = proj.get("weapon_selector")
+        if sel and not weapon_matches(weapon, sel):
+            if proj.get("reach_bonus_ft") or proj.get("speed_bonus_ft"):
+                out["skipped"].append(
+                    f"「{op['name']}」的触及/速度加成要求特定武器，"
+                    f"当前武器是 {weapon.get('kind')}")
+            continue
+        if proj.get("requires_unarmored") and armored:
+            out["skipped"].append(f"「{op['name']}」要求未着装盔甲与盾牌")
+            continue
+        rb = scaled_value(proj.get("reach_bonus_ft", 0), op, build_doc or {})
+        if rb:
+            out["reach"] += rb
+            out["reach_notes"].append(f"{op['name']} +{rb}")
+        sb = scaled_value(proj.get("speed_bonus_ft", 0), op, build_doc or {})
+        if sb:
+            out["speed"] += sb
+            out["speed_notes"].append(f"{op['name']} +{sb}")
+    return out
+
+
+def weapon_matches(weapon, selector):
+    """武器是否落在算子限定的范围内。
+
+    `selector` 形如 `{"kinds": ["长棍"], "properties": ["触及"]}`，
+    **满足其一即可**——规则写成「长棍或触及武器」时，两个列表并列就是或。
+    只给一个列表时行为相同。空选择器视为不限。
+    """
+    kinds = selector.get("kinds") or []
+    props = selector.get("properties") or []
+    if not kinds and not props:
+        return True
+    if kinds and weapon.get("kind") in kinds:
+        return True
+    if props and set(weapon.get("properties") or []) & set(props):
+        return True
+    return False
 
 
 # ---------------------------------------------------------------- 借机攻击
@@ -1114,18 +1203,37 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     combat = build_doc.get("combat", {})
     weapon_reach = int(combat.get("weapon", {}).get("reach_ft", 5))
     weapon_range = combat.get("weapon", {}).get("range_ft")
+
+    # 触及/速度：构筑里的专长与职业特性可以改这两项（方案 §4.2 的 F12 判据）。
+    # 两者都不直接产生伤害，但决定**这一轮够不够得着**——够不着就没有攻击，
+    # 速度富余则能退得更远、下一轮再冲回来。
+    weapon_doc = combat.get("weapon", {})
+    # 「无甲防御」类取值（barbarian_unarmored / monk_unarmored）不是着甲，
+    # 早先按"只要不是 none 就算着甲"处理，会让武僧/狂战士的无甲移动永远不生效
+    armor_doc = str(combat.get("armor") or "none").lower()
+    armored = not (armor_doc in ("", "none", "unarmored") or "unarmored" in armor_doc) \
+        or bool(combat.get("shield"))
+    granted_ops = granted_feat_ops(build_doc, ops) + granted_class_ops(build_doc, ops)
+    reach_move = collect_movement(granted_ops, weapon_doc, build_doc, armored)
+    weapon_reach += reach_move["reach"]
+    reach_notes = reach_move["reach_notes"]
     range_profile = RangeProfile(reach_ft=weapon_reach, range_ft=weapon_range)
 
     # 骑乘时移动力来自坐骑（方案 §2.3）。坐骑速度取自其资料表：
     # 矮马 50 尺、挽马 60 尺、乘用马 75 尺。
     mount = combat.get("mount") or {}
-    speed_ft = int(mount.get("speed_ft") or combat.get("speed_ft", 30))
+    speed_base = int(mount.get("speed_ft") or combat.get("speed_ft", 30))
+    speed_bonus = reach_move["speed"]
+    speed_notes = reach_move["speed_notes"]
+    speed_ft = speed_base + speed_bonus
     state = CombatState(distance_ft=int(env_doc.get("initial_distance_ft", 30)),
                         speed_ft=speed_ft)
     if mount:
         trace_speed = f"{speed_ft} 尺（坐骑：{mount.get('name', '未命名')}）"
     else:
         trace_speed = f"{speed_ft} 尺"
+    if speed_notes:
+        trace_speed += f"（含 {'、'.join(speed_notes)}）"
     derived_attacks, attack_src = derive_attack_count(build_doc, ops)
 
     feat_pools = derive_feat_resources(build_doc, ops, derived_attacks)
@@ -1134,7 +1242,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     trace = build_trace + list(resolved.trace) + [
         f"目标 AC {target.ac}",
         f"初始距离 {state.distance_ft} 尺｜速度 {trace_speed}"
-        f"｜触及 {weapon_reach} 尺" + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
+        f"｜触及 {weapon_reach} 尺"
+        + (f"（含 {'、'.join(reach_notes)}）" if reach_notes else "")
+        + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
     ]
     trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
 
@@ -1192,11 +1302,22 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 trace.append(f"第 {rnum} 轮 结束专注：{concentration_active}")
             concentration_active, sustained_op = None, None
 
-        # 每轮重置移动力与槽位
+        # 每轮重置移动力与槽位。速度**逐轮重算**——狂暴、点燃这类增益只在
+        # 生效期间给移速，写在构筑层会让没开 buff 的回合也快跑。
+        move_ops = granted_ops + [ops[b] for b in buffs if b in ops]
+        round_move = collect_movement(move_ops, weapon_doc, build_doc, armored)
+        round_speed = speed_base + round_move["speed"]
+        round_speed_notes = round_move["speed_notes"]
+        for note in round_move["skipped"]:
+            if note not in warnings:
+                warnings.append(note)
         if per_round:
-            state.next_round()
+            state.next_round(round_speed)
         else:
-            state.start_turn()
+            state.start_turn(round_speed)
+        if round_speed_notes:
+            trace.append(f"第 {rnum} 轮速度 {round_speed} 尺"
+                         f"（含 {'、'.join(round_speed_notes)}）")
 
         mv = rnd.get("move")
         if mv:
@@ -1311,7 +1432,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         if bonus_attacks and attacks_n:
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
-        gate_ctx = {"rage_active": rage_active, "mounted": bool(mount)}
+        gate_ctx = {"rage_active": rage_active, "mounted": bool(mount),
+                    "weapon_property": list(weapon_doc.get("properties") or [])}
         # 条件上下文：构筑/回合状态 → 扁平键值，供 conditions 求值
         cond_ctx = build_condition_context(
             resolved, gate_ctx,

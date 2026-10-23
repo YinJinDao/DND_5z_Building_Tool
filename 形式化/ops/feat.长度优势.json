@@ -1,0 +1,37 @@
+{
+  "id": "feat.长度优势",
+  "name": "长度优势",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "长柄武器大师",
+      "一种触及武器或长棍的熟练项"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reach_bonus_ft": 5,
+    "weapon_selector": {
+      "kinds": [
+        "长棍"
+      ],
+      "properties": [
+        "触及"
+      ]
+    },
+    "note": "持握长棍或触及武器时触及 +5 尺；「不处于其触及范围内则攻击具有优势」是逐次判定的情境条件，未计入"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/常规武器专长.htm",
+    "anchor": "长度优势"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "feat.斗气外放",
+  "name": "斗气外放",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "额外攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reach_bonus_ft": 10,
+    "note": "回合内触及 +10 尺；获得「非凡额外攻击」后升为 +15（本条按 +10 编译）。回合外触及只影响借机威胁范围，而借机触发由环境声明，不再按距离判定"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/职业专长/战系专长.htm",
+    "anchor": "斗气外放"
+  },
+  "status": "approximated",
+  "ruling": null
+}

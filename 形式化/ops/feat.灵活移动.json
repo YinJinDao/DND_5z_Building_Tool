@@ -1,0 +1,26 @@
+{
+  "id": "feat.灵活移动",
+  "name": "灵活移动",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 15,
+    "note": "移动速度 +15 尺；困难地形不额外耗移动力（环境已声明地形，暂未分账）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化防御的专长.htm",
+    "anchor": "灵活移动"
+  },
+  "status": "approximated",
+  "ruling": null
+}

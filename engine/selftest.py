@@ -1051,6 +1051,99 @@ def test_opportunity_attacks():
         print("  FAIL 罗比拉战术的代价未告警")
 
 
+def test_reach_and_speed():
+    print("\n[26] 触及与速度")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+    def build(feats=None, weapon=None, props=None):
+        doc = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                              encoding="utf-8"))
+        # 范例构筑是骑乘的（坐骑 60 尺），会把速度差抹平——这里改为步行
+        doc["combat"].pop("mount", None)
+        doc["combat"]["armor"] = "none"
+        doc["feats"] = [{"id": f, "at_level": 1} for f in (feats or [])]
+        if weapon:
+            doc["combat"]["weapon"] = dict(weapon)
+        if props is not None:
+            doc["combat"]["weapon"]["properties"] = props
+        return doc
+
+    def run(doc, move_ft, trig=None):
+        strat = {"rounds": [{"round": 1, "buffs": ["rage"],
+                             "move": {"toward": True, "ft": move_ft},
+                             "attacks": 1, "per_attack": {"ops": []}}]}
+        env = {"target": {"ac": 15}}
+        if trig is not None:
+            env["enemy_triggers"] = trig
+        return calc.evaluate(doc, env, strat)
+
+    # 距 30 尺，只前进 20 尺 → 距目标 10 尺：触及 5 尺够不着，触及 15 尺够得着
+    near = run(build(), 20)
+    check("触及 5 尺时 10 尺外打不到", near.total, 0, tol=1e-9)
+    outer = run(build(["feat.斗气外放"]), 20)
+    if outer.total > 0:
+        print(f"  OK   斗气外放（触及 +10）接上了 10 尺外的目标：{float(outer.total):.3f}")
+    else:
+        FAILS.append("斗气外放未延长触及")
+        print("  FAIL 斗气外放未延长触及")
+
+    # 武器门控：长度优势在巨剑上没有，在长棍上有
+    pole = {"name": "长棍", "kind": "长棍", "dice": "1d8",
+            "damage_type": "bludgeoning", "enhancement": 0, "ability": "str"}
+    sword = dict(pole, name="巨剑", kind="巨剑")
+    with_sword = run(build(["feat.长度优势"], sword), 20)
+    with_pole = run(build(["feat.长度优势"], pole), 20)
+    check("长度优势在巨剑上不生效", with_sword.total, 0, tol=1e-9)
+    if with_pole.total > 0:
+        print(f"  OK   长度优势在长棍上生效：{float(with_pole.total):.3f}")
+    else:
+        FAILS.append("长度优势未延长长棍触及")
+        print("  FAIL 长度优势未延长长棍触及")
+    if any("长度优势" in w for w in with_sword.warnings):
+        print("  OK   武器不符时给出告警")
+    else:
+        FAILS.append("武器门控未告警")
+        print("  FAIL 武器门控未告警")
+
+    # 速度直接决定「这轮够不够得着」：目标在 40 尺外，
+    # 速度 30 只能前进 30（剩 10 尺，打不到），速度 45 能走满 40（贴身）
+    def run_at(doc, dist, move_ft):
+        strat = {"rounds": [{"round": 1, "attacks": 1, "per_attack": {"ops": []}}]}
+        env = {"target": {"ac": 15}, "initial_distance_ft": dist}
+        strat["rounds"][0]["move"] = {"toward": True, "ft": move_ft}
+        return calc.evaluate(doc, env, strat)
+
+    check("速度 30 追不上 40 尺外的目标", run_at(build(), 40, 40).total, 0, tol=1e-9)
+    fast = run_at(build(["feat.灵活移动"]), 40, 40)
+    if fast.total > 0:
+        print(f"  OK   灵活移动（45 尺）追上 40 尺外的目标：{float(fast.total):.3f}")
+    else:
+        FAILS.append("速度加成未影响可达性")
+        print("  FAIL 速度加成未影响可达性")
+
+    # 职业特性按**本职业等级**分段（一个特性只有一个算子，分段表放在字段里）
+    doc = build()
+    doc["classes"] = [{"id": "class.monk", "level": 2, "subclass": None},
+                      {"id": "class.barbarian", "level": 5, "subclass": None}]
+    strat = {"rounds": [{"round": 1, "attacks": 1, "per_attack": {"ops": []}}]}
+    monk2 = calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+    doc["classes"][0]["level"] = 10
+    monk10 = calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+    if any("速度 40 尺" in t for t in monk2.trace):
+        print("  OK   武僧 2 级：30 + 无甲移动 10 = 40 尺")
+    else:
+        FAILS.append("武僧 2 级无甲移动未生效")
+        print("  FAIL 武僧 2 级无甲移动未生效")
+    if any("速度 50 尺" in t for t in monk10.trace):
+        print("  OK   武僧 10 级：无甲移动升到 +20 → 50 尺")
+    else:
+        FAILS.append("无甲移动未按等级分段")
+        print("  FAIL 无甲移动未按等级分段")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1080,6 +1173,7 @@ def main():
     test_meta_rules()
     test_passive_feats()
     test_opportunity_attacks()
+    test_reach_and_speed()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
