@@ -186,7 +186,11 @@ def weapon_dice_for(resolved, passive_ops):
         if over:
             kinds = over.get("applies_to")
             if not kinds or resolved.weapon.get("kind") in kinds:
-                if resolved.size in over:
+                # `all` 表示与体型无关的固定覆盖（缠蛇掠血把长鞭改为 1d8）；
+                # 否则按体型取键（巨大武器师）。
+                if "all" in over:
+                    dice = over["all"]
+                elif resolved.size in over:
                     dice = over[resolved.size]
         # 「伤害骰变为 1d6，若原本已是 1d6 或更高则升一阶」（斗殴高手）
         minimum = proj.get("weapon_dice_min")
@@ -444,6 +448,8 @@ def apply_op(op, attack, resolved, attack_index=0):
         if dtype == "same_as_weapon":
             dtype = resolved.weapon["damage_type"]
         flat = int(extra.get("flat", 0))
+        if extra.get("flat_by_size"):        # 按自身体型给固定加值（泰坦弓手）
+            flat += int(extra["flat_by_size"].get(resolved.size, 0))
         if extra.get("flat_expr"):          # 如「狂战士等级的一半」
             flat = eval_level_expr(extra["flat_expr"], resolved.derived.level)
         dice = resolve_superiority_dice(dice, resolved.derived.level)

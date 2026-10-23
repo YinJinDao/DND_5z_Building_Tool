@@ -1,0 +1,41 @@
+{
+  "id": "feat.泰坦弓手",
+  "name": "泰坦弓手",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "神射手"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "size_increase": 1,
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "0",
+        "crit_doubles": false,
+        "flat_by_size": {
+          "large": 3,
+          "huge": 5,
+          "gargantuan": 7
+        },
+        "note": "使用重型远程武器命中时，按自身体型额外 +3/+5/+7 伤害"
+      }
+    ],
+    "note": "体型增大一级未接入尺寸计算；仅按当前体型取加值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/常规武器专长.htm",
+    "anchor": "泰坦弓手"
+  },
+  "status": "approximated",
+  "ruling": null
+}
