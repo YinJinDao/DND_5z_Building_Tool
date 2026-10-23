@@ -21,8 +21,13 @@ import subprocess
 import sys
 
 RULES_VERSION = "1.63"
-STRIKER_CLASSES = ["圣武士", "奇械师", "契术师", "武僧", "法师",
-                   "游侠", "灵能武士", "狂战士", "盗贼"]
+# 全部玩家职业。早期只覆盖规则书标注「打击者」的 9 个，2026-10-23 按协作者意见
+# 扩到全部 14 个——打击者构筑可以兼职，且牧师/德鲁伊等也有纯输出的子职。
+# 召唤物相关能力一律不建模（协作者明确排除，复杂度不可控）。
+PLAYER_CLASSES = ["圣武士", "奇械师", "契术师", "武僧", "法师", "游侠",
+                  "灵能武士", "狂战士", "盗贼",                      # 标注「打击者」
+                  "牧师", "德鲁伊", "吟游诗人", "灵能师", "召唤师"]  # 其余玩家职业
+STRIKER_CLASSES = PLAYER_CLASSES[:9]
 # 非特性的一般性小节标题，不进入特性库
 SKIP_HEADINGS = {"定位", "生命值", "熟练项", "兼职", "子职", "职业法术",
                  "施法", "法术列表", "职业表", "简介", "概述",
@@ -180,7 +185,7 @@ def main():
     root = decompile(args.chm, args.cache)
     records = []
     class_root = os.path.join(root, "职业")
-    for cls in STRIKER_CLASSES:
+    for cls in PLAYER_CLASSES:
         sub_dir = os.path.join(class_root, cls)
         main_htm = os.path.join(class_root, f"{cls}.htm")
         if not os.path.isdir(sub_dir) and not os.path.isfile(main_htm):

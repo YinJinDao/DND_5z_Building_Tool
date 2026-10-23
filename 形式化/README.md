@@ -18,11 +18,12 @@
 | 表 | 条数 | 状态 |
 | --- | --- | --- |
 | `data/maneuvers.jsonl` | 258 | A 档完成 |
-| `data/class_features.jsonl` | 475 | A 档完成（仅 9 个打击者职业），464 条有等级门槛 |
+| `data/class_features.jsonl` | 607 | 全部 14 个玩家职业（召唤物除外），590 条有等级门槛 |
 | `data/class_tables.jsonl` | 180 | 等级→特性 + 资源曲线 |
 | `data/feats.jsonl` | 672 | A 档完成 |
 | `data/spells.jsonl` | 1103 | A 档完成，读规则书正文（已弃用 1.49 版 xlsx） |
-| `data/relevance.jsonl` | 2508 | 相关性粗筛 |
+| `data/relevance.jsonl` | 2640 | 相关性粗筛 |
+| `data/feat_compile_status.jsonl` | 139 | 专长 A 档编译结论（modeled 4 / needs_ruling 114 / out_of_scope 21） |
 | `data/feat_triage.jsonl` | 672 | 专长按 F1–F12 分诊：in 330 / manual 170 / unclear 128 / defensive 26 / out 18 |
 | `ops/*.json` | 272 | B 档算子：战技 16、专长 6、法术 244、复合动作 1、职业特性 5、子职特性 1 |
 | `data/maneuver_compile_status.jsonl` | 59 | 战技 A 档逐条编译结论（modeled 16 / needs_ruling 36 / out_of_scope 7） |
