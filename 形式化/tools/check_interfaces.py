@@ -272,6 +272,7 @@ ALLOWED_PROJECTION = {
     "reach_bonus_ft",                # 触及距离加值（F12 判据）
     "speed_bonus_ft",                # 移动速度加值
     "weapon_selector",               # 限定武器：{kinds, properties}，满足其一即可
+    "weapon_selector_exclude",       # 排除武器（武艺不适用于重型武器）
     "requires_unarmored",            # 未着装盔甲与盾牌时才生效
     "opportunity_trigger_source",    # 能引发借机的环境事件：approach/cast_spell/...
     "opportunity_trigger_requires_weapon",  # 该触发只在持用指定武器时成立

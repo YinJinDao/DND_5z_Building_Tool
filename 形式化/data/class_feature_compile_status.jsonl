@@ -30,7 +30,7 @@
 {"id": "cf.契术师.九州风雷", "name": "九州风雷", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.契术师.牺牲疗愈", "name": "牺牲疗愈", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.契术师.过界信仰", "name": "过界信仰", "status": "needs_ruling", "reason": "限次使用", "source": "compiler"}
-{"id": "cf.武僧.武艺", "name": "武艺", "status": "needs_ruling", "reason": "条件分支；多选一", "source": "compiler"}
+{"id": "cf.武僧.武艺", "name": "武艺", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.气", "name": "气", "status": "needs_ruling", "reason": "条件分支；多选一；限次使用", "source": "compiler"}
 {"id": "cf.武僧.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.明王怒相", "name": "明王怒相", "status": "needs_ruling", "reason": "多选一", "source": "compiler"}

@@ -175,15 +175,20 @@ def _eval_expr(expr, resolved):
     raise ValueError(f"不支持的算子表达式: {expr!r}（可在 calculator._eval_expr 扩展）")
 
 
-def weapon_dice_for(resolved, passive_ops):
+def weapon_dice_for(resolved, passive_ops, build_doc=None):
     """武器伤害骰。被动算子可覆盖或抬高下限。
 
     例：「巨大武器师」按体型把巨斧提升到 2d8/2d10/2d12；
-        「斗殴高手」把临时武器/徒手的伤害骰抬到至少 1d6。
+        「斗殴高手」把临时武器/徒手的伤害骰抬到至少 1d6；
+        「武艺」把徒手/武僧武器的骰抬到武艺骰（d4→d10）。
     """
     dice = resolved.weapon["dice"]
     for op in passive_ops:
         proj = op.get("projection") or {}
+        # 武器种类排除（武艺不适用于重型武器）
+        excl = proj.get("weapon_selector_exclude")
+        if excl and weapon_matches(resolved.weapon, excl):
+            continue
         over = proj.get("weapon_dice_override")
         if over:
             kinds = over.get("applies_to")
@@ -191,7 +196,7 @@ def weapon_dice_for(resolved, passive_ops):
                 # `all` 表示与体型无关的固定覆盖（缠蛇掠血把长鞭改为 1d8）；
                 # 否则按体型取键（巨大武器师）。
                 if "all" in over:
-                    dice = over["all"]
+                    dice = scaled_value(over["all"], op, build_doc or {})
                 elif resolved.size in over:
                     dice = over[resolved.size]
         # 「伤害骰变为 1d6，若原本已是 1d6 或更高则升一阶」（斗殴高手）
@@ -199,6 +204,7 @@ def weapon_dice_for(resolved, passive_ops):
         if minimum:
             kinds = proj.get("weapon_dice_min_applies_to")
             if not kinds or resolved.weapon.get("kind") in kinds:
+                minimum = scaled_value(minimum, op, build_doc or {})
                 cur = dice_mean(dice)
                 floor_val = dice_mean(minimum)
                 if cur < floor_val:
@@ -1524,9 +1530,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             for msg in validate_turn(steps, state):
                 warnings.append(f"第 {rnum} 轮动作经济：{msg}")
 
-        # 附赠动作攻击：来自增益算子（如「狂怒」），不占攻击动作的次数上限
+        # 附赠动作攻击：来自增益算子（如「狂怒」）或职业特性（「武艺」的徒手追打），
+        # 不占攻击动作的次数上限
         bonus_attacks = 0
-        for pop in passive_ops:
+        for pop in move_ops:
             bonus_attacks += int((pop.get("projection") or {})
                                  .get("bonus_action_attack", 0))
         if bonus_attacks and attacks_n:
@@ -1539,7 +1546,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             resolved, gate_ctx,
             {"size": resolved.size, "net_adv_tiers": adv,
              "prior_action": "moved" if state.travel_this_turn > 0 else None})
-        wdice = weapon_dice_for(resolved, passive_ops)
+        wdice = weapon_dice_for(resolved, move_ops, build_doc)
         if wdice != resolved.weapon["dice"]:
             trace.append(f"第 {rnum} 轮武器伤害骰被替换："
                          f"{resolved.weapon['dice']} → {wdice}")

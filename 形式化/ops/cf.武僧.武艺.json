@@ -1,0 +1,42 @@
+{
+  "id": "cf.武僧.武艺",
+  "name": "武艺",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_dice_min": {
+      "value": "1d4",
+      "scale": {
+        "5": "1d6",
+        "11": "1d8",
+        "17": "1d10"
+      }
+    },
+    "weapon_selector_exclude": {
+      "properties": [
+        "重型"
+      ]
+    },
+    "bonus_action_attack": 1,
+    "note": "武艺骰（d4/d6/d8/d10，按武僧表 1/5/11/17 级）只在原骰更低时替换；仅限徒手与武僧武器（此处以「排除重型武器」近似）；执行攻击动作后可用附赠动作追加一次徒手打击。未着甲与盾牌是本特性的前提，构筑需自行保证"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "武艺"
+  },
+  "status": "modeled",
+  "ruling": null
+}

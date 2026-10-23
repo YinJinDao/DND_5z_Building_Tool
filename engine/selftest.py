@@ -1259,6 +1259,61 @@ def test_sneak_attack():
         print("  FAIL 偷袭骰未随等级成长")
 
 
+def test_martial_arts():
+    print("\n[29] 武艺")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                          encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["combat"]["armor"] = "none"
+    base["feats"] = []
+    fist = {"name": "徒手", "kind": "徒手", "dice": "1d4",
+            "damage_type": "bludgeoning", "enhancement": 0, "ability": "str"}
+
+    def run(cls, level, weapon):
+        doc = _json.loads(_json.dumps(base))
+        doc["classes"] = [{"id": cls, "level": level, "subclass": None}]
+        doc["combat"]["weapon"] = dict(weapon)
+        strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                             "per_attack": {"ops": []}}]}
+        r = calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+        return r
+
+    m1 = run("class.monk", 1, fist)
+    m11 = run("class.monk", 11, fist)
+    if any("附赠动作攻击 +1" in t for t in m1.trace):
+        print("  OK   武艺给出 1 次附赠徒手打击")
+    else:
+        FAILS.append("武艺未给出附赠徒手打击")
+        print("  FAIL 武艺未给出附赠徒手打击")
+
+    if any("1d4 → 1d8" in t for t in m11.trace):
+        print("  OK   11 级武艺骰升到 1d8")
+    else:
+        FAILS.append("武艺骰未随等级成长")
+        print("  FAIL 武艺骰未随等级成长")
+
+    if m11.total > m1.total:
+        print(f"  OK   11 级伤害 {float(m11.total):.3f} > 1 级 {float(m1.total):.3f}")
+    else:
+        FAILS.append("武艺骰成长未反映到伤害")
+        print("  FAIL 武艺骰成长未反映到伤害")
+
+    # 重型武器不受武艺影响
+    great = {"name": "巨剑", "kind": "巨剑", "dice": "2d6",
+             "damage_type": "slashing", "enhancement": 0, "ability": "str",
+             "properties": ["双手", "重型"]}
+    mg = run("class.monk", 1, great)
+    if any("被替换" in t for t in mg.trace):
+        FAILS.append("武艺错误地改写了重型武器骰")
+        print("  FAIL 武艺错误地改写了重型武器骰")
+    else:
+        print("  OK   重型武器不受武艺骰影响")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1291,6 +1346,7 @@ def main():
     test_reach_and_speed()
     test_adv_scaling()
     test_sneak_attack()
+    test_martial_arts()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
