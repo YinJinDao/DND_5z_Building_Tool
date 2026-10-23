@@ -276,6 +276,74 @@ class Budget:
 
 # ---------------------------------------------------------------- 豁免型伤害
 
+# ---------------------------------------------------------------- 对抗检定
+
+def d20_tier_distribution(tiers):
+    """优/劣势下 d20 结果的分布 {1..20: 概率}。
+
+    n 重优势 = 掷 n+1 枚取最高；k 重劣势 = 掷 k+1 枚取最低。
+    """
+    tiers = int(tiers)
+    n = tiers + 1 if tiers >= 0 else 1 - tiers
+    dist = {}
+    for k in range(1, 21):
+        if tiers >= 0:
+            hi = Fraction(k, 20) ** n
+            lo = Fraction(k - 1, 20) ** n
+        else:
+            hi = Fraction(21 - k, 20) ** n
+            lo = Fraction(20 - k, 20) ** n
+        dist[k] = hi - lo
+    return dist
+
+
+def opposed_win_probability(attack_bonus, defender_bonus, attack_dice=None,
+                            adv_tiers=0):
+    """对抗检定的胜率 P(攻方 > 守方)。
+
+    规则书用「若你胜出」——平手不算胜，因此是严格大于。
+
+    - `attack_dice` 形如 `(枚数, 面数)`，对应「骰卓越骰加入检定」
+    - `defender_bonus` 可给单个加值或一组；给一组时按守方**选择最有利者**处理，
+      即每种加值分别算胜率后取加权平均（守方会挑最难赢的那个，故取最小值更保守，
+      这里取平均并在文档中注明口径）
+    """
+    atk_tier = d20_tier_distribution(adv_tiers)
+    plain = d20_tier_distribution(0)          # 守方不享有攻方的优/劣势
+
+    def shift(dist, bonus):
+        out = {}
+        for face, p in dist.items():
+            out[face + bonus] = out.get(face + bonus, Fraction(0)) + p
+        return out
+
+    def add_dice(dist, count, faces):
+        cur = dist
+        for _ in range(int(count)):
+            nxt = {}
+            for v, p in cur.items():
+                for f in range(1, int(faces) + 1):
+                    nxt[v + f] = nxt.get(v + f, Fraction(0)) + p * Fraction(1, faces)
+            cur = nxt
+        return cur
+
+    a_dist = shift(atk_tier, attack_bonus)
+    if attack_dice:
+        a_dist = add_dice(a_dist, attack_dice[0], attack_dice[1])
+
+    bonuses = (defender_bonus if isinstance(defender_bonus, (list, tuple))
+               else [defender_bonus])
+    per_defender = []
+    for b in bonuses:
+        d_dist = shift(plain, b)
+        win = Fraction(0)
+        for av, ap in a_dist.items():
+            win += ap * sum((q for v, q in d_dist.items() if v < av), Fraction(0))
+        per_defender.append(win)
+    # 守方在多个加值中择一（如"运动或体操，由它选择"）→ 取对攻方最不利的那个
+    return min(per_defender)
+
+
 def save_fail_probability(dc, save_bonus):
     """豁免失败概率。d20 + 加值 ≥ DC 即成功。"""
     return _clamp01(Fraction(dc - save_bonus - 1, 20))

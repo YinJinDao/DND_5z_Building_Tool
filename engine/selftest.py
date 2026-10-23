@@ -726,6 +726,70 @@ def _split(dice):
     return (int(m.group(1)), int(m.group(2))) if m else (0, 1)
 
 
+def test_opposed_check():
+    print("\n[20] 对抗检定分布")
+    from combat import d20_tier_distribution, opposed_win_probability
+
+    # 无优势时 d20 分布均匀
+    d = d20_tier_distribution(0)
+    check("d20 分布总和", sum(d.values()), Fraction(1), tol=1e-12)
+    check("d20 均值", sum(k * p for k, p in d.items()), Fraction(21, 2), tol=1e-9)
+
+    # 1 重优势 = 取两枚最高，均值 13.825
+    d1 = d20_tier_distribution(1)
+    check("1 重优势均值", sum(k * p for k, p in d1.items()), Fraction(553, 40), tol=1e-9)
+    # 1 重劣势 = 取两枚最低，均值 7.175
+    dn = d20_tier_distribution(-1)
+    check("1 重劣势均值", sum(k * p for k, p in dn.items()), Fraction(287, 40), tol=1e-9)
+
+    # 加值相同、平手不算胜 → 略低于 0.5
+    even = opposed_win_probability(5, 5)
+    if even < Fraction(1, 2):
+        print(f"  OK   平手不算胜：{float(even):.4f} < 0.5")
+    else:
+        FAILS.append("平手应判守方胜")
+        print("  FAIL 平手判定")
+
+    # 守方不继承攻方的优势——早期实现让守方也用攻方的分布，两边抵消
+    adv = opposed_win_probability(5, 5, adv_tiers=1)
+    if adv > even:
+        print(f"  OK   攻方 1 重优势：{float(even):.4f} → {float(adv):.4f}")
+    else:
+        FAILS.append("攻方优势未提高胜率")
+        print("  FAIL 优势未生效")
+
+    # 卓越骰加入检定
+    with_die = opposed_win_probability(5, 5, (1, 6))
+    if with_die > even:
+        print(f"  OK   卓越骰加值：{float(even):.4f} → {float(with_die):.4f}")
+    else:
+        FAILS.append("卓越骰未提高胜率")
+        print("  FAIL 卓越骰未生效")
+
+    # 守方可在多个加值中择优 → 取对攻方最不利
+    chosen = opposed_win_probability(5, [5, 8])
+    if chosen <= opposed_win_probability(5, 5):
+        print(f"  OK   守方择优：{float(chosen):.4f} ≤ 对等值胜率")
+    else:
+        FAILS.append("守方择优未降低攻方胜率")
+        print("  FAIL 守方择优")
+
+    # 战技：泰山压顶按对抗胜率加权（10.5 × 0.8717 ≈ 9.15）
+    import json as _json
+    import calculator as calc
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    build.setdefault("resources", {})["superiority"] = {
+        "name": "卓越骰", "capacity": 9, "recharge": "short_rest", "die_faces": 6}
+    strat = {"rounds": [{"round": 1, "buffs": ["rage"],
+                         "move": {"toward": True, "ft": 25}, "attacks": 1,
+                         "per_attack": {"ops": ["mv.开山流.中级.泰山压顶"]}}]}
+    res = calc.evaluate(build, {"target": {"ac": 15}}, strat)
+    check("泰山压顶按胜率加权", res.total,
+          Fraction(21, 2) * opposed_win_probability(7, 0, (1, 6)), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -749,6 +813,7 @@ def main():
     test_gates()
     test_maneuvers()
     test_tables_and_formulas()
+    test_opposed_check()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

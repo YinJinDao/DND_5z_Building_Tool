@@ -51,7 +51,7 @@ def _damage_for_outcome(attack, outcome, target, extra):
         d = by_type.setdefault(key, {"mean": Fraction(0), "dbl": Fraction(0)})
         d["mean"] += comp.mean
         if comp.crit_doubles:
-            d["dbl"] += dice_mean(comp.dice)
+            d["dbl"] += dice_mean(comp.dice) * comp.w
     total = Fraction(0)
     for (dtype, irreducible), d in by_type.items():
         amount = d["mean"] + (d["dbl"] if outcome == CRIT else Fraction(0))

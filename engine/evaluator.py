@@ -49,10 +49,15 @@ class DamageComponent:
     slot: str = "other"
     crit_doubles: bool = True    # 重击时骰子是否翻倍（固定值一律不翻）
     irreducible: bool = False    # 不可被抗性/免疫/减伤影响（如「力劈华山」）
+    weight: Fraction = None      # 生效概率（如对抗检定胜率）；None 等价于 1
+
+    @property
+    def w(self):
+        return Fraction(1) if self.weight is None else Fraction(self.weight)
 
     @property
     def mean(self):
-        return dice_mean(self.dice) + self.flat
+        return (dice_mean(self.dice) + self.flat) * self.w
 
 
 @dataclass
@@ -143,7 +148,7 @@ def expected_damage(attack: Attack, target: TargetProfile):
         d = by_type.setdefault(key, {"mean": Fraction(0), "double": Fraction(0)})
         d["mean"] += comp.mean
         if comp.crit_doubles:
-            d["double"] += dice_mean(comp.dice)
+            d["double"] += dice_mean(comp.dice) * comp.w
 
     healed = Fraction(0)
     for (dtype, irreducible), d in by_type.items():

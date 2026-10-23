@@ -32,7 +32,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from character import Bonus, Build, Contribution, derive
 from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
-                    expected_save_damage, save_fail_probability, validate_turn)
+                    expected_save_damage, opposed_win_probability,
+                    save_fail_probability, validate_turn)
 from evaluator import (Attack, DamageComponent, TargetProfile,
                        apply_target_pipeline, dice_mean, expected_damage)
 from strategy import Rule, evaluate_turn
@@ -333,6 +334,25 @@ def apply_op(op, attack, resolved, attack_index=0):
         attack.adv_tiers += int(proj["adv_tiers"])
 
     # 整次攻击不可减伤（「力劈华山」：伤害无法被任何方式减少、免疫或转移）
+    # 对抗检定：战技要求"胜出"才生效（如泰山压顶的推撞），按胜率加权
+    contest = proj.get("requires_contest")
+    if contest:
+        spec = contest.get("attacker") or {}
+        ability = spec.get("ability", "str")
+        prof = resolved.derived.prof if spec.get("skill") else 0
+        atk_bonus = resolved.derived.mods.get(ability, 0) + prof
+        dice = None
+        if spec.get("add_superiority"):
+            faces = superiority_faces(resolved.derived.level)
+            dice = (spec.get("superiority_count", 1), faces)
+        defenders = contest.get("defender_bonus")
+        if defenders is None:
+            defenders = 0
+        win = opposed_win_probability(atk_bonus, defenders, dice, adv_tiers=0)
+        _CONTEST_FACTOR = win
+    else:
+        _CONTEST_FACTOR = None
+
     if proj.get("attack_irreducible"):
         for comp in attack.components:
             comp.irreducible = True
@@ -374,7 +394,8 @@ def apply_op(op, attack, resolved, attack_index=0):
         # 表里可能返回 dS 形式（如「长城」按临时生命值给若干枚卓越骰）
         dice = resolve_superiority_dice(dice, resolved.derived.level)
         attack.components = [DamageComponent(dice, flat=flat, dtype=dtype,
-                                             slot=op["id"])]
+                                             slot=op["id"],
+                                             weight=_CONTEST_FACTOR)]
 
     for extra in proj.get("extra_dice", []):
         dice = extra["dice"]

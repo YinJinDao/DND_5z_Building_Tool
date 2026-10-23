@@ -22,6 +22,16 @@
       "table": "tbl.泰山压顶",
       "type": "bludgeoning",
       "note": "伤害骰与攻击者自身的体型和材质有关"
+    },
+    "requires_contest": {
+      "attacker": {
+        "ability": "str",
+        "skill": "athletics",
+        "add_superiority": true,
+        "superiority_count": 1
+      },
+      "defender_bonus": 0,
+      "note": "先进行一次力量（运动）对抗目标的力量（运动）或敏捷（体操）；胜出才造成碾压伤害。守方加值取环境给出的技能加值，打桩默认 0"
     }
   },
   "source": {
