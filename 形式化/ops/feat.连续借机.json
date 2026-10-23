@@ -18,6 +18,7 @@
     "opportunity_attack_budget_add": {
       "ability": "str"
     },
+    "opportunity_attack_per_trigger": 2,
     "note": "每轮额外发动 X 次借机攻击（X=武器攻击关键属性调整值，此处按力量）；借机攻击可对目标进行两次武器攻击，消耗两次次数"
   },
   "source": {

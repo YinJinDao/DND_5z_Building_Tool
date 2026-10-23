@@ -266,6 +266,10 @@ ALLOWED_PROJECTION = {
     "bonus_action_attack_spec",    # 附赠攻击自带的劣势 / 去属性调整值
     "opportunity_attack_budget_add",  # 每轮额外借机攻击次数
     "opportunity_attack_adv",        # 借机攻击的优势层数
+    "opportunity_trigger_source",    # 能引发借机的环境事件：approach/cast_spell/...
+    "opportunity_trigger_requires_weapon",  # 该触发只在持用指定武器时成立
+    "opportunity_attack_per_trigger",  # 单次触发打几击（连续借机 = 2）
+    "opportunity_trigger_drawback",  # 该触发附带的代价（DPR 不计量，仅告警）
     "on_hit_extra_attack", "on_all_hit_extra_attack", "on_hit_target_vuln",
     "damage_replaces_weapon", "damage_table", "formula_damage", "attack_irreducible",
     "save_dc_modifier", "on_fail_extra", "requires_contest",

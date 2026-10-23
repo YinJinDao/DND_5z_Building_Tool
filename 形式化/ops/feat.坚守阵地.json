@@ -18,6 +18,9 @@
     "opportunity_attack_budget_add": {
       "ability": "str"
     },
+    "opportunity_trigger_source": [
+      "approach"
+    ],
     "note": "每轮额外发动 X 次借机攻击（X=力量调整值）；敌对生物进入触及范围也引发借机攻击"
   },
   "source": {

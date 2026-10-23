@@ -1,0 +1,28 @@
+{
+  "id": "feat.程序员杀手",
+  "name": "程序员杀手",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_trigger_source": [
+      "activate_program"
+    ],
+    "note": "触及内的敌对生物激活程序后可借机攻击；其余两条（专注豁免劣势、对抗程序豁免优势）不影响输出"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "程序员杀手"
+  },
+  "status": "approximated",
+  "ruling": null
+}

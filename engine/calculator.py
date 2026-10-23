@@ -360,6 +360,80 @@ def build_condition_context(resolved, gate_ctx, extras=None):
 
 # ---------------------------------------------------------------- 借机攻击
 
+#: 借机攻击的触发源。**基础规则只认「离开触及」**——敌人走进你的触及不引发借机，
+#: 施法、激活程序、攻击你、使用物件也都不引发，必须由专长逐项解锁。
+OA_SOURCE_LABELS = {
+    "retreat": "离开你的触及",
+    "approach": "进入你的触及",
+    "cast_spell": "施放法术",
+    "activate_program": "激活程序",
+    "attack_you": "攻击你",
+    "use_object": "使用物件",
+}
+
+
+def opportunity_trigger_sources(resolved, ops):
+    """构筑能够反应的触发源，以及每次触发最多能打出几击。
+
+    返回 `(sources, per_trigger, drawbacks, skipped)`：`sources` 是 源 → 解锁者
+    （默认只有 `retreat`），`per_trigger` 是单次触发允许的武器攻击次数
+    （「连续借机」可打到 2），`drawbacks` 是 源 → 该触发附带的代价描述，
+    `skipped` 是因武器不符而没接上的触发（必须报出来，不能静默丢弃）。
+    """
+    sources = {"retreat": "基础规则"}
+    per_trigger = 1
+    drawbacks, skipped = {}, []
+    weapon_kind = resolved.weapon.get("kind")
+    for f in resolved.raw.get("feats", []):
+        op = ops.get(f.get("id"))
+        if not op:
+            continue
+        proj = op.get("projection") or {}
+        need = proj.get("opportunity_trigger_requires_weapon")
+        for src in proj.get("opportunity_trigger_source") or []:
+            if src not in OA_SOURCE_LABELS:
+                raise KeyError(f"{op['name']} 的借机触发源 {src} 不认识"
+                               f"（可用：{'/'.join(OA_SOURCE_LABELS)}）")
+            if need and weapon_kind not in need:
+                skipped.append(f"「{op['name']}」的{OA_SOURCE_LABELS[src]}借机"
+                               f"需要 {'/'.join(need)}，当前武器是 {weapon_kind}")
+                continue
+            sources.setdefault(src, op["name"])
+            if proj.get("opportunity_trigger_drawback"):
+                drawbacks[src] = proj["opportunity_trigger_drawback"]
+        per_trigger = max(per_trigger,
+                          int(proj.get("opportunity_attack_per_trigger", 1)))
+    return sources, per_trigger, drawbacks, skipped
+
+
+def opportunity_attack_triggers(env_doc, sources):
+    """环境声明的触发事件中，这个构筑实际能借机的部分。
+
+    环境说的是**敌人做了什么**（施法几次、攻击你几次），至于能不能反应，
+    取决于构筑有没有对应专长——没解锁的触发要单独报出来，
+    否则会得到"环境说了 3 次、伤害没变"这种看不出原因的静默结果。
+    """
+    declared = dict(env_doc.get("enemy_triggers") or {})
+    legacy = int(env_doc.get("enemy_triggers_per_round", 0))
+    if legacy:
+        declared["retreat"] = int(declared.get("retreat", 0)) + legacy
+    total, used, blocked, used_src = 0, [], [], []
+    for src, n in declared.items():
+        if src not in OA_SOURCE_LABELS:
+            raise KeyError(f"未知借机触发源 {src}"
+                           f"（可用：{'/'.join(OA_SOURCE_LABELS)}）")
+        n = int(n)
+        if n <= 0:
+            continue
+        if src in sources:
+            total += n
+            used_src.append(src)
+            used.append(f"{OA_SOURCE_LABELS[src]} {n} 次（{sources[src]}）")
+        else:
+            blocked.append(f"{OA_SOURCE_LABELS[src]} {n} 次（缺对应专长）")
+    return total, used, blocked, used_src
+
+
 def opportunity_attack_budget(resolved, ops):
     """每轮可发动的借机攻击次数。
 
@@ -1369,10 +1443,25 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
 
         # 借机攻击：打桩默认目标不动不还手，**触发次数由环境显式声明**（默认 0）。
         # 不声明就不产生收益——否则等于白送一次攻击。
-        oa_triggers = int(env_doc.get("enemy_triggers_per_round", 0))
+        # 环境说"敌人做了什么"，构筑决定"哪些能做反应"：施法/进入触及/攻击你
+        # 都只有对应专长才能借机，没解锁的触发在 trace 里单独报出来。
+        (oa_sources, oa_per_trigger, oa_drawbacks,
+         oa_skipped) = opportunity_trigger_sources(resolved, ops)
+        oa_triggers, oa_used, oa_blocked, oa_used_src = opportunity_attack_triggers(
+            env_doc, oa_sources)
+        for note in oa_blocked:
+            trace.append(f"第 {rnum} 轮借机触发：{note}，未计入")
+        for note in oa_skipped:
+            warnings.append(f"第 {rnum} 轮借机触发：{note}，未计入")
+        # 用「敌人攻击你」换借机的专长（罗比拉战术）是有代价的：你承受更多伤害。
+        # 本工具只算输出，代价不进数字——必须明说，否则这个专长会被系统性高估。
+        for src in oa_used_src:
+            if src in oa_drawbacks:
+                warnings.append(oa_drawbacks[src])
         if oa_triggers > 0 and attacks:
-            budget, sources = opportunity_attack_budget(resolved, ops)
-            count = min(budget, oa_triggers)
+            budget, budget_sources = opportunity_attack_budget(resolved, ops)
+            # 单次触发可以打出多击（连续借机），但总攻击数仍受反应预算封顶
+            count = min(budget, oa_triggers * oa_per_trigger)
             oa_adv = 0
             for op in granted_feat_ops(build_doc, ops):
                 oa_adv += int((op.get("projection") or {}).get("opportunity_attack_adv", 0))
@@ -1381,7 +1470,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                       rage_active=rage_active, weapon_dice=wdice)
                 attacks.append(a)
             trace.append(f"第 {rnum} 轮借机攻击 {count} 次"
-                         f"（触发 {oa_triggers}，预算 {budget}：{'、'.join(sources)}）")
+                         f"（触发 {'、'.join(oa_used)}，预算 {budget}："
+                         f"{'、'.join(budget_sources)}）")
 
         dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
                        else (Fraction(0), 0))

@@ -85,8 +85,20 @@ def scenario(op):
     return build, strat
 
 
-def evaluate(build, strat):
-    return float(calc.evaluate(build, ENV, strat).total)
+def scenario_env(op):
+    """有些算子只有在特定环境事件下才可能有收益（借机攻击系）——
+    不给它那个事件，对拍结果会是 INERT，看起来像缺陷，其实只是场景没搭。"""
+    env = json.loads(json.dumps(ENV))
+    proj = op.get("projection") or {}
+    srcs = proj.get("opportunity_trigger_source") or []
+    if (proj.get("opportunity_attack_budget_add") or srcs
+            or proj.get("opportunity_attack_adv")):
+        env["enemy_triggers"] = {s: 3 for s in (srcs or ["retreat"])}
+    return env
+
+
+def evaluate(build, strat, env=None):
+    return float(calc.evaluate(build, env or ENV, strat).total)
 
 
 def main():
@@ -110,8 +122,9 @@ def main():
             stat["SKIP"] += 1
             continue
         build, strat = scen
+        env = scenario_env(op)
         try:
-            with_op = evaluate(build, strat)
+            with_op = evaluate(build, strat, env)
             bare_build = json.loads(json.dumps(build))
             bare_build["feats"] = []
             bare_strat = {"rounds": [{"round": 1, "buffs": ["rage"], "attacks": 1,
@@ -119,7 +132,7 @@ def main():
             if op.get("kind") == "spell":
                 bare = 0.0
             else:
-                bare = evaluate(bare_build, bare_strat)
+                bare = evaluate(bare_build, bare_strat, env)
         except Exception as exc:                       # noqa: BLE001
             stat["ERROR"] += 1
             errors.append((op["id"], str(exc)[:100]))

@@ -1006,6 +1006,50 @@ def test_opportunity_attacks():
         FAILS.append("借机攻击预算未扩大")
         print("  FAIL 预算未扩大")
 
+    # ---- 触发源：环境说"敌人做了什么"，构筑决定"哪些能做反应" ----
+    plain = _json.loads(_json.dumps(build))
+    plain["feats"] = []
+
+    def run_env(feats, triggers):
+        doc = _json.loads(_json.dumps(plain))
+        doc["feats"] = [{"id": f, "at_level": 1} for f in feats]
+        return calc.evaluate(doc, {"target": {"ac": 15}, "enemy_triggers": triggers},
+                             strat)
+
+    # 敌人施法：没有巫师杀手就借不到机，且必须留下 trace 说明原因
+    no_feat = run_env([], {"cast_spell": 3})
+    r_wiz = run_env(["feat.巫师杀手"], {"cast_spell": 3})
+    check("无解锁专长时施法不引发借机", no_feat.total, run_env([], {}) .total, tol=1e-9)
+    if r_wiz.total > no_feat.total:
+        print(f"  OK   巫师杀手接住施法触发：{float(no_feat.total):.3f} → {float(r_wiz.total):.3f}")
+    else:
+        FAILS.append("巫师杀手未接住施法触发")
+        print("  FAIL 巫师杀手未接住施法触发")
+    if any("缺对应专长" in t for t in no_feat.trace):
+        print("  OK   未解锁的触发在 trace 中说明")
+    else:
+        FAILS.append("未解锁的触发没有 trace 说明")
+        print("  FAIL 未解锁的触发没有 trace 说明")
+
+    # 连续借机：单次触发打两击（预算足够时）
+    r_combo = run_env(["feat.连续借机"], {"retreat": 1})
+    r_single = run_env([], {"retreat": 1})
+    if r_combo.total > r_single.total * 1.5:
+        print(f"  OK   连续借机单次触发两击：{float(r_single.total):.3f} → {float(r_combo.total):.3f}")
+    else:
+        FAILS.append("连续借机未打出第二击")
+        print("  FAIL 连续借机未打出第二击")
+
+    # 罗比拉战术：拿受伤换借机，代价不进 DPR，必须告警
+    r_ro = run_env(["feat.罗比拉战术"], {"attack_you": 1})
+    check("罗比拉战术接住「攻击你」触发", r_ro.total, run_env([], {"retreat": 1}).total,
+          tol=1e-9)
+    if any("罗比拉" in w for w in r_ro.warnings):
+        print("  OK   罗比拉战术的代价已告警")
+    else:
+        FAILS.append("罗比拉战术的代价未告警")
+        print("  FAIL 罗比拉战术的代价未告警")
+
 
 def main():
     print("=" * 58)

@@ -28,7 +28,13 @@
       ],
       "all": "1d8"
     },
-    "note": "长鞭武器基础伤害骰提升为 1d8；另有用长鞭卷走物品的借机攻击，未建模"
+    "opportunity_trigger_source": [
+      "use_object"
+    ],
+    "opportunity_trigger_requires_weapon": [
+      "长鞭"
+    ],
+    "note": "长鞭武器基础伤害骰提升为 1d8；敌人在触及内使用物件/启动魔法物品时可用长鞭借机（缴械效果不影响 DPR）"
   },
   "source": {
     "book": "5z",
