@@ -275,6 +275,86 @@ def eval_level_expr(expr, level):
     raise ValueError(f"不支持的等级表达式: {expr!r}")
 
 
+# ---------------------------------------------------------------- 条件系统
+
+# 条件词汇表（封闭）。`when` 里出现未列出的键一律报错——
+# 静默放行会让算子"看起来生效、实际永不触发"，比报错危险得多。
+CONDITION_KEYS = {
+    "attacker_state",   # raging | mounted | hidden | has_adv
+    "prior_action",     # moved | dashed | crit_this_turn | killed_this_turn
+    "target_hp",        # below_max | below_half | zero_or_below
+    "target_state",     # prone | restrained | frightened | unaware
+    "target_size",      # smaller_than_you | at_most_your_size
+    "weapon_property",  # two_handed | light | reach | thrown | ammunition
+    "once_per_turn",    # 本回合是否尚未用过同类效果
+}
+CONDITION_VALUES = {
+    "attacker_state": {"raging", "mounted", "hidden", "has_adv"},
+    "prior_action": {"moved", "dashed", "crit_this_turn", "killed_this_turn"},
+    "target_hp": {"below_max", "below_half", "zero_or_below"},
+    "target_state": {"prone", "restrained", "frightened", "unaware"},
+    "target_size": {"smaller_than_you", "at_most_your_size"},
+    "weapon_property": {"two_handed", "light", "reach", "thrown", "ammunition"},
+}
+
+
+def eval_condition(when, ctx):
+    """判断一组条件是否同时满足。未识别的键抛错，不静默放行。"""
+    for key, want in when.items():
+        if key not in CONDITION_KEYS:
+            raise ValueError(f"未知条件字段 {key!r}（见 CONDITION_KEYS 白名单）")
+        if key == "once_per_turn":
+            continue                      # 由调用方保证，此处不重复判断
+        allowed = CONDITION_VALUES.get(key)
+        if allowed and want not in allowed:
+            raise ValueError(f"条件 {key} 的取值 {want!r} 不在 {sorted(allowed)} 中")
+        if ctx.get(key) != want:
+            return False
+    return True
+
+
+def apply_condition_effects(attack, effects, resolved, op_id):
+    """把条件满足时的效果施加到攻击上（只允许伤害相关字段）。"""
+    ALLOWED = {"extra_dice", "damage_slots", "attack_bonus", "damage_mult", "crit_range"}
+    for key in effects:
+        if key not in ALLOWED and key != "note":
+            raise ValueError(f"条件效果字段 {key!r} 不在 {sorted(ALLOWED)} 中")
+    if "attack_bonus" in effects:
+        attack.attack_bonus += int(effects["attack_bonus"])
+    if "crit_range" in effects:
+        attack.crit_range += int(effects["crit_range"])
+    for slot in effects.get("damage_slots", []):
+        value = _eval_expr(slot["expr"], resolved)
+        dtype = slot.get("type") or resolved.weapon["damage_type"]
+        if dtype == "same_as_weapon":
+            dtype = resolved.weapon["damage_type"]
+        attack.components.append(
+            DamageComponent("0", flat=value, dtype=dtype, slot=op_id,
+                            irreducible=bool(slot.get("irreducible", False))))
+    for extra in effects.get("extra_dice", []):
+        dice = resolve_superiority_dice(extra["dice"], resolved.derived.level)
+        dtype = extra.get("damage_type") or resolved.weapon["damage_type"]
+        if dtype == "same_as_weapon":
+            dtype = resolved.weapon["damage_type"]
+        flat = int(extra.get("flat", 0))
+        if extra.get("flat_by_size"):
+            flat += int(extra["flat_by_size"].get(resolved.size, 0))
+        attack.components.append(
+            DamageComponent(dice, flat=flat, dtype=dtype, slot=op_id,
+                            crit_doubles=bool(extra.get("crit_doubles", True))))
+    return attack
+
+
+def build_condition_context(resolved, gate_ctx, extras=None):
+    """把构筑与回合状态整理成条件求值用的扁平上下文。"""
+    ctx = dict(gate_ctx or {})
+    ctx["attacker_state"] = ("raging" if ctx.get("rage_active") else None)
+    ctx.setdefault("target_hp", "below_max")      # 打桩目标默认满血
+    if extras:
+        ctx.update(extras)
+    return ctx
+
+
 def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None):
     """武器基础攻击：武器骰 + 属性调整值 + 武器增强 + 狂暴加值。"""
     d = resolved.derived
@@ -342,9 +422,10 @@ def resolve_damage_table(table, resolved, ctx=None):
     return dice
 
 
-def apply_op(op, attack, resolved, attack_index=0):
+def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
     if not _TABLES_CACHE:
         _TABLES_CACHE.update(load_damage_tables())
+    condition_ctx = condition_ctx or {}
     """把一个算子作用到攻击上。返回 (attack, 额外的规则列表)。"""
     proj = op.get("projection", {})
     rules = []
@@ -421,6 +502,11 @@ def apply_op(op, attack, resolved, attack_index=0):
         attack.components = [DamageComponent(dice, flat=flat, dtype=dtype,
                                              slot=op["id"],
                                              weight=_CONTEST_FACTOR)]
+
+    # 通用条件：when 满足时施加 then（终结之舞按目标生命值加骰、巨人技艺模仿等）
+    for rule in proj.get("conditions", []):
+        if eval_condition(rule.get("when") or {}, condition_ctx):
+            apply_condition_effects(attack, rule.get("then") or {}, resolved, op["id"])
 
     # 本轮所有攻击均命中后追加一次（刺剑大师的精准连刺）
     all_hit = proj.get("on_all_hit_extra_attack")
@@ -1092,6 +1178,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
         gate_ctx = {"rage_active": rage_active, "mounted": bool(mount)}
+        # 条件上下文：构筑/回合状态 → 扁平键值，供 conditions 求值
+        cond_ctx = build_condition_context(
+            resolved, gate_ctx,
+            {"size": resolved.size,
+             "prior_action": "moved" if state.travel_this_turn > 0 else None})
         wdice = weapon_dice_for(resolved, passive_ops)
         if wdice != resolved.weapon["dice"]:
             trace.append(f"第 {rnum} 轮武器伤害骰被替换："
@@ -1118,7 +1209,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     if "crit_range" in pproj:
                         a.crit_range += int(pproj["crit_range"])
                     if "extra_dice" in pproj:
-                        a, rs = apply_op(pop, a, resolved, attack_index=i)
+                        a, rs = apply_op(pop, a, resolved, attack_index=i,
+                                         condition_ctx=cond_ctx)
                         all_rules_built.extend(rs)
                 for oid in op_ids:
                     if oid not in ops:
@@ -1140,7 +1232,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                 f"但构筑未包含该专长，使用次数不受限制")
                         else:
                             spends.append((rnum, pool_id, 1))
-                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
+                    a, rs = apply_op(ops[oid], a, resolved, attack_index=i,
+                                     condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
                 attacks.append(a)
         else:

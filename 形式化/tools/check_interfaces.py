@@ -268,7 +268,8 @@ ALLOWED_PROJECTION = {
     "save_dc_modifier", "on_fail_extra", "requires_contest",
     "grants_attack_count", "uses", "rage", "area",
     "size_increase",               # 已声明但引擎未实现，见审计文档
-    "conditional_dice",            # 已声明但引擎未实现
+    "conditional_dice",            # 旧写法，已被通用 conditions 取代
+    "conditions",                  # 通用条件结构
 }
 
 
@@ -279,6 +280,28 @@ def check_projection_vocabulary(ops):
             if key not in ALLOWED_PROJECTION:
                 err(f"[A12] {oid}: 未知 projection 字段 {key!r} —— "
                     f"引擎会静默忽略它。如需新增请先扩展引擎并登记到白名单")
+
+
+CONDITION_KEYS = {"attacker_state", "prior_action", "target_hp", "target_state",
+                  "target_size", "weapon_property", "once_per_turn"}
+CONDITION_EFFECTS = {"extra_dice", "damage_slots", "attack_bonus", "damage_mult",
+                     "crit_range", "note"}
+
+
+def check_conditions(ops):
+    """A13：conditions 的 when/then 只能用封闭词汇表里的键。
+
+    与 A12 同理——引擎对未知条件键是**抛错**的，但对未知效果键是静默忽略的，
+    后者更危险，必须在提交前拦住。
+    """
+    for oid, op in ops.items():
+        for i, rule in enumerate((op.get("projection") or {}).get("conditions", [])):
+            for key in (rule.get("when") or {}):
+                if key not in CONDITION_KEYS:
+                    err(f"[A13] {oid} conditions[{i}]: 未知条件 {key!r}")
+            for key in (rule.get("then") or {}):
+                if key not in CONDITION_EFFECTS:
+                    err(f"[A13] {oid} conditions[{i}]: 未知效果 {key!r}")
 
 
 def check_table_refs(ops):
@@ -351,6 +374,7 @@ def main():
     ops = check_ops()
     print(f"算子: {len(ops)} 个")
     check_projection_vocabulary(ops)
+    check_conditions(ops)
     check_op_data_alignment(ops)
     check_table_refs(ops)
     check_examples(ops)
