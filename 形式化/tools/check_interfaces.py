@@ -214,6 +214,45 @@ def check_build_strategy_pairs(ops):
                     err(f"[B2] {sname} 消耗 {pid}，但 {build_name} 未声明该资源池")
 
 
+KIND_TO_DATA = {
+    "feat": "feats.jsonl",
+    "spell": "spells.jsonl",
+    "maneuver": "maneuvers.jsonl",
+    "class_feature": "class_features.jsonl",
+}
+
+
+def check_op_data_alignment(ops):
+    """A10：每个算子 id 必须能在对应的数据表里找到条目。
+
+    这条检查的由来：曾把「神性之怒」编译成 `cf.神罚者.神性之怒`，
+    而数据里的 id 是 `cf.狂战士.神性之怒`（class 是主职，subclass 单独存）。
+    算子在、数据在，但两者永远匹配不上，覆盖率统计显示为 0 却不报错。
+    """
+    cache = {}
+    for oid, op in ops.items():
+        kind = op.get("kind")
+        fname = KIND_TO_DATA.get(kind)
+        if not fname:
+            continue                      # action 类算子源自「基础」章节，不在 A 档数据里
+        if fname not in cache:
+            path = os.path.join(DATA_DIR, fname)
+            ids = set()
+            if os.path.isfile(path):
+                with open(path, encoding="utf-8") as fh:
+                    for line in fh:
+                        line = line.strip()
+                        if line:
+                            try:
+                                ids.add(json.loads(line).get("id"))
+                            except json.JSONDecodeError:
+                                pass
+            cache[fname] = ids
+        if oid not in cache[fname]:
+            err(f"[A10] {oid}: 在 {fname} 中找不到同名条目"
+                f"（算子与数据对不上，永远无法被引用）")
+
+
 def check_data():
     if not os.path.isdir(DATA_DIR):
         err(f"数据目录不存在: {DATA_DIR}")
@@ -250,6 +289,7 @@ def main():
 
     ops = check_ops()
     print(f"算子: {len(ops)} 个")
+    check_op_data_alignment(ops)
     check_examples(ops)
     check_build_strategy_pairs(ops)
     check_data()

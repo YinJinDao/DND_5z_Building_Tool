@@ -92,6 +92,19 @@ class ResolvedBuild:
     size: str = "medium"
 
 
+def resolve_build_full(build_doc, ops=None, rage_table=None, trace=None):
+    """完整解析入口：先结算构筑期效果，再推导派生值。
+
+    外部（测试、后续的阶段）应统一走这里，而不是直接调 resolve_build——
+    否则会绕过构筑期效果（如凶蛮打手的属性 +1），得到与计算器不一致的数值。
+    """
+    ops = ops if ops is not None else load_ops()
+    if rage_table is None:
+        rage_table = load_rage_table()
+    doc = apply_build_time_effects(build_doc, ops, trace)
+    return resolve_build(doc, rage_table)
+
+
 def resolve_build(build_doc, rage_table=None):
     """把构筑文档解析成可计算的派生值。"""
     meta = build_doc.get("meta", {})
@@ -241,7 +254,7 @@ def apply_op(op, attack, resolved, attack_index=0):
         if extra.get("flat_expr"):          # 如「狂战士等级的一半」
             flat = eval_level_expr(extra["flat_expr"], resolved.derived.level)
         comp = DamageComponent(dice, flat=flat, dtype=dtype,
-                               slot=op["id"],
+                               slot=extra.get("slot") or op["id"],
                                crit_doubles=bool(extra.get("crit_doubles", True)))
         if extra.get("limit") == "每回合一次":
             # 每回合一次：只有本回合第一次攻击享有，其余攻击靠结果树分支处理
@@ -415,6 +428,38 @@ def _has_feat(build_doc, op_id):
     return any(f.get("id") == op_id for f in build_doc.get("feats", []))
 
 
+def apply_build_time_effects(build_doc, ops, trace=None):
+    """把"构筑期"生效的算子投影落到构筑上。
+
+    有些专长的效果是改属性（如「凶蛮打手」力量或体质 +1），它发生在**算派生值之前**，
+    不属于战斗回合。早先引擎只处理战斗期投影，导致这类专长的属性加值完全不生效——
+    数值上缺失但不会报错。这里在 derive 之前统一结算。
+    """
+    doc = json.loads(json.dumps(build_doc))       # 深拷贝，不改调用方的对象
+    scores = doc.setdefault("scores", {})
+    feat_scores = dict(scores.get("feat") or {})
+    choices = doc.get("choices") or {}
+
+    for f in doc.get("feats", []):
+        op = ops.get(f.get("id"))
+        bonus = (op.get("projection") or {}).get("ability_bonus") if op else None
+        if not bonus:
+            continue
+        # str_or_con 表示"择一"，实际选择由构筑的 choices 指定
+        if "str_or_con" in bonus:
+            target = choices.get("ability_bonus") or "str"
+            if target not in ("str", "con"):
+                raise ValueError(
+                    f"{op['name']} 需要 choices.ability_bonus 指定 str 或 con，"
+                    f"当前为 {target!r}")
+            feat_scores[target] = feat_scores.get(target, 0) + int(bonus["str_or_con"])
+            if trace is not None:
+                trace.append(f"构筑期：{op['name']} {target.upper()} +{bonus['str_or_con']}")
+
+    scores["feat"] = feat_scores
+    return doc
+
+
 # 策略里可用的短名 → 正式算子 id。保留短名是为了让策略可读，
 # 但解析后一律落到算子 id，避免"魔法字符串"散落在各处。
 BUFF_ALIASES = {
@@ -462,6 +507,21 @@ def derive_attack_count(build_doc, ops):
     return value, src
 
 
+def unmet_gates(op, ctx):
+    """检查算子声明的 gate 是否满足。
+
+    早先引擎只把 buffs 当作增益开关，从不校验算子自己的 gate——于是可以在
+    没开狂暴时使用要求狂暴的算子而不报错。
+    """
+    gate = op.get("gate") or {}
+    missing = []
+    if gate.get("requires_rage") and not ctx.get("rage_active"):
+        missing.append("狂暴")
+    if gate.get("mounted") and not ctx.get("mounted"):
+        missing.append("骑乘")
+    return missing
+
+
 def _with_vulnerability(target, types):
     """返回一个"额外具有若干易伤类型"的目标副本，不修改原对象。"""
     import copy
@@ -496,6 +556,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     ops = ops or load_ops()
     if rage_table is None:
         rage_table = load_rage_table()
+
+    build_trace = []
+    build_doc = apply_build_time_effects(build_doc, ops, build_trace)
     resolved = resolve_build(build_doc, rage_table)
 
     target_doc = env_doc.get("target", {})
@@ -528,7 +591,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         trace_speed = f"{speed_ft} 尺"
     budget = load_budget(build_doc, env_doc)
 
-    trace = list(resolved.trace) + [
+    trace = build_trace + list(resolved.trace) + [
         f"目标 AC {target.ac}",
         f"初始距离 {state.distance_ft} 尺｜速度 {trace_speed}"
         f"｜触及 {weapon_reach} 尺" + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
@@ -545,7 +608,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         buffs = {BUFF_ALIASES.get(b, b) for b in rnd.get("buffs", [])}
 
         # 增益类职业特性算子：按 buffs 启用，其投影直接作用于本轮攻击
+        # 增益算子的投影一律通用处理，不按具体算子 id 分支——
+        # 早先写死了 "cf.狂战士.狂暴"，换个职业就得改引擎。
         buff_adv = 0
+        rage_active = False
         for bid in buffs:
             bop = ops.get(bid)
             if not bop:
@@ -555,7 +621,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if "adv_tiers" in proj:
                 buff_adv += int(proj["adv_tiers"])
                 trace.append(f"第 {rnum} 轮 {bop['name']}：+{proj['adv_tiers']} 重优势")
-        rage_active = "cf.狂战士.狂暴" in buffs
+            if "rage" in proj:
+                rage_active = True
 
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
@@ -632,11 +699,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 adv += int(atk_spec.get("adv_tiers", 0))
                 trace.append(f"第 {rnum} 轮 {ops[action_id]['name']}：+{atk_spec.get('adv_tiers', 0)} 重优势")
 
-            # 骑乘战斗：冲刺首次命中时，目标对本次攻击的钝击/挥砍/穿刺易伤
-            if "feat.骑乘战斗" in ops and _has_feat(build_doc, "feat.骑乘战斗"):
-                vuln = ops["feat.骑乘战斗"]["projection"]["charge_vulnerability"]["types"]
-                round_target = _with_vulnerability(target, vuln)
-                trace.append(f"第 {rnum} 轮骑乘战斗：目标对 {'/'.join(vuln)} 易伤")
+            # 命中时给目标附加易伤：由算子声明 trigger，引擎按 trigger 生效，
+            # 不写死具体算子 id（原先写死 "feat.骑乘战斗"，加同类专长就得改引擎）。
+            for fid in (f.get("id") for f in build_doc.get("feats", [])):
+                fop = ops.get(fid)
+                if not fop:
+                    continue
+                vuln_spec = (fop.get("projection") or {}).get("on_hit_target_vuln")
+                if not vuln_spec or vuln_spec.get("trigger") != action_id:
+                    continue
+                round_target = _with_vulnerability(target, vuln_spec["types"])
+                trace.append(f"第 {rnum} 轮 {fop['name']}：目标对 "
+                             f"{'/'.join(vuln_spec['types'])} 易伤")
 
         # 条件策略：按命中/重击结果分支（触发时才算消耗）
         all_rules = []
@@ -675,6 +749,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         if bonus_attacks and attacks_n:
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
+        gate_ctx = {"rage_active": rage_active, "mounted": bool(mount)}
         wdice = weapon_dice_for(resolved, ops, buffs)
         if wdice != resolved.weapon["dice"]:
             trace.append(f"第 {rnum} 轮武器伤害骰被替换："
@@ -694,6 +769,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")
+                    miss = unmet_gates(ops[oid], gate_ctx)
+                    if miss:
+                        warnings.append(f"第 {rnum} 轮 {ops[oid]['name']} 前置条件不满足"
+                                        f"（缺 {'/'.join(miss)}），未生效")
+                        continue
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
                     all_rules_built.extend(rs)
                 attacks.append(a)
@@ -704,6 +784,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
+                    miss = unmet_gates(ops[oid], gate_ctx)
+                    if miss:
+                        warnings.append(f"第 {rnum} 轮 {ops[oid]['name']} 前置条件不满足"
+                                        f"（缺 {'/'.join(miss)}），未生效")
+                        continue
                     a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
                     all_rules_built.extend(rs)
                 attacks.append(a)

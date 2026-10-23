@@ -16,7 +16,6 @@
   "gate": {},
   "projection": {
     "attack_count": 2,
-    "attack_count_mode": "max",
     "note": "执行攻击动作时可发动的武器攻击次数（绝对值，多来源取最大）"
   },
   "source": {

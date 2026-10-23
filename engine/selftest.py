@@ -357,20 +357,25 @@ def test_calculator():
                             load("power_attack.strategy.json"))
     res = calc.evaluate(build, env, strategy)
 
-    # 派生值
-    resolved = calc.resolve_build(build, calc.load_rage_table())
-    check("计算器攻击加值", Fraction(resolved.derived.attack.total), Fraction(6), tol=1e-9)
+    # 派生值。攻击加值 = 力量调整值 4 + 熟练 2 + 武器增强 1 = 7。
+    # 力量 4 来自购点 17 + 凶蛮打手的 +1（构筑期效果）。
+    resolved = calc.resolve_build_full(build, calc.load_ops(), calc.load_rage_table())
+    check("力量调整值含凶蛮打手", Fraction(resolved.derived.mods["str"]), Fraction(4), tol=1e-9)
+    check("计算器攻击加值", Fraction(resolved.derived.attack.total), Fraction(7), tol=1e-9)
     check("计算器 AC", Fraction(resolved.derived.ac), Fraction(14), tol=1e-9)
     check("计算器 HP", Fraction(resolved.derived.hp), Fraction(46), tol=1e-9)
     check("狂暴伤害加值", Fraction(resolved.rage_bonus), Fraction(2), tol=1e-9)
 
-    # 与"手工搭 Attack"的路径交叉验证：两条路必须给出同一个数
+    # 与"手工搭 Attack"的路径交叉验证：两条路必须给出同一个数。
+    # 各项由构筑推导而非写死——凶蛮打手的 +1 属性会改变力量调整值，
+    # 写死常数会让这个测试在构筑改动后失真。
     from evaluator import Attack, DamageComponent, TargetProfile
     target = TargetProfile(ac=15)
-    atk = Attack(attack_bonus=1, adv_tiers=1)      # +6 −5（威力攻击）
+    flat = resolved.derived.mods["str"] + resolved.weapon["enhancement"]
+    atk = Attack(attack_bonus=resolved.derived.attack.total - 5, adv_tiers=1)
     atk.components = [
-        DamageComponent("1d12", flat=4, dtype="slashing"),          # 武器+增强
-        DamageComponent("0", flat=2, dtype="slashing"),             # 狂暴
+        DamageComponent("1d12", flat=flat, dtype="slashing"),       # 武器+属性+增强
+        DamageComponent("0", flat=resolved.rage_bonus, dtype="slashing"),   # 狂暴
         DamageComponent("0", flat=12, dtype="slashing"),            # 威力攻击
         DamageComponent("1d6", dtype="slashing"),                   # 凶蛮打手
     ]
@@ -387,7 +392,7 @@ def test_spells():
     root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     with open(os.path.join(root, "examples", "wizard_l5.build.json"), encoding="utf-8") as fh:
         build = _json.load(fh)
-    resolved = calc.resolve_build(build, calc.load_rage_table())
+    resolved = calc.resolve_build_full(build, calc.load_ops(), calc.load_rage_table())
     ops = calc.load_ops()
 
     # 法师 L5：智力 18（+4）+ 熟练 3 → 法术攻击 +7，豁免 DC 15
@@ -451,7 +456,7 @@ def test_composite_and_contingency():
         print("  FAIL 覆盖额外攻击")
 
     # 手算校验。各项由构筑推导，不写死等级常数，避免换等级后测试失真。
-    resolved = calc.resolve_build(build, calc.load_rage_table())
+    resolved = calc.resolve_build_full(build, calc.load_ops(), calc.load_rage_table())
     op_ops = calc.load_ops()
     pa = op_ops["feat.威力攻击"]["projection"]["attack_bonus"]
     atk_bonus = resolved.derived.attack.total + pa        # 威力攻击
@@ -463,7 +468,8 @@ def test_composite_and_contingency():
     p_crit = 1 - (1 - single_both) ** 2
 
     rage = resolved.rage_bonus
-    hit_dmg = Fraction(65, 10) + 4 + rage + 12 + Fraction(7, 2) + Fraction(9, 2)
+    flat = resolved.derived.mods["str"] + resolved.weapon["enhancement"]
+    hit_dmg = Fraction(65, 10) + flat + rage + 12 + Fraction(7, 2) + Fraction(9, 2)
     crit_extra = Fraction(65, 10) + Fraction(7, 2) + Fraction(9, 2)
     expected = (p_hit * hit_dmg + p_crit * crit_extra) * 2   # 骑乘战斗易伤
     check("骑乘冲刺期望伤害", res.total, expected, tol=1e-9)
@@ -532,7 +538,7 @@ def test_expanded_ops():
     build = _json.load(open(os.path.join(ex, "wizard_l5.build.json"), encoding="utf-8"))
     target = TargetProfile(ac=15)
     target.saves = {"dex": 0, "con": 0, "wis": 0, "int": 0, "str": 0, "cha": 0}
-    resolved = calc.resolve_build(build, calc.load_rage_table())
+    resolved = calc.resolve_build_full(build, calc.load_ops(), calc.load_rage_table())
     ops = calc.load_ops()
 
     # 自动命中：3 枚 1d6，不掷攻击、不能重击 → 3×3.5 = 10.5
@@ -584,6 +590,41 @@ def test_expanded_ops():
         print("  FAIL 威力豁免对圣火术")
 
 
+def test_gates():
+    print("\n[17] 算子前置条件校验")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    base = {"round": 1, "move": {"toward": True, "ft": 25}, "attacks": 1,
+            "per_attack": {"ops": ["cf.狂战士.神性之怒"]}}
+
+    no_rage = calc.evaluate(build, {"target": {"ac": 15}},
+                            {"rounds": [dict(base, buffs=[])]})
+    with_rage = calc.evaluate(build, {"target": {"ac": 15}},
+                              {"rounds": [dict(base, buffs=["rage"])]})
+
+    if any("前置条件不满足" in w for w in no_rage.warnings):
+        print("  OK   未开狂暴时「神性之怒」被告警并跳过")
+    else:
+        FAILS.append("gate 未拦截缺狂暴的算子")
+        print("  FAIL 未开狂暴时未拦截")
+
+    if any("前置条件不满足" in w for w in with_rage.warnings):
+        FAILS.append("开狂暴后不应再告警")
+        print("  FAIL 开狂暴后仍告警")
+    else:
+        print("  OK   开狂暴后正常生效")
+
+    if with_rage.total > no_rage.total:
+        print(f"  OK   生效前后差异：{float(no_rage.total):.3f} → {float(with_rage.total):.3f}")
+    else:
+        FAILS.append("狂暴前后伤害无差异")
+        print("  FAIL 狂暴前后伤害无差异")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -604,6 +645,7 @@ def main():
     test_composite_and_contingency()
     test_charge_cycle()
     test_expanded_ops()
+    test_gates()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

@@ -16,8 +16,9 @@
   "gate": {},
   "projection": {
     "rage": {
-      "damage_bonus_table": "class_tables.狂战士.狂暴伤害加值",
-      "note": "狂暴持续期间武器攻击伤害获得加值；加值取自职业表的「狂暴伤害加值」列"
+      "damage_bonus_from": "class_table",
+      "column": "狂暴伤害加值",
+      "note": "狂暴期间武器攻击伤害获得加值，数值取自职业表的「狂暴伤害加值」列；是否生效由策略的 buffs 决定"
     }
   },
   "source": {
