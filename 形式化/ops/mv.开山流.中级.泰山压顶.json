@@ -1,0 +1,35 @@
+{
+  "id": "mv.开山流.中级.泰山压顶",
+  "name": "泰山压顶",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 2
+  },
+  "cost": {
+    "replace_attack": 2,
+    "superiority": 2
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "近战武器",
+    "requires_contest": "力量（运动）推撞"
+  },
+  "projection": {
+    "damage_replaces_weapon": true,
+    "damage_table": {
+      "table": "tbl.泰山压顶",
+      "type": "bludgeoning",
+      "note": "伤害骰与攻击者自身的体型和材质有关"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "泰山压顶"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -84,6 +84,7 @@
       "speed_ft": 60,
       "size": "large",
       "controllable": true
-    }
+    },
+    "material": "血肉"
   }
 }

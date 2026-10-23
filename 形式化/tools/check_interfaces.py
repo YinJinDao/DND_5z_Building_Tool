@@ -253,6 +253,39 @@ def check_op_data_alignment(ops):
                 f"（算子与数据对不上，永远无法被引用）")
 
 
+def check_table_refs(ops):
+    """A11：算子引用的伤害表必须存在，且轴键能被解析。
+
+    与 A10 同类问题：表名写错时算子不会立刻出错，而是在求值那一刻才炸，
+    甚至可能因为走了默认分支而静默取到错误的档位。
+    """
+    path = os.path.join(DATA_DIR, "damage_tables.jsonl")
+    tables = {}
+    if os.path.isfile(path):
+        with open(path, encoding="utf-8") as fh:
+            for line in fh:
+                line = line.strip()
+                if line:
+                    t = json.loads(line)
+                    tables[t["id"]] = t
+    for oid, op in ops.items():
+        spec = (op.get("projection") or {}).get("damage_table")
+        if not spec:
+            continue
+        tid = spec.get("table")
+        if tid not in tables:
+            err(f"[A11] {oid}: 引用的伤害表 {tid} 不存在于 damage_tables.jsonl")
+            continue
+        t = tables[tid]
+        if "bands" in t:
+            if "row" not in t.get("axes", {}):
+                err(f"[A11] {oid}: 分档表 {tid} 缺 axes.row")
+        else:
+            for axis in ("row", "column"):
+                if axis not in t.get("axes", {}):
+                    err(f"[A11] {oid}: 交叉表 {tid} 缺 axes.{axis}")
+
+
 def check_data():
     if not os.path.isdir(DATA_DIR):
         err(f"数据目录不存在: {DATA_DIR}")
@@ -290,6 +323,7 @@ def main():
     ops = check_ops()
     print(f"算子: {len(ops)} 个")
     check_op_data_alignment(ops)
+    check_table_refs(ops)
     check_examples(ops)
     check_build_strategy_pairs(ops)
     check_data()

@@ -147,12 +147,21 @@ def compile_one(m):
             "note": f"持续期间每次攻击命中后额外造成 {n} 枚卓越骰的骰值伤害"}]
         return ("modeled", op, f"持续增益：每次攻击 +{n} 枚卓越骰")
 
+    # 3b) 公式型伤害：速度/上限这类结构已由引擎支持
+    if re.search(r"等同于.?你的移动速度|移动速度\s*/", e):
+        op = base_op(m)
+        op["projection"]["damage_replaces_weapon"] = True
+        op["projection"]["formula_damage"] = {
+            "expr": "speed / 2.5", "cap": 50,
+            "note": "伤害总值等于移动速度/2.5，最大 50"}
+        return ("modeled", op, "公式：移动速度/2.5（上限 50）")
+
     # 4) 其余：需要裁定或特殊表达式
     reasons = []
     if re.search(r"检定.*对抗|对抗.*检定", e):
         reasons.append("依赖对抗检定，结果分布未建模")
     if re.search(r"参见下表|详见下表|如下表", e):
-        reasons.append("伤害查表（体型/材质/临时生命值），表结构未入库")
+        reasons.append("伤害查表——需先把该表结构化进 damage_tables.jsonl")
     if re.search(r"等同于.*移动速度|生命值差额|倍数", e):
         reasons.append("伤害为公式而非骰式，需专用表达式")
     if re.search(r"立即死亡|直接死亡", e):

@@ -213,6 +213,35 @@ def resolve_superiority_dice(expr, level):
     return e.replace("dS", f"d{superiority_faces(level)}")
 
 
+FORMULA_CTX_KEYS = ("speed", "level", "temporary_hp", "max_die", "prof")
+
+
+def eval_formula(expr, ctx):
+    """公式型伤害求值。
+
+    战技里存在"伤害 = 移动速度/2.5（上限 50）"这类写法，不是骰式。
+    用受限命名空间求值——表达式来自本仓库自行编写的算子数据，不接受外部输入。
+    """
+    env = {k: ctx.get(k, 0) for k in FORMULA_CTX_KEYS}
+    env.update({"min": min, "max": max, "int": int, "floor": lambda x: int(x // 1)})
+    try:
+        return int(eval(str(expr), {"__builtins__": {}}, env))  # noqa: S307
+    except Exception as exc:
+        raise ValueError(f"公式求值失败: {expr!r} — {exc}") from exc
+
+
+def build_formula_context(resolved, extra=None):
+    ctx = {
+        "speed": resolved.raw.get("combat", {}).get("speed_ft", 30),
+        "level": resolved.derived.level,
+        "prof": resolved.derived.prof,
+        "max_die": _max_die(resolved.weapon["dice"]),
+    }
+    if extra:
+        ctx.update(extra)
+    return ctx
+
+
 def eval_level_expr(expr, level):
     """极小的等级表达式求值。目前支持 `level//N` 与 `level`。"""
     e = str(expr).replace(" ", "")
@@ -238,7 +267,61 @@ def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None
                   components=components)
 
 
+def load_damage_tables(path=None):
+    """读取结构化伤害表。"""
+    path = path or os.path.join(REPO, "形式化", "data", "damage_tables.jsonl")
+    tables = {}
+    if not os.path.isfile(path):
+        return tables
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            line = line.strip()
+            if line:
+                t = json.loads(line)
+                tables[t["id"]] = t
+    return tables
+
+
+# 构筑侧统一用英文尺寸键（与「巨大武器师」的覆盖表一致），
+# 伤害表的人读键是中文，查表时做一次映射。
+SIZE_CN = {"tiny": "微型", "small": "小型", "medium": "中型",
+           "large": "大型", "huge": "巨型", "gargantuan": "超巨型"}
+
+
+def resolve_damage_table(table, resolved, ctx=None):
+    """按轴取值从表中查出骰式。支持两类表：
+
+    - 交叉表：axes.row + axes.column，如「体型 × 材质」
+    - 分档表：bands，按数值区间取，如「按临时生命值」
+    """
+    ctx = ctx or {}
+    if "bands" in table:
+        key = table["axes"]["row"]
+        value = int(ctx.get(key, 0))
+        for band in table["bands"]:
+            hi = band["max"]
+            if value >= band["min"] and (hi is None or value <= hi):
+                return band["dice"]
+        raise ValueError(f"{table['id']}: 值 {value} 落在所有分档之外")
+
+    row_key = table["axes"]["row"]
+    col_key = table["axes"]["column"]
+    row_val = ctx.get(row_key) or resolved.size
+    if row_key == "size":
+        row_val = SIZE_CN.get(row_val, row_val)
+    col_val = ctx.get(col_key) or resolved.raw.get("combat", {}).get("material", "血肉")
+    row = table["cells"].get(row_val)
+    if row is None:
+        raise ValueError(f"{table['id']}: 未知的 {row_key}={row_val!r}")
+    dice = row.get(col_val)
+    if dice is None:
+        raise ValueError(f"{table['id']}: 未知的 {col_key}={col_val!r}")
+    return dice
+
+
 def apply_op(op, attack, resolved, attack_index=0):
+    if not _TABLES_CACHE:
+        _TABLES_CACHE.update(load_damage_tables())
     """把一个算子作用到攻击上。返回 (attack, 额外的规则列表)。"""
     proj = op.get("projection", {})
     rules = []
@@ -270,6 +353,28 @@ def apply_op(op, attack, resolved, attack_index=0):
         attack.components.append(
             DamageComponent("0", flat=value, dtype=dtype, slot=op["id"],
                             irreducible=bool(slot.get("irreducible", False))))
+
+    # 伤害整体被替换：查表或公式（如泰山压顶按体型材质、苍鹰击于殿按速度）
+    if proj.get("damage_replaces_weapon"):
+        spec = proj.get("damage_table") or proj.get("formula_damage") or {}
+        dtype = spec.get("type") or resolved.weapon["damage_type"]
+        dice = "0"
+        flat = 0
+        if "table" in spec:
+            tbl = _TABLES_CACHE.get(spec["table"])
+            if tbl is None:
+                raise KeyError(f"未知伤害表: {spec['table']}")
+            dice = resolve_damage_table(tbl, resolved,
+                                        {"temporary_hp": spec.get("temporary_hp", 0)})
+        elif "expr" in spec:
+            flat = eval_formula(spec["expr"], build_formula_context(resolved))
+        cap = spec.get("cap")
+        if cap is not None and flat:
+            flat = min(flat, int(cap))
+        # 表里可能返回 dS 形式（如「长城」按临时生命值给若干枚卓越骰）
+        dice = resolve_superiority_dice(dice, resolved.derived.level)
+        attack.components = [DamageComponent(dice, flat=flat, dtype=dtype,
+                                             slot=op["id"])]
 
     for extra in proj.get("extra_dice", []):
         dice = extra["dice"]
@@ -562,6 +667,7 @@ def _with_vulnerability(target, types):
 
 
 RANGE_RE = re.compile(r"(\d+)\s*尺")
+_TABLES_CACHE = {}
 
 
 def _range_ft(text):

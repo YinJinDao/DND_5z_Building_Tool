@@ -1,0 +1,36 @@
+{
+  "id": "mv.摘星流.高级.苍鹰击于殿",
+  "name": "苍鹰击于殿",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 1
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "近战武器",
+    "min_travel_ft": 30
+  },
+  "projection": {
+    "damage_replaces_weapon": true,
+    "formula_damage": {
+      "expr": "speed / 2.5",
+      "cap": 50,
+      "type": "slashing",
+      "note": "伤害总值等于移动速度/2.5，最大 50；忽略武器骰、属性与其它加值"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "苍鹰击于殿"
+  },
+  "status": "modeled",
+  "ruling": null
+}

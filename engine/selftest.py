@@ -678,6 +678,54 @@ def test_maneuvers():
         print("  FAIL 抗性未生效")
 
 
+def test_tables_and_formulas():
+    print("\n[19] 伤害查表与公式型伤害")
+    import json as _json
+    import calculator as calc
+
+    tables = calc.load_damage_tables()
+    check("伤害表数量", Fraction(len(tables)), Fraction(2), tol=1e-9)
+
+    class _Stub:
+        size = "medium"
+        raw = {"combat": {"material": "血肉", "speed_ft": 30}}
+
+    # 交叉表：体型 × 材质。构筑侧用英文键，查表时映射为中文
+    for size, want in (("medium", "4d6"), ("large", "8d6"), ("gargantuan", "16d6")):
+        stub = type("S", (), {"size": size, "raw": _Stub.raw})()
+        got = calc.resolve_damage_table(tables["tbl.泰山压顶"], stub)
+        if got != want:
+            FAILS.append(f"泰山压顶 {size} 应为 {want}，实际 {got}")
+    print("  OK   泰山压顶 体型×材质查表（medium→4d6 … gargantuan→16d6）")
+
+    stub_steel = type("S", (), {"size": "medium",
+                                "raw": {"combat": {"material": "钢铁岩石"}}})()
+    if calc.resolve_damage_table(tables["tbl.泰山压顶"], stub_steel) != "4d8":
+        FAILS.append("泰山压顶 钢铁岩石 应为 4d8")
+    else:
+        print("  OK   泰山压顶 材质轴（钢铁岩石→4d8）")
+
+    # 分档表：按临时生命值取档
+    for hp, want in ((0, "4dS"), (5, "6dS"), (25, "10dS"), (100, "14dS"), (400, "18dS")):
+        got = calc.resolve_damage_table(tables["tbl.长城"], _Stub(), {"temporary_hp": hp})
+        if got != want:
+            FAILS.append(f"长城 temp_hp={hp} 应为 {want}，实际 {got}")
+    print("  OK   长城按临时生命值正确分档（0→4dS … 400→18dS）")
+
+    # 公式：苍鹰击于殿 = 速度/2.5，上限 50
+    ctx = {"speed": 30, "level": 5}
+    check("速度 30 → 伤害", Fraction(calc.eval_formula("speed / 2.5", ctx)), Fraction(12), tol=1e-9)
+    check("上限 50", Fraction(calc.eval_formula("min(speed / 2.5, 50)", {"speed": 200})),
+          Fraction(50), tol=1e-9)
+
+
+def _split(dice):
+    """'4d6' → (4, 6)，供 Fraction 比较。"""
+    import re as _re
+    m = _re.match(r"(\d+)d(\d+)", str(dice))
+    return (int(m.group(1)), int(m.group(2))) if m else (0, 1)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -700,6 +748,7 @@ def main():
     test_expanded_ops()
     test_gates()
     test_maneuvers()
+    test_tables_and_formulas()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
