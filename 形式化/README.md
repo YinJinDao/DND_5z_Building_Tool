@@ -18,7 +18,9 @@
 | 表 | 条数 | 状态 |
 | --- | --- | --- |
 | `data/maneuvers.jsonl` | 252 | A 档完成 |
+| `data/feats.jsonl` | 672 | A 档完成 |
 | `data/spells.jsonl` | 1164 | A 档完成，xlsx 为 1.49 版，待与正文对版本 |
+| `data/relevance.jsonl` | 2088 | 相关性初筛完成，A 档 679 条（战技 57 / 专长 139 / 法术 483） |
 
 下一步：继续 A 档抽取（职业表、专长、种族、装备），并开始 B 档算子编译。
 
