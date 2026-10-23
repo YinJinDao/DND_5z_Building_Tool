@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.狂野迸发",
+  "name": "狂野迸发",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 18,
+    "subclass": "狂野领域"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "令受狂野魔法浪涌影响的生物也骰一次浪涌，结果由 D50 表决定"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "随机表驱动：结果是随机的法术与生物，无法折算为稳定期望",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "狂野迸发"
+  },
+  "status": "approximated",
+  "ruling": null
+}

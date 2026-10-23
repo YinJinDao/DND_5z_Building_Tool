@@ -1,0 +1,30 @@
+{
+  "id": "cf.圣武士.救赎之舞",
+  "name": "救赎之舞",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 15,
+    "subclass": "伊莉丝翠的月剑之誓"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "豁免成功时双方各受 10d6 心灵伤害；失败则目标立誓不敌对"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "控制/自我伤害：成功路径对双方同时造成伤害，不属于单方面 DPR",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "救赎之舞"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "cf.武僧.土宗形态",
+  "name": "土宗形态",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 1,
+    "subclass": "四象宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "prof",
+        "damage_type": "bludgeoning"
+      }
+    ],
+    "note": "原始数据未标注等级，按「获得对应子职即获得」记为 1 级。崩山击：远程武器攻击命中后造成熟练加值×武艺骰的钝击伤害，每多点 1 气再加一枚武艺骰；此处按 1 枚武艺骰折算。其余法门为防御与法术"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "土宗形态"
+  },
+  "status": "approximated",
+  "ruling": null
+}

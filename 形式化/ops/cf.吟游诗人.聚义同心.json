@@ -1,0 +1,30 @@
+{
+  "id": "cf.吟游诗人.聚义同心",
+  "name": "聚义同心",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "吟游诗人",
+    "class_id": "class.bard",
+    "level": 14,
+    "subclass": "勇气"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "免疫恐慌与其传递；18 级起战魂旗范围内的友方每回合多发动一次武器攻击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "豁免免疫与他人攻击次数，不改变本角色输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/吟游诗人.htm",
+    "anchor": "聚义同心"
+  },
+  "status": "approximated",
+  "ruling": null
+}

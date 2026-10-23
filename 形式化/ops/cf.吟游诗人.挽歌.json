@@ -1,0 +1,30 @@
+{
+  "id": "cf.吟游诗人.挽歌",
+  "name": "挽歌",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "吟游诗人",
+    "class_id": "class.bard",
+    "level": 10,
+    "subclass": "灵魂"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "低生命目标对抗吟唱时豁免 -1d6；14 级魂牵厄运为一次 +10 后接一次 -10；18 级符咒"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "豁免减值与自我增益的配对，不构成稳定的每轮伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/吟游诗人.htm",
+    "anchor": "挽歌"
+  },
+  "status": "approximated",
+  "ruling": null
+}

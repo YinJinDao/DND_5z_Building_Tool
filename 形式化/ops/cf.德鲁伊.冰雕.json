@@ -1,0 +1,30 @@
+{
+  "id": "cf.德鲁伊.冰雕",
+  "name": "冰雕",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "德鲁伊",
+    "class_id": "class.druid",
+    "level": 1,
+    "subclass": "凛冬结社"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "原始数据未标注等级，按「获得对应子职即获得」记为 1 级。荒野变形形态：整份数据被替换"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "荒野变形形态：整份数据被替换",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/德鲁伊.htm",
+    "anchor": "冰雕"
+  },
+  "status": "approximated",
+  "ruling": null
+}

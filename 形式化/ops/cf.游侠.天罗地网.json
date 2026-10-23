@@ -1,0 +1,30 @@
+{
+  "id": "cf.游侠.天罗地网",
+  "name": "天罗地网",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 16,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "让目标承受位面负面环境（速度减半、视野受限等）并禁止传送"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "环境与移动类控制，不造成伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "天罗地网"
+  },
+  "status": "approximated",
+  "ruling": null
+}

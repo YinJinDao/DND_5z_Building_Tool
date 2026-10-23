@@ -1,0 +1,30 @@
+{
+  "id": "cf.圣武士.引导神力",
+  "name": "引导神力",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 3,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "法力再生（回复法术位）与各誓言选项，多为施法资源与防御/辅助"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "资源回复与辅助效应：不改变本角色的攻击数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "引导神力"
+  },
+  "status": "approximated",
+  "ruling": null
+}

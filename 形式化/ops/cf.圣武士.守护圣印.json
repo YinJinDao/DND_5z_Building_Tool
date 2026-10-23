@@ -1,0 +1,30 @@
+{
+  "id": "cf.圣武士.守护圣印",
+  "name": "守护圣印",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "消耗法术位为目标挂圣印点数，减少目标对他人造成的伤害"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：减少队友承受的伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "守护圣印"
+  },
+  "status": "approximated",
+  "ruling": null
+}

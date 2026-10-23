@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.龙岛秘传",
+  "name": "龙岛秘传",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 16,
+    "subclass": "伏龙坛"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "adv_tiers": 1,
+    "note": "徒手/武僧武器攻击可令该次攻击具有优势，代价是失去等同于所造成伤害的生命值。这是以生命换命中，本工具只计输出，因此会高估其性价比"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "龙岛秘传"
+  },
+  "status": "approximated",
+  "ruling": null
+}

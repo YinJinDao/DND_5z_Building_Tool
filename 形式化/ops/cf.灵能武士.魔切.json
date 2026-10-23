@@ -1,0 +1,40 @@
+{
+  "id": "cf.灵能武士.魔切",
+  "name": "魔切",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 15,
+    "subclass": "裁决魔刃"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {
+    "env_flags": [
+      "target_failed_save"
+    ]
+  },
+  "projection": {
+    "attack_bonus": 3,
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 3,
+        "damage_type": "same_as_weapon"
+      }
+    ],
+    "note": "生物对抗你的魔法效应豁免失败后 1 分钟内，你对其发动的武器攻击 +3 命中与伤害（与魔法武器加值不叠加取较高者）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "魔切"
+  },
+  "status": "approximated",
+  "ruling": null
+}

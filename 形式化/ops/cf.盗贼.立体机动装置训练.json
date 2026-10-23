@@ -1,0 +1,30 @@
+{
+  "id": "cf.盗贼.立体机动装置训练",
+  "name": "立体机动装置训练",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 2,
+    "subclass": "自由之翼"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "掠袭命中时可通过装置发动偷袭；对大型以上目标无需优势"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "依赖特定装备（立体机动装置）的攻击方式，其偷袭收益已由偷袭算子表达",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "立体机动装置训练"
+  },
+  "status": "approximated",
+  "ruling": null
+}

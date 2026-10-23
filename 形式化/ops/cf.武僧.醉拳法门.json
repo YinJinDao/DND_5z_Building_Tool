@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.醉拳法门",
+  "name": "醉拳法门",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 3,
+    "subclass": "酒仙宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "13 级起疾风连击命中后额外造成 2×可攻击敌人数量的伤害（上限 10）"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "额外伤害取决于可攻击的敌人数量；打桩单目标时为 2，且依赖疾风连击的多目标用法",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "醉拳法门"
+  },
+  "status": "approximated",
+  "ruling": null
+}

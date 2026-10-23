@@ -91,7 +91,13 @@ def check_ops():
         # A7：攻击次数的类型与取值
         proj = op.get("projection") or {}
         if "attack_count" in proj:
-            if not isinstance(proj["attack_count"], int) or proj["attack_count"] < 1:
+            ac = proj["attack_count"]
+            # 可以是整数，也可以是 {value, scale} ——一个特性只有一个算子（A10），
+            # 等级成长只能放在字段里的分段表
+            if isinstance(ac, dict):
+                if not isinstance(ac.get("value"), int) or ac["value"] < 1:
+                    err(f"[A7] {fname}: attack_count.value 必须是 ≥1 的整数")
+            elif not isinstance(ac, int) or ac < 1:
                 err(f"[A7] {fname}: attack_count 必须是 ≥1 的整数")
             if proj.get("attack_count_mode") not in ("max", None):
                 err(f"[A7] {fname}: attack_count_mode 目前只支持 max")

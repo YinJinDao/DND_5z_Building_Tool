@@ -1,0 +1,30 @@
+{
+  "id": "cf.德鲁伊.大德鲁伊",
+  "name": "大德鲁伊",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "德鲁伊",
+    "class_id": "class.druid",
+    "level": 20,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "荒野变形的规则说明：变形对象与最大等级，属形态替换"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "荒野变形的规则说明：变形对象与最大等级，属形态替换",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/德鲁伊.htm",
+    "anchor": "大德鲁伊"
+  },
+  "status": "approximated",
+  "ruling": null
+}

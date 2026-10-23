@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.谋而后动",
+  "name": "谋而后动",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "bonus_action_attack": 1,
+    "note": "上一回合未发动攻击时，本回合可用附赠动作执行一个攻击动作（含其全部攻击次数）。此处按 +1 次攻击近似——实际是整组攻击，数值上偏保守"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "谋而后动"
+  },
+  "status": "approximated",
+  "ruling": null
+}

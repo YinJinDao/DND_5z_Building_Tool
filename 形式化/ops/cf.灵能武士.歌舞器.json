@@ -1,0 +1,36 @@
+{
+  "id": "cf.灵能武士.歌舞器",
+  "name": "歌舞器",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 3,
+    "subclass": "风物行者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "natural_weapon": {
+      "dice": "1d8",
+      "damage_type": "thunder",
+      "properties": [
+        "弹药"
+      ]
+    },
+    "note": "持握乐器时可当作军用远程武器：射程 60/120 尺，1d8 雷鸣。花伞当盾牌属防御",
+    "damage_type_override": "thunder"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "歌舞器"
+  },
+  "status": "approximated",
+  "ruling": null
+}

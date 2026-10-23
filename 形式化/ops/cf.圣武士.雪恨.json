@@ -1,0 +1,30 @@
+{
+  "id": "cf.圣武士.雪恨",
+  "name": "雪恨",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 1,
+    "subclass": "复仇之誓"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "adv_tiers": 1,
+    "note": "击杀你的敌人对你发动攻击时具有优势。需在策略 buffs 中声明"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "雪恨"
+  },
+  "status": "approximated",
+  "ruling": null
+}

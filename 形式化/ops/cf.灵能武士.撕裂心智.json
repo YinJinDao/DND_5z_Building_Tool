@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.撕裂心智",
+  "name": "撕裂心智",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 15,
+    "subclass": "魂刃主宰"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "放弃额外伤害骰，改为造成智力/感知属性损伤"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "属性损伤，不造成生命值伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "撕裂心智"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.斩业",
+  "name": "斩业",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 4,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "同一回合多次命中后，为盟友移除负面状态"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "状态移除：不改变伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "斩业"
+  },
+  "status": "approximated",
+  "ruling": null
+}

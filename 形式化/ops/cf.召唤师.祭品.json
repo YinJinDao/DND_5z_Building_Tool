@@ -1,0 +1,30 @@
+{
+  "id": "cf.召唤师.祭品",
+  "name": "祭品",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "召唤师",
+    "class_id": "class.summoner",
+    "level": 10,
+    "subclass": "苍白之主牵绊"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "摧毁亡灵仆从后按其特征获得虚化/坚韧/回血"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "以仆从换取自身防御能力，不产生对敌输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/召唤师.htm",
+    "anchor": "祭品"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.召唤师.武装空投仓",
+  "name": "武装空投仓",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "召唤师",
+    "class_id": "class.summoner",
+    "level": 20,
+    "subclass": "空投引导员牵绊"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "空投仓落地后化为可攻击的物件，自行射击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "部署物体系：伤害由部署物产生，不计入本角色",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/召唤师.htm",
+    "anchor": "武装空投仓"
+  },
+  "status": "approximated",
+  "ruling": null
+}

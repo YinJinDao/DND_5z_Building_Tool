@@ -1,0 +1,30 @@
+{
+  "id": "cf.盗贼.战场支援",
+  "name": "战场支援",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 2,
+    "subclass": "先锋"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "杂技花招：清理困难地形、指挥友方移动等"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "地形清理与团队移动，不产生伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "战场支援"
+  },
+  "status": "approximated",
+  "ruling": null
+}

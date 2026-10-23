@@ -1277,8 +1277,12 @@ def apply_choices(ops, build_doc):
         else:
             label, spec = str(pick), options.get(pick.get("option"))
         if spec is None:
-            raise KeyError(f"{op['name']} 的选项 {label!r} 不存在"
-                           f"（可选：{'/'.join(k for k in options if k != 'default')}）")
+            # 多个职业共用同一个 choice_key（战斗风格）时，某个职业不一定
+            # 有对方那个选项——跳过并记录，而不是让整份构筑算不出来
+            picked_trace.append(f"{op['name']} 无选项 {label!r}，跳过"
+                                f"（可选：{'/'.join(k for k in options if k != 'default')}）")
+            out[oid] = op
+            continue
         merged = dict(op)
         proj = {k: v for k, v in (op.get("projection") or {}).items()
                 if k not in ("options", "choice_key")}
@@ -1314,7 +1318,8 @@ def derive_attack_count(build_doc, ops):
     for op in granted_class_ops(build_doc, ops):
         proj = op.get("projection") or {}
         if "attack_count" in proj:
-            counts.append((int(proj["attack_count"]), op["name"]))
+            counts.append((int(scaled_value(proj["attack_count"], op, build_doc)),
+                           op["name"]))
 
     for f in build_doc.get("feats", []):
         op = ops.get(f.get("id"))

@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能师.潜能显现",
+  "name": "潜能显现",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 6,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "按阵营选择的五种能力：节约法术位、移除心智负面、移动等"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "资源节约与防御类效应，不改变伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "潜能显现"
+  },
+  "status": "approximated",
+  "ruling": null
+}

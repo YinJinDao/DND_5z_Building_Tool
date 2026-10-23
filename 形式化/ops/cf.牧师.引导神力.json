@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.引导神力",
+  "name": "引导神力",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "驱散圣洁/秽恶与各领域选项，多为驱散、恢复与辅助"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "驱散与辅助效应，不产生对敌伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "引导神力"
+  },
+  "status": "approximated",
+  "ruling": null
+}

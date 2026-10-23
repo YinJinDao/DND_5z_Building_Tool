@@ -1,0 +1,36 @@
+{
+  "id": "cf.灵能武士.盾牌打击",
+  "name": "盾牌打击",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 3,
+    "subclass": "坚壁铁卫"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "natural_weapon": {
+      "dice": "1d8",
+      "damage_type": "bludgeoning",
+      "properties": [
+        "两用",
+        "重型"
+      ]
+    },
+    "note": "把盾牌当近战武器：单手 1d8、双手 1d10 钝击；魔法盾牌另有加值（取 AC 加值与 3 的较小值）。持盾时不能触发「对决」风格"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "盾牌打击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

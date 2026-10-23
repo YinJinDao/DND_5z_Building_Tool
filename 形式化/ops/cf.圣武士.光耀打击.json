@@ -1,0 +1,39 @@
+{
+  "id": "cf.圣武士.光耀打击",
+  "name": "光耀打击",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 10,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {
+    "env_flags": [
+      "target_has_seal"
+    ]
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d10",
+        "damage_type": "radiant",
+        "note": "18 级提升为 2d10"
+      }
+    ],
+    "note": "命中拥有圣印点数的敌对生物时额外 1d10 光耀（18 级 2d10）。圣印点数由「守护圣印」消耗法术位施加，需环境 flags 含 target_has_seal；豁免失败触发的 2d10/4d10 走豁免管线，不在武器管线内"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "光耀打击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

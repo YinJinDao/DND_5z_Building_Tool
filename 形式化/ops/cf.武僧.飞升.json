@@ -1,0 +1,29 @@
+{
+  "id": "cf.武僧.飞升",
+  "name": "飞升",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 20,
+    "subclass": "侠客（武僧变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "damage_type_override": "fire",
+    "note": "鸿蒙一气可把武器伤害类型改为五种元素之一；运转周天为资源恢复、纯元圣体为防御"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "飞升"
+  },
+  "status": "approximated",
+  "ruling": null
+}

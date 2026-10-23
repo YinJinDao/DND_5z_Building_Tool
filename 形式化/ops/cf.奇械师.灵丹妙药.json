@@ -1,0 +1,30 @@
+{
+  "id": "cf.奇械师.灵丹妙药",
+  "name": "灵丹妙药",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "奇械师",
+    "class_id": "class.artificer",
+    "level": 3,
+    "subclass": "炼金师"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "改造魔药类型并给 1d4 攻击/豁免加值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "消耗品效果：依赖炼制的魔药，不是构筑自带的常驻加值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/奇械师.htm",
+    "anchor": "灵丹妙药"
+  },
+  "status": "approximated",
+  "ruling": null
+}

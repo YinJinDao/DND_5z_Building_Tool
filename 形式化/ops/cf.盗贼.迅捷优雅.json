@@ -1,0 +1,30 @@
+{
+  "id": "cf.盗贼.迅捷优雅",
+  "name": "迅捷优雅",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 17,
+    "subclass": "剑斗家"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "用动作施展剑艺戏法后可用附赠动作再施展一次戏法"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "改变戏法的施放节奏，伤害归入对应戏法算子",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "迅捷优雅"
+  },
+  "status": "approximated",
+  "ruling": null
+}

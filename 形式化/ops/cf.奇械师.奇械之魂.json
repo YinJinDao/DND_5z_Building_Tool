@@ -1,0 +1,30 @@
+{
+  "id": "cf.奇械师.奇械之魂",
+  "name": "奇械之魂",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "奇械师",
+    "class_id": "class.artificer",
+    "level": 20,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "同调位换豁免加值与免死"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：豁免加值与免于降到 0 点生命值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/奇械师.htm",
+    "anchor": "奇械之魂"
+  },
+  "status": "approximated",
+  "ruling": null
+}

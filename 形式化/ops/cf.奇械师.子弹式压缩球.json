@@ -1,0 +1,30 @@
+{
+  "id": "cf.奇械师.子弹式压缩球",
+  "name": "子弹式压缩球",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "奇械师",
+    "class_id": "class.artificer",
+    "level": 15,
+    "subclass": "神枪手"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把压缩球当弹药发射，命中后不造成伤害，改为释放其中法术"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害来源是被释放的法术，该特性只改变投射方式",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/奇械师.htm",
+    "anchor": "子弹式压缩球"
+  },
+  "status": "approximated",
+  "ruling": null
+}

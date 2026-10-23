@@ -1,0 +1,36 @@
+{
+  "id": "cf.圣武士.毒击",
+  "name": "毒击",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 1,
+    "subclass": "恶武士（圣武士变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "level*5",
+        "damage_type": "poison",
+        "note": "毒素能量池总值 = 等级×5（≤3 级为 15），可在一次徒手打击中全部抽出"
+      }
+    ],
+    "note": "以一个动作发动徒手打击并抽取毒素能量。按池子全额抽取近似，实际会用完即止；对不死/构装无效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "毒击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

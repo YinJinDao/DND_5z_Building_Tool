@@ -1,0 +1,61 @@
+{
+  "id": "cf.法师.法术风格",
+  "name": "法术风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "法师",
+    "class_id": "class.wizard",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "spell_style",
+    "options": {
+      "博闻强识": {
+        "projection": {
+          "note": "额外准备法术"
+        }
+      },
+      "凝神": {
+        "projection": {
+          "note": "专注豁免 +2"
+        }
+      },
+      "近程射线": {
+        "projection": {
+          "note": "贴身发动远程法术攻击不再具有劣势——这是在避免劣势，本身不产生加值"
+        }
+      },
+      "能量回收": {
+        "projection": {
+          "note": "击杀时回收法术位，属资源"
+        }
+      },
+      "法术熟稔": {
+        "projection": {
+          "note": "辨认法术的智力检定 +4"
+        }
+      },
+      "笔走龙蛇": {
+        "projection": {
+          "note": "抄录法术成本减半"
+        }
+      }
+    },
+    "note": "法术风格六选一，均不直接增加伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/法师.htm",
+    "anchor": "法术风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

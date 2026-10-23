@@ -1,0 +1,30 @@
+{
+  "id": "cf.契术师.相濡以沫",
+  "name": "相濡以沫",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "契术师",
+    "class_id": "class.warlock",
+    "level": 1,
+    "subclass": "万众"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把致命伤害转移给自己或队友，并削减最大生命值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害转移：不产生对敌输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/契术师.htm",
+    "anchor": "相濡以沫"
+  },
+  "status": "approximated",
+  "ruling": null
+}

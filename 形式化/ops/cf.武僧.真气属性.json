@@ -1,0 +1,57 @@
+{
+  "id": "cf.武僧.真气属性",
+  "name": "真气属性",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 4,
+    "subclass": "侠客（武僧变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "qi_element",
+    "options": {
+      "木": {
+        "projection": {
+          "note": "替换攻击为友方回血"
+        }
+      },
+      "土": {
+        "projection": {
+          "note": "负重翻倍；无甲防御 AC=8+熟练+力量+感知，防御侧"
+        }
+      },
+      "水": {
+        "projection": {
+          "note": "运动/体操/隐匿检定优势"
+        }
+      },
+      "火": {
+        "projection": {
+          "adv_tiers": 1,
+          "note": "对相克属性的侠客发动武器攻击具有优势；需环境 flags 含 target_element_opposed"
+        }
+      },
+      "金": {
+        "projection": {
+          "note": "基础效果不在输出侧"
+        }
+      }
+    },
+    "note": "侠客真气属性五选一；五行相克的优势由环境旗帜声明"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "真气属性"
+  },
+  "status": "approximated",
+  "ruling": null
+}

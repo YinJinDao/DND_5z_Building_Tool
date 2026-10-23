@@ -1,0 +1,29 @@
+{
+  "id": "cf.灵能武士.剑气心魂",
+  "name": "剑气心魂",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 12,
+    "subclass": "御剑师"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reach_bonus_ft": 5,
+    "note": "魂铸武器触及范围 +5 尺；15 级起借机命中可积攒充能，充能可换一次大幅强化的武器攻击"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "剑气心魂"
+  },
+  "status": "approximated",
+  "ruling": null
+}

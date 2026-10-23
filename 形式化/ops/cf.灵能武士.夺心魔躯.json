@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.夺心魔躯",
+  "name": "夺心魔躯",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 7,
+    "subclass": "脑虫仆从"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "失心凝视造成感知属性损伤与恍惚"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "属性损伤与状态，不造成生命值伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "夺心魔躯"
+  },
+  "status": "approximated",
+  "ruling": null
+}

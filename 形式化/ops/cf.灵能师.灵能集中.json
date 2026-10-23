@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能师.灵能集中",
+  "name": "灵能集中",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 10,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "消耗移动力进入集中，强化下一个法术（串联施法、呼名等）"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "强化的是法术的施放方式与顺序，伤害仍来自法术本身",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "灵能集中"
+  },
+  "status": "approximated",
+  "ruling": null
+}

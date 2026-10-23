@@ -1,0 +1,30 @@
+{
+  "id": "cf.契术师.契与焰的回响",
+  "name": "契与焰的回响",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "契术师",
+    "class_id": "class.warlock",
+    "level": 4,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "改变魔能爆的施展方式（以魔宠为源点、附赠动作放戏法）。伤害来自魔能爆本身"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "只改变特定法术的施展方式，伤害仍由该法术产生",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/契术师.htm",
+    "anchor": "契与焰的回响"
+  },
+  "status": "approximated",
+  "ruling": null
+}

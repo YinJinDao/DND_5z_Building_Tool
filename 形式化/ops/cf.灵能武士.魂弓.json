@@ -1,0 +1,32 @@
+{
+  "id": "cf.灵能武士.魂弓",
+  "name": "魂弓",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 3,
+    "subclass": "魂刃主宰"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "natural_weapon": {
+      "dice": "1d6",
+      "damage_type": "psychic"
+    },
+    "note": "把念刃塑成箭矢：命中造成 1d6+属性调整值心灵伤害；与魔法弩的加值不叠加，取较高者"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "魂弓"
+  },
+  "status": "approximated",
+  "ruling": null
+}

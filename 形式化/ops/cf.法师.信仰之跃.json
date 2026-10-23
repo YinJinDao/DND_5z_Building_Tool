@@ -1,0 +1,29 @@
+{
+  "id": "cf.法师.信仰之跃",
+  "name": "信仰之跃",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "法师",
+    "class_id": "class.wizard",
+    "level": 2,
+    "subclass": "重力魔法"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 5,
+    "note": "用智力调整值决定移动速度：每 1 点力量调整值 +5 尺。实际加值取决于力量调整值，本工具无法从单一数字推出一般公式；构筑请直接把最终速度写进 combat.speed_ft，此处 +5 仅为占位"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/法师.htm",
+    "anchor": "信仰之跃"
+  },
+  "status": "approximated",
+  "ruling": null
+}

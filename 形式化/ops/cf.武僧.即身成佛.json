@@ -1,0 +1,29 @@
+{
+  "id": "cf.武僧.即身成佛",
+  "name": "即身成佛",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 20,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "damage_type_override": "fire",
+    "note": "元素选项可把武器伤害类型改为火焰/闪电/雷鸣/寒冷/强酸之一；天界选项为资源恢复，邪魔选项为防御"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "即身成佛"
+  },
+  "status": "approximated",
+  "ruling": null
+}

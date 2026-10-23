@@ -1,0 +1,63 @@
+{
+  "id": "cf.牧师.法术风格",
+  "name": "法术风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "spell_style",
+    "options": {
+      "凝神": {
+        "projection": {
+          "note": "专注豁免 +2"
+        }
+      },
+      "近程射线": {
+        "projection": {
+          "note": "避免贴身施法的劣势"
+        }
+      },
+      "戏法家": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ],
+          "note": "戏法造成伤害时其中一个目标额外受熟练加值伤害"
+        }
+      },
+      "勇士祝福": {
+        "projection": {
+          "note": "为自愿目标提供 3×环阶临时生命值，防御侧"
+        }
+      },
+      "远程医疗": {
+        "projection": {
+          "note": "治疗法术的施法距离延长"
+        }
+      }
+    },
+    "note": "法术风格五选一"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "法术风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

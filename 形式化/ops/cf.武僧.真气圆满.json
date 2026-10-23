@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.真气圆满",
+  "name": "真气圆满",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 18,
+    "subclass": "侠客（武僧变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "木之嫁接转移伤害、土之镇压造石牢、水之流转反击，均不增加稳定输出"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害转移、控制与反击触发，不构成稳定的每轮输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "真气圆满"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,78 @@
+{
+  "id": "cf.灵能武士.战斗风格",
+  "name": "战斗风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "fighting_style",
+    "options": {
+      "防御": {
+        "projection": {
+          "note": "AC +1"
+        }
+      },
+      "对决": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "投掷武器战斗": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "双武器战斗": {
+        "projection": {
+          "bonus_action_ability_mod": true
+        }
+      },
+      "守护": {
+        "projection": {
+          "note": "防御侧"
+        }
+      },
+      "盲斗": {
+        "projection": {
+          "note": "盲视 5 尺"
+        }
+      },
+      "拦截": {
+        "projection": {
+          "note": "防御侧"
+        }
+      }
+    },
+    "note": "与其它职业共用 choice_key=fighting_style"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "战斗风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

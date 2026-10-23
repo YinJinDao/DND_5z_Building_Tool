@@ -1,0 +1,56 @@
+{
+  "id": "cf.灵能师.法术风格",
+  "name": "法术风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "spell_style",
+    "options": {
+      "博闻强识": {
+        "projection": {
+          "note": "已知环法数量增加"
+        }
+      },
+      "凝神": {
+        "projection": {
+          "note": "专注豁免 +2"
+        }
+      },
+      "能量回收": {
+        "projection": {
+          "note": "击杀时回收法术位"
+        }
+      },
+      "顽强": {
+        "projection": {
+          "note": "失能时仍可施法"
+        }
+      },
+      "全身而退": {
+        "projection": {
+          "note": "受你法术影响者攻击你时具有劣势，防御侧"
+        }
+      }
+    },
+    "note": "法术风格五选一，均不直接增加伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "法术风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

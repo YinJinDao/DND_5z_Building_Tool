@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.精通散打技巧",
+  "name": "精通散打技巧",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 10,
+    "subclass": "散打宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "散打技巧的追加选项为窒息/隐形/嗜血等状态，以及延迟生效的劲力"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "状态与延迟伤害，不改变命中与伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "精通散打技巧"
+  },
+  "status": "approximated",
+  "ruling": null
+}

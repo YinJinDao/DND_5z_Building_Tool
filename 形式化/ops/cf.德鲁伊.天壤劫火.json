@@ -1,0 +1,30 @@
+{
+  "id": "cf.德鲁伊.天壤劫火",
+  "name": "天壤劫火",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "德鲁伊",
+    "class_id": "class.druid",
+    "level": 19,
+    "subclass": "野火结社"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "降低超魔点数消耗，针对法术而非武器输出"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "降低超魔点数消耗，针对法术而非武器输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/德鲁伊.htm",
+    "anchor": "天壤劫火"
+  },
+  "status": "approximated",
+  "ruling": null
+}

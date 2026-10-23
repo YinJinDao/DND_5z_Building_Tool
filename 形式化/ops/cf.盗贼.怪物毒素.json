@@ -1,0 +1,37 @@
+{
+  "id": "cf.盗贼.怪物毒素",
+  "name": "怪物毒素",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 4,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "2d6",
+        "flat": 3,
+        "damage_type": "fire",
+        "limit": "每回合一次",
+        "note": "取自怪物攻击的其他伤害类型；此处以火元素的 2d6+3 火焰为例"
+      }
+    ],
+    "note": "从尸体提取毒素涂在武器上，一小时内首次命中时附加该怪物的额外伤害与附加效果。具体数值取决于毒素来源，此处按示例取值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "怪物毒素"
+  },
+  "status": "approximated",
+  "ruling": null
+}
