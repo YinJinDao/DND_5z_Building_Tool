@@ -20,6 +20,9 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from evaluator import (Attack, DamageComponent, TargetProfile,
                        apply_target_pipeline, dice_mean, expected_damage)
+from combat import (CombatState, RangeProfile, Step, expected_save_damage,
+                    save_fail_probability, validate_turn)
+from strategy import CRIT, HIT, MISS, Rule, check_feasible, evaluate_turn
 
 N = 200_000
 SIGMA = 4.0          # 允许的偏离：4 倍蒙特卡洛标准误
@@ -153,6 +156,116 @@ def test_expected_value_identity():
     check("恒等式", analytic, manual, tol=1e-9)
 
 
+def test_movement():
+    print("\n[6] 距离与移动")
+    s = CombatState(distance_ft=30, speed_ft=30)
+    s.start_turn()
+    melee = RangeProfile(reach_ft=5)
+    if melee.can_reach(s.distance_ft):
+        FAILS.append("初始距离 30 尺不应能近战触及")
+        print("  FAIL 初始距离判定")
+    else:
+        print("  OK   初始 30 尺不可近战触及")
+    moved = s.move(25, toward=True)
+    check("移动 25 尺后剩余移动力", Fraction(s.movement_left), Fraction(5), tol=1e-9)
+    check("冲刺后距离", Fraction(s.distance_ft), Fraction(5), tol=1e-9)
+    if melee.can_reach(s.distance_ft):
+        print(f"  OK   移动 {moved} 尺后距离 {s.distance_ft} 尺，已进入触及")
+    else:
+        FAILS.append("移动 25 尺后应进入 5 尺触及")
+        print("  FAIL 移动后仍未进入触及")
+
+    # 移动力耗尽后不能再移动
+    s.move(10, toward=True)
+    check("移动力耗尽后不再移动", Fraction(s.movement_left), Fraction(0), tol=1e-9)
+
+    # 冲锋：本回合直线移动需 ≥30 尺
+    s2 = CombatState(distance_ft=60, speed_ft=30)
+    s2.start_turn()
+    s2.move(30, toward=True)
+    check("冲锋所需移动量", Fraction(s2.travel_this_turn), Fraction(30), tol=1e-9)
+
+
+def test_action_economy():
+    print("\n[7] 动作经济校验")
+    s = CombatState()
+    s.start_turn()
+    s.attack_instances = 2
+
+    ok = [Step("攻击", {"action": 1}, group="atk"),
+          Step("替换攻击", {"replace_attack": 1}, group="atk"),
+          Step("替换攻击", {"replace_attack": 1}, group="atk")]
+    check("合法回合", Fraction(len(validate_turn(ok, s))), Fraction(0), tol=1e-9)
+
+    dup = [Step("攻击", {"action": 1}), Step("再攻击", {"action": 1})]
+    check("重复使用动作", Fraction(len(validate_turn(dup, s))), Fraction(1), tol=1e-9)
+
+    insert = [Step("攻击", {"action": 1}, group="atk"),
+              Step("狂暴", {"bonus_action": 1}),
+              Step("额外攻击", {"replace_attack": 1}, group="atk")]
+    check("动作中插入附赠动作", Fraction(len(validate_turn(insert, s))), Fraction(1), tol=1e-9)
+
+    over = [Step("攻击", {"action": 1}, group="atk"),
+            Step("替换一", {"replace_attack": 1}, group="atk"),
+            Step("替换二", {"replace_attack": 1}, group="atk"),
+            Step("替换三", {"replace_attack": 1}, group="atk")]
+    check("替换超出攻击次数", Fraction(len(validate_turn(over, s))), Fraction(1), tol=1e-9)
+
+
+def test_saves():
+    print("\n[8] 豁免型伤害")
+    # DC 15，豁免加值 +5 → 需 d20 ≥ 10 → 成功概率 11/20，失败 9/20
+    check("豁免失败概率", save_fail_probability(15, 5), Fraction(9, 20), tol=1e-9)
+    check("无半伤", expected_save_damage(15, 5, Fraction(20)),
+          Fraction(9, 20) * 20, tol=1e-9)
+    # 半伤：9/20×20 + 11/20×10 = 9 + 5.5 = 14.5
+    check("半伤", expected_save_damage(15, 5, Fraction(20), half_on_save=True),
+          Fraction(29, 2), tol=1e-9)
+    # 奇数伤害半伤向下取整：7 → 3
+    check("半伤取整", expected_save_damage(15, 5, Fraction(7), half_on_save=True),
+          Fraction(9, 20) * 7 + Fraction(11, 20) * 3, tol=1e-9)
+
+
+def test_strategy():
+    print("\n[9] 条件策略与结果树")
+    tgt = TargetProfile(ac=15)
+    atk = Attack(attack_bonus=5, components=[
+        DamageComponent("1d12", flat=5, dtype="slashing")])
+
+    # 无规则：两次攻击应等于单次期望 ×2（攻击间独立）
+    one, _ = evaluate_turn([atk], [], tgt)
+    two, leaves = evaluate_turn([atk, atk], [], tgt)
+    check("两击 = 单击×2", two, one * 2, tol=1e-9)
+    check("两击叶子数", Fraction(leaves), Fraction(9), tol=1e-9)
+
+    # 与 evaluator 的单次实现交叉验证
+    single, _ = expected_damage(atk, tgt)
+    check("与单次实现一致", one, single, tol=1e-9)
+
+    # 条件规则：每次命中额外 1d6（模拟"命中后才花卓越骰"）
+    rule = Rule(trigger="hit_or_crit", name="命中后加骰",
+                extra_dice=[DamageComponent("1d6", dtype="slashing")])
+    with_rule, _ = evaluate_turn([atk], [rule], tgt)
+    if with_rule <= one:
+        FAILS.append("条件加骰应提高期望")
+        print("  FAIL 条件加骰未提高期望")
+    else:
+        print(f"  OK   命中后加 1d6：{float(one):.3f} → {float(with_rule):.3f}")
+
+    # 失手后给下一次攻击优势
+    rule2 = Rule(trigger="miss", on_attack=0, name="失手后造优", next_adv=1)
+    boosted, _ = evaluate_turn([atk, atk], [rule2], tgt)
+    if boosted <= one * 2:
+        FAILS.append("失手造优应提高总期望")
+        print("  FAIL 失手造优未生效")
+    else:
+        print(f"  OK   首击失手后次击有优势：{float(one*2):.3f} → {float(boosted):.3f}")
+
+    # 资源可行性
+    problems = check_feasible([Rule(trigger=HIT, spends={"卓越骰": 2})], {"卓越骰": 1})
+    check("资源不足报警", Fraction(len(problems)), Fraction(1), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -162,6 +275,10 @@ def main():
     test_crit()
     test_target_pipeline()
     test_expected_value_identity()
+    test_movement()
+    test_action_economy()
+    test_saves()
+    test_strategy()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
