@@ -140,10 +140,14 @@
 {"id": "mv.摘星流.高级.燃命", "kind": "maneuver", "name": "燃命", "score": 3, "tier": "B", "signals": ["damage"], "status": "screened"}
 {"id": "mv.摘星流.高级.时空分裂", "kind": "maneuver", "name": "时空分裂", "score": 3, "tier": "B", "signals": ["economy", "move"], "status": "screened"}
 {"id": "mv.摘星流.高级.华丽收场", "kind": "maneuver", "name": "华丽收场", "score": 4, "tier": "B", "signals": ["damage", "resource"], "status": "screened"}
-{"id": "mv.摘星流.高级.子弹时间", "kind": "maneuver", "name": "子弹时间", "score": 12, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.摘星流.高级.子弹时间", "kind": "maneuver", "name": "子弹时间", "score": 4, "tier": "B", "signals": ["economy", "move", "resource"], "status": "screened"}
+{"id": "mv.摘星流.超级.一瞬千击", "kind": "maneuver", "name": "一瞬千击", "score": 10, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.摘星流.超级.暗影突袭", "kind": "maneuver", "name": "暗影突袭", "score": 7, "tier": "A", "signals": ["damage", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.摘星流.超级.魂烬", "kind": "maneuver", "name": "魂烬", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.摘星流.低级.月见酒", "kind": "maneuver", "name": "月见酒", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.摘星流.中级.樱上幕", "kind": "maneuver", "name": "樱上幕", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
 {"id": "mv.摘星流.高级.猪鹿蝶", "kind": "maneuver", "name": "猪鹿蝶", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
+{"id": "mv.摘星流.超级.刹那一刀·苦夜叉", "kind": "maneuver", "name": "刹那一刀·苦夜叉", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.混元流.低级.砖袭", "kind": "maneuver", "name": "砖袭", "score": 6, "tier": "A", "signals": ["damage", "hit", "move"], "status": "screened"}
 {"id": "mv.混元流.低级.焰之蛇", "kind": "maneuver", "name": "焰之蛇", "score": 5, "tier": "B", "signals": ["damage", "move", "resource"], "status": "screened"}
 {"id": "mv.混元流.低级.锈蚀爪", "kind": "maneuver", "name": "锈蚀爪", "score": 4, "tier": "B", "signals": ["damage", "move"], "status": "screened"}
@@ -203,7 +207,9 @@
 {"id": "mv.混元流.高级.替身", "kind": "maneuver", "name": "替身", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
 {"id": "mv.混元流.高级.深呼吸", "kind": "maneuver", "name": "深呼吸", "score": 2, "tier": "C", "signals": ["hit"], "status": "screened"}
 {"id": "mv.混元流.高级.打滚", "kind": "maneuver", "name": "打滚", "score": 2, "tier": "C", "signals": ["move", "resource"], "status": "screened"}
-{"id": "mv.混元流.高级.坟压", "kind": "maneuver", "name": "坟压", "score": 9, "tier": "A", "signals": ["damage", "economy", "hit", "move", "resource"], "status": "screened"}
+{"id": "mv.混元流.高级.坟压", "kind": "maneuver", "name": "坟压", "score": 1, "tier": "C", "signals": ["move"], "status": "screened"}
+{"id": "mv.混元流.超级.闪电旋风劈", "kind": "maneuver", "name": "闪电旋风劈", "score": 6, "tier": "A", "signals": ["damage", "hit", "resource"], "status": "screened"}
+{"id": "mv.混元流.超级.黑域", "kind": "maneuver", "name": "黑域", "score": 5, "tier": "B", "signals": ["damage", "hit"], "status": "screened"}
 {"id": "mv.混元流.超级.铁心之意", "kind": "maneuver", "name": "铁心之意", "score": 0, "tier": "C", "signals": [], "status": "screened"}
 {"id": "mv.神机流.低级.光导剑", "kind": "maneuver", "name": "光导剑", "score": 4, "tier": "B", "signals": ["hit", "move", "resource"], "status": "screened"}
 {"id": "mv.神机流.低级.击虚", "kind": "maneuver", "name": "击虚", "score": 3, "tier": "B", "signals": ["hit", "move"], "status": "screened"}

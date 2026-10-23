@@ -1,0 +1,37 @@
+{
+  "id": "mv.开山流.低级.惩戒之姿",
+  "name": "惩戒之姿",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 1,
+    "dice_cost_repeat": 1
+  },
+  "cost": {
+    "movement_ft": 15,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "近战武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "1dS",
+        "crit_doubles": true,
+        "note": "命中后额外造成 1 枚卓越骰的骰值伤害"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "惩戒之姿"
+  },
+  "status": "modeled",
+  "ruling": null
+}

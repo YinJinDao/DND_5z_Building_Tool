@@ -1,0 +1,37 @@
+{
+  "id": "mv.混元流.中级.椎骨幻兵",
+  "name": "椎骨幻兵",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 2,
+    "dice_cost_repeat": 3
+  },
+  "cost": {
+    "bonus_action": 1,
+    "superiority": 2
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "此战技创造出的天生武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "1dS",
+        "crit_doubles": true,
+        "note": "命中后额外造成 1 枚卓越骰的骰值伤害"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "椎骨幻兵"
+  },
+  "status": "modeled",
+  "ruling": null
+}

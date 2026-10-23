@@ -1,0 +1,37 @@
+{
+  "id": "mv.混元流.超级.闪电旋风劈",
+  "name": "闪电旋风劈",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": null,
+    "dice_cost_repeat": null
+  },
+  "cost": {
+    "replace_attack": 2
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "造成挥砍伤害的武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "4dS",
+        "crit_doubles": true,
+        "note": "命中后额外造成 4 枚卓越骰的骰值伤害",
+        "damage_type": "lightning"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "闪电旋风劈"
+  },
+  "status": "modeled",
+  "ruling": null
+}

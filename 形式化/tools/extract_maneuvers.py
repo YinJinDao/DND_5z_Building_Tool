@@ -31,7 +31,9 @@ REL_DIR = os.path.join("专长", "战技专长")
 HEADER_FIELDS = ("武器媒介", "卓越骰", "启动消耗", "目标", "持续时间")
 # 规则书自身存在字段名不一致：个别条目写作"启动时间"而非"启动消耗"（v1.63 摘星流·高级·燃命 等）
 FIELD_ALIASES = {"启动时间": "启动消耗"}
-HEADER_RE = re.compile(r"^(开山流|游龙流|摘星流|混元流|神机流)·(低级|中级|高级|超级)·(\S+)")
+# 「超极」是「超级」的错别字变体，规则书里真实存在 6 处。
+# 不认它会导致这些条目被漏抽，且正文串进前一条战技。
+HEADER_RE = re.compile(r"^(开山流|游龙流|摘星流|混元流|神机流)·(低级|中级|高级|超级|超极)·(\S+)")
 
 REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -137,6 +139,8 @@ def extract(maneuver_dir):
         for n, idx in enumerate(starts):
             m = HEADER_RE.match(lines[idx])
             school, tier, kind = m.group(1), m.group(2), m.group(3)
+            if tier == "超极":        # 归一化错别字
+                tier = "超级"
             name = lines[idx - 1] if idx > 0 else "?"
 
             fields = {}
