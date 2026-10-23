@@ -1,0 +1,36 @@
+{
+  "id": "mv.开山流.高级.威力满溢",
+  "name": "威力满溢",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "attack_bonus": 0,
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 0,
+        "damage_type": "same_as_weapon",
+        "note": "命中结果每高过 AC 1 点，额外 1 点伤害"
+      }
+    ],
+    "note": "两次攻击检定取较高 d20 且加值相加，命中后按超出 AC 的点数额外造成伤害。超出量取决于对手 AC，本工具按 0 占位；等效命中加值写进构筑更有意义"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "威力满溢"
+  },
+  "status": "modeled",
+  "ruling": null
+}

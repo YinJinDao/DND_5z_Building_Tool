@@ -1,0 +1,29 @@
+{
+  "id": "mv.摘星流.中级.索命镰",
+  "name": "索命镰",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对生命值为 0 的生物攻击，命中后体质豁免，失败即死"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "即死效果：打桩目标不处于 0 生命值，条件永不成立",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "索命镰"
+  },
+  "status": "approximated",
+  "ruling": null
+}

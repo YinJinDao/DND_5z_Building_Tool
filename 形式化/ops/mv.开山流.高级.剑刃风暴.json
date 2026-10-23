@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.高级.剑刃风暴",
+  "name": "剑刃风暴",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "进入剑刃风暴：每回合骰卓越骰作为切割频率，敌人进入/停留/离开触及都会挨打"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "回合外反击体系：攻击由目标的位置变化触发，不属于攻击者轮内输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "剑刃风暴"
+  },
+  "status": "approximated",
+  "ruling": null
+}

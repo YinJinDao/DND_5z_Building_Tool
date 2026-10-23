@@ -1269,7 +1269,15 @@ def apply_choices(ops, build_doc):
         if pick is None:
             pick = options.get("default")
             if pick is None:
+                # 没有选择时**仍然保留算子**（只是不含任何选项效果）。
+                # 早先直接丢弃，会让「归真」「取色笔」这类带选项的战技
+                # 在策略里引用时报"未知算子"——选择缺失不该让算子消失。
                 picked_trace.append(f"{op['name']} 未在构筑中作出选择，按无效果处理")
+                bare = dict(op)
+                bare["projection"] = {k: v for k, v in
+                                      (op.get("projection") or {}).items()
+                                      if k not in ("options", "choice_key")}
+                out[oid] = bare
                 continue
         if isinstance(pick, str):
             label = pick

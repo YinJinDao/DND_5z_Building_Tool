@@ -1,0 +1,27 @@
+{
+  "id": "mv.神机流.低级.击虚",
+  "name": "击虚",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "不进行攻击检定，改为目标智力豁免，失败视为被命中；优势/劣势换算为目标的豁免劣势/优势"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/神机流专长.htm",
+    "anchor": "击虚"
+  },
+  "status": "modeled",
+  "ruling": null
+}

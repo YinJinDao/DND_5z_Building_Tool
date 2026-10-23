@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.中级.盾牌猛冲",
+  "name": "盾牌猛冲",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "运动对抗检定，胜出后按差值把目标推离 2 尺/点，撞障碍则每 5 尺剩余距离 1d6 钝击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "对抗检定驱动：伤害取决于双方检定差值，且主要效果是强制位移",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "盾牌猛冲"
+  },
+  "status": "modeled",
+  "ruling": null
+}

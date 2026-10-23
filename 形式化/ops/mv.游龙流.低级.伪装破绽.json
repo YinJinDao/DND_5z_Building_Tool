@@ -1,0 +1,29 @@
+{
+  "id": "mv.游龙流.低级.伪装破绽",
+  "name": "伪装破绽",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对方向你借机未命中时，你反击一次借机攻击并加一枚卓越骰"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "借机反击：由敌方行动触发，属反应位资产，已由借机攻击体系的预算表达",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "伪装破绽"
+  },
+  "status": "approximated",
+  "ruling": null
+}

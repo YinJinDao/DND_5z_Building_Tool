@@ -1,0 +1,29 @@
+{
+  "id": "mv.游龙流.低级.守株待兔",
+  "name": "守株待兔",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "敌人进入触及即借机；命中后敌人对你的近战武器攻击自动失手"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "借机攻击的触发条件扩展（进入触及），且主要收益是防御",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "守株待兔"
+  },
+  "status": "approximated",
+  "ruling": null
+}

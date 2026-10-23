@@ -1,0 +1,39 @@
+{
+  "id": "mv.混元流.低级.撒盐",
+  "name": "撒盐",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d4",
+        "damage_type": "bludgeoning",
+        "note": "1d4+力量调整值的钝击"
+      },
+      {
+        "dice": "5d8",
+        "damage_type": "necrotic",
+        "note": "五枚卓越骰的骰值暗蚀，并降低目标生命上限"
+      }
+    ],
+    "note": "近战或投掷（60 尺）的武器攻击，命中后追加两段伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "撒盐"
+  },
+  "status": "modeled",
+  "ruling": null
+}

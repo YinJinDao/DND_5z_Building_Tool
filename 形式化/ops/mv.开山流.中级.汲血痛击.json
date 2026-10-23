@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.中级.汲血痛击",
+  "name": "汲血痛击",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "命中后获得等同于该次伤害的临时生命值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：把造成的伤害转化为临时生命值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "汲血痛击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

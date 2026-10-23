@@ -1,0 +1,29 @@
+{
+  "id": "mv.游龙流.高级.叹为观止",
+  "name": "叹为观止",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "运动对抗检定胜出后投出目标并造成坠落伤害，自己跟随落地"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "对抗检定驱动的强制位移与坠落伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "叹为观止"
+  },
+  "status": "approximated",
+  "ruling": null
+}

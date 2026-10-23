@@ -1,0 +1,34 @@
+{
+  "id": "mv.游龙流.低级.忍者落杀",
+  "name": "忍者落杀",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d6",
+        "damage_type": "same_as_weapon",
+        "note": "每 10 尺坠落高度 1d6，上限 10d6；突袭轮加倍"
+      }
+    ],
+    "note": "只能在下落时发动，额外伤害取决于坠落高度"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "忍者落杀"
+  },
+  "status": "modeled",
+  "ruling": null
+}

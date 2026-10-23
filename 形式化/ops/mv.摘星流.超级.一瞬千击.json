@@ -1,0 +1,29 @@
+{
+  "id": "mv.摘星流.超级.一瞬千击",
+  "name": "一瞬千击",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "首次攻击加一枚卓越骰，命中则继续攻击，后续每次攻击检定累计 -2，直到失手或目标死亡"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "连击链：攻击次数由「检定是否仍达标」动态决定，且随 AC 指数变化；需专门的级数求值，不在当前结果树范围内",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "一瞬千击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

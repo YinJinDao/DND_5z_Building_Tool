@@ -1,0 +1,55 @@
+{
+  "id": "mv.混元流.高级.取色笔",
+  "name": "取色笔",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "choice_key": "qu_se_color",
+    "options": {
+      "红": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "3d8",
+              "damage_type": "fire"
+            }
+          ]
+        }
+      },
+      "橙": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "3d8",
+              "damage_type": "acid"
+            }
+          ]
+        }
+      },
+      "其他": {
+        "projection": {
+          "note": "其余颜色为减值、控制或移除效果，伤害部分按对应颜色表取值"
+        }
+      }
+    },
+    "note": "吸取目标的主色并染给下一个命中目标，按颜色造成三枚卓越骰的对应类型伤害与不利影响；此处按红/橙两色建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "取色笔"
+  },
+  "status": "modeled",
+  "ruling": null
+}
