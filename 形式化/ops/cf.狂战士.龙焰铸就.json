@@ -1,0 +1,44 @@
+{
+  "id": "cf.狂战士.龙焰铸就",
+  "name": "龙焰铸就",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": "龙怒"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {
+    "requires_rage": true
+  },
+  "projection": {
+    "choice_key": "dragon_forge",
+    "options": {
+      "淬炼武器": {
+        "projection": {
+          "damage_type_override": "fire",
+          "note": "武器伤害类型改为火焰（或吐息武器的类型）；命中后对目标 5 尺内的其他敌对生物造成武器基础伤害骰+攻击关键属性调整值的伤害——打桩契约下只有一个目标，这部分不计入"
+        }
+      },
+      "淬炼护甲": {
+        "projection": {
+          "note": "护甲提供火焰免疫，并对擒抱双方的回合开始造成伤害（对他人）。防御侧"
+        }
+      }
+    },
+    "note": "由构筑 choices.dragon_forge 选择；每两次休息之间一次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "龙焰铸就"
+  },
+  "status": "approximated",
+  "ruling": null
+}

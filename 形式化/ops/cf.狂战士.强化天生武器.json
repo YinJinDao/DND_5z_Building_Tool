@@ -1,0 +1,35 @@
+{
+  "id": "cf.狂战士.强化天生武器",
+  "name": "强化天生武器",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 6,
+    "subclass": "野兽"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_enhancement_bonus": {
+      "value": 1,
+      "scale": {
+        "12": 2,
+        "18": 3
+      }
+    },
+    "note": "天生武器视为魔法武器，武器加值 +1（12 级 +2、18 级 +3）。「狩猎之唤」给盟友的 +1d6 属他人输出，不计入"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "强化天生武器"
+  },
+  "status": "approximated",
+  "ruling": null
+}

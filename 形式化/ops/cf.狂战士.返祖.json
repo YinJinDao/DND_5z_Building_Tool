@@ -1,0 +1,70 @@
+{
+  "id": "cf.狂战士.返祖",
+  "name": "返祖",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {
+    "requires_rage": true
+  },
+  "projection": {
+    "choice_key": "ancestry_type",
+    "options": {
+      "异怪": {
+        "projection": {
+          "note": "免疫魅惑（15 级免疫支配），防御侧"
+        }
+      },
+      "邪魔": {
+        "projection": {
+          "note": "黑暗视觉，防御侧"
+        }
+      },
+      "天界": {
+        "projection": {
+          "note": "为他人回血，不影响自身输出"
+        }
+      },
+      "精类": {
+        "projection": {
+          "note": "沉浸音乐，无战斗数值"
+        }
+      },
+      "植物": {
+        "projection": {
+          "note": "AC 加值，防御侧"
+        }
+      },
+      "泥怪": {
+        "projection": {
+          "reach_bonus_ft": {
+            "value": 5,
+            "scale": {
+              "8": 10,
+              "16": 15
+            }
+          },
+          "note": "狂暴期间近战触及 +5（8 级 +10、16 级 +15）"
+        }
+      }
+    },
+    "note": "按生物类型选择，由构筑 choices.ancestry_type 决定；整体受狂暴门控"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "返祖"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,34 @@
+{
+  "id": "cf.狂战士.怒不可遏",
+  "name": "怒不可遏",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {
+    "env_flags": [
+      "enemy_incapacitated_ally"
+    ]
+  },
+  "projection": {
+    "adv_tiers": 1,
+    "note": "看见敌人使友方陷入失能后，对该敌人的武器攻击具有优势。这是**场景触发**而非构筑属性，需在策略 buffs 中声明，且环境须声明 flags 含 enemy_incapacitated_ally"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "怒不可遏"
+  },
+  "status": "approximated",
+  "ruling": null
+}

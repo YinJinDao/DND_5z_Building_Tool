@@ -189,6 +189,9 @@ def weapon_dice_for(resolved, passive_ops, build_doc=None):
         excl = proj.get("weapon_selector_exclude")
         if excl and weapon_matches(resolved.weapon, excl):
             continue
+        nat = proj.get("natural_weapon")
+        if nat and nat.get("dice"):
+            dice = nat["dice"]
         over = proj.get("weapon_dice_override")
         if over:
             kinds = over.get("applies_to")
@@ -199,6 +202,9 @@ def weapon_dice_for(resolved, passive_ops, build_doc=None):
                     dice = scaled_value(over["all"], op, build_doc or {})
                 elif resolved.size in over:
                     dice = over[resolved.size]
+        # 独立的骰阶提升（「武器学识」给武器加「重型」属性）
+        if proj.get("weapon_dice_step_up") and "weapon_dice_min" not in proj:
+            dice = _step_up_dice(dice)
         # 「伤害骰变为 1d6，若原本已是 1d6 或更高则升一阶」（斗殴高手）
         minimum = proj.get("weapon_dice_min")
         if minimum:
@@ -658,17 +664,41 @@ def opportunity_attack_budget(resolved, ops):
     return total, sources
 
 
-def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None):
+def weapon_profile(resolved, active_ops, build_doc=None):
+    """武器在当前构筑下的最终形态：骰、伤害类型、增强加值。
+
+    伤害类型和增强加值都可能被算子改写（「龙焰铸就」把武器改成火焰、
+    「强化天生武器」给天生武器 +1/+2/+3），所以不能直接读构筑里的原值。
+    """
+    dtype = resolved.weapon["damage_type"]
+    enhancement = resolved.weapon["enhancement"]
+    for op in active_ops:
+        proj = op.get("projection") or {}
+        sel = proj.get("weapon_selector")
+        if sel and not weapon_matches(resolved.weapon, sel):
+            continue
+        if proj.get("damage_type_override"):
+            dtype = proj["damage_type_override"]
+        if proj.get("natural_weapon"):
+            dtype = proj["natural_weapon"].get("damage_type", dtype)
+        if proj.get("weapon_enhancement_bonus"):
+            enhancement += scaled_value(proj["weapon_enhancement_bonus"],
+                                        op, build_doc or {})
+    return dtype, enhancement
+
+
+def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None,
+                      dtype=None, enhancement=None):
     """武器基础攻击：武器骰 + 属性调整值 + 武器增强 + 狂暴加值。"""
     d = resolved.derived
-    flat = d.mods["str"] + resolved.weapon["enhancement"]
+    dtype = dtype or resolved.weapon["damage_type"]
+    enh = resolved.weapon["enhancement"] if enhancement is None else enhancement
+    flat = d.mods["str"] + enh
     components = [DamageComponent(weapon_dice or resolved.weapon["dice"], flat=flat,
-                                  dtype=resolved.weapon["damage_type"],
-                                  slot="weapon+str+enhancement")]
+                                  dtype=dtype, slot="weapon+str+enhancement")]
     if rage_active and resolved.rage_bonus:
         components.append(DamageComponent("0", flat=resolved.rage_bonus,
-                                          dtype=resolved.weapon["damage_type"],
-                                          slot="class.rage"))
+                                          dtype=dtype, slot="class.rage"))
     return Attack(attack_bonus=d.attack.total, adv_tiers=adv_tiers,
                   components=components)
 
@@ -842,7 +872,9 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
         dtype = extra.get("type") or extra.get("damage_type") or resolved.weapon["damage_type"]
         if dtype == "same_as_weapon":
             dtype = resolved.weapon["damage_type"]
-        flat = int(extra.get("flat", 0))
+        raw_flat = extra.get("flat", 0)
+        # 「flat」可以写数字，也可以写 "proficiency"（对决、投掷武器战斗）
+        flat = int(resolved.derived.prof) if raw_flat == "proficiency" else int(raw_flat)
         if extra.get("flat_by_size"):        # 按自身体型给固定加值（泰坦弓手）
             flat += int(extra["flat_by_size"].get(resolved.size, 0))
         if extra.get("flat_expr"):          # 如「狂战士等级的一半」
@@ -1160,6 +1192,8 @@ def granted_class_ops(build_doc, ops):
     # 单人职业时看不出来，兼职构筑会全错。
     class_levels = {c.get("id"): int(c.get("level", 0))
                     for c in build_doc.get("classes", [])}
+    subclasses = {c.get("id"): c.get("subclass")
+                  for c in build_doc.get("classes", [])}
     granted = []
     for op in ops.values():
         acq = op.get("acquisition") or {}
@@ -1170,8 +1204,23 @@ def granted_class_ops(build_doc, ops):
             continue
         if int(acq.get("level", 99)) > class_levels[cid]:
             continue
+        # 子职限定：算子声明了 subclass 就必须对得上。
+        # 早先不查这一项，未选择某子职的角色也会拿到该子职的能力。
+        need = acq.get("subclass")
+        if need and need != subclasses.get(cid):
+            continue
         granted.append(op)
     return granted
+
+
+def always_on(op):
+    """职业特性默认常驻；`activation: "buff"` 的必须由策略 buffs 显式启用。
+
+    「战斗风格」是选进构筑就有的被动，「鲁莽攻击」是每回合主动宣告的动作——
+    两者在数据里长得一样（`cost.passive: true`），差别只在于**要不要主动开**。
+    不区分就会让鲁莽攻击的 +1 优势每回合都白给。
+    """
+    return op.get("activation") != "buff"
 
 
 def granted_feat_ops(build_doc, ops):
@@ -1191,6 +1240,57 @@ def granted_feat_ops(build_doc, ops):
         if (op.get("cost") or {}).get("passive_choice"):
             continue
         out.append(op)
+    return out
+
+
+def apply_choices(ops, build_doc):
+    """按构筑的选择，把「多选一」算子展开成具体的那一个。
+
+    「战斗风格」有六个选项、「返祖」按生物类型分七支、「野兽之形」从表里挑几种——
+    这些都不是"一条特性给一组固定数值"，而是**同一个位置上的互斥选择**。
+    把它们写成一个算子 + 选项表，而不是六个算子，是因为获取方式（职业等级）
+    完全相同，拆开会违反 A10（一条数据对应一个算子）。
+
+    选项可以带的不只是 projection：`gate`、`cost`、`composite` 同样可覆盖，
+    否则「对决」的前置（单手持握、没有别的武器）就无处安放。
+    """
+    choices = build_doc.get("choices") or {}
+    picked_trace = []
+    out = {}
+    for oid, op in ops.items():
+        key = (op.get("projection") or {}).get("choice_key")
+        options = (op.get("projection") or {}).get("options")
+        if not key or not options:
+            out[oid] = op
+            continue
+        pick = choices.get(key)
+        if isinstance(pick, dict):
+            pick = pick.get(oid)
+        if pick is None:
+            pick = options.get("default")
+            if pick is None:
+                picked_trace.append(f"{op['name']} 未在构筑中作出选择，按无效果处理")
+                continue
+        if isinstance(pick, str):
+            label = pick
+            spec = options.get(pick)
+        else:
+            label, spec = str(pick), options.get(pick.get("option"))
+        if spec is None:
+            raise KeyError(f"{op['name']} 的选项 {label!r} 不存在"
+                           f"（可选：{'/'.join(k for k in options if k != 'default')}）")
+        merged = dict(op)
+        proj = {k: v for k, v in (op.get("projection") or {}).items()
+                if k not in ("options", "choice_key")}
+        proj.update(spec.get("projection") or {})
+        proj["chosen_option"] = label
+        merged["projection"] = proj
+        for extra in ("gate", "cost", "composite"):
+            if extra in spec:
+                merged[extra] = spec[extra]
+        out[oid] = merged
+        picked_trace.append(f"{op['name']} → {label}")
+    apply_choices.trace = picked_trace
     return out
 
 
@@ -1242,6 +1342,11 @@ def unmet_gates(op, ctx):
         missing.append("狂暴")
     if gate.get("mounted") and not ctx.get("mounted"):
         missing.append("骑乘")
+    # 环境旗标：由 env.flags 声明的场景事实（「敌人使友方失能」「目标已受伤」）。
+    # 这类条件不是构筑属性也不是策略选择，只能由使用者声明。
+    for flag in gate.get("env_flags") or []:
+        if flag not in (ctx.get("env_flags") or ()):
+            missing.append(f"环境 {flag}")
     return missing
 
 
@@ -1291,6 +1396,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
 
     build_trace = []
     build_doc = apply_build_time_effects(build_doc, ops, build_trace)
+    ops = apply_choices(ops, build_doc)
+    build_trace.extend(apply_choices.trace or [])
     resolved = resolve_build(build_doc, rage_table)
 
     target_doc = env_doc.get("target", {})
@@ -1319,7 +1426,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     armor_doc = str(combat.get("armor") or "none").lower()
     armored = not (armor_doc in ("", "none", "unarmored") or "unarmored" in armor_doc) \
         or bool(combat.get("shield"))
-    granted_ops = granted_feat_ops(build_doc, ops) + granted_class_ops(build_doc, ops)
+    granted_ops = (granted_feat_ops(build_doc, ops)
+                   + [op for op in granted_class_ops(build_doc, ops) if always_on(op)])
     reach_move = collect_movement(granted_ops, weapon_doc, build_doc, armored)
     weapon_reach += reach_move["reach"]
     reach_notes = reach_move["reach_notes"]
@@ -1381,9 +1489,14 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if "rage" in proj:
                 rage_active = True
 
-        # 被动算子 = 构筑已选专长 + 本轮增益；被动专长应自动生效，无需策略引用
-        passive_ops = granted_feat_ops(build_doc, ops) + [
-            ops[b] for b in buffs if b in ops]
+        # 被动算子 = 构筑已选专长 + 已获得的职业特性 + 本轮增益。
+        # **职业特性必须在里面**：早先只放专长，导致「战斗风格」这类被动特性
+        # 的投影永远不会作用到攻击上——它在构筑里、有获取条件、却什么也不算。
+        # 带 gate 的被动（狂暴期间的子职能力）在循环里按条件跳过。
+        passive_ops = (granted_feat_ops(build_doc, ops)
+                       + [op for op in granted_class_ops(build_doc, ops)
+                          if always_on(op)]
+                       + [ops[b] for b in buffs if b in ops])
 
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
@@ -1540,7 +1653,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
         gate_ctx = {"rage_active": rage_active, "mounted": bool(mount),
-                    "weapon_property": list(weapon_doc.get("properties") or [])}
+                    "weapon_property": list(weapon_doc.get("properties") or []),
+                    "env_flags": tuple(env_doc.get("flags") or ())}
         # 条件上下文：构筑/回合状态 → 扁平键值，供 conditions 求值
         cond_ctx = build_condition_context(
             resolved, gate_ctx,
@@ -1550,6 +1664,25 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         if wdice != resolved.weapon["dice"]:
             trace.append(f"第 {rnum} 轮武器伤害骰被替换："
                          f"{resolved.weapon['dice']} → {wdice}")
+        wdtype, wenh = weapon_profile(resolved, move_ops, build_doc)
+        if wdtype != resolved.weapon["damage_type"]:
+            trace.append(f"第 {rnum} 轮武器伤害类型被替换："
+                         f"{resolved.weapon['damage_type']} → {wdtype}")
+        if wenh != resolved.weapon["enhancement"]:
+            trace.append(f"第 {rnum} 轮武器增强加值 {wenh:+d}")
+
+        # 「飞燕斩」：放弃全部优势层数，每放弃一重换一次额外攻击。
+        # 必须在攻击构造**之前**换算——层数一旦用来算命中概率就拿不回来了。
+        converted = 0
+        for pop in move_ops:
+            conv = (pop.get("projection") or {}).get("advantage_to_attacks")
+            if conv and adv > 0:
+                converted += adv * int(conv.get("attacks_per_tier", 1))
+        if converted:
+            trace.append(f"第 {rnum} 轮放弃 {adv} 重优势换取 {converted} 次额外攻击")
+            adv_extra, adv = converted, 0
+        else:
+            adv_extra = 0
 
         attacks, all_rules_built = [], []
         if kind == "spell_attack" and attacks_n:
@@ -1569,6 +1702,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 explicit = set(op_ids) | buffs
                 for pop in passive_ops:
                     if pop["id"] in explicit:
+                        continue
+                    # 带 gate 的被动特性（狂暴期间、骑乘时）在条件不满足时跳过
+                    if unmet_gates(pop, gate_ctx):
                         continue
                     # 无条件调用 apply_op：条件、命中加值、命中后追加都靠它生效。
                     # 早期只在含 extra_dice 时调用，其余写法全部静默失效。
@@ -1612,14 +1748,15 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 if pproj.get("bonus_action_attack_dice"):
                     bonus_dice = pproj["bonus_action_attack_dice"]
                     bonus_type = pproj.get("bonus_action_attack_type")
-            for i in range(attacks_n + bonus_attacks):
+            for i in range(attacks_n + bonus_attacks + adv_extra):
                 use_dice = wdice
                 # 附赠攻击的判定只取决于位置，不取决于是否另设了骰式
-                is_bonus = i >= attacks_n and bonus_attacks > 0
+                is_bonus = attacks_n <= i < attacks_n + bonus_attacks
                 if is_bonus:
                     use_dice = bonus_dice          # 附赠动作攻击用指定骰式
                 a = build_base_attack(resolved, adv_tiers=adv,
-                                      rage_active=rage_active, weapon_dice=use_dice)
+                                      rage_active=rage_active, weapon_dice=use_dice,
+                                      dtype=wdtype, enhancement=wenh)
                 if is_bonus and bonus_type:
                     # 附赠动作攻击可指定伤害类型（长柄武器末端为钝击）
                     for comp in a.components:
@@ -1630,9 +1767,14 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     if "adv_tiers" in bonus_spec:
                         a.adv_tiers += int(bonus_spec["adv_tiers"])
                     if bonus_spec.get("no_ability_mod"):
-                        ability = resolved.derived.mods["str"]
-                        for comp in a.components:
-                            comp.flat = max(0, comp.flat - ability)
+                        # 「双武器战斗」风格把这份属性调整值还回来
+                        keep = any((p.get("projection") or {})
+                                   .get("bonus_action_ability_mod")
+                                   for p in move_ops)
+                        if not keep:
+                            ability = resolved.derived.mods["str"]
+                            for comp in a.components:
+                                comp.flat = max(0, comp.flat - ability)
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
                 # 本轮增益（buffs）已由 buff_adv / rage_active 单独结算，
@@ -1640,6 +1782,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 explicit = set(op_ids) | buffs
                 for pop in passive_ops:
                     if pop["id"] in explicit:
+                        continue
+                    # 带 gate 的被动特性（狂暴期间、骑乘时）在条件不满足时跳过
+                    if unmet_gates(pop, gate_ctx):
                         continue
                     # 无条件调用 apply_op：条件、命中加值、命中后追加都靠它生效。
                     # 早期只在含 extra_dice 时调用，其余写法全部静默失效。
@@ -1703,7 +1848,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 oa_adv += int((op.get("projection") or {}).get("opportunity_attack_adv", 0))
             for _ in range(count):
                 a = build_base_attack(resolved, adv_tiers=adv + oa_adv,
-                                      rage_active=rage_active, weapon_dice=wdice)
+                                      rage_active=rage_active, weapon_dice=wdice,
+                                      dtype=wdtype, enhancement=wenh)
                 apply_adv_scaling(a, granted_ops, resolved)
                 attacks.append(a)
             trace.append(f"第 {rnum} 轮借机攻击 {count} 次"

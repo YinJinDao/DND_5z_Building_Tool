@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.守御",
+  "name": "守御",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 1,
+    "subclass": "战士（狂战士变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "附赠动作进入守御：力量检定/豁免优势、AC 加值、临时生命值。三项全在防御侧，不改变输出"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：只提供 AC 加值与临时生命值，不改变任何伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "守御"
+  },
+  "status": "modeled",
+  "ruling": null
+}

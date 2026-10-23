@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.龙骑士",
+  "name": "龙骑士",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 7,
+    "subclass": "龙骑士"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "增益对象是龙伴（独立生物：坐骑形态、吐息武器强化、共享守御），龙伴自身造成的伤害不在本角色的 DPR 内"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "龙伴属召唤物/同伴体系（协作约定排除），其伤害不计入本角色的输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "龙骑士"
+  },
+  "status": "modeled",
+  "ruling": null
+}

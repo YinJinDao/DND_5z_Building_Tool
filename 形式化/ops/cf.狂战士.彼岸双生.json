@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.彼岸双生",
+  "name": "彼岸双生",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 7,
+    "subclass": "百花武者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "「幽昙凝香」是范围目盲耳聋（控制）；「石竹生根」是对触及内若干生物依次发动近战武器攻击，并让自己与命中者无法移动"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "打桩契约下只有一个目标：多目标攻击退化为一次普通攻击，其余效果为控制与自身限制",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "彼岸双生"
+  },
+  "status": "modeled",
+  "ruling": null
+}

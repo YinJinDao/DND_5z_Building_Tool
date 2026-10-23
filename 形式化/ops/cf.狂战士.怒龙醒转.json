@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.怒龙醒转",
+  "name": "怒龙醒转",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 6,
+    "subclass": "龙怒"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "倒地时自动进入锁定状态，只能攻击最近的生物、强制移动，14 级化身为成年巨龙（整份数据被替换）。咆哮（9 级）是用自伤换的范围雷鸣伤害，对他人生效"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "形态替换与锁定状态：角色失去行动自主权，其输出不能作为构筑评分；咆哮伤害针对他人且要以生命值为代价",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "怒龙醒转"
+  },
+  "status": "modeled",
+  "ruling": null
+}

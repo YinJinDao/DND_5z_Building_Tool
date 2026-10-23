@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.兽之形·高级",
+  "name": "兽之形·高级",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 14,
+    "subclass": "图腾武者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "熊之刚毅/鹰之神速/狼之引领/蛇之缠身为防御与移动；鲨之狂潮是他人在漩涡中受伤，不是本角色的武器输出"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "选项全为防御、移动或对他人造成伤害；不改变本角色自身的攻击输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "兽之形·高级"
+  },
+  "status": "modeled",
+  "ruling": null
+}

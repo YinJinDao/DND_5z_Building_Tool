@@ -264,9 +264,17 @@ ALLOWED_PROJECTION = {
     "weapon_dice_step_up",
     "bonus_action_attack", "bonus_action_attack_dice", "bonus_action_attack_type",
     "bonus_action_attack_spec",    # 附赠攻击自带的劣势 / 去属性调整值
+    "bonus_action_ability_mod",    # 附赠攻击享受攻击关键属性调整值（双武器战斗）
+    "damage_type_override",        # 改写武器伤害类型（龙焰铸就、野兽之形）
+    "weapon_enhancement_bonus",    # 武器增强加值（强化天生武器 +1/+2/+3）
+    "advantage_to_attacks",        # 放弃每重优势换额外攻击（飞燕斩）
+    "natural_weapon",              # 天生武器形态：{dice, damage_type, properties}
     "opportunity_attack_budget_add",  # 每轮额外借机攻击次数
     "opportunity_attack_adv",        # 借机攻击的优势层数
     "scales_with_adv",               # 按最终优势层数结算：per_tier / steps
+    "choice_key",                    # 多选一：构筑 choices 里读取的键
+    "options",                       # 多选一：{选项名: {projection, gate, ...}}
+    "chosen_option",                 # 引擎回填：实际选中的选项
     "sneak_attack",                  # 偷袭骰（按职业等级分段），每回合一次
     "sneak_attack_variant",          # 偷袭方式的扩充（duel）
     "reach_bonus_ft",                # 触及距离加值（F12 判据）

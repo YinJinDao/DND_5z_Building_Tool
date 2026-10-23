@@ -16,7 +16,7 @@
   "gate": {},
   "projection": {
     "adv_tiers": 1,
-    "note": "本回合内的近战武器攻击具有优势；直到下个回合开始，对你的攻击也具优势、你的豁免具有劣势（打桩下只有前半句有影响）"
+    "note": "本回合内的近战武器攻击具有优势；直到下个回合开始，对你的攻击也具优势、你的豁免具有劣势（打桩下只有前半句有影响）（需在策略 buffs 中声明）；需在策略 buffs 中声明才生效"
   },
   "source": {
     "book": "5z",
@@ -25,5 +25,6 @@
     "anchor": "鲁莽攻击"
   },
   "status": "modeled",
-  "ruling": null
+  "ruling": null,
+  "activation": "buff"
 }

@@ -26,7 +26,8 @@
         "limit": "每回合一次",
         "note": "狂暴中每回合首次武器命中，额外造成 1d6+等级一半 的神罚伤害"
       }
-    ]
+    ],
+    "note": "需在策略 buffs 中声明才生效"
   },
   "source": {
     "book": "5z",
@@ -36,5 +37,6 @@
   },
   "status": "modeled",
   "ruling": null,
-  "id": "cf.狂战士.神性之怒"
+  "id": "cf.狂战士.神性之怒",
+  "activation": "buff"
 }

@@ -1,0 +1,103 @@
+{
+  "id": "cf.狂战士.野兽之形",
+  "name": "野兽之形",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": "野兽"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {
+    "requires_rage": true
+  },
+  "projection": {
+    "choice_key": "beast_weapon",
+    "options": {
+      "角撞": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d8",
+            "damage_type": "piercing"
+          },
+          "note": "直线移动 ≥20 尺后命中，额外加力量调整值"
+        }
+      },
+      "啃咬": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d8",
+            "damage_type": "piercing"
+          },
+          "note": "命中活物可回血，防御侧"
+        }
+      },
+      "长牙": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d8",
+            "damage_type": "piercing",
+            "properties": [
+              "重型"
+            ]
+          },
+          "note": "命中后可把不大于自身体型的目标挑到身后 5 尺"
+        }
+      },
+      "爪击": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d6",
+            "damage_type": "slashing"
+          },
+          "bonus_action_attack": 1,
+          "note": "攻击动作内仅用爪击时可额外发动一次爪击，作为同一动作的一部分（折算为附赠动作攻击）"
+        }
+      },
+      "蹄击": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d4",
+            "damage_type": "bludgeoning"
+          },
+          "note": "每回合一次可移动 10 尺不耗移动力"
+        }
+      },
+      "触须": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d6",
+            "damage_type": "bludgeoning"
+          },
+          "note": "擒抱成功时追加 1d6+力量调整值"
+        }
+      },
+      "尾击": {
+        "projection": {
+          "natural_weapon": {
+            "dice": "1d8",
+            "damage_type": "bludgeoning",
+            "properties": [
+              "触及"
+            ]
+          },
+          "note": "具有触及属性，触及 +5 尺"
+        }
+      }
+    },
+    "note": "实际可长出多种天生武器（数量不超过熟练加值），但每次攻击只用其中一种。本算子按构筑 choices.beast_weapon 指定的**主用**天生武器结算骰式与伤害类型；未指定的其余形态不影响 DPR"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "野兽之形"
+  },
+  "status": "approximated",
+  "ruling": null
+}

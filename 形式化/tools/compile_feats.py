@@ -148,9 +148,16 @@ def main():
         if rel.get(f["id"], {}).get("tier") != "A":
             continue
         if f["id"] in existing:
-            rows.append({"id": f["id"], "name": f["name"], "status": "modeled",
-                         "reason": "已手工编译", "source": "manual"})
-            stat["modeled"] = stat.get("modeled", 0) + 1
+            # 已有算子文件：状态以算子自己的声明为准。「编译完成」不等于
+            # 「能算伤害」——防御类特性同样如实记成 out_of_scope，
+            # 否则统计表会把它们算进覆盖率，掩盖真实缺口。
+            op_doc = json.load(open(os.path.join(OPS, f["id"] + ".json"),
+                                    encoding="utf-8"))
+            st = op_doc.get("scope") or "modeled"
+            rows.append({"id": f["id"], "name": f["name"], "status": st,
+                         "reason": op_doc.get("scope_reason") or "已手工编译",
+                         "source": "manual"})
+            stat[st] = stat.get(st, 0) + 1
             continue
         status, op, reason = compile_one(f)
         rows.append({"id": f["id"], "name": f["name"], "status": status,

@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.玉碎冲锋",
+  "name": "玉碎冲锋",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 13,
+    "subclass": "武士"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "adv_tiers": 1,
+    "note": "直线冲锋 ≥20 尺后对目标具有优势；代价是 AC 承受熟练加值+最高属性调整值的减值，且本回合不能转向。需在策略 buffs 中声明"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "玉碎冲锋"
+  },
+  "status": "approximated",
+  "ruling": null
+}
