@@ -74,6 +74,10 @@ def to_lines(text):
     return [ln.strip() for ln in html.unescape(text).split("\n") if ln.strip()]
 
 
+def _has_concentration(duration, effect):
+    return "专注" in (duration or "") or "终止专注" in (effect or "") or "专注" in (effect or "") and "维持专注" in (effect or "")
+
+
 def split_name_en(raw):
     """'剑刃防护Blade Ward' → ('剑刃防护', 'Blade Ward')。"""
     m = NAME_EN_RE.match(raw)
@@ -119,7 +123,9 @@ def parse_file(path, level_from_file):
             "target": fields.get("法术目标"),
             "components": fields.get("法术成分"),
             "duration": fields.get("持续时间"),
-            "concentration": bool(fields.get("持续时间") and "专注" in fields["持续时间"]),
+            # 专注可能写在「持续时间」（专注，至多1分钟）也可能只写在正文
+            # （如「直到你终止专注」）。只看持续时间会漏掉后者——实测漏了约 20 条。
+            "concentration": _has_concentration(fields.get("持续时间"), "\n".join(body)),
             "effect": "\n".join(body),
             "source": {
                 "book": "5z",

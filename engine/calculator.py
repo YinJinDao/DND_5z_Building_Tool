@@ -822,6 +822,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     per_round = []
     spends = []
     concentration_active = None      # 当前维持专注的法术名
+    sustained_op = None              # 维持中的专注算子（用于逐轮结算）
 
     derived_attacks, attack_src = derive_attack_count(build_doc, ops)
     trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
@@ -854,6 +855,25 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
             spends.append((rnum, pid, int(amount)))
+
+        # 维持中的专注效果：在施放之后的回合继续结算
+        sustained_dmg = Fraction(0)
+        if sustained_op is not None and not rnd.get("end_concentration"):
+            eff = sustained_op.get("concentration_effect") or {}
+            if eff.get("damage"):
+                spec = dict(sustained_op)
+                spec["damage"] = eff["damage"]
+                if "save" in eff:
+                    spec["save"] = eff["save"]
+                sd, dice = save_effect_from_op(resolved, spec, target,
+                                               eff.get("slot_level"))
+                sustained_dmg += sd
+                trace.append(f"第 {rnum} 轮 维持 {sustained_op['name']}（{dice}）→ {float(sd):.3f}")
+
+        if rnd.get("end_concentration"):
+            if concentration_active:
+                trace.append(f"第 {rnum} 轮 结束专注：{concentration_active}")
+            concentration_active, sustained_op = None, None
 
         # 每轮重置移动力与槽位
         if per_round:
@@ -1083,6 +1103,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     warnings.append(f"第 {rnum} 轮施放 {ops[sid]['name']}（专注），"
                                     f"但 {concentration_active} 的专注尚未结束")
                 concentration_active = ops[sid]["name"]
+                if ops[sid].get("concentration_effect"):
+                    sustained_op = ops[sid]
         pa_spell = (rnd.get("per_attack") or {}).get("spell")
         if pa_spell and ops.get(pa_spell, {}).get("concentration"):
             if concentration_active:
@@ -1092,6 +1114,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         if rnd.get("end_concentration"):
             concentration_active = None
 
+        dmg += sustained_dmg
         per_round.append((rnum, dmg))
         trace.append(f"第 {rnum} 轮：{attacks_n} 次攻击"
                      f"{'（狂暴）' if 'rage' in buffs else ''}"

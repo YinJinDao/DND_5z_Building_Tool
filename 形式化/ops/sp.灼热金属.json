@@ -5,7 +5,7 @@
   "level": 2,
   "school": "变化",
   "casting_time": "1动作",
-  "range": "60 尺",
+  "range": "60尺",
   "concentration": true,
   "acquisition": {
     "type": "spell_access",
@@ -15,15 +15,6 @@
     "action": 1
   },
   "decision_point": "before_roll",
-  "projection": {},
-  "source": {
-    "book": "5z",
-    "version": "1.63",
-    "file": "法术/法术详述/2环.htm",
-    "anchor": "灼热金属"
-  },
-  "status": "modeled",
-  "ruling": null,
   "save": {
     "ability": "con",
     "dc_from": "spell_dc"
@@ -32,5 +23,30 @@
     "dice": "2d8",
     "damage_type": "fire",
     "half_on_save": false
-  }
+  },
+  "upcast": {
+    "per_slot_above": 2,
+    "add_dice": "1d8"
+  },
+  "concentration_effect": {
+    "trigger": "target_turn_end",
+    "save": {
+      "ability": "con",
+      "dc_from": "spell_dc"
+    },
+    "damage": {
+      "dice": "2d8",
+      "damage_type": "fire",
+      "half_on_save": false
+    },
+    "note": "目标每个其回合结束时，再次承受该伤害；需维持专注"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "灼热金属"
+  },
+  "status": "modeled",
+  "ruling": null
 }

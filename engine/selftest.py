@@ -790,6 +790,42 @@ def test_opposed_check():
           Fraction(21, 2) * opposed_win_probability(7, 0, (1, 6)), tol=1e-9)
 
 
+def test_concentration():
+    print("\n[21] 专注：持续效果与冲突")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "wizard_l5.build.json"),
+                            encoding="utf-8"))
+    env = {"target": {"ac": 15}}
+
+    # 施放 → 维持 → 结束：持续效果只在施放之后的回合生效
+    strat = {"rounds": [
+        {"round": 1, "attacks": 0,
+         "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]},
+        {"round": 2, "attacks": 0},
+        {"round": 3, "attacks": 0, "end_concentration": True}]}
+    res = calc.evaluate(build, env, strat)
+    r1, r2, r3 = (d for _, d in res.per_round)
+    check("施放轮 = 维持轮的伤害", r2, r1, tol=1e-9)
+    check("结束后不再结算", r3, Fraction(0), tol=1e-9)
+    print(f"       施放 {float(r1):.2f}｜维持 {float(r2):.2f}｜结束 {float(r3):.2f}")
+
+    # 冲突：同时维持两个专注应当告警
+    conflict = {"rounds": [
+        {"round": 1, "attacks": 0,
+         "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]},
+        {"round": 2, "attacks": 0,
+         "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]}]}
+    res2 = calc.evaluate(build, env, conflict)
+    if any("专注" in w for w in res2.warnings):
+        print("  OK   同时施放两个专注法术会告警")
+    else:
+        FAILS.append("专注冲突未告警")
+        print("  FAIL 专注冲突未告警")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -814,6 +850,7 @@ def main():
     test_maneuvers()
     test_tables_and_formulas()
     test_opposed_check()
+    test_concentration()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
