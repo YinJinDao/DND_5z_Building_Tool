@@ -967,6 +967,46 @@ def test_passive_feats():
         print("  FAIL 重击范围未生效")
 
 
+def test_opportunity_attacks():
+    print("\n[25] 借机攻击体系")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    build["feats"] = []
+    strat = {"rounds": [{"round": 1, "buffs": ["rage"],
+                         "move": {"toward": True, "ft": 25}, "attacks": 1,
+                         "per_attack": {"ops": []}}]}
+
+    def run(triggers, doc=None):
+        return calc.evaluate(doc or build,
+                             {"target": {"ac": 15}, "enemy_triggers_per_round": triggers},
+                             strat)
+
+    base = run(0)
+    one = run(1)
+    many = run(5)
+    if one.total > base.total:
+        print(f"  OK   触发 1 次：{float(base.total):.3f} → {float(one.total):.3f}")
+    else:
+        FAILS.append("借机攻击未生效")
+        print("  FAIL 借机攻击未生效")
+
+    # 默认预算 1 次，触发再多也只加一次
+    check("默认预算封顶", many.total, one.total, tol=1e-9)
+
+    # 坚守阵地按力量调整值追加预算
+    build["feats"].append({"id": "feat.坚守阵地", "at_level": 1})
+    with_feat = run(5)
+    if with_feat.total > many.total:
+        print(f"  OK   坚守阵地扩大预算：{float(many.total):.3f} → {float(with_feat.total):.3f}")
+    else:
+        FAILS.append("借机攻击预算未扩大")
+        print("  FAIL 预算未扩大")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -995,6 +1035,7 @@ def main():
     test_extra_attack()
     test_meta_rules()
     test_passive_feats()
+    test_opportunity_attacks()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

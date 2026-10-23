@@ -1,0 +1,31 @@
+{
+  "id": "feat.层层设障",
+  "name": "层层设障",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "战斗反射",
+      "智力13或感知13"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_attack_budget_add": {
+      "ability": "int"
+    },
+    "note": "每轮额外发动 X 次借机攻击（X=智力调整值），与战斗反射叠加。原文允许在智力/感知间选择，此处取智力；如需改感知请改 ability 字段"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "层层设障"
+  },
+  "status": "approximated",
+  "ruling": null
+}

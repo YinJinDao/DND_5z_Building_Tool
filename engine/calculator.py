@@ -358,6 +358,37 @@ def build_condition_context(resolved, gate_ctx, extras=None):
     return ctx
 
 
+# ---------------------------------------------------------------- 借机攻击
+
+def opportunity_attack_budget(resolved, ops):
+    """每轮可发动的借机攻击次数。
+
+    基础是 1 次反应；「层层设障」「坚守阵地」「连续借机」这类专长按属性调整值追加。
+    **被动专长不需要策略引用**——选进构筑就生效。
+    """
+    total = 1
+    sources = ["基础反应 1 次"]
+    passive_choice = set()
+    for f in resolved.raw.get("feats", []):
+        op = ops.get(f.get("id"))
+        if not op:
+            continue
+        if (op.get("cost") or {}).get("passive_choice"):
+            passive_choice.add(op["id"])
+            continue
+        spec = (op.get("projection") or {}).get("opportunity_attack_budget_add")
+        if not spec:
+            continue
+        if "ability" in spec:
+            n = max(0, resolved.derived.mods.get(spec["ability"], 0))
+        else:
+            n = int(spec.get("value", 0))
+        if n:
+            total += n
+            sources.append(f"{op['name']} +{n}")
+    return total, sources
+
+
 def build_base_attack(resolved, adv_tiers=0, rage_active=False, weapon_dice=None):
     """武器基础攻击：武器骰 + 属性调整值 + 武器增强 + 狂暴加值。"""
     d = resolved.derived
@@ -1335,6 +1366,22 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     all_rules_built.extend(rs)
                 attacks.append(a)
         all_rules.extend(all_rules_built)
+
+        # 借机攻击：打桩默认目标不动不还手，**触发次数由环境显式声明**（默认 0）。
+        # 不声明就不产生收益——否则等于白送一次攻击。
+        oa_triggers = int(env_doc.get("enemy_triggers_per_round", 0))
+        if oa_triggers > 0 and attacks:
+            budget, sources = opportunity_attack_budget(resolved, ops)
+            count = min(budget, oa_triggers)
+            oa_adv = 0
+            for op in granted_feat_ops(build_doc, ops):
+                oa_adv += int((op.get("projection") or {}).get("opportunity_attack_adv", 0))
+            for _ in range(count):
+                a = build_base_attack(resolved, adv_tiers=adv + oa_adv,
+                                      rage_active=rage_active, weapon_dice=wdice)
+                attacks.append(a)
+            trace.append(f"第 {rnum} 轮借机攻击 {count} 次"
+                         f"（触发 {oa_triggers}，预算 {budget}：{'、'.join(sources)}）")
 
         dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
                        else (Fraction(0), 0))
