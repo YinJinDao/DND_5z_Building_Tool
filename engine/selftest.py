@@ -379,6 +379,52 @@ def test_calculator():
     print(f"       期望伤害 {float(res.total):.3f}｜结果树叶子 {res.leaves}")
 
 
+def test_spells():
+    print("\n[13] 法术：等级成长 / 升环 / 豁免")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    with open(os.path.join(root, "examples", "wizard_l5.build.json"), encoding="utf-8") as fh:
+        build = _json.load(fh)
+    resolved = calc.resolve_build(build, calc.load_rage_table())
+    ops = calc.load_ops()
+
+    # 法师 L5：智力 18（+4）+ 熟练 3 → 法术攻击 +7，豁免 DC 15
+    check("法术攻击加值", Fraction(resolved.derived.spell_attack.total), Fraction(7), tol=1e-9)
+    check("法术豁免 DC", Fraction(resolved.derived.spell_dc), Fraction(15), tol=1e-9)
+
+    # 等级成长：戏法在 5 级升为 2d8
+    check("冻寒之触 L5 骰式",
+          Fraction(int(calc.spell_dice(ops["sp.冻寒之触"], 5).split("d")[0])),
+          Fraction(2), tol=1e-9)
+    check("冻寒之触 L1 骰式",
+          Fraction(int(calc.spell_dice(ops["sp.冻寒之触"], 1).split("d")[0])),
+          Fraction(1), tol=1e-9)
+
+    # 升环：火球术每高一环 +2d6
+    check("火球术 3 环", Fraction(int(calc.spell_dice(ops["sp.火球术"], 5, 3).split("d")[0])),
+          Fraction(8), tol=1e-9)
+    check("火球术 5 环", Fraction(int(calc.spell_dice(ops["sp.火球术"], 5, 5).split("d")[0])),
+          Fraction(12), tol=1e-9)
+
+    # 期望值：攻击型 vs 豁免型
+    atk = calc.build_spell_attack(resolved, ops["sp.冻寒之触"])
+    tgt = TargetProfile(ac=15)
+    p_hit, p_crit = atk.probs(15)
+    expected_atk = p_hit * 9 + p_crit * 9          # 2d8 = 9
+    got_atk, _ = expected_damage(atk, tgt)
+    check("攻击型法术期望", got_atk, expected_atk, tol=1e-9)
+
+    # 豁免型：DC 15 vs 敏捷豁免 0 → 失败率 14/20；无半伤
+    dmg, dice = calc.save_effect_from_op(resolved, ops["sp.圣火术"], tgt)
+    check("豁免型法术期望", dmg, Fraction(14, 20) * 9, tol=1e-9)
+
+    # 半伤：0.7×28 + 0.3×14 = 23.8
+    dmg2, dice2 = calc.save_effect_from_op(resolved, ops["sp.火球术"], tgt, slot_level=3)
+    check("半伤法术期望", dmg2, Fraction(7, 10) * 28 + Fraction(3, 10) * 14, tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -395,6 +441,7 @@ def main():
     test_character()
     test_resources()
     test_calculator()
+    test_spells()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

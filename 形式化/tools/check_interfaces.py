@@ -1,0 +1,241 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""接口一致性检查：算子、样例、数据三者之间的契约是否对得上。
+
+用法：
+    python check_interfaces.py
+
+检查项：
+  A. 算子文件
+       A1 id 与文件名一致
+       A2 必填字段齐全（id / kind / source / status）
+       A3 source 含 version 与 file（溯源强制，见决策 D-015）
+       A4 法术算子的字段位置一致（scaling / upcast 必须在顶层）
+       A5 攻击型法术必须有 attack.damage；豁免型必须有 save + damage
+  B. 样例输入
+       B1 策略引用的算子 id 都存在
+       B2 策略消耗的资源池都在构筑的 resources 中声明
+       B3 构筑的 casting_ability 与所用法术匹配
+  C. 数据文件
+       C1 JSONL 每行合法
+       C2 每条都有 source（溯源强制）
+
+任何一条失败即返回非零退出码——接口漂移必须在提交前被拦住，
+而不是等到计算器给出一个看似合理的错数。
+"""
+
+import json
+import os
+import sys
+
+REPO = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+OPS_DIR = os.path.join(REPO, "形式化", "ops")
+DATA_DIR = os.path.join(REPO, "形式化", "data")
+EX_DIR = os.path.join(REPO, "examples")
+
+REQUIRED_OP_FIELDS = ("id", "kind", "source", "status")
+VALID_KINDS = {"feat", "spell", "maneuver", "class_feature"}
+
+errors = []
+warnings = []
+
+
+def err(msg):
+    errors.append(msg)
+
+
+def warn(msg):
+    warnings.append(msg)
+
+
+def check_ops():
+    if not os.path.isdir(OPS_DIR):
+        err(f"算子目录不存在: {OPS_DIR}")
+        return {}
+    ops = {}
+    for fname in sorted(os.listdir(OPS_DIR)):
+        if not fname.endswith(".json"):
+            continue
+        path = os.path.join(OPS_DIR, fname)
+        try:
+            with open(path, encoding="utf-8") as fh:
+                op = json.load(fh)
+        except json.JSONDecodeError as exc:
+            err(f"[A] {fname}: JSON 解析失败 — {exc}")
+            continue
+
+        stem = fname[:-5]
+        if op.get("id") != stem:
+            err(f"[A1] {fname}: id={op.get('id')!r} 与文件名不一致")
+
+        for field in REQUIRED_OP_FIELDS:
+            if field not in op:
+                err(f"[A2] {fname}: 缺必填字段 {field}")
+
+        if op.get("kind") and op["kind"] not in VALID_KINDS:
+            err(f"[A2] {fname}: 未知 kind={op['kind']!r}")
+
+        src = op.get("source") or {}
+        if not src.get("version") or not src.get("file"):
+            err(f"[A3] {fname}: source 缺 version 或 file（溯源强制，D-015）")
+
+        if op.get("kind") == "spell":
+            # A4：scaling / upcast 必须写在顶层。写在 attack 内部会让等级成长静默失效。
+            if "scaling" in (op.get("attack") or {}):
+                err(f"[A4] {fname}: scaling 写在了 attack 内，必须移到顶层")
+            if "upcast" in (op.get("attack") or {}):
+                err(f"[A4] {fname}: upcast 写在了 attack 内，必须移到顶层")
+            # A5：两条伤害路径各自的必填项
+            if "attack" in op:
+                if not (op["attack"].get("damage") or {}).get("dice"):
+                    err(f"[A5] {fname}: 攻击型法术缺 attack.damage.dice")
+                if "damage" in op:
+                    err(f"[A5] {fname}: 攻击型与豁免型字段混用（同时有 attack 与 damage）")
+            elif "save" in op:
+                if not (op.get("damage") or {}).get("dice"):
+                    err(f"[A5] {fname}: 豁免型法术缺 damage.dice")
+                if "ability" not in (op.get("save") or {}):
+                    err(f"[A5] {fname}: save 缺 ability")
+            else:
+                err(f"[A5] {fname}: 法术必须有 attack 或 save")
+
+        ops[op.get("id", stem)] = op
+    return ops
+
+
+def check_examples(ops):
+    if not os.path.isdir(EX_DIR):
+        warn(f"样例目录不存在，跳过 B: {EX_DIR}")
+        return
+    files = sorted(f for f in os.listdir(EX_DIR) if f.endswith(".json"))
+    builds = {}
+    for fname in files:
+        path = os.path.join(EX_DIR, fname)
+        try:
+            with open(path, encoding="utf-8") as fh:
+                doc = json.load(fh)
+        except json.JSONDecodeError as exc:
+            err(f"[B] {fname}: JSON 解析失败 — {exc}")
+            continue
+        if "combat" in doc:
+            builds[fname] = doc
+
+    for fname in files:
+        if not fname.endswith(".strategy.json"):
+            continue
+        with open(os.path.join(EX_DIR, fname), encoding="utf-8") as fh:
+            strat = json.load(fh)
+        for rnd in strat.get("rounds", []):
+            pa = rnd.get("per_attack") or {}
+            for oid in pa.get("ops", []):
+                if oid not in ops:
+                    err(f"[B1] {fname}: 引用不存在的算子 {oid}")
+            sid = pa.get("spell")
+            if sid and sid not in ops:
+                err(f"[B1] {fname}: 引用不存在的法术算子 {sid}")
+            for eff in rnd.get("save_effects", []):
+                sid = eff.get("spell")
+                if sid and sid not in ops:
+                    err(f"[B1] {fname}: 引用不存在的法术算子 {sid}")
+
+
+def check_build_strategy_pairs(ops):
+    """B2/B3：按策略中声明的 requires_build 精确配对检查。
+
+    早期实现是"每条策略对每个构筑都查一遍"，会产生大量假阳性——
+    这说明样例之间缺少显式配对声明，本身就是接口缺陷，故改用显式字段。
+    """
+    if not os.path.isdir(EX_DIR):
+        return
+    builds = {}
+    for fname in os.listdir(EX_DIR):
+        if fname.endswith(".build.json"):
+            with open(os.path.join(EX_DIR, fname), encoding="utf-8") as fh:
+                builds[fname] = json.load(fh)
+
+    for sname in sorted(os.listdir(EX_DIR)):
+        if not sname.endswith(".strategy.json"):
+            continue
+        with open(os.path.join(EX_DIR, sname), encoding="utf-8") as fh:
+            strat = json.load(fh)
+
+        build_name = (strat.get("meta") or {}).get("requires_build")
+        if not build_name:
+            err(f"[B4] {sname}: 缺 meta.requires_build，无法确定与哪个构筑配对")
+            continue
+        if build_name not in builds:
+            err(f"[B4] {sname}: requires_build={build_name} 不存在")
+            continue
+
+        build = builds[build_name]
+        has_casting = bool(build.get("combat", {}).get("casting_ability"))
+        resources = set((build.get("resources") or {}).keys())
+
+        rounds = strat.get("rounds", [])
+        uses_spell = any((r.get("per_attack") or {}).get("spell") or
+                         any("spell" in e for e in r.get("save_effects", []))
+                         for r in rounds)
+        if uses_spell and not has_casting:
+            err(f"[B3] {sname} 用法术，但 {build_name} 未声明 casting_ability")
+
+        for rnd in rounds:
+            for pid in (rnd.get("spends") or {}):
+                if pid not in resources:
+                    err(f"[B2] {sname} 消耗 {pid}，但 {build_name} 未声明该资源池")
+
+
+def check_data():
+    if not os.path.isdir(DATA_DIR):
+        err(f"数据目录不存在: {DATA_DIR}")
+        return
+    for fname in sorted(os.listdir(DATA_DIR)):
+        if not fname.endswith(".jsonl"):
+            continue
+        path = os.path.join(DATA_DIR, fname)
+        bad = 0
+        nosrc = 0
+        total = 0
+        with open(path, encoding="utf-8") as fh:
+            for lineno, line in enumerate(fh, 1):
+                line = line.strip()
+                if not line:
+                    continue
+                total += 1
+                try:
+                    rec = json.loads(line)
+                except json.JSONDecodeError as exc:
+                    err(f"[C1] {fname}:{lineno} JSON 非法 — {exc}")
+                    bad += 1
+                    continue
+                if fname not in ("relevance.jsonl", "feat_triage.jsonl") and not rec.get("source"):
+                    nosrc += 1
+        if nosrc:
+            err(f"[C2] {fname}: {nosrc}/{total} 条缺 source（溯源强制，D-015）")
+
+
+def main():
+    print("=" * 60)
+    print("接口一致性检查")
+    print("=" * 60)
+
+    ops = check_ops()
+    print(f"算子: {len(ops)} 个")
+    check_examples(ops)
+    check_build_strategy_pairs(ops)
+    check_data()
+
+    print("-" * 60)
+    for w in warnings:
+        print("  警告 " + w)
+    for e in errors:
+        print("  错误 " + e)
+    print("-" * 60)
+    if errors:
+        print(f"失败：{len(errors)} 项错误")
+        return 1
+    print(f"通过：无错误（{len(warnings)} 项警告）")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

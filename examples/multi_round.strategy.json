@@ -1,30 +1,67 @@
 {
   "meta": {
     "name": "三轮：鲁莽攻击 + 威力攻击，每轮消耗 1 枚卓越骰",
-    "note": "演示跨轮求值、距离推进与资源消耗核算"
+    "note": "演示跨轮求值、距离推进与资源消耗核算",
+    "requires_build": "barbarian_l4.build.json"
   },
   "rounds": [
     {
       "round": 1,
-      "buffs": ["rage", "reckless"],
-      "move": { "toward": true, "ft": 25 },
-      "spends": { "superiority": 1 },
+      "buffs": [
+        "rage",
+        "reckless"
+      ],
+      "move": {
+        "toward": true,
+        "ft": 25
+      },
+      "spends": {
+        "superiority": 1
+      },
       "attacks": 1,
-      "per_attack": { "adv_tiers": 1, "ops": ["feat.凶蛮打手", "feat.威力攻击"] }
+      "per_attack": {
+        "adv_tiers": 1,
+        "ops": [
+          "feat.凶蛮打手",
+          "feat.威力攻击"
+        ]
+      }
     },
     {
       "round": 2,
-      "buffs": ["rage", "reckless"],
-      "spends": { "superiority": 1 },
+      "buffs": [
+        "rage",
+        "reckless"
+      ],
+      "spends": {
+        "superiority": 1
+      },
       "attacks": 1,
-      "per_attack": { "adv_tiers": 1, "ops": ["feat.凶蛮打手", "feat.威力攻击"] }
+      "per_attack": {
+        "adv_tiers": 1,
+        "ops": [
+          "feat.凶蛮打手",
+          "feat.威力攻击"
+        ]
+      }
     },
     {
       "round": 3,
-      "buffs": ["rage", "reckless"],
-      "spends": { "superiority": 1 },
+      "buffs": [
+        "rage",
+        "reckless"
+      ],
+      "spends": {
+        "superiority": 1
+      },
       "attacks": 1,
-      "per_attack": { "adv_tiers": 1, "ops": ["feat.凶蛮打手", "feat.威力攻击"] }
+      "per_attack": {
+        "adv_tiers": 1,
+        "ops": [
+          "feat.凶蛮打手",
+          "feat.威力攻击"
+        ]
+      }
     }
   ]
 }

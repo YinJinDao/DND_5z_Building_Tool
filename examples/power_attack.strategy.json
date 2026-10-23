@@ -1,17 +1,27 @@
 {
   "meta": {
     "name": "鲁莽攻击 + 威力攻击 + 凶蛮打手",
-    "note": "单轮策略。鲁莽攻击提供 1 重优势；威力攻击承受 -5 命中换取伤害加值"
+    "note": "单轮策略。鲁莽攻击提供 1 重优势；威力攻击承受 -5 命中换取伤害加值",
+    "requires_build": "barbarian_l4.build.json"
   },
   "rounds": [
     {
       "round": 1,
-      "buffs": ["rage", "reckless"],
-      "move": { "toward": true, "ft": 25 },
+      "buffs": [
+        "rage",
+        "reckless"
+      ],
+      "move": {
+        "toward": true,
+        "ft": 25
+      },
       "attacks": 1,
       "per_attack": {
         "adv_tiers": 1,
-        "ops": ["feat.凶蛮打手", "feat.威力攻击"]
+        "ops": [
+          "feat.凶蛮打手",
+          "feat.威力攻击"
+        ]
       }
     }
   ]

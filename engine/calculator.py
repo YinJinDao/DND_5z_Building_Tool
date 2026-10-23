@@ -23,6 +23,7 @@
 
 import json
 import os
+import re
 import sys
 from dataclasses import dataclass, field
 from fractions import Fraction
@@ -111,6 +112,7 @@ def resolve_build(build_doc, rage_table=None):
         proficient_saves=tuple(combat.get("proficient_saves", ())),
         weapon_attack_ability=combat.get("weapon", {}).get("ability", "str"),
         weapon_enhancement=int(combat.get("weapon", {}).get("enhancement", 0)),
+        casting_ability=combat.get("casting_ability"),
     )
     d = derive(b)
 
@@ -125,6 +127,9 @@ def resolve_build(build_doc, rage_table=None):
     trace = [f"等级 {level}", f"熟练加值 +{d.prof}",
              f"AC {d.ac}", f"HP {d.hp}",
              f"攻击加值：{d.attack.explain()}"]
+    if d.spell_attack is not None:
+        trace.append(f"法术攻击加值：{d.spell_attack.explain()}｜"
+                     f"法术豁免 DC {d.spell_dc}")
     return ResolvedBuild(raw=build_doc, build=b, derived=d, weapon=weapon,
                          rage_bonus=rage_bonus, trace=trace)
 
@@ -215,6 +220,81 @@ def apply_op(op, attack, resolved, attack_index=0):
 
 # ---------------------------------------------------------------- 主计算
 
+# ---------------------------------------------------------------- 法术
+
+def _split_dice(expr):
+    """'8d6' → (8, 6)；'3' → (0, 0, 3)。"""
+    s = str(expr).strip().lower()
+    if "d" in s:
+        n, _, faces = s.partition("d")
+        return int(n or 1), int(faces)
+    return 0, 0
+
+
+def _add_dice(base, extra, times=1):
+    """把 extra 叠加 times 次到 base 上。'8d6' + '2d6'×2 → '12d6'。"""
+    n1, f1 = _split_dice(base)
+    n2, f2 = _split_dice(extra)
+    if f1 and f2 and f1 != f2:
+        raise ValueError(f"骰面不一致，无法合并: {base} + {extra}")
+    faces = f1 or f2
+    return f"{n1 + n2 * times}d{faces}"
+
+
+def spell_dice(op, char_level, slot_level=None):
+    """按角色等级应用 scaling，按法术位应用 upcast，返回最终骰式。
+
+    scaling 一律写在算子**顶层**。早期把攻击型法术的 scaling 写进了
+    `attack` 内，导致等级成长静默失效（5 级仍算 1d8），现统一到顶层，
+    并在此对嵌套位置做一次兼容读取，避免旧数据静默出错。
+    """
+    scaling = op.get("scaling") or (op.get("attack") or {}).get("scaling") or []
+    if "attack" in op:
+        base = op["attack"]["damage"]["dice"]
+    else:
+        base = op["damage"]["dice"]
+
+    for step in scaling:
+        if char_level >= step["level"]:
+            base = step["dice"]
+
+    upcast = op.get("upcast")
+    if upcast and slot_level and slot_level > upcast["per_slot_above"]:
+        base = _add_dice(base, upcast["add_dice"],
+                         slot_level - upcast["per_slot_above"])
+    return base
+
+
+def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None):
+    """攻击型法术（如冻寒之触）：法术攻击加值 + 法术伤害骰。"""
+    if resolved.derived.spell_attack is None:
+        raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
+    spec = op["attack"]
+    dice = spell_dice(op, resolved.derived.level, slot_level)
+    comp = DamageComponent(dice, flat=0,
+                           dtype=spec["damage"]["damage_type"],
+                           slot=op["id"])
+    return Attack(attack_bonus=resolved.derived.spell_attack.total,
+                  adv_tiers=adv_tiers, components=[comp])
+
+
+def save_effect_from_op(resolved, op, target, slot_level=None):
+    """豁免型法术的期望伤害。DC 取自角色，豁免加值取自目标。"""
+    if resolved.derived.spell_dc is None:
+        raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
+    spec = op.get("save") or {}
+    ability = spec.get("ability", "dex")
+    dice = spell_dice(op, resolved.derived.level, slot_level)
+    amount = dice_mean(dice)
+    half = bool(op.get("damage", {}).get("half_on_save", False))
+    save_bonus = int(getattr(target, "saves", {}).get(ability, 0))
+    exp = expected_save_damage(resolved.derived.spell_dc, save_bonus, amount,
+                               half_on_save=half)
+    dtype = op["damage"]["damage_type"]
+    dmg, _ = apply_target_pipeline(exp, dtype, target)
+    return dmg, dice
+
+
 @dataclass
 class Result:
     per_round: list
@@ -245,10 +325,19 @@ def load_budget(build_doc, env_doc):
                   long_rests=int(env_doc.get("long_rests", 1)), level=level)
 
 
+RANGE_RE = re.compile(r"(\d+)\s*尺")
+
+
+def _range_ft(text):
+    """'120尺' → 120；'自身' → None（自身法术无需距离判定）。"""
+    m = RANGE_RE.search(str(text or ""))
+    return int(m.group(1)) if m else None
+
+
 def _save_effect_damage(effect, target, resolved):
     """豁免型效果的单次期望伤害。"""
     dc = int(effect["dc"])
-    save_bonus = int(target.saves.get(effect.get("save", "dex"), 0)) if hasattr(target, "saves") else 0
+    save_bonus = int(getattr(target, "saves", {}).get(effect.get("save", "dex"), 0))
     amount = dice_mean(effect["dice"])
     half = bool(effect.get("half_on_save", False))
     exp = expected_save_damage(dc, save_bonus, amount, half_on_save=half)
@@ -314,19 +403,37 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             moved = state.move(int(mv.get("ft", 0)), toward=bool(mv.get("toward", True)))
             trace.append(f"第 {rnum} 轮移动 {moved} 尺 → 距离 {state.distance_ft} 尺")
 
-        in_range = range_profile.can_reach(state.distance_ft)
-        if not in_range:
-            warnings.append(f"第 {rnum} 轮距离 {state.distance_ft} 尺超出触及/射程，本回合无攻击")
-
-        attacks_n = int(rnd.get("attacks", 1)) if in_range else 0
         per_attack = rnd.get("per_attack", {})
         op_ids = per_attack.get("ops", [])
         adv = int(per_attack.get("adv_tiers", 0))
 
+        kind = per_attack.get("kind", "weapon")
+        spell_id = per_attack.get("spell")
+        slot_level = per_attack.get("slot_level")
+
+        # 距离判定要用**本动作自己的**射程：武器用触及/射程，法术用该法术的施法距离
+        if kind == "spell_attack" and spell_id in ops:
+            spell_range = _range_ft(ops[spell_id].get("range"))
+            profile = RangeProfile(reach_ft=10 ** 6, range_ft=spell_range)
+        else:
+            profile = range_profile
+        in_range = profile.can_reach(state.distance_ft)
+
+        attacks_n = int(rnd.get("attacks", 1))
+        if attacks_n and not in_range:
+            warnings.append(f"第 {rnum} 轮距离 {state.distance_ft} 尺超出触及/射程，本回合无攻击")
+            attacks_n = 0
+
         attacks, all_rules = [], []
         for i in range(attacks_n):
-            a = build_base_attack(resolved, adv_tiers=adv,
-                                  rage_active="rage" in buffs)
+            if kind == "spell_attack":
+                if spell_id not in ops:
+                    raise KeyError(f"未知法术算子: {spell_id}")
+                a = build_spell_attack(resolved, ops[spell_id], adv_tiers=adv,
+                                       slot_level=slot_level)
+            else:
+                a = build_base_attack(resolved, adv_tiers=adv,
+                                      rage_active="rage" in buffs)
             for oid in op_ids:
                 if oid not in ops:
                     raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
@@ -337,11 +444,26 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         dmg, leaves = (evaluate_turn(attacks, all_rules, target) if attacks
                        else (Fraction(0), 0))
 
-        # 豁免型效果（如法术）
+        # 豁免型效果：可按法术算子 id 引用，也可内联写明
         for eff in rnd.get("save_effects", []):
-            sd = _save_effect_damage(eff, target, resolved)
+            if "spell" in eff:
+                sid = eff["spell"]
+                if sid not in ops:
+                    raise KeyError(f"未知法术算子: {sid}")
+                srng = _range_ft(ops[sid].get("range"))
+                if srng is not None and state.distance_ft > srng:
+                    warnings.append(
+                        f"第 {rnum} 轮 {ops[sid]['name']} 距离 {state.distance_ft} 尺"
+                        f"超出施法距离 {srng} 尺，未计入")
+                    continue
+                sd, dice = save_effect_from_op(resolved, ops[sid], target,
+                                               eff.get("slot_level"))
+                trace.append(f"第 {rnum} 轮 {ops[sid]['name']}（{dice}，豁免）"
+                             f" → {float(sd):.3f}")
+            else:
+                sd = _save_effect_damage(eff, target, resolved)
+                trace.append(f"第 {rnum} 轮豁免效果 {eff.get('dice')} → {float(sd):.3f}")
             dmg += sd
-            trace.append(f"第 {rnum} 轮豁免效果 {eff.get('dice')} → {float(sd):.3f}")
 
         per_round.append((rnum, dmg))
         trace.append(f"第 {rnum} 轮：{attacks_n} 次攻击"

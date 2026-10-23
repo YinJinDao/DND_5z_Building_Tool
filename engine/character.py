@@ -122,6 +122,7 @@ class Build:
     weapon_attack_ability: str = "str"
     weapon_enhancement: int = 0
     misc_attack_bonus: list = field(default_factory=list)  # [(来源, 值)]
+    casting_ability: str | None = None      # 施法关键属性；无施法则为 None
 
 
 @dataclass
@@ -134,6 +135,8 @@ class Derived:
     hp: int
     saves: dict
     attack: Bonus
+    spell_attack: Bonus | None = None
+    spell_dc: int | None = None
 
     def summary(self):
         lines = [f"等级 {self.level}｜熟练加值 +{self.prof}｜AC {self.ac}｜HP {self.hp}"]
@@ -170,5 +173,16 @@ def derive(build: Build) -> Derived:
     for src, val in build.misc_attack_bonus:
         atk.add(src, val)
 
+    # 施法数值：法术攻击加值 = 熟练加值 + 施法关键属性调整值
+    #             法术豁免 DC   = 8 + 熟练加值 + 施法关键属性调整值
+    spell_atk = spell_dc = None
+    if build.casting_ability:
+        cast_mod = mods[build.casting_ability]
+        spell_atk = Bonus()
+        spell_atk.add(f"{ABILITY_CN[build.casting_ability]}调整值", cast_mod)
+        spell_atk.add("熟练加值", prof)
+        spell_dc = 8 + prof + cast_mod
+
     return Derived(level=build.level, scores=scores, mods=mods, prof=prof,
-                   ac=ac, hp=hp, saves=saves, attack=atk)
+                   ac=ac, hp=hp, saves=saves, attack=atk,
+                   spell_attack=spell_atk, spell_dc=spell_dc)
