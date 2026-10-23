@@ -69,6 +69,7 @@ def main():
 
     rows = []
     for fname, kind in (("maneuvers.jsonl", "maneuver"),
+                        ("class_features.jsonl", "class_feature"),
                         ("feats.jsonl", "feat"),
                         ("spells.jsonl", "spell")):
         path = os.path.join(args.data, fname)
