@@ -1,0 +1,35 @@
+{
+  "id": "act.mounted_charge",
+  "name": "骑乘冲刺",
+  "kind": "action",
+  "acquisition": { "type": "combat_action" },
+  "cost": { "action": 1 },
+  "decision_point": "before_roll",
+  "gate": {
+    "mounted": true,
+    "mount_controlled": true,
+    "distance": { "min_travel": 30 }
+  },
+  "composite": {
+    "move": {
+      "min_travel_ft": 30,
+      "straight": true,
+      "note": "坐骑只能沿一条方向的直线向前移动；一旦停止移动，即使有剩余移动力也不能继续移动"
+    },
+    "attack": {
+      "count": 1,
+      "overrides_extra_attack": true,
+      "adv_tiers": 1
+    },
+    "order": "先移动，再以攻击动作发动 1 次近战武器攻击；两步之间不能插入其它行动",
+    "note": "即使拥有在一个攻击动作内可发动多次攻击的能力，也只能发动一次攻击"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "基础/骑乘.htm",
+    "anchor": "骑乘冲刺（动作）"
+  },
+  "status": "modeled",
+  "ruling": null
+}

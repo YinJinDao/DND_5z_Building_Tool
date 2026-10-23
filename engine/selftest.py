@@ -425,6 +425,53 @@ def test_spells():
     check("半伤法术期望", dmg2, Fraction(7, 10) * 28 + Fraction(3, 10) * 14, tol=1e-9)
 
 
+def test_composite_and_contingency():
+    print("\n[14] 复合动作与条件策略")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    ex = os.path.join(root, "examples")
+
+    def load(name):
+        with open(os.path.join(ex, name), encoding="utf-8") as fh:
+            return _json.load(fh)
+
+    build = load("barbarian_l4.build.json")
+    env = load("dummy_ac15.env.json")
+    strat = load("mounted_charge.strategy.json")
+    res = calc.evaluate(build, env, strat)
+
+    # 骑乘冲刺把 2 次攻击压成 1 次，并附加 1 重优势
+    charge_line = next((t for t in res.trace if "覆盖额外攻击" in t), "")
+    if "2 次 → 1 次" in charge_line:
+        print("  OK   覆盖额外攻击：2 次 → 1 次")
+    else:
+        FAILS.append("骑乘冲刺未覆盖额外攻击")
+        print("  FAIL 覆盖额外攻击")
+
+    # 手算校验：命中 32.5、重击额外骰 14.5、易伤翻倍
+    p_hit = 1 - Fraction(13, 20) ** 2          # +1 攻击加值、1 重优势
+    p_crit = 1 - Fraction(19, 20) ** 2
+    hit_dmg = Fraction(65, 10) + 4 + 2 + 12 + Fraction(7, 2) + Fraction(9, 2)
+    crit_extra = Fraction(65, 10) + Fraction(7, 2) + Fraction(9, 2)
+    expected = (p_hit * hit_dmg + p_crit * crit_extra) * 2   # 骑乘战斗易伤
+    check("骑乘冲刺期望伤害", res.total, expected, tol=1e-9)
+
+    # 条件策略的消耗被记录
+    check("条件策略消耗入账", Fraction(len(res.spend_report)), Fraction(1), tol=1e-9)
+
+    # 移动不足 30 尺时冲刺不生效
+    short = _json.loads(_json.dumps(strat))
+    short["rounds"][0]["move"] = {"toward": True, "ft": 20}
+    res2 = calc.evaluate(build, env, short)
+    if any("要求本回合直线移动" in w for w in res2.warnings) and res2.total == 0:
+        print("  OK   移动不足 30 尺时冲刺不生效")
+    else:
+        FAILS.append("移动不足时冲刺未拦截")
+        print("  FAIL 移动不足时冲刺未拦截")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -442,6 +489,7 @@ def main():
     test_resources()
     test_calculator()
     test_spells()
+    test_composite_and_contingency()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

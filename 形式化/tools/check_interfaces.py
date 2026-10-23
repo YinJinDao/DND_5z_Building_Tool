@@ -34,7 +34,7 @@ DATA_DIR = os.path.join(REPO, "形式化", "data")
 EX_DIR = os.path.join(REPO, "examples")
 
 REQUIRED_OP_FIELDS = ("id", "kind", "source", "status")
-VALID_KINDS = {"feat", "spell", "maneuver", "class_feature"}
+VALID_KINDS = {"feat", "spell", "maneuver", "class_feature", "action"}
 
 errors = []
 warnings = []

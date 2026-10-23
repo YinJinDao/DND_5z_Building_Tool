@@ -31,8 +31,8 @@ from fractions import Fraction
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from character import Bonus, Build, Contribution, derive
-from combat import (Budget, CombatState, RangeProfile, ResourcePool,
-                    expected_save_damage)
+from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
+                    expected_save_damage, validate_turn)
 from evaluator import (Attack, DamageComponent, TargetProfile,
                        apply_target_pipeline, dice_mean, expected_damage)
 from strategy import Rule, evaluate_turn
@@ -325,6 +325,18 @@ def load_budget(build_doc, env_doc):
                   long_rests=int(env_doc.get("long_rests", 1)), level=level)
 
 
+def _has_feat(build_doc, op_id):
+    return any(f.get("id") == op_id for f in build_doc.get("feats", []))
+
+
+def _with_vulnerability(target, types):
+    """返回一个"额外具有若干易伤类型"的目标副本，不修改原对象。"""
+    import copy
+    t = copy.copy(target)
+    t.vuln = tuple(set(target.vuln) | set(types))
+    return t
+
+
 RANGE_RE = re.compile(r"(\d+)\s*尺")
 
 
@@ -424,7 +436,64 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             warnings.append(f"第 {rnum} 轮距离 {state.distance_ft} 尺超出触及/射程，本回合无攻击")
             attacks_n = 0
 
-        attacks, all_rules = [], []
+        # 复合动作（如骑乘冲刺）：追加前置条件、覆盖攻击次数、附加优势
+        round_target = target
+        action_id = rnd.get("action")
+        if action_id:
+            if action_id not in ops:
+                raise KeyError(f"未知动作算子: {action_id}")
+            comp = ops[action_id].get("composite") or {}
+            move_spec = comp.get("move") or {}
+            min_travel = int(move_spec.get("min_travel_ft", 0))
+            if min_travel and state.travel_this_turn < min_travel:
+                warnings.append(
+                    f"第 {rnum} 轮 {ops[action_id]['name']} 要求本回合直线移动 ≥{min_travel} 尺，"
+                    f"实际 {state.travel_this_turn} 尺，未生效")
+                attacks_n = 0
+            atk_spec = comp.get("attack") or {}
+            if attacks_n:
+                cap_n = int(atk_spec.get("count", attacks_n))
+                if attacks_n > cap_n:
+                    trace.append(f"第 {rnum} 轮 {ops[action_id]['name']} 覆盖额外攻击："
+                                 f"{attacks_n} 次 → {cap_n} 次")
+                    attacks_n = cap_n
+                adv += int(atk_spec.get("adv_tiers", 0))
+                trace.append(f"第 {rnum} 轮 {ops[action_id]['name']}：+{atk_spec.get('adv_tiers', 0)} 重优势")
+
+            # 骑乘战斗：冲刺首次命中时，目标对本次攻击的钝击/挥砍/穿刺易伤
+            if "feat.骑乘战斗" in ops and _has_feat(build_doc, "feat.骑乘战斗"):
+                vuln = ops["feat.骑乘战斗"]["projection"]["charge_vulnerability"]["types"]
+                round_target = _with_vulnerability(target, vuln)
+                trace.append(f"第 {rnum} 轮骑乘战斗：目标对 {'/'.join(vuln)} 易伤")
+
+        # 条件策略：按命中/重击结果分支（触发时才算消耗）
+        all_rules = []
+        for cond in rnd.get("contingencies", []):
+            extras = [DamageComponent(e["dice"], flat=int(e.get("flat", 0)),
+                                      dtype=e.get("damage_type", "slashing"),
+                                      slot=cond.get("name", "contingency"))
+                      for e in cond.get("extra_dice", [])]
+            all_rules.append(Rule(trigger=cond.get("trigger", "hit_or_crit"),
+                                  on_attack=cond.get("attack"),
+                                  extra_dice=extras,
+                                  next_adv=int(cond.get("next_adv", 0)),
+                                  spends=cond.get("spend") or {},
+                                  name=cond.get("name", "contingency")))
+            for pid, amount in (cond.get("spend") or {}).items():
+                spends.append((rnum, pid, int(amount)))
+            trace.append(f"第 {rnum} 轮条件规则：{cond.get('trigger')} 时"
+                         f"{cond.get('name', '')}"
+                         f"{'（消耗 ' + str(cond.get('spend')) + '）' if cond.get('spend') else ''}")
+
+        # 动作经济校验（策略显式声明 steps 时）
+        if rnd.get("steps"):
+            steps = [Step(s.get("name", ""), s.get("cost", {}), s.get("group"))
+                     for s in rnd["steps"]]
+            state.attack_instances = max(1, attacks_n)
+            for msg in validate_turn(steps, state):
+                warnings.append(f"第 {rnum} 轮动作经济：{msg}")
+
+        attacks, all_rules_built = [], []
         for i in range(attacks_n):
             if kind == "spell_attack":
                 if spell_id not in ops:
@@ -438,10 +507,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 if oid not in ops:
                     raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
                 a, rs = apply_op(ops[oid], a, resolved, attack_index=i)
-                all_rules.extend(rs)
+                all_rules_built.extend(rs)
             attacks.append(a)
+        all_rules.extend(all_rules_built)
 
-        dmg, leaves = (evaluate_turn(attacks, all_rules, target) if attacks
+        dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
                        else (Fraction(0), 0))
 
         # 豁免型效果：可按法术算子 id 引用，也可内联写明
