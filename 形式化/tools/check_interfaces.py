@@ -253,6 +253,34 @@ def check_op_data_alignment(ops):
                 f"（算子与数据对不上，永远无法被引用）")
 
 
+# 引擎实际消费的 projection 字段（封闭词汇表）。
+# 多 agent 协作时这是最关键的一道闸：没有它，每个 agent 都会发明自己的字段，
+# 而引擎对未知字段是**静默忽略**的——算子写了、看着对、实际不生效。
+ALLOWED_PROJECTION = {
+    "note",                          # 纯注释，引擎不消费（允许）
+    "adv_tiers", "attack_bonus", "attack_count", "crit_range",
+    "damage_slots", "extra_dice", "ability_bonus",
+    "weapon_dice_override", "weapon_dice_min", "weapon_dice_min_applies_to",
+    "weapon_dice_step_up",
+    "bonus_action_attack", "bonus_action_attack_dice", "bonus_action_attack_type",
+    "on_hit_extra_attack", "on_all_hit_extra_attack", "on_hit_target_vuln",
+    "damage_replaces_weapon", "damage_table", "formula_damage", "attack_irreducible",
+    "save_dc_modifier", "on_fail_extra", "requires_contest",
+    "grants_attack_count", "uses", "rage", "area",
+    "size_increase",               # 已声明但引擎未实现，见审计文档
+    "conditional_dice",            # 已声明但引擎未实现
+}
+
+
+def check_projection_vocabulary(ops):
+    """A12：算子只能使用引擎认识（或已登记待实现）的 projection 字段。"""
+    for oid, op in ops.items():
+        for key in (op.get("projection") or {}):
+            if key not in ALLOWED_PROJECTION:
+                err(f"[A12] {oid}: 未知 projection 字段 {key!r} —— "
+                    f"引擎会静默忽略它。如需新增请先扩展引擎并登记到白名单")
+
+
 def check_table_refs(ops):
     """A11：算子引用的伤害表必须存在，且轴键能被解析。
 
@@ -322,6 +350,7 @@ def main():
 
     ops = check_ops()
     print(f"算子: {len(ops)} 个")
+    check_projection_vocabulary(ops)
     check_op_data_alignment(ops)
     check_table_refs(ops)
     check_examples(ops)

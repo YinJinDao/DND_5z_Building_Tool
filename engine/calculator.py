@@ -1145,16 +1145,23 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 attacks.append(a)
         else:
             bonus_dice = None
+            bonus_type = None
             for pop in passive_ops:
-                bd = (pop.get("projection") or {}).get("bonus_action_attack_dice")
-                if bd:
-                    bonus_dice = bd
+                pproj = pop.get("projection") or {}
+                if pproj.get("bonus_action_attack_dice"):
+                    bonus_dice = pproj["bonus_action_attack_dice"]
+                    bonus_type = pproj.get("bonus_action_attack_type")
             for i in range(attacks_n + bonus_attacks):
                 use_dice = wdice
-                if bonus_dice and i >= attacks_n:
+                is_bonus = bool(bonus_dice) and i >= attacks_n
+                if is_bonus:
                     use_dice = bonus_dice          # 附赠动作攻击用指定骰式
                 a = build_base_attack(resolved, adv_tiers=adv,
                                       rage_active=rage_active, weapon_dice=use_dice)
+                if is_bonus and bonus_type:
+                    # 附赠动作攻击可指定伤害类型（长柄武器末端为钝击）
+                    for comp in a.components:
+                        comp.dtype = bonus_type
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
                 explicit = set(op_ids)
