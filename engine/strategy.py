@@ -31,6 +31,7 @@ class Rule:
     extra_dice: list = field(default_factory=list)   # [DamageComponent]
     next_adv: int = 0                                 # 影响后续攻击的优势层数
     spends: dict = field(default_factory=dict)        # 资源消耗（仅用于可行性校验）
+    extra_attack: dict | None = None                  # 命中后追加一次攻击
     name: str = ""
 
     def matches(self, outcome, index):
@@ -72,18 +73,17 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
     rules = rules or []
     if target is None:
         raise ValueError("需要 target")
-    n = len(attacks)
     acc = Fraction(0)
     leaves = 0
 
-    def dfs(i, ctx, prob):
+    def dfs(i, ctx, prob, seq):
         nonlocal acc, leaves
         if prob == 0:
             return
-        if i == n:
+        if i >= len(seq):
             leaves += 1
             return
-        atk = attacks[i]
+        atk = seq[i]
         adv = atk.adv_tiers + ctx.get("adv_bonus", 0)
         a = replace(atk, adv_tiers=adv)
         p_hit, p_crit = a.probs(target.ac)
@@ -96,16 +96,27 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
                 continue
             extra = []
             next_ctx = dict(ctx)
+            next_seq = seq
             for rule in rules:
-                if rule.matches(outcome, i):
-                    extra.extend(rule.extra_dice)
-                    if rule.next_adv:
-                        next_ctx["adv_bonus"] = next_ctx.get("adv_bonus", 0) + rule.next_adv
+                if not rule.matches(outcome, i):
+                    continue
+                extra.extend(rule.extra_dice)
+                if rule.next_adv:
+                    next_ctx["adv_bonus"] = next_ctx.get("adv_bonus", 0) + rule.next_adv
+                # 命中后追加攻击（如「疯狂连击」）：在结果树上动态延长攻击序列。
+                # 只在该分支生效，故用局部 seq 副本；no_chain 防止无限递归。
+                if rule.extra_attack and not next_ctx.get(f"fired:{rule.name}"):
+                    spec = rule.extra_attack
+                    bonus = int(spec.get("attack_bonus_mod", 0))
+                    for _ in range(int(spec.get("count", 1))):
+                        next_seq = next_seq + [replace(a, attack_bonus=a.attack_bonus + bonus,
+                                                       components=list(a.components))]
+                    next_ctx[f"fired:{rule.name}"] = True
             dmg = _damage_for_outcome(a, outcome, target, extra)
             acc += prob * p * dmg
-            dfs(i + 1, next_ctx, prob * p)
+            dfs(i + 1, next_ctx, prob * p, next_seq)
 
-    dfs(0, {}, Fraction(1))
+    dfs(0, {}, Fraction(1), list(attacks))
     return acc, leaves
 
 

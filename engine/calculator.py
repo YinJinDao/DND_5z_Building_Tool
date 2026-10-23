@@ -415,6 +415,15 @@ def apply_op(op, attack, resolved, attack_index=0):
                                              slot=op["id"],
                                              weight=_CONTEST_FACTOR)]
 
+    # 命中后追加一次攻击（疯狂连击、巨武器大师的旋风顺劈等）
+    follow = proj.get("on_hit_extra_attack")
+    if follow:
+        rules.append(Rule(trigger="hit_or_crit",
+                          on_attack=follow.get("after_attack"),
+                          extra_attack={"count": int(follow.get("count", 1)),
+                                        "attack_bonus_mod": int(follow.get("attack_bonus_mod", 0))},
+                          name=op["id"]))
+
     for extra in proj.get("extra_dice", []):
         dice = extra["dice"]
         for step in extra.get("dice_scaling", []):

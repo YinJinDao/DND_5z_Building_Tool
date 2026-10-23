@@ -826,6 +826,39 @@ def test_concentration():
         print("  FAIL 专注冲突未告警")
 
 
+def test_extra_attack():
+    print("\n[22] 命中后追加攻击")
+    import json as _json
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    build = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                            encoding="utf-8"))
+    base = {"round": 1, "buffs": ["rage"], "move": {"toward": True, "ft": 25},
+            "attacks": 1}
+
+    def run(ac, ops):
+        return calc.evaluate(build, {"target": {"ac": ac}},
+                             {"rounds": [dict(base, per_attack={"ops": ops})]})
+
+    # 疯狂连击：-5 命中，命中后追加一次攻击（同样 -5）
+    for ac, should_win in ((10, True), (15, False), (19, False)):
+        plain = run(ac, [])
+        crazy = run(ac, ["feat.疯狂连击"])
+        won = crazy.total > plain.total
+        tag = "OK  " if won == should_win else "FAIL"
+        print(f"  {tag} AC{ac}: 普通 {float(plain.total):.3f}｜疯狂连击 {float(crazy.total):.3f}")
+        if won != should_win:
+            FAILS.append(f"疯狂连击在 AC{ac} 的取舍方向不符")
+
+    # 结果树叶子数应因动态插入而增加
+    if run(15, ["feat.疯狂连击"]).leaves > run(15, []).leaves:
+        print("  OK   动态插入攻击使结果树叶子数增加")
+    else:
+        FAILS.append("动态插入未影响结果树")
+        print("  FAIL 动态插入未影响结果树")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -851,6 +884,7 @@ def main():
     test_tables_and_formulas()
     test_opposed_check()
     test_concentration()
+    test_extra_attack()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
