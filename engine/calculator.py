@@ -30,7 +30,10 @@ from fractions import Fraction
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from character import Bonus, Build, Contribution, derive
-from evaluator import Attack, DamageComponent, TargetProfile, expected_damage
+from combat import (Budget, CombatState, RangeProfile, ResourcePool,
+                    expected_save_damage)
+from evaluator import (Attack, DamageComponent, TargetProfile,
+                       apply_target_pipeline, dice_mean, expected_damage)
 from strategy import Rule, evaluate_turn
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -218,6 +221,40 @@ class Result:
     total: Fraction
     leaves: int
     trace: list
+    spend_report: list = field(default_factory=list)
+    warnings: list = field(default_factory=list)
+
+
+def load_budget(build_doc, env_doc):
+    """从构筑的 resources 声明 + 环境的短休次数构造资源预算。"""
+    pools = {}
+    for pid, spec in (build_doc.get("resources") or {}).items():
+        pools[pid] = ResourcePool(
+            id=pid,
+            name=spec.get("name", pid),
+            capacity=int(spec.get("capacity", 0)),
+            recharge=spec.get("recharge", "long_rest"),
+            interval=int(spec.get("interval", 1)),
+            die_faces=spec.get("die_faces"),
+            unlimited_from_level=spec.get("unlimited_from_level"),
+            derived_from=tuple(spec["derived_from"]) if spec.get("derived_from") else None,
+            per_circle=spec.get("per_circle"),
+        )
+    level = int(build_doc.get("meta", {}).get("level", 1))
+    return Budget(pools=pools, short_rests=int(env_doc.get("short_rests", 0)),
+                  long_rests=int(env_doc.get("long_rests", 1)), level=level)
+
+
+def _save_effect_damage(effect, target, resolved):
+    """豁免型效果的单次期望伤害。"""
+    dc = int(effect["dc"])
+    save_bonus = int(target.saves.get(effect.get("save", "dex"), 0)) if hasattr(target, "saves") else 0
+    amount = dice_mean(effect["dice"])
+    half = bool(effect.get("half_on_save", False))
+    exp = expected_save_damage(dc, save_bonus, amount, half_on_save=half)
+    dtype = effect.get("damage_type", "force")
+    dmg, _ = apply_target_pipeline(exp, dtype, target)
+    return dmg
 
 
 def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
@@ -237,13 +274,51 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         pre_reduction=target_doc.get("pre_reduction", {}),
         post_reduction=target_doc.get("post_reduction", {}),
     )
+    # 豁免加值挂在目标上，供豁免型效果使用
+    target.saves = dict(target_doc.get("saves", {}))
 
-    trace = list(resolved.trace) + [f"目标 AC {target.ac}"]
+    combat = build_doc.get("combat", {})
+    weapon_reach = int(combat.get("weapon", {}).get("reach_ft", 5))
+    weapon_range = combat.get("weapon", {}).get("range_ft")
+    range_profile = RangeProfile(reach_ft=weapon_reach, range_ft=weapon_range)
+
+    state = CombatState(distance_ft=int(env_doc.get("initial_distance_ft", 30)),
+                        speed_ft=int(combat.get("speed_ft", 30)))
+    budget = load_budget(build_doc, env_doc)
+
+    trace = list(resolved.trace) + [
+        f"目标 AC {target.ac}",
+        f"初始距离 {state.distance_ft} 尺｜速度 {state.speed_ft} 尺"
+        f"｜触及 {weapon_reach} 尺" + (f"｜射程 {weapon_range} 尺" if weapon_range else ""),
+    ]
+    warnings = []
     per_round = []
+    spends = []
 
     for rnd in strategy_doc.get("rounds", []):
+        rnum = rnd.get("round", len(per_round) + 1)
         buffs = set(rnd.get("buffs", []))
-        attacks_n = int(rnd.get("attacks", 1))
+
+        # 资源消耗
+        for pid, amount in (rnd.get("spends") or {}).items():
+            spends.append((rnum, pid, int(amount)))
+
+        # 每轮重置移动力与槽位
+        if per_round:
+            state.next_round()
+        else:
+            state.start_turn()
+
+        mv = rnd.get("move")
+        if mv:
+            moved = state.move(int(mv.get("ft", 0)), toward=bool(mv.get("toward", True)))
+            trace.append(f"第 {rnum} 轮移动 {moved} 尺 → 距离 {state.distance_ft} 尺")
+
+        in_range = range_profile.can_reach(state.distance_ft)
+        if not in_range:
+            warnings.append(f"第 {rnum} 轮距离 {state.distance_ft} 尺超出触及/射程，本回合无攻击")
+
+        attacks_n = int(rnd.get("attacks", 1)) if in_range else 0
         per_attack = rnd.get("per_attack", {})
         op_ids = per_attack.get("ops", [])
         adv = int(per_attack.get("adv_tiers", 0))
@@ -259,15 +334,25 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 all_rules.extend(rs)
             attacks.append(a)
 
-        dmg, leaves = evaluate_turn(attacks, all_rules, target)
-        per_round.append((rnd.get("round", len(per_round) + 1), dmg))
-        trace.append(f"第 {rnd.get('round')} 轮：{attacks_n} 次攻击"
+        dmg, leaves = (evaluate_turn(attacks, all_rules, target) if attacks
+                       else (Fraction(0), 0))
+
+        # 豁免型效果（如法术）
+        for eff in rnd.get("save_effects", []):
+            sd = _save_effect_damage(eff, target, resolved)
+            dmg += sd
+            trace.append(f"第 {rnum} 轮豁免效果 {eff.get('dice')} → {float(sd):.3f}")
+
+        per_round.append((rnum, dmg))
+        trace.append(f"第 {rnum} 轮：{attacks_n} 次攻击"
                      f"{'（狂暴）' if 'rage' in buffs else ''}"
                      f"{'，' + '、'.join(op_ids) if op_ids else ''} → {float(dmg):.3f}")
 
     total = sum((d for _, d in per_round), Fraction(0))
-    rounds = len(per_round)
-    return Result(per_round=per_round, total=total, leaves=leaves, trace=trace)
+    budget_errors = budget.check_schedule(spends) if spends else []
+    return Result(per_round=per_round, total=total, leaves=leaves, trace=trace,
+                  spend_report=budget.spend_report(spends) if spends else [],
+                  warnings=warnings + budget_errors)
 
 
 # ---------------------------------------------------------------- CLI
@@ -291,6 +376,14 @@ def main(argv):
     if res.per_round:
         print(f"平均每轮:     {float(res.total / len(res.per_round)):.3f}")
     print(f"结果树叶子:   {res.leaves}")
+    if res.spend_report:
+        print("资源消耗:")
+        for line in res.spend_report:
+            print("  " + line)
+    if res.warnings:
+        print("警告:")
+        for w in res.warnings:
+            print("  ! " + w)
     return 0
 
 

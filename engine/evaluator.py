@@ -92,6 +92,7 @@ class TargetProfile:
     absorb: tuple = ()
     pre_reduction: dict = field(default_factory=dict)   # 抗性前减伤 {类型|'all': 值}
     post_reduction: dict = field(default_factory=dict)  # 抗性后减伤
+    saves: dict = field(default_factory=dict)           # 六项豁免加值，供豁免型效果使用
 
 
 def apply_target_pipeline(amount, dtype, target: TargetProfile):

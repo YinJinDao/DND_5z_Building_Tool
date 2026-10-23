@@ -26,6 +26,14 @@
   },
   "choices": { "fighting_style": null },
   "variants": [],
+  "resources": {
+    "superiority": {
+      "name": "卓越骰",
+      "capacity": 3,
+      "recharge": "short_rest",
+      "die_faces": 6
+    }
+  },
   "combat": {
     "weapon": {
       "name": "巨斧+1",

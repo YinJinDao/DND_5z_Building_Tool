@@ -138,13 +138,45 @@ def validate_turn(steps, state: CombatState):
 
 @dataclass
 class ResourcePool:
-    """一个资源池。恢复节奏决定它在整场战斗中的有效容量（方案 §9）。"""
-    name: str
-    capacity: int
+    """一个资源池。
+
+    相对早期版本补了四项——它们是重检时发现的实质缺口，见
+    `形式化/方案-打桩伤害链.md` §9.1：
+
+      die_faces            卓越骰的骰面（消耗的价值，不只是枚数）
+      unlimited_from_level 狂暴次数在 17 级起为"无"
+      derived_from         超级战技次数 = floor(卓越骰 / 10)，是派生量
+      per_circle           法术位按环分账，职业表只给总数
+    """
+    id: str
+    name: str = ""
+    capacity: int = 0
     recharge: str = "long_rest"     # short_rest | long_rest | per_n_long_rests | per_turn
     interval: int = 1               # recharge == per_n_long_rests 时的间隔
+    die_faces: int | None = None    # 有骰面即表示"按枚消耗、按骰值计价"
+    unlimited_from_level: int | None = None
+    derived_from: tuple | None = None   # (源池 id, 除数)
+    per_circle: dict | None = None      # {环阶: 数量}
 
-    def effective_capacity(self, short_rests=0, long_rests=1):
+    def __post_init__(self):
+        if not self.name:
+            self.name = self.id
+
+    def die_mean(self):
+        """一枚骰的期望值。d4→2.5，d6→3.5，d8→4.5，d10→5.5。"""
+        return Fraction(self.die_faces + 1, 2) if self.die_faces else None
+
+    def spend_value(self, count):
+        """消耗 count 枚的期望骰值；无骰面的池返回枚数本身。"""
+        return count * self.die_mean() if self.die_faces else Fraction(count)
+
+    def effective_capacity(self, level=1, short_rests=0, long_rests=1, source_capacity=None):
+        if self.unlimited_from_level is not None and level >= self.unlimited_from_level:
+            return float("inf")
+        if self.derived_from is not None:
+            if source_capacity is None:
+                raise ValueError(f"{self.id} 是派生池，需要先解析其源池")
+            return int(source_capacity) // max(1, self.derived_from[1])
         if self.recharge == "short_rest":
             return self.capacity * (short_rests + 1)
         if self.recharge == "per_n_long_rests":
@@ -164,34 +196,74 @@ def super_maneuver_uses(superiority_dice):
 @dataclass
 class Budget:
     """跨轮资源预算：总量约束 + 每轮门控约束，两者都要满足。"""
-    pools: dict = field(default_factory=dict)    # name -> ResourcePool
+    pools: dict = field(default_factory=dict)    # id -> ResourcePool
     short_rests: int = 0
     long_rests: int = 1
+    level: int = 1
 
-    def available(self, name):
-        pool = self.pools.get(name)
-        if pool is None:
-            raise KeyError(f"未声明资源池: {name}")
-        return pool.effective_capacity(self.short_rests, self.long_rests)
+    def resolve(self):
+        """解析全部池的有效容量，派生池依赖源池，最多两轮收敛。"""
+        caps = {}
+        pending = dict(self.pools)
+        for _ in range(len(self.pools) + 1):
+            progress = False
+            for pid, pool in list(pending.items()):
+                src = None
+                if pool.derived_from is not None:
+                    src = caps.get(pool.derived_from[0])
+                    if src is None:
+                        continue
+                caps[pid] = pool.effective_capacity(
+                    level=self.level, short_rests=self.short_rests,
+                    long_rests=self.long_rests, source_capacity=src)
+                del pending[pid]
+                progress = True
+            if not progress:
+                break
+        if pending:
+            raise ValueError(f"资源池依赖无法解析: {list(pending)}")
+        return caps
+
+    def available(self, pid):
+        return self.resolve()[pid]
 
     def check_schedule(self, per_round_spend):
-        """per_round_spend: [(轮次, 池名, 数量)]。返回违规列表。"""
+        """per_round_spend: [(轮次, 池 id, 数量)]。返回违规列表。"""
+        caps = self.resolve()
         errors = []
         totals, per_round = {}, {}
-        for rnd, name, amount in per_round_spend:
-            totals[name] = totals.get(name, 0) + amount
-            per_round[(name, rnd)] = per_round.get((name, rnd), 0) + amount
+        for rnd, pid, amount in per_round_spend:
+            if pid not in self.pools:
+                errors.append(f"未声明资源池: {pid}")
+                continue
+            totals[pid] = totals.get(pid, 0) + amount
+            per_round[(pid, rnd)] = per_round.get((pid, rnd), 0) + amount
 
-        for name, used in totals.items():
-            cap = self.available(name)
-            if used > cap:
-                errors.append(f"{name} 全程消耗 {used} 超过有效容量 {cap}")
-        for (name, rnd), used in per_round.items():
-            pool = self.pools[name]
-            cap = pool.per_round_cap()
+        for pid, used in totals.items():
+            cap = caps.get(pid, 0)
+            if cap != float("inf") and used > cap:
+                errors.append(f"{pid} 全程消耗 {used} 超过有效容量 {cap}")
+        for (pid, rnd), used in per_round.items():
+            cap = self.pools[pid].per_round_cap()
             if cap is not None and used > cap:
-                errors.append(f"{name} 第 {rnd} 轮消耗 {used} 超过每轮上限 {cap}")
+                errors.append(f"{pid} 第 {rnd} 轮消耗 {used} 超过每轮上限 {cap}")
         return errors
+
+    def spend_report(self, per_round_spend):
+        """报告每个池的消耗量与折算骰值——让"花了多少"可读。"""
+        totals = {}
+        for _, pid, amount in per_round_spend:
+            totals[pid] = totals.get(pid, 0) + amount
+        lines = []
+        for pid, amount in sorted(totals.items()):
+            pool = self.pools.get(pid)
+            if pool is None:
+                lines.append(f"{pid}: {amount}（未声明）")
+                continue
+            value = pool.spend_value(amount)
+            extra = f" ≈ {float(value):.1f} 点骰值" if pool.die_faces else ""
+            lines.append(f"{pool.name}: {amount}{extra}")
+        return lines
 
 
 # ---------------------------------------------------------------- 豁免型伤害

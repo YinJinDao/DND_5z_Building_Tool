@@ -7,6 +7,7 @@
     {
       "round": 1,
       "buffs": ["rage", "reckless"],
+      "move": { "toward": true, "ft": 25 },
       "attacks": 1,
       "per_attack": {
         "adv_tiers": 1,

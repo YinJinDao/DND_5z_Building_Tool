@@ -304,20 +304,40 @@ def test_character():
 
 def test_resources():
     print("\n[11] 资源时钟")
-    dice = ResourcePool("卓越骰", 3, recharge="short_rest")
+    dice = ResourcePool(id="superiority", name="卓越骰", capacity=3,
+                        recharge="short_rest", die_faces=6)
     check("短休池 无短休", Fraction(dice.effective_capacity(short_rests=0)), Fraction(3), tol=1e-9)
     check("短休池 1 次短休", Fraction(dice.effective_capacity(short_rests=1)), Fraction(6), tol=1e-9)
+    check("骰面均值 d6", dice.die_mean(), Fraction(7, 2), tol=1e-9)
+    check("消耗 2 枚的骰值", dice.spend_value(2), Fraction(7), tol=1e-9)
 
-    super_mv = ResourcePool("超级战技", 2, recharge="per_n_long_rests", interval=2)
-    check("每两次长休 1 次", Fraction(super_mv.effective_capacity(long_rests=1)), Fraction(0), tol=1e-9)
-    check("每两次长休 2 次", Fraction(super_mv.effective_capacity(long_rests=2)), Fraction(2), tol=1e-9)
+    # 狂暴次数：17 级起为「无」
+    rage = ResourcePool(id="rage", name="狂暴次数", capacity=5,
+                        recharge="long_rest", unlimited_from_level=17)
+    check("16 级有限", Fraction(rage.effective_capacity(level=16)), Fraction(5), tol=1e-9)
+    check("17 级无限", Fraction(rage.effective_capacity(level=17) == float("inf")),
+          Fraction(1), tol=1e-9)
+
+    # 超级战技：次数 = floor(可用卓越骰 / 10)，是派生量
+    sup = ResourcePool(id="super_maneuver", name="超级战技", capacity=1,
+                       recharge="per_n_long_rests", interval=2,
+                       derived_from=("superiority", 10))
     check("超级战技次数", Fraction(super_maneuver_uses(25)), Fraction(2), tol=1e-9)
 
-    budget = Budget(pools={"卓越骰": dice}, short_rests=1)
+    budget = Budget(pools={"superiority": dice}, short_rests=1, level=4)
     check("预算内", Fraction(len(budget.check_schedule(
-        [(1, "卓越骰", 3), (2, "卓越骰", 3)]))), Fraction(0), tol=1e-9)
+        [(1, "superiority", 3), (2, "superiority", 3)]))), Fraction(0), tol=1e-9)
     check("超总量", Fraction(len(budget.check_schedule(
-        [(1, "卓越骰", 4), (2, "卓越骰", 4)]))), Fraction(1), tol=1e-9)
+        [(1, "superiority", 4), (2, "superiority", 4)]))), Fraction(1), tol=1e-9)
+
+    # 派生池解析：卓越骰 3 枚 × (1+1 次短休) = 6 → 超级战技 0 次
+    budget2 = Budget(pools={"superiority": dice, "super_maneuver": sup},
+                     short_rests=1, level=4)
+    check("派生池解析", Fraction(budget2.available("super_maneuver")), Fraction(0), tol=1e-9)
+
+    # 未声明的池必须报错，不能静默通过
+    check("未声明池报警", Fraction(len(budget2.check_schedule([(1, "unknown", 1)]))),
+          Fraction(1), tol=1e-9)
 
 
 def test_calculator():
