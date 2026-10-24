@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "游侠"
+    ]
   },
   "cost": {
     "passive": true

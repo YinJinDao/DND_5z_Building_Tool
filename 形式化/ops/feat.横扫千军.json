@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "军团式作战",
+      "非凡额外攻击"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "德鲁伊2级",
+      "游侠2级"
+    ]
   },
   "cost": {
     "passive": true

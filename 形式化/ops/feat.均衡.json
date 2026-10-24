@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "守序阵营"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "临时武器熟练项"
+    ]
   },
   "cost": {
     "passive": true

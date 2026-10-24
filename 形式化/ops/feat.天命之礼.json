@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "出生在艾伯伦"
+    ]
   },
   "cost": {
     "passive": true

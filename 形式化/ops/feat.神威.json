@@ -4,7 +4,11 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "秘法之眼",
+      "能够施展“传送术Teleport”“异界传送Plane Shift”“梦境旅行Dream Travel”之一",
+      "并将其作为准备法术或已知法术"
+    ]
   },
   "cost": {
     "passive": true

@@ -5,7 +5,8 @@
   "acquisition": {
     "type": "feat_slot",
     "prerequisite": [
-      "两只手，敏捷15"
+      "两只手",
+      "敏捷15"
     ]
   },
   "cost": {

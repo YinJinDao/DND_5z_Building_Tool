@@ -4,7 +4,11 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "超级健壮",
+      "超级灵活移动",
+      "超级琉璃心"
+    ]
   },
   "cost": {
     "passive": true

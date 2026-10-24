@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "天界生物",
+      "至少两项属性11"
+    ]
   },
   "cost": {
     "passive": true

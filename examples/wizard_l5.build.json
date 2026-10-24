@@ -74,7 +74,12 @@
       "dice": "1d6",
       "damage_type": "bludgeoning",
       "enhancement": 0,
-      "ability": "dex"
+      "ability": "dex",
+      "kind": "法杖",
+      "properties": [
+        "两用"
+      ],
+      "reach_ft": 5
     },
     "armor": "none",
     "shield": false,

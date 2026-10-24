@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "破城矛的异种武器熟练"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能够施展“光之巨人形态Ultraman Form”",
+      "并将其作为准备法术或已知法术"
+    ]
   },
   "cost": {
     "passive": true

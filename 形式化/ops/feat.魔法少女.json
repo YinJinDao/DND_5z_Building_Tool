@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "施法或契约魔法"
+    ]
   },
   "cost": {
     "passive": true

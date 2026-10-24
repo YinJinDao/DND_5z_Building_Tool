@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "立体机动装置的配件熟练",
+      "额外攻击"
+    ]
   },
   "cost": {
     "passive": true

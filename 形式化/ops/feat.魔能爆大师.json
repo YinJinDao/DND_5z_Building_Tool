@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "至少两个与“魔能爆”相关的魔能祈唤"
+    ]
   },
   "cost": {
     "passive": true

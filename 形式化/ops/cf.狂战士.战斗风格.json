@@ -15,7 +15,7 @@
   "decision_point": "build_time",
   "gate": {},
   "projection": {
-    "choice_key": "barbarian_fighting_style",
+    "choice_key": "fighting_style",
     "options": {
       "对决": {
         "projection": {
@@ -68,7 +68,7 @@
         }
       }
     },
-    "note": "由构筑 choices.barbarian_fighting_style 选择；未选择则本特性不生效并告警"
+    "note": "由构筑 choices.fighting_style 选择；未选择则本特性不生效并告警。与其它职业共用同一键，选项集按职业各自不同"
   },
   "source": {
     "book": "5z",

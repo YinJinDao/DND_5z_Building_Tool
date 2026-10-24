@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "运动熟练项",
+      "力量13"
+    ]
   },
   "cost": {
     "passive": true

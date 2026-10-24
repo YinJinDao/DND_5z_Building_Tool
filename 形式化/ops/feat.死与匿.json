@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "暗格弹簧的配件熟练"
+    ]
   },
   "cost": {
     "passive": true

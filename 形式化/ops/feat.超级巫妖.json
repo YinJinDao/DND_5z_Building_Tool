@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能够施展“龙巫妖转化术Dracolich Transition”“巫妖化Dracolich Transition”之一",
+      "并将其作为准备法术或已知法术"
+    ]
   },
   "cost": {
     "passive": true

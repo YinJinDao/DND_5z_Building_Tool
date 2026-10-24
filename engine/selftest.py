@@ -372,12 +372,14 @@ def test_calculator():
     from evaluator import Attack, DamageComponent, TargetProfile
     target = TargetProfile(ac=15)
     flat = resolved.derived.mods["str"] + resolved.weapon["enhancement"]
+    style_flat = _style_flat(build, 1)
     atk = Attack(attack_bonus=resolved.derived.attack.total - 5, adv_tiers=1)
     atk.components = [
         DamageComponent("1d12", flat=flat, dtype="slashing"),       # 武器+属性+增强
         DamageComponent("0", flat=resolved.rage_bonus, dtype="slashing"),   # 狂暴
         DamageComponent("0", flat=12, dtype="slashing"),            # 威力攻击
         DamageComponent("1d6", dtype="slashing"),                   # 凶蛮打手
+        DamageComponent("0", flat=style_flat, dtype="slashing"),    # 巨武器战斗 ×1 重优势
     ]
     manual, _ = expected_damage(atk, target)
     check("计算器与手工路径一致", res.total, manual, tol=1e-9)
@@ -469,7 +471,11 @@ def test_composite_and_contingency():
 
     rage = resolved.rage_bonus
     flat = resolved.derived.mods["str"] + resolved.weapon["enhancement"]
-    hit_dmg = Fraction(65, 10) + flat + rage + 12 + Fraction(7, 2) + Fraction(9, 2)
+    # 「巨武器战斗」风格：每重优势命中后 +3。范例构筑选了它，
+    # 手算路径必须一并算进来，否则两边比的就不是同一个构筑了
+    style_flat = _style_flat(build, 1)                   # 骑乘冲刺给 1 重优势
+    hit_dmg = (Fraction(65, 10) + flat + rage + 12
+               + Fraction(7, 2) + Fraction(9, 2) + style_flat)
     crit_extra = Fraction(65, 10) + Fraction(7, 2) + Fraction(9, 2)
     expected = (p_hit * hit_dmg + p_crit * crit_extra) * 2   # 骑乘战斗易伤
     check("骑乘冲刺期望伤害", res.total, expected, tol=1e-9)
@@ -486,6 +492,21 @@ def test_composite_and_contingency():
     else:
         FAILS.append("移动不足时冲刺未拦截")
         print("  FAIL 移动不足时冲刺未拦截")
+
+
+def _style_flat(build, adv_tiers):
+    """「巨武器战斗」这类按优势层数给固定加值的风格，手算路径也要计入。
+
+    必须先用 apply_choices 展开构筑的选择——原始的战斗风格算子里只有
+    `options`，真正的 `scales_with_adv` 在选中的那一项下面。
+    """
+    import calculator as calc
+    ops = calc.apply_choices(calc.load_ops(), build)
+    per = 0
+    for op in calc.granted_class_ops(build, ops):
+        spec = (op.get("projection") or {}).get("scales_with_adv") or {}
+        per += int((spec.get("per_tier") or {}).get("flat", 0))
+    return per * adv_tiers
 
 
 def _clamp01(x):
@@ -1209,6 +1230,8 @@ def test_sneak_attack():
     base["combat"].pop("mount", None)
     base["combat"]["armor"] = "none"
     base["feats"] = []
+    # 偷袭测试拿狂战士当"无偷袭"的对照组，不能把别的职业的战斗风格带进来
+    base["choices"] = {}
 
     def run(level, adv, ally=False, attacks=1, rogue=True):
         doc = _json.loads(_json.dumps(base))
@@ -1314,6 +1337,79 @@ def test_martial_arts():
         print("  OK   重型武器不受武艺骰影响")
 
 
+def test_build_check():
+    print("")
+    print("[30] 构筑校验")
+
+    import json as _json
+
+    import build_check as bc
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                           encoding="utf-8"))
+    ops = calc.load_ops()
+
+    def check_codes(doc, expect_error=None, expect_warn=None, label=""):
+        rep = bc.check_build(doc, ops)
+        errs = [i["code"] for i in rep.errors()]
+        warns = [i["code"] for i in rep.warnings()]
+        ok = True
+        if expect_error and not any(expect_error in c for c in errs):
+            ok = False
+        if expect_warn and not any(expect_warn in c for c in warns):
+            ok = False
+        print(f"  {'OK  ' if ok else 'FAIL'} {label}")
+        if not ok:
+            FAILS.append("构筑校验未捕获：" + label)
+            print("        errors=" + str(errs) + " warnings=" + str(warns))
+        return rep
+
+    doc = _json.loads(_json.dumps(base))
+    doc["classes"][0]["id"] = "class.bardd"
+    check_codes(doc, expect_error="classes", label="职业 id 拼错 → ERROR")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["meta"]["level"] = 9
+    check_codes(doc, expect_error="meta.level", label="总等级与职业等级之和不一致 → ERROR")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["scores"]["base"]["strengh"] = 17
+    check_codes(doc, expect_error="scores.base.strengh", label="属性键拼错 → ERROR")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["classes"][0]["subclass"] = "path.punisher"
+    check_codes(doc, expect_warn="subclass", label="子职名与数据对不上 → WARN")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["choices"] = {"fighting_stile": "对决"}
+    check_codes(doc, expect_error="choices.fighting_stile", label="选择键拼错 → ERROR")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["choices"] = {"fighting_style": "冲锋陷阵"}
+    check_codes(doc, expect_warn="choices.fighting_style", label="选项不存在 → WARN")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["combat"]["weapon"]["properties"] = ["重形"]
+    check_codes(doc, expect_warn="combat.weapon.properties", label="武器属性拼错 → WARN")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["feats"].append({"id": "feat.威力攻擊", "at_level": 1})
+    check_codes(doc, expect_error="feats[", label="专长 id 拼错 → ERROR")
+
+    doc = _json.loads(_json.dumps(base))
+    doc["feats"].append({"id": "feat.圣堂审判官", "at_level": 1})
+    check_codes(doc, expect_warn="prerequisite", label="先决条件未满足 → WARN")
+
+    rep = bc.check_build(_json.loads(_json.dumps(base)), ops)
+    if rep.ok():
+        print("  OK   范例构筑无 ERROR")
+    else:
+        FAILS.append("范例构筑报了 ERROR")
+        print("  FAIL 范例构筑报了 ERROR：" + str([i["code"] for i in rep.errors()]))
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1347,6 +1443,7 @@ def main():
     test_adv_scaling()
     test_sneak_attack()
     test_martial_arts()
+    test_build_check()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

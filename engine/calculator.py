@@ -321,7 +321,7 @@ CONDITION_VALUES = {
     "target_state": {"prone", "restrained", "frightened", "unaware"},
     "target_size": {"smaller_than_you", "at_most_your_size"},
     # 取值用中文：数据层与武器条目都是中文，混用两套词汇迟早对不上
-    "weapon_property": {"双手", "两用", "轻型", "触及", "投掷", "弹药"},
+    "weapon_property": set(['双手', '两用', '轻型', '重型', '灵巧', '触及', '投掷', '弹药', '装填']),
 }
 
 
@@ -564,7 +564,14 @@ def weapon_matches(weapon, selector):
     props = selector.get("properties") or []
     if not kinds and not props:
         return True
-    if kinds and weapon.get("kind") in kinds:
+    wk = weapon.get("kind") or ""
+    if kinds and wk in kinds:
+        return True
+    # 类别匹配：规则书写的是「任意锤」「任意斧」，数据里是具体武器名。
+    # 单向包含（选择器的名字出现在武器名里）可以覆盖这类写法，
+    # 反向包含不成立——否则「剑」会把「巨剑」和「双刃弯刀」混为一谈的事
+    # 就会变成「巨剑」也能当「剑」以外的任何东西。
+    if kinds and any(k and k in wk for k in kinds):
         return True
     if props and set(weapon.get("properties") or []) & set(props):
         return True
@@ -1445,6 +1452,15 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     global _OPS
     _OPS = ops
     build_trace = []
+    # 构筑校验：写错名字、漏选多选一、先决未满足——这三类都**不会报错**，
+    # 只会让结果悄悄变低。校验结果并进 warnings，让每一次求解都带着它。
+    try:
+        from build_check import check_build
+        _rep = check_build(build_doc, ops)
+        build_trace.extend("构筑校验：" + line for line in _rep.lines())
+    except Exception as exc:                       # noqa: BLE001
+        _rep = None
+        build_trace.append(f"构筑校验跳过：{exc}")
     build_doc = apply_build_time_effects(build_doc, ops, build_trace)
     ops = apply_choices(ops, build_doc)
     build_trace.extend(apply_choices.trace or [])
@@ -1513,6 +1529,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     trace.append(f"攻击次数由职业特性决定：{derived_attacks}（{attack_src}）")
 
     warnings = []
+    if _rep is not None:
+        for item in _rep.errors():
+            warnings.append(f"构筑错误 {item['code']}：{item['message']}")
+        for item in _rep.warnings():
+            warnings.append(f"构筑问题 {item['code']}：{item['message']}")
     per_round = []
     spends = []
     concentration_active = None      # 当前维持专注的法术名

@@ -1,6 +1,6 @@
 # 规则形式化
 
-> 状态：方案草稿待评审 | 最后更新：2026-10-23
+> 状态：A 档编译完成（904/904） | 最后更新：2026-10-24
 > 本目录用于把 dnd5z 规则书转成可计算、可校验、可被工具和 AI 使用的结构化规则。原始资料在 `docs/`。
 
 ## 范围
@@ -15,24 +15,43 @@
 
 首批数据：
 
-| 表 | 条数 | 状态 |
+| 表 | 条数 | 说明 |
 | --- | --- | --- |
-| `data/maneuvers.jsonl` | 258 | A 档完成 |
-| `data/class_features.jsonl` | 607 | 全部 14 个玩家职业（召唤物除外），590 条有等级门槛 |
+| `data/maneuvers.jsonl` | 258 | 战技，A 档 64 条 |
+| `data/class_features.jsonl` | 607 | 全部 14 个玩家职业（召唤物除外） |
 | `data/class_tables.jsonl` | 180 | 等级→特性 + 资源曲线 |
-| `data/feats.jsonl` | 672 | A 档完成 |
-| `data/spells.jsonl` | 1103 | A 档完成，读规则书正文（已弃用 1.49 版 xlsx） |
+| `data/feats.jsonl` | 672 | 专长，A 档 181 条 |
+| `data/spells.jsonl` | 1103 | 法术，读规则书正文（已弃用 1.49 版 xlsx） |
 | `data/relevance.jsonl` | 2640 | 相关性粗筛（A 档 904） |
-| `data/feat_compile_status.jsonl` | 181 | 专长 A 档编译结论（modeled 4 / needs_ruling 153 / out_of_scope 24） |
-| `data/class_feature_compile_status.jsonl` | 192 | 职业特性 A 档编译结论（modeled 22 / needs_ruling 152 / out_of_scope 18） |
-| `data/feat_triage.jsonl` | 672 | 专长按 F1–F12 分诊：in 330 / manual 170 / unclear 128 / defensive 26 / out 18 |
-| `ops/*.json` | 288 | B 档算子：战技 15、专长 6、法术 244、复合动作 1、职业特性 21、子职特性 1 |
-| `data/maneuver_compile_status.jsonl` | 59 | 战技 A 档逐条编译结论（modeled 16 / needs_ruling 36 / out_of_scope 7） |
-| `data/spell_compile_status.jsonl` | 455 | 法术 A 档逐条编译结论（modeled 244 / needs_ruling 116 / out_of_scope 95） |
 
-接口一致性检查：`python -I 形式化/tools/check_interfaces.py`（算子字段、溯源、样例引用、资源声明）。
+**A 档 904 条已全部编译完成，`needs_ruling` 归零：**
 
-伤害引擎在 [../engine/](../engine/)，已跑通单次攻击的端到端计算并自检通过。
+| 类别 | 总数 | modeled | out_of_scope |
+| --- | ---: | ---: | ---: |
+| 职业特性 | 192 | 78 | 114 |
+| 专长 | 181 | 64 | 117 |
+| 战技 | 64 | 57 | 7 |
+| 法术 | 467 | 289 | 178 |
+| **合计** | **904** | **488** | **416** |
+
+「编译完成」不等于「都能算伤害」：416 条 out_of_scope 每一条都在算子里写了
+`scope_reason`，按性质分为召唤/部署物、纯防御、控制减益、属性损伤、
+形态替换、斩杀与自杀招式、多目标退化、法术与装备专属改写。
+
+算子总数 **757**（`ops/*.json`），每一条都有 `source`（书/版本/文件/锚点）。
+
+三道闸门：
+
+```bash
+python -I 形式化/tools/check_interfaces.py   # A1–A13 接口与词汇表
+python -I 形式化/tools/verify_ops.py         # 每个算子装上/卸下对拍
+python -I engine/build_check.py examples/*.build.json   # 构筑书写校验
+```
+
+`verify_ops` 的分类：CHANGED（生效）/ INERT（装了没用，需人工确认）/
+SCOPED（已判定 out_of_scope，本就不该产生伤害）/ ERROR / SKIP。
+
+伤害引擎在 [../engine/](../engine/)，自检 `python -I engine/selftest.py`（30 组）。
 
 **重建顺序**（有依赖关系）：
 
@@ -46,7 +65,11 @@ python -I 形式化/tools/screen_relevance.py
 python -I 形式化/tools/screen_feats.py
 ```
 
-下一步：继续 A 档抽取（职业表、专长、种族、装备），并开始 B 档算子编译。
+数据重建后若专长的先决条件有变动，需重跑
+`python -I 形式化/tools/sync_feat_prereq.py --write`
+把先决条件同步进算子——构筑校验读的是算子那一层。
+
+下一步：B 档条目复核、收敛已标注的高估点、多实例结算与状态化触发。
 
 ## 参考
 

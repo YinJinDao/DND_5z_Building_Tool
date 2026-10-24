@@ -4,7 +4,11 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "人类",
+      "出生于艾伯伦",
+      "只能在1级时选择该专长"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "战争投石器的异种武器熟练"
+    ]
   },
   "cost": {
     "passive": true

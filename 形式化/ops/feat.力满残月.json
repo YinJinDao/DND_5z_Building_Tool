@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "一种斧的熟练"
+    ]
   },
   "cost": {
     "passive": true
@@ -28,11 +30,11 @@
       }
     ],
     "weapon_selector": {
-      "properties": [
+      "kinds": [
         "斧"
       ]
     },
-    "note": "放弃一次攻击机会，强化下一次斧攻击：触及 +5 尺并额外造成等同于武器基础伤害骰的伤害。若同时使用威力攻击，再加骰值最大值"
+    "note": "放弃一次攻击机会，强化下一次斧攻击：触及 +5 尺并额外造成等同于武器基础伤害骰的伤害。若同时使用威力攻击，再加骰值最大值。武器 kind 含「斧」即匹配（巨斧、战斧都算）"
   },
   "source": {
     "book": "5z",

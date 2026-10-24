@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能量替代",
+      "智力17或感知17"
+    ]
   },
   "cost": {
     "passive": true

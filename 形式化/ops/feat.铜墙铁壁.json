@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "盾牌熟练",
+      "盾牌大师"
+    ]
   },
   "cost": {
     "passive": true

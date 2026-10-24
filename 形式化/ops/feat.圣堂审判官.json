@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "牧师2级",
+      "圣武士2级"
+    ]
   },
   "cost": {
     "passive": true

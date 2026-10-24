@@ -4,9 +4,7 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": [
-      "骑乘时未处于失能状态"
-    ]
+    "prerequisite": []
   },
   "cost": {
     "passive": true

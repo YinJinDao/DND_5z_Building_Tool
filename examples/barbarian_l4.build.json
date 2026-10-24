@@ -8,7 +8,7 @@
     {
       "id": "class.barbarian",
       "level": 4,
-      "subclass": "path.punisher"
+      "subclass": "神罚者"
     }
   ],
   "feats": [
@@ -53,7 +53,7 @@
     "item": {}
   },
   "choices": {
-    "fighting_style": null
+    "fighting_style": "巨武器战斗"
   },
   "variants": [],
   "resources": {
@@ -70,7 +70,13 @@
       "dice": "1d12",
       "damage_type": "slashing",
       "enhancement": 1,
-      "ability": "str"
+      "ability": "str",
+      "kind": "巨斧",
+      "properties": [
+        "双手",
+        "重型"
+      ],
+      "reach_ft": 5
     },
     "armor": "barbarian_unarmored",
     "shield": false,

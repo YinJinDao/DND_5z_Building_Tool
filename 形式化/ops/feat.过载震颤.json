@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "一种锤的熟练"
+    ]
   },
   "cost": {
     "passive": true
@@ -13,9 +15,9 @@
   "gate": {},
   "projection": {
     "weapon_dice_maximize": true,
-    "note": "每回合一次，用锤造成伤害后可把武器基础伤害骰取满，然后减速或击退",
+    "note": "每回合一次，用锤造成伤害后可把武器基础伤害骰取满，然后减速或击退。武器 kind 含「锤」即匹配（巨斧、战斧都算）",
     "weapon_selector": {
-      "properties": [
+      "kinds": [
         "锤"
       ]
     }

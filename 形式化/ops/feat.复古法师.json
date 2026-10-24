@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "法师",
+      "没有其它职业等级"
+    ]
   },
   "cost": {
     "passive": true

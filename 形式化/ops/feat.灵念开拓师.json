@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "灵能师2级",
+      "灵能武士2级"
+    ]
   },
   "cost": {
     "passive": true

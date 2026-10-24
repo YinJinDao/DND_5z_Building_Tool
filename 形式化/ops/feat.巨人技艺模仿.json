@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "所有军用武器熟练",
+      "巨人打击"
+    ]
   },
   "cost": {
     "passive": true

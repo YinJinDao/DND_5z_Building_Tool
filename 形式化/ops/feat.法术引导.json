@@ -4,7 +4,12 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "施法",
+      "额外攻击",
+      "战法兼修",
+      "魔武齐攻"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能够施展“护盾术Shield”“吸收元素Absorb Element”“宙斯盾系统Zeus Shelter”“呼神护卫Expecto Patronum”之一",
+      "并将其作为准备法术或已知法术"
+    ]
   },
   "cost": {
     "passive": true

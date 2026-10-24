@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "一种重型近战武器的熟练项"
+    ]
   },
   "cost": {
     "passive": true

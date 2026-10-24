@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "混乱阵营",
+      "没有队友反对"
+    ]
   },
   "cost": {
     "passive": true

@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能够施展“心灵之楔Mind Sliver”“塔莎心灵鞭Tasha’s Mind Whip”“劳洛希姆心灵长枪Raulothim's Psychic Lance”之一",
+      "并将其作为准备法术或已知法术"
+    ]
   },
   "cost": {
     "passive": true

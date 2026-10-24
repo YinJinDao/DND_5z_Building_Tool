@@ -4,7 +4,11 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "敏捷13",
+      "力量13",
+      "一种近战武器熟练"
+    ]
   },
   "cost": {
     "passive": true

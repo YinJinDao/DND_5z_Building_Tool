@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "吟游诗人3级",
+      "表演熟练项"
+    ]
   },
   "cost": {
     "passive": true

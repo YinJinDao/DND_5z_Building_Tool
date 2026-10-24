@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "能够施展“元素伎俩Element Cantrip”",
+      "并将其作为已知戏法"
+    ]
   },
   "cost": {
     "passive": true

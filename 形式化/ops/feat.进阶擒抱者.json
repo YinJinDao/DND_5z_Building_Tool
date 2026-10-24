@@ -4,7 +4,11 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "擒抱者",
+      "运动专精",
+      "力量21"
+    ]
   },
   "cost": {
     "passive": true

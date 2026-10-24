@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "高等术法入门（索林那瑞）",
+      "善良阵营"
+    ]
   },
   "cost": {
     "passive": true

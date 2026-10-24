@@ -4,7 +4,9 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "体型为小型或微型"
+    ]
   },
   "cost": {
     "passive": true

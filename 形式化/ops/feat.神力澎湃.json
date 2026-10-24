@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "引导神力",
+      "额外攻击"
+    ]
   },
   "cost": {
     "passive": true

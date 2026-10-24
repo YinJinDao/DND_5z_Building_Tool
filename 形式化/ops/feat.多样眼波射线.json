@@ -4,7 +4,10 @@
   "kind": "feat",
   "acquisition": {
     "type": "feat_slot",
-    "prerequisite": []
+    "prerequisite": [
+      "眼魔",
+      "只能在6级时选择"
+    ]
   },
   "cost": {
     "passive": true
