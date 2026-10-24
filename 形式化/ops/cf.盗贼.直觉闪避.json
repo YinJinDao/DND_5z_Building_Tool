@@ -1,0 +1,30 @@
+{
+  "id": "cf.盗贼.直觉闪避",
+  "name": "直觉闪避",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 4,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "被命中时用反应对本次攻击的伤害具有抗性"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：承受伤害减半",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "直觉闪避"
+  },
+  "status": "approximated",
+  "ruling": null
+}

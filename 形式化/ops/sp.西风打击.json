@@ -1,0 +1,36 @@
+{
+  "id": "sp.西风打击",
+  "name": "西风打击",
+  "kind": "spell",
+  "level": 1,
+  "school": "变化",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d8",
+        "damage_type": "force"
+      }
+    ],
+    "adv_tiers": 1,
+    "note": "一次武器攻击具有优势且命中额外 1d8 力场；步行速度 +30 尺"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "西风打击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

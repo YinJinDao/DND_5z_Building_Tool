@@ -1,0 +1,31 @@
+{
+  "id": "sp.崩坏现实",
+  "name": "崩坏现实",
+  "kind": "spell",
+  "level": 8,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "D10 随机表驱动"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "崩坏现实"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "D10 随机表驱动"
+}

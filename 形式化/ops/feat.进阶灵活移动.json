@@ -1,0 +1,28 @@
+{
+  "id": "feat.进阶灵活移动",
+  "name": "进阶灵活移动",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "灵活移动"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 15,
+    "note": "移动速度 +15 尺，与「灵活移动」叠加；免疫倒地/锚定/缚地与主动移动不引发借机均属防御侧"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化防御的专长.htm",
+    "anchor": "进阶灵活移动"
+  },
+  "status": "approximated",
+  "ruling": null
+}

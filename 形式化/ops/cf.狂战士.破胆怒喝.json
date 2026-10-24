@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.破胆怒喝",
+  "name": "破胆怒喝",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 4,
+    "subclass": "战士（狂战士变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "adv_tiers": 1,
+    "note": "目标豁免成功时，双方对彼此的攻击具有优势——**这是双向的**：你获得优势，同时也给对方优势。本工具只计输出，因此该特性会显得比实际更划算。需在策略 buffs 中声明（假定已使用该动作且目标豁免成功）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "破胆怒喝"
+  },
+  "status": "approximated",
+  "ruling": null
+}

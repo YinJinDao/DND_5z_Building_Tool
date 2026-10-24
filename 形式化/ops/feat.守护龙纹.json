@@ -1,0 +1,31 @@
+{
+  "id": "feat.守护龙纹",
+  "name": "守护龙纹",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "人类",
+      "出生于艾伯伦",
+      "只能在1级时选择该专长"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "护盾术与警觉护卫：防御侧"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "护盾术与警觉护卫：防御侧",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "守护龙纹"
+  },
+  "status": "modeled",
+  "ruling": null
+}

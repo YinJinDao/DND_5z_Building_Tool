@@ -1,0 +1,36 @@
+{
+  "id": "sp.毕格比之手",
+  "name": "毕格比之手",
+  "kind": "spell",
+  "level": 5,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "金刚拳：用自身数据发动近战法术攻击，命中 5d8 力场；另有飞击掌（推挤）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "毕格比之手"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "5d8",
+      "damage_type": "force"
+    }
+  }
+}

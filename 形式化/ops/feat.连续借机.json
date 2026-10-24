@@ -1,0 +1,32 @@
+{
+  "id": "feat.连续借机",
+  "name": "连续借机",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "战斗反射",
+      "非凡额外攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_attack_budget_add": {
+      "ability": "str"
+    },
+    "opportunity_attack_per_trigger": 2,
+    "note": "每轮额外发动 X 次借机攻击（X=武器攻击关键属性调整值，此处按力量）；借机攻击可对目标进行两次武器攻击，消耗两次次数"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "连续借机"
+  },
+  "status": "approximated",
+  "ruling": null
+}

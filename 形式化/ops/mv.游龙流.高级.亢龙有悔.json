@@ -1,0 +1,29 @@
+{
+  "id": "mv.游龙流.高级.亢龙有悔",
+  "name": "亢龙有悔",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "敌人每次攻击你都可用反应对其徒手打击；若整轮未命中你，则下回合你的攻击全部具有优势"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "借机反击与条件优势：前者属反应位，后者的成立取决于敌方是否命中，打桩下不可判定",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "亢龙有悔"
+  },
+  "status": "approximated",
+  "ruling": null
+}

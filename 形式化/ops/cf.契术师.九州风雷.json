@@ -1,0 +1,31 @@
+{
+  "id": "cf.契术师.九州风雷",
+  "name": "九州风雷",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "契术师",
+    "class_id": "class.warlock",
+    "level": 6,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "crit_range": 1,
+    "damage_type_override": "lightning",
+    "note": "在风雷气象中攻击：伤害类型可改为闪电，重击范围 +1。需策略 buffs 声明"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/契术师.htm",
+    "anchor": "九州风雷"
+  },
+  "status": "approximated",
+  "ruling": null
+}

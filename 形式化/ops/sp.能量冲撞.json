@@ -1,0 +1,42 @@
+{
+  "id": "sp.能量冲撞",
+  "name": "能量冲撞",
+  "kind": "spell",
+  "level": 2,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "90尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "能量冲撞"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "3d8",
+      "damage_type": "fire",
+      "type_choice": [
+        "acid",
+        "bludgeoning",
+        "cold",
+        "fire",
+        "lightning",
+        "thunder"
+      ]
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.转能医疗",
+  "name": "转能医疗",
+  "kind": "spell",
+  "level": 6,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "把承受的伤害转化为治疗"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "转能医疗"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "把承受的伤害转化为治疗"
+}

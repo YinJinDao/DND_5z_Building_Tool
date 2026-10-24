@@ -1,0 +1,34 @@
+{
+  "id": "feat.鲁莽投掷",
+  "name": "鲁莽投掷",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "鲁莽攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "str"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "note": "力量 +1（上限 24）已建模。另一条「可用投掷方式发动鲁莽攻击」属于资格扩展：引擎的「鲁莽攻击」增益（adv_tiers）本就不区分近战/远程，任何攻击检定都会吃到优势，因此无需额外投影；但引擎不校验武器的「投掷」属性，也不强制把投掷武器的关键属性替换为力量，这两点未建模。"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/职业专长/狂战士专长.htm",
+    "anchor": "鲁莽投掷"
+  },
+  "status": "approximated",
+  "ruling": null
+}

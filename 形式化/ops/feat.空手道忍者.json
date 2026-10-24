@@ -1,0 +1,40 @@
+{
+  "id": "feat.空手道忍者",
+  "name": "空手道忍者",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "偷袭"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_dice_min": {
+      "value": "1d6",
+      "scale": {
+        "5": "1d8",
+        "11": "1d10",
+        "17": "1d12"
+      }
+    },
+    "weapon_dice_min_applies_to": [
+      "天生武器",
+      "徒手",
+      "临时武器"
+    ],
+    "note": "天生武器与临时武器的伤害骰至少为 1d6（5/11/17 级升到 1d12）；并可用天生/临时武器发动偷袭"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "空手道忍者"
+  },
+  "status": "approximated",
+  "ruling": null
+}

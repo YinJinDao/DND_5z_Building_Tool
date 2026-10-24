@@ -1,0 +1,37 @@
+{
+  "id": "mv.开山流.低级.英勇冲锋",
+  "name": "英勇冲锋",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "action": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "近战武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "1dS",
+        "crit_doubles": true,
+        "note": "命中后额外造成一枚卓越骰的骰值伤害",
+        "requires": "本回合向目标直线冲锋至触及距离"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "英勇冲锋"
+  },
+  "status": "modeled",
+  "ruling": null
+}

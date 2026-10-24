@@ -1,0 +1,89 @@
+{
+  "id": "cf.狂战士.武器学识",
+  "name": "武器学识",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": "战士（狂战士变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "weapon_lore",
+    "options": {
+      "获得熟练": {
+        "projection": {
+          "note": "仅补熟练项，不改变伤害"
+        }
+      },
+      "删除双手": {
+        "projection": {
+          "note": "可单手持用双手武器；单/双手不改变骰式"
+        }
+      },
+      "删除装填": {
+        "projection": {
+          "note": "取消每动作一枚弹药的限制，可能提高射速；本工具按策略声明的攻击次数结算"
+        }
+      },
+      "删除重型": {
+        "projection": {
+          "note": "去除重型属性（可让武艺/灵巧等特性适用）"
+        }
+      },
+      "增加双手": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "1d6",
+              "damage_type": "same_as_weapon"
+            }
+          ],
+          "note": "为无双手/两用属性的武器增加双手属性，每次命中额外 1d6"
+        }
+      },
+      "增加投掷": {
+        "projection": {
+          "note": "增加投掷属性与射程 30/90 尺，不改变伤害"
+        }
+      },
+      "增加重型": {
+        "projection": {
+          "weapon_dice_step_up": true,
+          "note": "为无重型属性的武器增加重型属性，伤害骰增大一级"
+        }
+      },
+      "增加轻型": {
+        "projection": {
+          "note": "增加轻型属性，不改变伤害"
+        }
+      },
+      "增加灵巧": {
+        "projection": {
+          "note": "增加灵巧属性，可用敏捷代替力量"
+        }
+      },
+      "增加触及": {
+        "projection": {
+          "reach_bonus_ft": 5,
+          "note": "为近战武器增加触及属性，触及 +5 尺"
+        }
+      }
+    },
+    "note": "由构筑 choices.weapon_lore 选择一条；8 级可再选一条不同的（本算子只表达一条）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "武器学识"
+  },
+  "status": "approximated",
+  "ruling": null
+}

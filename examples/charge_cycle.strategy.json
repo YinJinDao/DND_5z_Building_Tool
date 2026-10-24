@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "name": "反复拉冲：三轮骑乘冲刺",
+    "note": "冲刺 30 尺 → 攻击 → 用剩余 30 尺退开，下一轮可再冲。检验可持续性。",
+    "requires_build": "barbarian_l4.build.json"
+  },
+  "rounds": [
+    { "round": 1, "buffs": ["rage"], "action": "act.mounted_charge",
+      "move": { "toward": true, "ft": 30 }, "attacks": 1,
+      "per_attack": { "ops": ["feat.凶蛮打手"] },
+      "post_move": { "toward": false, "ft": 30 } },
+    { "round": 2, "buffs": ["rage"], "action": "act.mounted_charge",
+      "move": { "toward": true, "ft": 30 }, "attacks": 1,
+      "per_attack": { "ops": ["feat.凶蛮打手"] },
+      "post_move": { "toward": false, "ft": 30 } },
+    { "round": 3, "buffs": ["rage"], "action": "act.mounted_charge",
+      "move": { "toward": true, "ft": 30 }, "attacks": 1,
+      "per_attack": { "ops": ["feat.凶蛮打手"] },
+      "post_move": { "toward": false, "ft": 30 } }
+  ]
+}

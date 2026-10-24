@@ -1,0 +1,44 @@
+{
+  "id": "feat.穿刺者",
+  "name": "穿刺者",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "str",
+        "dex"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "0",
+        "flat": 2,
+        "damage_type": "piercing",
+        "crit_doubles": false,
+        "limit": "每回合一次",
+        "note": "每回合一次，造成穿刺伤害时额外 +2"
+      }
+    ],
+    "note": "另有「以敏捷豁免替代攻击检定」的用法（豁免 DC=8+熟练+关键属性），未建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "穿刺者"
+  },
+  "status": "approximated",
+  "ruling": null
+}

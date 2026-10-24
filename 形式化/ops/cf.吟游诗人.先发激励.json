@@ -1,0 +1,30 @@
+{
+  "id": "cf.吟游诗人.先发激励",
+  "name": "先发激励",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "吟游诗人",
+    "class_id": "class.bard",
+    "level": 20,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "骰先攻后可立即进行一次吟唱（无需动作）。吟唱的具体效应由所选吟唱方式决定"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "提前施放一次吟唱：收益取决于所选吟唱内容，不改变每轮输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/吟游诗人.htm",
+    "anchor": "先发激励"
+  },
+  "status": "approximated",
+  "ruling": null
+}

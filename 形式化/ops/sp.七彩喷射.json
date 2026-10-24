@@ -1,0 +1,31 @@
+{
+  "id": "sp.七彩喷射",
+  "name": "七彩喷射",
+  "kind": "spell",
+  "level": 1,
+  "school": "幻术",
+  "casting_time": "1 动作",
+  "range": "自身（30尺锥状）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "按生命值池决定受影响者并施加目盲，属控制"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "七彩喷射"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "按生命值池决定受影响者并施加目盲，属控制"
+}

@@ -1,0 +1,29 @@
+{
+  "id": "mv.神机流.高级.合围之势",
+  "name": "合围之势",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "与多名友方一同冲锋，各自攻击并额外造成三枚卓越骰；命中三次则目标震慑"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "多人协同攻击：大部分伤害来自友方",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/神机流专长.htm",
+    "anchor": "合围之势"
+  },
+  "status": "approximated",
+  "ruling": null
+}

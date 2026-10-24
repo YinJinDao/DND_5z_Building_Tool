@@ -1,0 +1,34 @@
+{
+  "id": "feat.亵渎强化",
+  "name": "亵渎强化",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "生命方程式"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d8",
+        "damage_type": "same_as_weapon",
+        "note": "投掷未消耗的生命骰，骰值之和加入一次伤害掷骰"
+      }
+    ],
+    "note": "消耗生命骰换取伤害，数量不超过法术位环阶的一半（向上取整）。此处按 1 枚 d8 建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/职业专长/法师专长.htm",
+    "anchor": "亵渎强化"
+  },
+  "status": "approximated",
+  "ruling": null
+}

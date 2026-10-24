@@ -1,0 +1,42 @@
+{
+  "id": "cf.游侠.瞄准猎物",
+  "name": "瞄准猎物",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {
+    "env_flags": [
+      "prey_marked"
+    ]
+  },
+  "projection": {
+    "attack_bonus": 0,
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "wis",
+        "damage_type": "same_as_weapon",
+        "limit": "每回合一次"
+      }
+    ],
+    "note": "每回合对猎物发动的第一次武器攻击，攻击检定与伤害各加感知调整值。攻击加值同样由此特性提供，需在策略的 attack_bonus 里另行声明（此处只记伤害侧）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "瞄准猎物"
+  },
+  "status": "approximated",
+  "ruling": null
+}

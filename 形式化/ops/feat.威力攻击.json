@@ -1,0 +1,53 @@
+{
+  "id": "feat.威力攻击",
+  "name": "威力攻击",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive_choice": true,
+    "note": "发动攻击检定之前宣告，属于前置决策（before_roll）"
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "requires_attack_roll": true,
+    "note": "不需要攻击检定的攻击无法触发（原文：制导、因果追踪、自动命中等）"
+  },
+  "projection": {
+    "attack_bonus": -5,
+    "damage_slots": [
+      {
+        "slot": "专长",
+        "expr": "max_die(base_damage)",
+        "cap": 15,
+        "cap_scaling": [
+          {
+            "level": 7,
+            "cap": 20
+          },
+          {
+            "level": 11,
+            "cap": 25
+          },
+          {
+            "level": 15,
+            "cap": 30
+          }
+        ],
+        "applies_on": "on_hit",
+        "note": "只吃基础伤害骰的最大值；焰舌、神圣武器、超魔、战技、重击、偷袭等额外伤害骰都不影响"
+      }
+    ],
+    "is_power_attack": true
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "威力攻击"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.明王怒相",
+  "name": "明王怒相",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 9,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "多臂：对触及内另外两个生物各发动一次徒手打击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "多目标攻击：打桩只有一个目标时退化为已有攻击，不增加单位目标输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "明王怒相"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "feat.武器连招",
+  "name": "武器连招",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "所有军用武器熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "双武器连招：需要两把武器交替攻击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "双武器连招：需要两把武器交替攻击",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "武器连招"
+  },
+  "status": "modeled",
+  "ruling": null
+}

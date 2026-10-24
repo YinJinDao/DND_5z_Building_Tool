@@ -1,0 +1,40 @@
+{
+  "id": "sp.念力冲击",
+  "name": "念力冲击",
+  "kind": "spell",
+  "level": 2,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "150尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "原文无豁免也无攻击检定，按自动命中结算"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "念力冲击"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "4d8",
+      "damage_type": "force"
+    }
+  },
+  "upcast": {
+    "per_slot_above": 2,
+    "add_dice": "2d8"
+  }
+}

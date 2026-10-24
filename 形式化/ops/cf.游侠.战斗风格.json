@@ -1,0 +1,87 @@
+{
+  "id": "cf.游侠.战斗风格",
+  "name": "战斗风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "fighting_style",
+    "options": {
+      "箭术": {
+        "projection": {
+          "note": "远程攻击的伤害加上攻击关键属性调整值。引擎的武器伤害本就含属性调整值，故此处不重复计入"
+        }
+      },
+      "防御": {
+        "projection": {
+          "note": "AC +1，防御侧"
+        }
+      },
+      "对决": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "双武器战斗": {
+        "projection": {
+          "bonus_action_ability_mod": true
+        }
+      },
+      "投掷武器战斗": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "巨武器战斗": {
+        "projection": {
+          "scales_with_adv": {
+            "per_tier": {
+              "flat": 3
+            }
+          }
+        }
+      },
+      "盲斗": {
+        "projection": {
+          "note": "盲视 5 尺"
+        }
+      },
+      "德鲁伊教战士": {
+        "projection": {
+          "note": "德鲁伊戏法与法器，施法资源"
+        }
+      }
+    },
+    "note": "与其它职业共用 choice_key=fighting_style"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "战斗风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

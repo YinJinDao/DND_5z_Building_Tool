@@ -1,0 +1,30 @@
+{
+  "id": "cf.契术师.魔焰塑形",
+  "name": "魔焰塑形",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "契术师",
+    "class_id": "class.warlock",
+    "level": 8,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "改变魔能爆的形态（连锁、爆破）。连锁在多目标时才优于射线，爆破改为豁免"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "只重塑特定法术的形态；打桩单目标下射线即为最优，塑形不带来增量",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/契术师.htm",
+    "anchor": "魔焰塑形"
+  },
+  "status": "approximated",
+  "ruling": null
+}

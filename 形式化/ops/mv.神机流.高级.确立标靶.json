@@ -1,0 +1,29 @@
+{
+  "id": "mv.神机流.高级.确立标靶",
+  "name": "确立标靶",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "命中后所有能看见标靶的生物可用反应各射一箭，每次额外三枚卓越骰"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害主要由其他生物产生，本人只贡献一次攻击",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/神机流专长.htm",
+    "anchor": "确立标靶"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.中级.玄武势",
+  "name": "玄武势",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 0
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 0
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "用反应或卓越骰免疫一次不超过自身 AC 的单次伤害"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：免疫单次伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "玄武势"
+  },
+  "status": "approximated",
+  "ruling": null
+}

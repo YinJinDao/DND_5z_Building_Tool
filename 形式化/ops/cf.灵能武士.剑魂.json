@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.剑魂",
+  "name": "剑魂",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 15,
+    "subclass": "原力大师"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "角色死亡后武器变为智能魔法物品"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "死亡后状态：不适用于以存活角色为单位时间的 DPR 评价",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "剑魂"
+  },
+  "status": "approximated",
+  "ruling": null
+}

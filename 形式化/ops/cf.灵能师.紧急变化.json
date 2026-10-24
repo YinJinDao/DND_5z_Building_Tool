@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能师.紧急变化",
+  "name": "紧急变化",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 14,
+    "subclass": "百变修会"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "受到伤害或负面状态时用反应变形以获得抗性/免疫"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：应急变形获得抗性与免疫",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "紧急变化"
+  },
+  "status": "approximated",
+  "ruling": null
+}

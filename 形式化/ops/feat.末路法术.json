@@ -1,0 +1,26 @@
+{
+  "id": "feat.末路法术",
+  "name": "末路法术",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "spell_attack_bonus_by_hp": true,
+    "note": "消耗 1 术法点，让法术对低生命目标获得豁免减值/法术攻击加值，最高 +3（≤1/3 生命时）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "末路法术"
+  },
+  "status": "approximated",
+  "ruling": null
+}

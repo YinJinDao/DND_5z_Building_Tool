@@ -1,0 +1,30 @@
+{
+  "id": "sp.祝福术",
+  "name": "祝福术",
+  "kind": "spell",
+  "level": 1,
+  "school": "附魔",
+  "casting_time": "1动作",
+  "range": "30尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "attack_bonus": 0,
+    "note": "攻击检定与豁免 +1d4；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "祝福术"
+  },
+  "status": "approximated",
+  "ruling": null
+}

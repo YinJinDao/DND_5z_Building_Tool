@@ -1,0 +1,30 @@
+{
+  "id": "cf.法师.创造法术",
+  "name": "创造法术",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "法师",
+    "class_id": "class.wizard",
+    "level": 12,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把带超魔的法术固化为新法术并写入法术书"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "法术研发规则：改变法术书内容，不直接改变战斗数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/法师.htm",
+    "anchor": "创造法术"
+  },
+  "status": "approximated",
+  "ruling": null
+}

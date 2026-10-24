@@ -1,0 +1,30 @@
+{
+  "id": "cf.游侠.大地行者",
+  "name": "大地行者",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 14,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "免疫移动类负面状态、无视困难地形、挣脱检定优势"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯移动与挣脱能力，不改变伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "大地行者"
+  },
+  "status": "approximated",
+  "ruling": null
+}

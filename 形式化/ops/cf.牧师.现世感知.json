@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.现世感知",
+  "name": "现世感知",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 1,
+    "subclass": "密斯瑞尔的时间领域"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "先攻加值最多 +10；时之沙漏延长法术持续时间，时之残响回溯位置与生命值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "先攻与法术持续时间的调整，不直接改变每轮伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "现世感知"
+  },
+  "status": "approximated",
+  "ruling": null
+}

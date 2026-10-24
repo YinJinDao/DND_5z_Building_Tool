@@ -1,0 +1,29 @@
+{
+  "id": "feat.灵动借机",
+  "name": "灵动借机",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "战斗反射",
+      "敏捷13"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_attack_adv": 1,
+    "note": "借机攻击具有优势；命中后可移动 5 尺（位移不影响伤害，未建模）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "灵动借机"
+  },
+  "status": "approximated",
+  "ruling": null
+}

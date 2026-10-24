@@ -1,0 +1,47 @@
+{
+  "id": "feat.灵念开拓师",
+  "name": "灵念开拓师",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "灵能师2级",
+      "灵能武士2级"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "grants_attack_count": {
+      "classes": [
+        "class.psychic_warrior",
+        "class.psion"
+      ],
+      "half_of": "class.psion",
+      "tiers": [
+        {
+          "min_level_sum": 11,
+          "count": 3,
+          "grants": "精通额外攻击"
+        },
+        {
+          "min_level_sum": 17,
+          "count": 4,
+          "grants": "非凡额外攻击"
+        }
+      ],
+      "note": "把灵能师等级的一半加在灵能武士等级上，用于判定额外攻击的获取"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "灵念开拓师"
+  },
+  "status": "approximated",
+  "ruling": null
+}

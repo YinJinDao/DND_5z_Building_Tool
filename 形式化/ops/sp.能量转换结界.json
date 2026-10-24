@@ -1,0 +1,43 @@
+{
+  "id": "sp.能量转换结界",
+  "name": "能量转换结界",
+  "kind": "spell",
+  "level": 8,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "90尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "能量转换结界"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "wis",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "6d8",
+    "damage_type": "fire",
+    "half_on_save": false,
+    "type_choice": [
+      "acid",
+      "cold",
+      "fire",
+      "lightning",
+      "thunder"
+    ]
+  }
+}

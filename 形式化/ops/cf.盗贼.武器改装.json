@@ -1,0 +1,36 @@
+{
+  "id": "cf.盗贼.武器改装",
+  "name": "武器改装",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "盗贼",
+    "class_id": "class.rogue",
+    "level": 5,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "2d6",
+        "damage_type": "same_as_weapon",
+        "limit": "每回合一次",
+        "note": "把武器原有的「每次命中额外伤害」翻倍，但每回合只触发一次；此处以焰舌 2d6 翻倍为例"
+      }
+    ],
+    "note": "改装一件「每次攻击造成额外伤害」的魔法武器：伤害翻倍但每回合一次。原伤害取决于具体武器"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/盗贼.htm",
+    "anchor": "武器改装"
+  },
+  "status": "approximated",
+  "ruling": null
+}

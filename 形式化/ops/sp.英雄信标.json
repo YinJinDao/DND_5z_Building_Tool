@@ -1,0 +1,35 @@
+{
+  "id": "sp.英雄信标",
+  "name": "英雄信标",
+  "kind": "spell",
+  "level": 7,
+  "school": "咒法",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 7
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "2d8",
+        "damage_type": "radiant"
+      }
+    ],
+    "note": "灵光内友方攻击命中额外 2d8 光耀；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/7环.htm",
+    "anchor": "英雄信标"
+  },
+  "status": "approximated",
+  "ruling": null
+}

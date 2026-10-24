@@ -1,0 +1,29 @@
+{
+  "id": "mv.游龙流.中级.识破",
+  "name": "识破",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对命中你的武器发动攻击，取消该次攻击并把武器钉在地上"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/游龙流专长.htm",
+    "anchor": "识破"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "防御反击：把敌方的攻击改为失手"
+}

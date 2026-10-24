@@ -1,0 +1,53 @@
+{
+  "id": "sp.冰风暴",
+  "name": "冰风暴",
+  "kind": "spell",
+  "level": 4,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "300 尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 4
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "4d8 钝击 + 4d6 冷冻，敏捷豁免半伤；每升一环钝击 +1d8、冷冻 +1d6"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/4环.htm",
+    "anchor": "冰风暴"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "4d8",
+    "damage_type": "bludgeoning",
+    "half_on_save": true,
+    "additional": [
+      {
+        "dice": "4d6",
+        "damage_type": "cold"
+      }
+    ]
+  },
+  "upcast": {
+    "per_slot_above": 4,
+    "add_dice": "1d8"
+  },
+  "area": {
+    "shape": "cylinder",
+    "radius_ft": 20,
+    "height_ft": 40
+  }
+}

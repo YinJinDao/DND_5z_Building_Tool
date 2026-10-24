@@ -1,0 +1,52 @@
+{
+  "id": "sp.法兰快剑",
+  "name": "法兰快剑",
+  "kind": "spell",
+  "level": 0,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "5尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "法兰快剑"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": {
+      "dice": "1d8",
+      "damage_type": "cold",
+      "type_choice": [
+        "cold",
+        "necrotic"
+      ]
+    }
+  },
+  "scaling": [
+    {
+      "level": 5,
+      "dice": "2d8"
+    },
+    {
+      "level": 11,
+      "dice": "3d8"
+    },
+    {
+      "level": 17,
+      "dice": "4d8"
+    }
+  ]
+}

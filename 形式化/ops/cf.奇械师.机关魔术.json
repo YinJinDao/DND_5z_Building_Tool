@@ -1,0 +1,30 @@
+{
+  "id": "cf.奇械师.机关魔术",
+  "name": "机关魔术",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "奇械师",
+    "class_id": "class.artificer",
+    "level": 5,
+    "subclass": "构造铁匠"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "钢铁守卫施展的力场射线等"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "同伴体系：钢铁守卫的伤害属构装体，按协作约定排除",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/奇械师.htm",
+    "anchor": "机关魔术"
+  },
+  "status": "approximated",
+  "ruling": null
+}

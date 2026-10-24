@@ -1,0 +1,27 @@
+{
+  "id": "feat.近程射手",
+  "name": "近程射手",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "在敌方触及时发动远程攻击不引发借机、不具有劣势；可与盟友夹击享受攻击加值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "近程射手"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "避免惩罚类：本身不产生加值，只是取消劣势；夹击加值属环境判定"
+}

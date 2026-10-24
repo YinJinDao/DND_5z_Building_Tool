@@ -1,0 +1,29 @@
+{
+  "id": "feat.本土召唤",
+  "name": "本土召唤",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "德鲁伊"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "强化召唤物的攻击与生命"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/职业专长/德鲁伊专长.htm",
+    "anchor": "本土召唤"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "召唤物体系：强化对象是召唤生物"
+}

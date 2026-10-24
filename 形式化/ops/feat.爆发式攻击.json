@@ -1,0 +1,28 @@
+{
+  "id": "feat.爆发式攻击",
+  "name": "爆发式攻击",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "精通额外攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "attack_count": 4,
+    "note": "把「精通额外攻击」改为每动作 4 次武器攻击（若同时有「非凡额外攻击」则改为 5 次），次数上限等于力量或敏捷调整值；使用次数等于力量或敏捷调整值，长休恢复"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "爆发式攻击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

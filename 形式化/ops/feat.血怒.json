@@ -1,0 +1,34 @@
+{
+  "id": "feat.血怒",
+  "name": "血怒",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "str",
+        "damage_type": "same_as_weapon",
+        "note": "处决攻击命中额外造成等同于力量值的伤害"
+      }
+    ],
+    "note": "1 分钟内命中同一敌人第 5 次后进入血怒：力量值与上限 +6，并可宣告处决攻击。属性 +6 需由构筑的 scores 体现，此处只记处决伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "血怒"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "activation": "buff"
+}

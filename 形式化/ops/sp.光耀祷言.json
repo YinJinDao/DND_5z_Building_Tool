@@ -1,0 +1,36 @@
+{
+  "id": "sp.光耀祷言",
+  "name": "光耀祷言",
+  "kind": "spell",
+  "level": 0,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "30尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d12",
+        "damage_type": "radiant",
+        "note": "5/11/17 级升为 2d12/3d12/4d12"
+      }
+    ],
+    "note": "目标下回合首次命中额外 1d12 光耀；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "光耀祷言"
+  },
+  "status": "approximated",
+  "ruling": null
+}

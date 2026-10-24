@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "name": "法师：戏法攻击 + 豁免戏法 + 火球术",
+    "note": "演示攻击型法术、豁免型法术、等级成长与升环",
+    "requires_build": "wizard_l5.build.json"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "attacks": 1,
+      "per_attack": {
+        "kind": "spell_attack",
+        "spell": "sp.冻寒之触"
+      }
+    },
+    {
+      "round": 2,
+      "attacks": 0,
+      "save_effects": [
+        {
+          "spell": "sp.圣火术"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "attacks": 0,
+      "spends": {
+        "spell_slots_3": 1
+      },
+      "save_effects": [
+        {
+          "spell": "sp.火球术",
+          "slot_level": 3
+        }
+      ]
+    }
+  ]
+}

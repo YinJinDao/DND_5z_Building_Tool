@@ -1,0 +1,31 @@
+{
+  "id": "sp.法能屏障",
+  "name": "法能屏障",
+  "kind": "spell",
+  "level": 0,
+  "school": "防护",
+  "casting_time": "1动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "减少承受的伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "法能屏障"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "减少承受的伤害"
+}

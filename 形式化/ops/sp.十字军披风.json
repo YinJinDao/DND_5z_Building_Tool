@@ -1,0 +1,35 @@
+{
+  "id": "sp.十字军披风",
+  "name": "十字军披风",
+  "kind": "spell",
+  "level": 3,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "自身（半径30尺）",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d6",
+        "damage_type": "radiant"
+      }
+    ],
+    "note": "灵光内（含自己）攻击命中额外 1d6 光耀；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "十字军披风"
+  },
+  "status": "approximated",
+  "ruling": null
+}

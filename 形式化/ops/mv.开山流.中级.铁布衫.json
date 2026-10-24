@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.中级.铁布衫",
+  "name": "铁布衫",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "临时生命值归零时免疫溢出伤害"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "铁布衫"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：免疫溢出伤害"
+}

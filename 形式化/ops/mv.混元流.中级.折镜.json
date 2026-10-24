@@ -1,0 +1,29 @@
+{
+  "id": "mv.混元流.中级.折镜",
+  "name": "折镜",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "用镜子把一道光线/攻击/法术的效应反弹到 30 尺内另一格"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "效应转移：把他人对我的效应转给别的目标，不增加自身输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "折镜"
+  },
+  "status": "approximated",
+  "ruling": null
+}

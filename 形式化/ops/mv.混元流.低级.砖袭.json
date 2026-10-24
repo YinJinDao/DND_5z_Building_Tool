@@ -1,0 +1,29 @@
+{
+  "id": "mv.混元流.低级.砖袭",
+  "name": "砖袭",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "投掷临时武器，命中后体质豁免失败陷入恍惚"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯控制：命中的效果是恍惚状态，不增加伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "砖袭"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,27 @@
+{
+  "id": "feat.救主灵驹",
+  "name": "救主灵驹",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "坐骑侧能力：转移攻击目标"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "坐骑侧能力：转移攻击目标",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "救主灵驹"
+  },
+  "status": "modeled",
+  "ruling": null
+}

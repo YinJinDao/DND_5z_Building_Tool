@@ -1,0 +1,36 @@
+{
+  "id": "sp.炽焰法球",
+  "name": "炽焰法球",
+  "kind": "spell",
+  "level": 2,
+  "school": "咒法",
+  "casting_time": "1 动作",
+  "range": "60 尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "炽焰法球"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "dex",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "4d6",
+    "damage_type": "fire",
+    "half_on_save": true
+  }
+}

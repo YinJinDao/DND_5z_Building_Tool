@@ -1,0 +1,46 @@
+{
+  "id": "sp.玷污生命",
+  "name": "玷污生命",
+  "kind": "spell",
+  "level": 2,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "自身（半径20尺）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "身边 20 尺内其他生物受 3d6 暗蚀；原文无豁免，按必中结算"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "玷污生命"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "3d6",
+    "damage_type": "necrotic",
+    "half_on_save": false
+  },
+  "upcast": {
+    "per_slot_above": 2,
+    "add_dice": "2d6"
+  },
+  "area": {
+    "shape": "sphere",
+    "radius_ft": 20
+  }
+}

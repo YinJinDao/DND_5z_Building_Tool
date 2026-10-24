@@ -1,0 +1,35 @@
+{
+  "id": "sp.晦暗武器",
+  "name": "晦暗武器",
+  "kind": "spell",
+  "level": 2,
+  "school": "死灵",
+  "casting_time": "1附赠动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d6",
+        "damage_type": "necrotic"
+      }
+    ],
+    "note": "命中非不死目标额外 1d6 暗蚀；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "晦暗武器"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.太阳祭品的传说",
+  "name": "太阳祭品的传说",
+  "kind": "spell",
+  "level": 8,
+  "school": "预言",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "传说任务：需先完成指定行为才能获得奖励"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "太阳祭品的传说"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "传说任务：需先完成指定行为才能获得奖励"
+}

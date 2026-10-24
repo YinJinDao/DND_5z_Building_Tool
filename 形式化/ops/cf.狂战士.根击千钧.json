@@ -1,0 +1,35 @@
+{
+  "id": "cf.狂战士.根击千钧",
+  "name": "根击千钧",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 9,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reach_bonus_ft": 10,
+    "weapon_selector": {
+      "properties": [
+        "双手",
+        "两用"
+      ]
+    },
+    "note": "回合内，持用具有双手或两用属性的近战武器时触及 +10 尺；击退/倒地不计。武器须在构筑里声明 properties，否则本条不生效并告警"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "根击千钧"
+  },
+  "status": "approximated",
+  "ruling": null
+}

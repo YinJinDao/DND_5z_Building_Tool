@@ -1,0 +1,30 @@
+{
+  "id": "sp.冻寒之触",
+  "name": "冻寒之触",
+  "kind": "spell",
+  "level": 0,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "acquisition": { "type": "spell_access", "level": 0 },
+  "cost": { "action": 1 },
+  "decision_point": "before_roll",
+  "attack": {
+    "type": "ranged_spell_attack",
+    "damage": { "dice": "1d8", "damage_type": "necrotic" },
+    "note": "命中时额外禁止目标回复生命值，直至你下一回合开始——打桩下不影响伤害"
+  },
+  "scaling": [
+    { "level": 5, "dice": "2d8" },
+    { "level": 11, "dice": "3d8" },
+    { "level": 17, "dice": "4d8" }
+  ],
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "冻寒之触"
+  },
+  "status": "modeled",
+  "ruling": null
+}

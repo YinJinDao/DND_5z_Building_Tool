@@ -1,0 +1,29 @@
+{
+  "id": "feat.均衡",
+  "name": "均衡",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "守序阵营"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把 d20 换成 2d10：改变整个检定分布，引擎按 d20 建模"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "把 d20 换成 2d10：改变整个检定分布，引擎按 d20 建模",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "均衡"
+  },
+  "status": "modeled",
+  "ruling": null
+}

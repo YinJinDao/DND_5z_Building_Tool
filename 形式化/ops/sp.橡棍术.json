@@ -1,0 +1,31 @@
+{
+  "id": "sp.橡棍术",
+  "name": "橡棍术",
+  "kind": "spell",
+  "level": 0,
+  "school": "变化",
+  "casting_time": "1附赠动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 0
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "用施法关键属性替代力量计算长棍的攻击检定与伤害，并视为魔法武器。属性替换不改变加值大小，只改变来源属性——构筑直接把最终数值写进 scores 与 combat.weapon.ability 即可"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/0环.htm",
+    "anchor": "橡棍术"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "属性替换：改变用哪个属性算，不改变加值大小"
+}

@@ -1,0 +1,51 @@
+{
+  "id": "feat.妖精培训课程",
+  "name": "妖精培训课程",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "荒野妖精"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "fighting_style",
+    "options": {
+      "对决": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "防御": {
+        "projection": {
+          "note": "AC +1"
+        }
+      },
+      "箭术": {
+        "projection": {
+          "note": "远程伤害含属性调整值（引擎默认已含）"
+        }
+      }
+    },
+    "note": "武术课程：获得三条战斗风格之一。法术课程为法术资源"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/限定物种的专长.htm",
+    "anchor": "妖精培训课程"
+  },
+  "status": "approximated",
+  "ruling": null
+}

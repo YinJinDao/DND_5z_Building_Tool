@@ -1,0 +1,38 @@
+{
+  "id": "sp.维克那的涌动黑暗",
+  "name": "维克那的涌动黑暗",
+  "kind": "spell",
+  "level": 5,
+  "school": "死灵",
+  "casting_time": "1动作",
+  "range": "150尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "体质豁免失败提升一级力竭等级（非伤害）；黑暗与光照解除另有作用"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "维克那的涌动黑暗"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "0",
+    "damage_type": "necrotic",
+    "half_on_save": false
+  }
+}

@@ -1,0 +1,45 @@
+{
+  "id": "feat.死亡收割",
+  "name": "死亡收割",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "巨镰的异种武器熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_selector": {
+      "kinds": [
+        "巨镰"
+      ]
+    },
+    "scales_with_adv": {
+      "steps": {
+        "2": {
+          "crit_range": 2
+        },
+        "3": {
+          "crit_range": 6
+        },
+        "4": {
+          "crit_range": 19
+        }
+      }
+    },
+    "note": "持用巨镰时，按该次攻击的**最终**优势层数提高重击范围：2/3/4 重优势分别 +2/+6/+19（不是累进，取不超过当前层数的最大档）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/异种武器专长.htm",
+    "anchor": "死亡收割"
+  },
+  "status": "modeled",
+  "ruling": null
+}

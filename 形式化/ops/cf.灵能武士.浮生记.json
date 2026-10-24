@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.浮生记",
+  "name": "浮生记",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 7,
+    "subclass": "风物行者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "放宽「斩业」的触发条件并改为标记制，效果仍是移除盟友的负面状态"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "状态移除的触发改进：不改变伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "浮生记"
+  },
+  "status": "approximated",
+  "ruling": null
+}

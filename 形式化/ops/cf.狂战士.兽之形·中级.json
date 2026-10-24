@@ -1,0 +1,58 @@
+{
+  "id": "cf.狂战士.兽之形·中级",
+  "name": "兽之形·中级",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 6,
+    "subclass": "图腾武者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "choice_key": "totem_mid",
+    "options": {
+      "熊之巨力": {
+        "projection": {
+          "note": "负重翻倍、力量豁免优势，防御侧"
+        }
+      },
+      "鹰之锐目": {
+        "projection": {
+          "note": "真实视觉 30 尺，防御侧"
+        }
+      },
+      "狼之追击": {
+        "projection": {
+          "note": "敌人位移时可跟随移动，不增加攻击次数"
+        }
+      },
+      "蛇之蜕生": {
+        "projection": {
+          "note": "倒地后回血，防御侧"
+        }
+      },
+      "鲨之流形": {
+        "projection": {
+          "note": "水域中可用附赠动作发动一次近战武器攻击；打桩场地无水域声明，本工具不计入"
+        }
+      }
+    },
+    "note": "图腾选择由构筑 choices.totem_mid 决定"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "五选项全为防御/移动/地形能力；唯一输出向的「鲨之流形」需要水域地形，打桩契约不声明该地形",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "兽之形·中级"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,31 @@
+{
+  "id": "sp.死或生的兆星",
+  "name": "死或生的兆星",
+  "kind": "spell",
+  "level": 8,
+  "school": "预言",
+  "casting_time": "1动作",
+  "range": "150尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 8
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "伤害在指定先攻值触发，取决于轮次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/8环.htm",
+    "anchor": "死或生的兆星"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "伤害在指定先攻值触发，取决于轮次"
+}

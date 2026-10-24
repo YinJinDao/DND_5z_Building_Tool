@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.灵能转化",
+  "name": "灵能转化",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 1,
+    "subclass": "心灵领域"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "准备牧师法术时替换为对应的异能"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "法术列表替换：伤害归入对应法术算子",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "灵能转化"
+  },
+  "status": "approximated",
+  "ruling": null
+}

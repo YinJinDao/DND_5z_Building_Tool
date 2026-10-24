@@ -1,0 +1,29 @@
+{
+  "id": "mv.混元流.低级.绊地",
+  "name": "绊地",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对跑动 30 尺进入触及者发动徒手打击，命中后取消伤害改为倒地"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "取消伤害换倒地：对 DPR 无贡献",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "绊地"
+  },
+  "status": "approximated",
+  "ruling": null
+}

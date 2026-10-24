@@ -1,0 +1,31 @@
+{
+  "id": "sp.幽影刃",
+  "name": "幽影刃",
+  "kind": "spell",
+  "level": 2,
+  "school": "幻术",
+  "casting_time": "1附赠动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 2
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "创造武器，伤害取决于所选武器类型与环阶"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/2环.htm",
+    "anchor": "幽影刃"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "创造武器，伤害取决于所选武器类型与环阶"
+}

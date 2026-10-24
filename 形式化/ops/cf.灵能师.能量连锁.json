@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能师.能量连锁",
+  "name": "能量连锁",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 18,
+    "subclass": "能量修会"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "诅咒目标：令其无法运用抗性，或在他人受伤时同受等量伤害"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "剥夺抗性与连锁承伤，不增加本角色造成的伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "能量连锁"
+  },
+  "status": "approximated",
+  "ruling": null
+}

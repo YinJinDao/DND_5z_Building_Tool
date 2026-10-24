@@ -1,0 +1,37 @@
+{
+  "id": "feat.阵地狙击",
+  "name": "阵地狙击",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "巨弓的异种武器熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_selector": {
+      "kinds": [
+        "巨弓"
+      ]
+    },
+    "scales_with_adv": {
+      "per_tier": {
+        "extra_dice": "1d10"
+      }
+    },
+    "note": "固定巨弓后（附赠动作，本模型视作已固定），每重优势在命中后额外 +1d10；半身掩护属防御侧"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/异种武器专长.htm",
+    "anchor": "阵地狙击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

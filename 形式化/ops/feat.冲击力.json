@@ -1,0 +1,51 @@
+{
+  "id": "feat.冲击力",
+  "name": "冲击力",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "所有近战军用武器熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {
+    "requires_prior_move": true
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "1d10",
+        "crit_doubles": true,
+        "limit": "每回合一次",
+        "dice_scaling": [
+          {
+            "level": 7,
+            "dice": "2d10"
+          },
+          {
+            "level": 14,
+            "dice": "3d10"
+          },
+          {
+            "level": 20,
+            "dice": "4d10"
+          }
+        ],
+        "note": "疾走/冲刺/骑乘冲刺/传送后，本轮的下一���近战攻击命中额外 1d10（7级 2d10、14级 3d10、20级 4d10）"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/常规武器专长.htm",
+    "anchor": "冲击力"
+  },
+  "status": "approximated",
+  "ruling": null
+}

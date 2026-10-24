@@ -1,0 +1,44 @@
+{
+  "name": "威力豁免",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive_choice": true
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "save_dc_modifier": -5,
+    "on_fail_extra": {
+      "expr": "max_die(base_damage)",
+      "cap": 30,
+      "cap_scaling": [
+        {
+          "level": 7,
+          "cap": 40
+        },
+        {
+          "level": 11,
+          "cap": 50
+        },
+        {
+          "level": 15,
+          "cap": 60
+        }
+      ],
+      "note": "豁免失败者额外受到基础伤害骰最大值点伤害"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "威力豁免"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "id": "feat.威力豁免"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.暗影技艺",
+  "name": "暗影技艺",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 3,
+    "subclass": "暗影宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "用气施展特定法术或战技。伤害由被施展的法术/战技产生，见对应算子"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "只是解锁施法/战技资源，伤害归入相应的法术与战计算子",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "暗影技艺"
+  },
+  "status": "approximated",
+  "ruling": null
+}

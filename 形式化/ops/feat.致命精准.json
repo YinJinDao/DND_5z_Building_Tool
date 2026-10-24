@@ -1,0 +1,28 @@
+{
+  "id": "feat.致命精准",
+  "name": "致命精准",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "偷袭"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "sneak_dice_to_attack_bonus": 2,
+    "note": "放弃 X 枚偷袭伤害骰，换取该次攻击 X×2 的攻击加值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "致命精准"
+  },
+  "status": "approximated",
+  "ruling": null
+}

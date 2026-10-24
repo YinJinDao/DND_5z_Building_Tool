@@ -1,0 +1,29 @@
+{
+  "id": "feat.巫婆诅咒",
+  "name": "巫婆诅咒",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "智力19或感知19"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把法术改为诅咒：延续与解除条件"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "把法术改为诅咒：延续与解除条件",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "巫婆诅咒"
+  },
+  "status": "modeled",
+  "ruling": null
+}

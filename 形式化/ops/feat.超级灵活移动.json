@@ -1,0 +1,29 @@
+{
+  "id": "feat.超级灵活移动",
+  "name": "超级灵活移动",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "灵活移动",
+      "进阶灵活移动"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 15,
+    "note": "移动速度 +15 尺，与前两条叠加（合计 +45）；敏捷豁免自动成功等属防御侧"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化防御的专长.htm",
+    "anchor": "超级灵活移动"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,28 @@
+{
+  "id": "cf.圣武士.额外攻击",
+  "name": "额外攻击",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 5,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "attack_count": 2
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "额外攻击"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,36 @@
+{
+  "id": "cf.灵能武士.念刃",
+  "name": "念刃",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 3,
+    "subclass": "魂刃主宰"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "natural_weapon": {
+      "dice": "1d6",
+      "damage_type": "psychic",
+      "properties": [
+        "灵巧"
+      ]
+    },
+    "bonus_action_attack": 1,
+    "note": "念刃命中造成 1d6+属性调整值心灵伤害；回合内用念刃攻击后可用附赠动作塑造第二把念刃再攻击一次（该次伤害骰为 1d4）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "念刃"
+  },
+  "status": "approximated",
+  "ruling": null
+}

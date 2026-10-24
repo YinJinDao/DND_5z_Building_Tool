@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.邪诡恶毒",
+  "name": "邪诡恶毒",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 3,
+    "subclass": "血犼教"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "命中后追加倒地/中毒/恐慌，属控制"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯控制：命中后施加负面状态，不增加伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "邪诡恶毒"
+  },
+  "status": "approximated",
+  "ruling": null
+}

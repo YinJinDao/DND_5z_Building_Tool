@@ -1,0 +1,31 @@
+{
+  "id": "sp.蓄力治疗",
+  "name": "蓄力治疗",
+  "kind": "spell",
+  "level": 3,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "治疗"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "蓄力治疗"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "治疗"
+}

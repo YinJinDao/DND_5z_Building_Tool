@@ -1,0 +1,36 @@
+{
+  "id": "sp.命定一劫",
+  "name": "命定一劫",
+  "kind": "spell",
+  "level": 7,
+  "school": "预言",
+  "casting_time": "1附赠动作",
+  "range": "60尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 7
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/7环.htm",
+    "anchor": "命定一劫"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "wis",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "10d8",
+    "damage_type": "necrotic",
+    "half_on_save": false
+  }
+}

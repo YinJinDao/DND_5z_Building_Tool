@@ -1,0 +1,30 @@
+{
+  "id": "cf.狂战士.狂热感染",
+  "name": "狂热感染",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 9,
+    "subclass": "神罚者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "让目标也进入狂暴（使用你的狂暴数值）。效果作用在目标身上，不增加你自身的攻击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "对目标施加狂暴状态，属控制/增益他人；不改变本角色的输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "狂热感染"
+  },
+  "status": "modeled",
+  "ruling": null
+}

@@ -1,0 +1,29 @@
+{
+  "id": "mv.摘星流.高级.流星一条",
+  "name": "流星一条",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "1500 尺直线上依次攻击，对物件为固定倍数伤害；发动后立即死亡或降到 1"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "自杀式贯穿攻击：发动即死亡，且伤害主要作用于路径上的多个目标",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "流星一条"
+  },
+  "status": "approximated",
+  "ruling": null
+}

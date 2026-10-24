@@ -1,0 +1,33 @@
+{
+  "id": "feat.长长法杖",
+  "name": "长长法杖",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "长棍的熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reach_bonus_ft": 5,
+    "weapon_selector": {
+      "kinds": [
+        "长棍"
+      ]
+    },
+    "note": "用交互动作给长棍注入延展魔法使其获得触及属性（触及 +5 尺）；也会延长施法距离为触及的法术"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "长长法杖"
+  },
+  "status": "approximated",
+  "ruling": null
+}

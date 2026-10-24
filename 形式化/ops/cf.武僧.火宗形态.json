@@ -1,0 +1,36 @@
+{
+  "id": "cf.武僧.火宗形态",
+  "name": "火宗形态",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 1,
+    "subclass": "四象宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d6",
+        "damage_type": "fire",
+        "note": "火蛇利牙：疾风连击的攻击命中后额外等同于武艺骰的火焰伤害"
+      }
+    ],
+    "note": "四象宗法门。火蛇利牙按 1 枚武艺骰（d6 占位）建模；灼热之躯是受击反伤、烟熏火燎为控制",
+    "choice_key": null
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧/四象宗.htm",
+    "anchor": "火宗形态"
+  },
+  "status": "approximated",
+  "ruling": null
+}

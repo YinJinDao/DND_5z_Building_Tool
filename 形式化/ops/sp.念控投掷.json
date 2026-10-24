@@ -1,0 +1,31 @@
+{
+  "id": "sp.念控投掷",
+  "name": "念控投掷",
+  "kind": "spell",
+  "level": 3,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "60尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 3
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "投掷生物或物件，伤害取决于落点是否被占据"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/3环.htm",
+    "anchor": "念控投掷"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "投掷生物或物件，伤害取决于落点是否被占据"
+}

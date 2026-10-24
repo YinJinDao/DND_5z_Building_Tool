@@ -1,0 +1,36 @@
+{
+  "id": "sp.力场吐息",
+  "name": "力场吐息",
+  "kind": "spell",
+  "level": 5,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "自身（90尺锥形）",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "力场吐息"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "str",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "8d8",
+    "damage_type": "force",
+    "half_on_save": true
+  }
+}

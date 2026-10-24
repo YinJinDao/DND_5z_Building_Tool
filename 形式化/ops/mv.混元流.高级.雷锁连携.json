@@ -1,0 +1,29 @@
+{
+  "id": "mv.混元流.高级.雷锁连携",
+  "name": "雷锁连携",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "替换一次攻击：命中后力量豁免失败则束缚。反应版本是接住**友方**触发的束缚，伤害归友方"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "主效果为束缚控制；额外伤害仅在友方触发时成立，不属于本人输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "雷锁连携"
+  },
+  "status": "modeled",
+  "ruling": null
+}

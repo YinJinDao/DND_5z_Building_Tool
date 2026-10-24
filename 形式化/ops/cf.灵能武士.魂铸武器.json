@@ -1,0 +1,62 @@
+{
+  "id": "cf.灵能武士.魂铸武器",
+  "name": "魂铸武器",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "soul_weapon",
+    "options": {
+      "照明": {
+        "projection": {
+          "note": "只提供光照"
+        }
+      },
+      "回力": {
+        "projection": {
+          "note": "投掷后自动返回；飞回路径上的生物需敏捷豁免"
+        }
+      },
+      "延展": {
+        "projection": {
+          "reach_bonus_ft": 5,
+          "note": "近战武器触及 +5 尺"
+        }
+      },
+      "轰鸣": {
+        "projection": {
+          "note": "命中后目标体质豁免，失败则耳聋"
+        }
+      },
+      "碎梦": {
+        "projection": {
+          "note": "消除幻术"
+        }
+      },
+      "灭形": {
+        "projection": {
+          "note": "针对变形效应的额外效果"
+        }
+      }
+    },
+    "note": "附赠动作强化武器，按构筑 choices.soul_weapon 选一项；需要智力调整值次/长休"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "魂铸武器"
+  },
+  "status": "approximated",
+  "ruling": null
+}

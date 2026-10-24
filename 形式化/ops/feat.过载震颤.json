@@ -1,0 +1,33 @@
+{
+  "id": "feat.过载震颤",
+  "name": "过载震颤",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "一种锤的熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_dice_maximize": true,
+    "note": "每回合一次，用锤造成伤害后可把武器基础伤害骰取满，然后减速或击退。武器 kind 含「锤」即匹配（巨斧、战斧都算）",
+    "weapon_selector": {
+      "kinds": [
+        "锤"
+      ]
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "过载震颤"
+  },
+  "status": "approximated",
+  "ruling": null
+}

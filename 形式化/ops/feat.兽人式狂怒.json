@@ -1,0 +1,35 @@
+{
+  "id": "feat.兽人式狂怒",
+  "name": "兽人式狂怒",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "兽人"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "str",
+        "con"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "note": "仅建模属性 +1。「用人造武器命中后再掷一个武器伤害骰（每短休/长休一次）」不是固定骰式（骰面随所用武器变化），无法用现有词汇表达；「生命值≤1且未昏迷时以反应发动一次武器攻击」属于被动触发的额外攻击，引擎未支持。"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/限定物种的专长.htm",
+    "anchor": "兽人式狂怒"
+  },
+  "status": "approximated",
+  "ruling": null
+}

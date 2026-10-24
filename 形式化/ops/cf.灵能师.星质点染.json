@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能师.星质点染",
+  "name": "星质点染",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能师",
+    "class_id": "class.psion",
+    "level": 18,
+    "subclass": "创形修会"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把目标变成星质形体：改变其移动方式与抗性"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "形态转化与抗性变更，不造成伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能师.htm",
+    "anchor": "星质点染"
+  },
+  "status": "approximated",
+  "ruling": null
+}

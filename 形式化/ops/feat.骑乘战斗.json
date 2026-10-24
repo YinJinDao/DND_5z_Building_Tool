@@ -1,0 +1,35 @@
+{
+  "id": "feat.骑乘战斗",
+  "name": "骑乘战斗",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {
+    "mounted": true
+  },
+  "projection": {
+    "on_hit_target_vuln": {
+      "trigger": "act.mounted_charge",
+      "types": [
+        "bludgeoning",
+        "piercing",
+        "slashing"
+      ],
+      "note": "执行骑乘冲刺时，发动的首次攻击若命中，目标对本次攻击造成的钝击/挥砍/穿刺伤害具有易伤"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/骑乘专长.htm",
+    "anchor": "骑乘战斗"
+  },
+  "status": "modeled",
+  "ruling": null
+}

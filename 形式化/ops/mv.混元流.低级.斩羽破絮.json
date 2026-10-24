@@ -1,0 +1,29 @@
+{
+  "id": "mv.混元流.低级.斩羽破絮",
+  "name": "斩羽破絮",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对轻盈物件攻击两次，产生重度遮蔽区域"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "斩羽破絮"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "目标是物件，效果为遮蔽区域"
+}

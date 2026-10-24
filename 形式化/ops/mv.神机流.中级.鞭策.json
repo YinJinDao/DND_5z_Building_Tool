@@ -1,0 +1,29 @@
+{
+  "id": "mv.神机流.中级.鞭策",
+  "name": "鞭策",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对友方发动攻击，为其提供伤害翻倍或检定加值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "对友方的增益：收益取决于友方的攻击，不属于本人输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/神机流专长.htm",
+    "anchor": "鞭策"
+  },
+  "status": "approximated",
+  "ruling": null
+}

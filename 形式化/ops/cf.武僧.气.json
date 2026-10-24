@@ -1,0 +1,28 @@
+{
+  "id": "cf.武僧.气",
+  "name": "气",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 2,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "气池容量取自武僧职业表「气」一栏（含 12 级起 +感知调整值）。疾风连击的附赠徒手打击已由「武艺」的 bonus_action_attack 表达，此处不重复计入，避免同一次附赠动作被算两次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "气"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,37 @@
+{
+  "id": "cf.圣武士.仁慈之弯月",
+  "name": "仁慈之弯月",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 20,
+    "subclass": "伊莉丝翠的月剑之誓"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_enhancement_bonus": {
+      "value": 4
+    },
+    "extra_dice": [
+      {
+        "dice": "2d12",
+        "damage_type": "same_as_weapon"
+      }
+    ],
+    "note": "月剑之誓圣武士使用此武器：武器加值 +4，命中后额外 2d12"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "仁慈之弯月"
+  },
+  "status": "approximated",
+  "ruling": null
+}

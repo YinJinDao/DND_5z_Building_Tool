@@ -1,0 +1,28 @@
+{
+  "id": "feat.刹那波流",
+  "name": "刹那波流",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "心眼弹反"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_attack_adv": 1,
+    "note": "在自己回合以外发动的武器攻击具有优势——即借机攻击具有优势"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "刹那波流"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "feat.令咒",
+  "name": "令咒",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "能够施展“命令术Command”“操纵肢体Control Body”“强迫术Compulsion”之一",
+      "并将其作为准备法术或已知法术"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "强化友方：收益取决于友方的攻击"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/秘法专长/功能类秘法专长.htm",
+    "anchor": "令咒"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "强化友方：收益取决于友方的攻击"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.武僧.六道业火",
+  "name": "六道业火",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 18,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "业火区域对进入的敌方生物造成五枚武艺骰的力场伤害；区域由命中触发并跟随目标，但伤害发生在目标回合"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "区域持续伤害发生在目标回合开始时，不属于攻击者的轮内输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "六道业火"
+  },
+  "status": "approximated",
+  "ruling": null
+}

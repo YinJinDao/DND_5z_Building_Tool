@@ -1,0 +1,71 @@
+{
+  "id": "cf.圣武士.战斗风格",
+  "name": "战斗风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "fighting_style",
+    "options": {
+      "防御": {
+        "projection": {
+          "note": "着装盔甲时 AC +1，防御侧"
+        }
+      },
+      "对决": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ]
+        }
+      },
+      "巨武器战斗": {
+        "projection": {
+          "scales_with_adv": {
+            "per_tier": {
+              "flat": 3
+            }
+          }
+        }
+      },
+      "守护": {
+        "projection": {
+          "note": "防御侧"
+        }
+      },
+      "盲斗": {
+        "projection": {
+          "note": "盲视 5 尺，不影响命中概率"
+        }
+      },
+      "拦截": {
+        "projection": {
+          "note": "防御侧"
+        }
+      }
+    },
+    "note": "与狂战士共用 choice_key=fighting_style"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "战斗风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

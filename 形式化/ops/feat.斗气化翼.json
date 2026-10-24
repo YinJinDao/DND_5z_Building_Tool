@@ -1,0 +1,28 @@
+{
+  "id": "feat.斗气化翼",
+  "name": "斗气化翼",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "精通额外攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "speed_bonus_ft": 0,
+    "note": "获得等同于步行速度的飞行速度（非凡额外攻击后为两倍）。飞行不改变地面移速，故不改速度字段；需在环境里声明空中作战才有意义"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "斗气化翼"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.游侠.引导神力",
+  "name": "引导神力",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 3,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "永恒训练（临时获得某类生物的战法）与各范型效应"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "辅助与资源类效应，不改变本角色的伤害数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "引导神力"
+  },
+  "status": "approximated",
+  "ruling": null
+}

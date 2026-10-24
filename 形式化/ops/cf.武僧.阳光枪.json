@@ -1,0 +1,37 @@
+{
+  "id": "cf.武僧.阳光枪",
+  "name": "阳光枪",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "武僧",
+    "class_id": "class.monk",
+    "level": 3,
+    "subclass": "日魂宗"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "natural_weapon": {
+      "dice": "1d8",
+      "damage_type": "radiant",
+      "properties": [
+        "轻型",
+        "触及",
+        "投掷"
+      ]
+    },
+    "note": "意念塑造阳光枪，视作熟练的异种近战武器兼武僧武器；骰式与加值以构筑武器条目为准，本条只声明它具有触及属性（触及 +5 尺）。长休时可融合一把魔法武器继承其加值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/武僧.htm",
+    "anchor": "阳光枪"
+  },
+  "status": "approximated",
+  "ruling": null
+}

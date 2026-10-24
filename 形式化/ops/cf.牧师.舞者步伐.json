@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.舞者步伐",
+  "name": "舞者步伐",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 1,
+    "subclass": "伊莉丝翠的剑舞领域"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "附赠动作疾走/撤离；引导神力的月光庇护与神圣狩猎属防御与减益"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "移动与防御，不产生伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "舞者步伐"
+  },
+  "status": "approximated",
+  "ruling": null
+}

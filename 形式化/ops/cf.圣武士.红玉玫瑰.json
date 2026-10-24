@@ -1,0 +1,30 @@
+{
+  "id": "cf.圣武士.红玉玫瑰",
+  "name": "红玉玫瑰",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "圣武士",
+    "class_id": "class.paladin",
+    "level": 20,
+    "subclass": "淑妮的玫瑰之誓"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "玫瑰雨造成感知属性损伤与恍惚；自身免疫若干状态"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "范围为属性损伤与状态，不造成生命值伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/圣武士.htm",
+    "anchor": "红玉玫瑰"
+  },
+  "status": "approximated",
+  "ruling": null
+}

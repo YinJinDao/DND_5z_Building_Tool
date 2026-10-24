@@ -1,0 +1,37 @@
+{
+  "id": "mv.混元流.高级.碎刃",
+  "name": "碎刃",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 1,
+    "dice_cost_repeat": 1
+  },
+  "cost": {
+    "bonus_action": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {
+    "weapon_medium": "临时武器"
+  },
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "战技",
+        "dice": "2dS",
+        "crit_doubles": true,
+        "note": "命中后额外造成 2 枚卓越骰的骰值伤害"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/混元流专长.htm",
+    "anchor": "碎刃"
+  },
+  "status": "modeled",
+  "ruling": null
+}

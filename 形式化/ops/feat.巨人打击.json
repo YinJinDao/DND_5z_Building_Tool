@@ -1,0 +1,36 @@
+{
+  "id": "feat.巨人打击",
+  "name": "巨人打击",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "所有军用武器熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "on_hit",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "slot": "专长",
+        "dice": "1d4",
+        "damage_type": "thunder",
+        "crit_doubles": true,
+        "limit": "每回合一次",
+        "note": "每回合一次，命中时可注入云雾打击：额外 1d4 雷鸣伤害（另附感知豁免效果，未建模）"
+      }
+    ]
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/常规武器专长.htm",
+    "anchor": "巨人打击"
+  },
+  "status": "approximated",
+  "ruling": null
+}

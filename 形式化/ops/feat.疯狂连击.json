@@ -1,0 +1,31 @@
+{
+  "id": "feat.疯狂连击",
+  "name": "疯狂连击",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive_choice": true
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "attack_bonus": -5,
+    "on_hit_extra_attack": {
+      "count": 1,
+      "attack_bonus_mod": 0,
+      "note": "追加攻击继承触发它的那次攻击的命中加值（已含本专长的 -5）；attack_bonus_mod 是相对该次攻击的**额外**修正，此处为 0。追加攻击不能再次运用本专长"
+    },
+    "note": "武器攻击、法术攻击、程序攻击均可运用；追加攻击也需消耗同等的续航资源"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/强化进攻的专长.htm",
+    "anchor": "疯狂连击"
+  },
+  "status": "modeled",
+  "ruling": null
+}

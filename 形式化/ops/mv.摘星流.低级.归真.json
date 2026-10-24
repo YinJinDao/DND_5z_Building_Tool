@@ -1,0 +1,63 @@
+{
+  "id": "mv.摘星流.低级.归真",
+  "name": "归真",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "choice_key": "guizhen_tier",
+    "options": {
+      "放弃额外攻击": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "4d8",
+              "damage_type": "same_as_weapon",
+              "note": "四枚卓越骰的骰值"
+            }
+          ]
+        }
+      },
+      "放弃精通额外攻击": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "9d8",
+              "damage_type": "same_as_weapon",
+              "note": "九枚卓越骰的骰值"
+            }
+          ]
+        }
+      },
+      "放弃非凡额外攻击": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "15d8",
+              "damage_type": "same_as_weapon",
+              "note": "十五枚卓越骰的骰值"
+            }
+          ]
+        }
+      }
+    },
+    "note": "放弃本回合的额外攻击次数，换取命中后的固定卓越骰伤害，随后终止攻击动作。骰式按 d8 卓越骰占位"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "归真"
+  },
+  "status": "modeled",
+  "ruling": null
+}

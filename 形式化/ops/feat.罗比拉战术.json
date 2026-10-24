@@ -1,0 +1,33 @@
+{
+  "id": "feat.罗比拉战术",
+  "name": "罗比拉战术",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "9级",
+      "战斗反射",
+      "敏捷13"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_trigger_source": [
+      "attack_you"
+    ],
+    "opportunity_trigger_drawback": "「罗比拉战术」是拿承受更多伤害换来的借机攻击：敌人在命中你时可以把熟练加值加进伤害骰。本工具只计输出，这份代价不进数字，因此该专长的性价比会被高估",
+    "note": "敌人攻击你之后（无论是否命中），只要它在你触及内即可借机；被打时敌方伤害 +其熟练加值（防御侧，不计入 DPR）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "罗比拉战术"
+  },
+  "status": "approximated",
+  "ruling": null
+}

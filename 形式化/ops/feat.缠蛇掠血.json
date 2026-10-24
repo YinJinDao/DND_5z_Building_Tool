@@ -1,0 +1,47 @@
+{
+  "id": "feat.缠蛇掠血",
+  "name": "缠蛇掠血",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "鞭的熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "ability_bonus": {
+      "choose_one_of": [
+        "str",
+        "dex"
+      ],
+      "amount": 1,
+      "cap": 24
+    },
+    "weapon_dice_override": {
+      "applies_to": [
+        "长鞭"
+      ],
+      "all": "1d8"
+    },
+    "opportunity_trigger_source": [
+      "use_object"
+    ],
+    "opportunity_trigger_requires_weapon": [
+      "长鞭"
+    ],
+    "note": "长鞭武器基础伤害骰提升为 1d8；敌人在触及内使用物件/启动魔法物品时可用长鞭借机（缴械效果不影响 DPR）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/常规武器专长.htm",
+    "anchor": "缠蛇掠血"
+  },
+  "status": "approximated",
+  "ruling": null
+}

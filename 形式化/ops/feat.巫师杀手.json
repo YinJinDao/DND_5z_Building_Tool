@@ -1,0 +1,28 @@
+{
+  "id": "feat.巫师杀手",
+  "name": "巫师杀手",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "opportunity_trigger_source": [
+      "cast_spell"
+    ],
+    "note": "触及内的敌对生物施法后可借机攻击——把「敌人施法」这一环境事件接进借机体系；其余两条（专注豁免劣势、对抗法术豁免优势）不影响输出。无任何法术成分的法术不引发（见正文 // 注）"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/借机攻击专长.htm",
+    "anchor": "巫师杀手"
+  },
+  "status": "approximated",
+  "ruling": null
+}

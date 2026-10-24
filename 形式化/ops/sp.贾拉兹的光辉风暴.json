@@ -1,0 +1,53 @@
+{
+  "id": "sp.贾拉兹的光辉风暴",
+  "name": "贾拉兹的光辉风暴",
+  "kind": "spell",
+  "level": 5,
+  "school": "塑能",
+  "casting_time": "1动作",
+  "range": "120尺",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "2d10 光耀 + 2d10 雷鸣，体质豁免半伤；区域内目盲与耳聋"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "贾拉兹的光辉风暴"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "con",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "2d10",
+    "damage_type": "radiant",
+    "half_on_save": true,
+    "additional": [
+      {
+        "dice": "2d10",
+        "damage_type": "thunder"
+      }
+    ]
+  },
+  "upcast": {
+    "per_slot_above": 5,
+    "add_dice": "1d10"
+  },
+  "area": {
+    "shape": "cylinder",
+    "radius_ft": 20,
+    "height_ft": 40
+  }
+}

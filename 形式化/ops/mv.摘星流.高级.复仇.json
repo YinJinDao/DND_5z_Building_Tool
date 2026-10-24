@@ -1,0 +1,37 @@
+{
+  "id": "mv.摘星流.高级.复仇",
+  "name": "复仇",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 0,
+        "damage_type": "same_as_weapon",
+        "note": "额外伤害 = 两回合之间生命值的差额"
+      }
+    ],
+    "note": "额外伤害等同自身两回合间的生命值损失，取决于承受了多少伤害，打桩契约下无法确定"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "额外伤害取决于自身承受的伤害量，打桩环境不建模承受伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "复仇"
+  },
+  "status": "approximated",
+  "ruling": null
+}

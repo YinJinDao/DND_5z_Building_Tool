@@ -1,0 +1,29 @@
+{
+  "id": "feat.危机管理",
+  "name": "危机管理",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "强健身心"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "纯防御：免疫属性损伤与位移前的预备移动"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：免疫属性损伤与位移前的预备移动",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "危机管理"
+  },
+  "status": "modeled",
+  "ruling": null
+}

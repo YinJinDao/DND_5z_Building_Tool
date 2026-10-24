@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.超级.无敌",
+  "name": "无敌",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 3
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 3
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "进入无敌状态：免疫所有伤害，但每回合须消耗 3 枚卓越骰，且只能发动近战武器攻击"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "纯防御：免疫伤害；对攻击的限制不改变单次攻击的数值",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "无敌"
+  },
+  "status": "approximated",
+  "ruling": null
+}

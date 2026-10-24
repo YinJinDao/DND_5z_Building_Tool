@@ -1,0 +1,76 @@
+{
+  "id": "cf.狂战士.兽之形·低级",
+  "name": "兽之形·低级",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 3,
+    "subclass": "图腾武者"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "totem_low",
+    "options": {
+      "熊之坚毅": {
+        "projection": {
+          "note": "狂暴时对五种元素伤害具有抗性，防御侧"
+        }
+      },
+      "鹰之穿梭": {
+        "projection": {
+          "note": "可用附赠动作疾走；护甲级别的移动收益，不增加攻击次数"
+        }
+      },
+      "狼之围猎": {
+        "projection": {
+          "adv_tiers": 1,
+          "note": "夹击条件放宽：满足条件时视为夹击（获得优势）。是否夹击由环境 flags 的 flanking 声明"
+        },
+        "gate": {
+          "env_flags": [
+            "flanking"
+          ]
+        }
+      },
+      "蛇之毒牙": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat_expr": "level",
+              "damage_type": "poison",
+              "limit": "每回合一次"
+            }
+          ],
+          "note": "中毒目标在其回合结束时受 1d6+狂战士等级 毒素伤害。此处按每回合一次的固定加值近似，1d6 部分需要目标确实中毒（消耗生命骰），未计入"
+        }
+      },
+      "鲨之渴血": {
+        "projection": {
+          "adv_tiers": 1,
+          "note": "对生命值低于上限一半的生物有优势；需环境 flags 含 target_below_half"
+        },
+        "gate": {
+          "env_flags": [
+            "target_below_half"
+          ]
+        }
+      }
+    },
+    "note": "图腾选择由构筑 choices.totem_low 决定"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "兽之形·低级"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,35 @@
+{
+  "id": "feat.战法宝钻",
+  "name": "战法宝钻",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "战法宝石的配件熟练"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "attack_bonus": 2,
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 2,
+        "damage_type": "same_as_weapon"
+      }
+    ],
+    "note": "对处于自己法术作用下的敌人，攻击与伤害增加「法术基础环阶总和的一半（向上取整）」；此处按 2 环法术建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/娴熟专长/配件专长.htm",
+    "anchor": "战法宝钻"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.灵能武士.援驰",
+  "name": "援驰",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "灵能武士",
+    "class_id": "class.psychic_warrior",
+    "level": 9,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "与盟友建立心灵链接（夹击加值 +3、分摊伤害、共享熟练、同步先攻）"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "团队协作效应：夹击加值属环境判定，分摊伤害属防御",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/灵能武士.htm",
+    "anchor": "援驰"
+  },
+  "status": "approximated",
+  "ruling": null
+}

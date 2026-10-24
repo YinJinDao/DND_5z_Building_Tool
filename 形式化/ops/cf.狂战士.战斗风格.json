@@ -1,0 +1,81 @@
+{
+  "id": "cf.狂战士.战斗风格",
+  "name": "战斗风格",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 1,
+    "subclass": null
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "build_time",
+  "gate": {},
+  "projection": {
+    "choice_key": "fighting_style",
+    "options": {
+      "对决": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ],
+          "note": "单手持握一把近战武器且未持别的武器时，命中额外加熟练加值"
+        }
+      },
+      "巨武器战斗": {
+        "projection": {
+          "scales_with_adv": {
+            "per_tier": {
+              "flat": 3
+            }
+          },
+          "note": "双手使用双手/两用近战武器时，每重优势 +3、每重劣势 -3"
+        }
+      },
+      "双武器战斗": {
+        "projection": {
+          "bonus_action_ability_mod": true,
+          "note": "附赠动作的武器攻击也吃攻击关键属性调整值（此前副手默认不加）"
+        }
+      },
+      "投掷武器战斗": {
+        "projection": {
+          "extra_dice": [
+            {
+              "dice": "0",
+              "flat": "proficiency",
+              "damage_type": "same_as_weapon"
+            }
+          ],
+          "note": "投掷发动的远程武器攻击命中后额外加熟练加值"
+        }
+      },
+      "守护": {
+        "projection": {
+          "note": "防御侧：让攻击身边 5 尺内他人的攻击具有劣势，不计入 DPR"
+        }
+      },
+      "拦截": {
+        "projection": {
+          "note": "防御侧：用反应减少他人所受伤害 1d10+熟练加值，不计入 DPR"
+        }
+      }
+    },
+    "note": "由构筑 choices.fighting_style 选择；未选择则本特性不生效并告警。与其它职业共用同一键，选项集按职业各自不同"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士.htm",
+    "anchor": "战斗风格"
+  },
+  "status": "approximated",
+  "ruling": null
+}

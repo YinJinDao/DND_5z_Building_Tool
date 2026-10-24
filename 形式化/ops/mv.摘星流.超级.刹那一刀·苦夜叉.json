@@ -1,0 +1,29 @@
+{
+  "id": "mv.摘星流.超级.刹那一刀·苦夜叉",
+  "name": "刹那一刀·苦夜叉",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "移动 60 尺后发动一次无劣势的近战武器攻击；若未击杀目标则自身降到 0 生命值"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "自杀式招式：未击杀即自身归零，不构成可重复的每轮输出",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/摘星流专长.htm",
+    "anchor": "刹那一刀·苦夜叉"
+  },
+  "status": "approximated",
+  "ruling": null
+}

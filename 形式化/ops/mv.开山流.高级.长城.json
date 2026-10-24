@@ -1,0 +1,35 @@
+{
+  "id": "mv.开山流.高级.长城",
+  "name": "长城",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost_first": 2
+  },
+  "cost": {
+    "reaction": 1,
+    "superiority": 2
+  },
+  "decision_point": "on_trigger",
+  "gate": {
+    "weapon_medium": "盾牌"
+  },
+  "projection": {
+    "damage_replaces_weapon": true,
+    "damage_table": {
+      "table": "tbl.长城",
+      "type": "bludgeoning",
+      "temporary_hp": 0,
+      "note": "伤害按临时生命值分档；打桩默认无临时生命值，取最低档"
+    }
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "长城"
+  },
+  "status": "modeled",
+  "ruling": null
+}

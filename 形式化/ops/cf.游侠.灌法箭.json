@@ -1,0 +1,30 @@
+{
+  "id": "cf.游侠.灌法箭",
+  "name": "灌法箭",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "游侠",
+    "class_id": "class.ranger",
+    "level": 15,
+    "subclass": "魔射手"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "把游侠法术的效果附在箭上，伤害由被附的法术产生"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害来源是被附着的法术，该特性只改变投射方式",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/游侠.htm",
+    "anchor": "灌法箭"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -1,0 +1,30 @@
+{
+  "id": "cf.牧师.紧急救援",
+  "name": "紧急救援",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "牧师",
+    "class_id": "class.cleric",
+    "level": 7,
+    "subclass": "神官（牧师变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "用反应为濒死的友方施展治疗法术"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "治疗反应，不产生伤害",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/牧师.htm",
+    "anchor": "紧急救援"
+  },
+  "status": "approximated",
+  "ruling": null
+}

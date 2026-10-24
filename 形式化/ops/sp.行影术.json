@@ -1,0 +1,31 @@
+{
+  "id": "sp.行影术",
+  "name": "行影术",
+  "kind": "spell",
+  "level": 6,
+  "school": "幻术",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "位面旅行"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "行影术"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "位面旅行"
+}

@@ -1,0 +1,36 @@
+{
+  "id": "sp.魔族型貌",
+  "name": "魔族型貌",
+  "kind": "spell",
+  "level": 5,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "触及",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {},
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "魔族型貌"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "save": {
+    "ability": "wis",
+    "dc_from": "spell_dc"
+  },
+  "damage": {
+    "dice": "1d6",
+    "damage_type": "fire",
+    "half_on_save": true
+  }
+}

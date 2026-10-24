@@ -1,0 +1,36 @@
+{
+  "id": "sp.伏击猎物",
+  "name": "伏击猎物",
+  "kind": "spell",
+  "level": 1,
+  "school": "幻术",
+  "casting_time": "动作",
+  "range": "自身",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 1
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "1d6",
+        "damage_type": "same_as_weapon",
+        "note": "对看不见你的生物伤害 +1d6，每升一环再 +1d6"
+      }
+    ],
+    "note": "持续期间隐形并对看不见你的生物额外 1d6；在策略 buffs 中列出本法术即生效"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/1环.htm",
+    "anchor": "伏击猎物"
+  },
+  "status": "approximated",
+  "ruling": null
+}

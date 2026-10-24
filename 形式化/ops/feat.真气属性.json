@@ -1,0 +1,27 @@
+{
+  "id": "feat.真气属性",
+  "name": "真气属性",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "侠客真气属性基础效果：移速、隐形、临时生命、禁反应"
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "侠客真气属性基础效果：移速、隐形、临时生命、禁反应",
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "真气属性"
+  },
+  "status": "modeled",
+  "ruling": null
+}

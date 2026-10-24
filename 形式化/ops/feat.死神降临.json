@@ -1,0 +1,28 @@
+{
+  "id": "feat.死神降临",
+  "name": "死神降临",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "威力攻击"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "power_attack_penalty_reduction": 3,
+    "note": "目标处于较弱负面状态时威力攻击只需 -3，处于较强负面状态时无需减值；需环境 flags 声明目标状态"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/通用专长/补编.htm",
+    "anchor": "死神降临"
+  },
+  "status": "approximated",
+  "ruling": null
+}

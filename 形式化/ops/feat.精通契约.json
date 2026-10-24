@@ -1,0 +1,29 @@
+{
+  "id": "feat.精通契约",
+  "name": "精通契约",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "魔契恩泽"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "刃之魔契：契约武器可用感知代替力量/敏捷。属性替换不改变数值，只是换了属性来源。属性替换不改变加值大小，只改变来源属性——构筑直接把最终数值写进 scores 与 combat.weapon.ability 即可"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/职业专长/契术师专长.htm",
+    "anchor": "精通契约"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "属性替换：改变的是用哪个属性算，不改变加值大小"
+}
