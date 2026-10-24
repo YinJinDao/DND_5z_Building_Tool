@@ -38,6 +38,10 @@ class Rule:
     #: 计数在结果树上按分支维护——失手归零，命中累加。不能预先算成常数，
     #: 因为"连续第几次"本身取决于这条分支上前几击是否命中。
     streak_damage: dict | None = None
+    #: 整场一次（毒击的毒素能量池、每场战斗一次的爆发）。池子是有限总量，
+    #: 花掉就没了。跨轮传递的是"还有多少概率没用掉"——因为伤害对池子线性，
+    #: 按概率缩放是精确的，和连击数用的是同一个道理。
+    once_per_fight: bool = False
     name: str = ""
 
     def matches(self, outcome, index):
@@ -97,6 +101,8 @@ def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
         if i >= len(seq):
             leaves += 1
             acc_streak_now[0] += prob * ctx.get("streak", start_streak)
+            for name, avail in ctx.get("pool_avail", {}).items():
+                pf_next[name] = pf_next.get(name, Fraction(0)) + prob * avail
             return
         atk = seq[i]
         adv = atk.adv_tiers + ctx.get("adv_bonus", 0)
@@ -110,7 +116,10 @@ def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
             if p <= 0:
                 continue
             extra = []
+            # 浅拷贝会把 pool_avail 的**同一个 dict** 带进每个分支，
+            # 于是"这条分支花掉了池子"会污染兄弟分支——多一次攻击反而少算伤害
             next_ctx = dict(ctx)
+            next_ctx["pool_avail"] = dict(ctx.get("pool_avail") or {})
             next_seq = seq
             # 跨攻击条件：本轮到目前为止是否全部命中（「刺剑大师」的精准连刺）
             if outcome == MISS:
@@ -126,6 +135,17 @@ def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
 
             for rule in rules:
                 if not rule.matches(outcome, i):
+                    continue
+                if rule.once_per_fight:
+                    # 池子还没花掉的那部分概率。花掉的分支把可用性清零，
+                    # 没花掉的分支原样带到下一轮——伤害对池子线性，缩放即精确
+                    avail = next_ctx["pool_avail"].get(rule.name, Fraction(1))
+                    if avail == 0:
+                        continue
+                    scaled = [replace(c, weight=(c.w * avail))
+                              for c in rule.extra_dice]
+                    extra.extend(scaled)
+                    next_ctx["pool_avail"][rule.name] = Fraction(0)
                     continue
                 if rule.streak_damage:
                     spec = rule.streak_damage
@@ -175,9 +195,14 @@ def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
             dfs(i + 1, next_ctx, prob * p, next_seq)
 
     acc_streak_now = [Fraction(0)]
-    dfs(0, {"streak": start_streak}, Fraction(1), list(attacks))
+    pf_start = dict((carry or {}).get("pool_avail") or {})
+    pf_next = {}
+
+    dfs(0, {"streak": start_streak, "pool_avail": dict(pf_start)},
+        Fraction(1), list(attacks))
     if carry is not None:
         carry["streak"] = acc_streak_now[0]
+        carry["pool_avail"] = pf_next
     return acc, leaves
 
 

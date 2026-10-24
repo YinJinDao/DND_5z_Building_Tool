@@ -289,6 +289,8 @@ ALLOWED_PROJECTION = {
     "flat_per_round",              # 逐轮增长的固定伤害（恶魔形态）
     "cap_rounds",                  # 逐轮增长的封顶轮数
     "per_hit_streak",              # 连续第 X 次命中额外 X×N（暴雨梨花）
+    "once_per_fight",              # 整场一次的有限池（毒击的毒素能量）
+    "caveat",                      # 已知但未计入数字的代价（换 AC、双向优势）
     "sneak_dice_to_attack_bonus",  # 放弃偷袭骰换攻击加值（致命精准）
     "spell_attack_bonus_by_hp",    # 按目标剩余生命给法术攻击加值（末路法术）
     "natural_weapon",              # 天生武器形态：{dice, damage_type, properties}

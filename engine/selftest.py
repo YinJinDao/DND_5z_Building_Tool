@@ -1706,6 +1706,65 @@ def test_cross_round_resources():
         print("  FAIL 17 级仍未无限")
 
 
+def test_overestimate_control():
+    print("")
+    print("[34] 高估点收敛：有限池与已知代价")
+
+    import json as _j
+
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    barb = _j.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                        encoding="utf-8"))
+    barb["combat"].pop("mount", None)
+    barb["feats"] = []
+    barb["choices"] = {}
+
+    # 毒击的毒素池是**整场** level×5，不是每击一份
+    pal = _j.loads(_j.dumps(barb))
+    pal["classes"] = [{"id": "class.paladin", "level": 5,
+                       "subclass": "恶武士（圣武士变体）"}]
+    pal["combat"]["weapon"] = {"name": "徒手", "kind": "徒手", "dice": "1d4",
+                              "damage_type": "bludgeoning", "enhancement": 0,
+                              "ability": "str", "properties": []}
+
+    def poison(rounds, attacks):
+        strat = {"rounds": [
+            {"round": i, "move": {"toward": True, "ft": 25}, "attacks": attacks,
+             "per_attack": {"ops": ["cf.圣武士.毒击"]}}
+            for i in range(1, rounds + 1)]}
+        return calc.evaluate(_j.loads(_j.dumps(pal)),
+                             {"target": {"ac": 15}}, strat).total
+
+    one_one = float(poison(1, 1))
+    one_three = float(poison(1, 3))
+    three_one = float(poison(3, 1))
+    if one_three > one_one:
+        print(f"  OK   多打几下确实更疼：1 击 {one_one:.3f} → 3 击 {one_three:.3f}")
+    else:
+        FAILS.append("池子在小池分支上被清空，多攻击反而更少")
+        print(f"  FAIL 多攻击反而更少：{one_one:.3f} vs {one_three:.3f}")
+
+    # 池子只给一次：3 轮 1 击 的增量应明显小于 1 轮 1 击的三倍
+    if three_one < one_one * 2.2:
+        print(f"  OK   池子只在首次命中抽出：1 轮 {one_one:.3f}，3 轮 {three_one:.3f}")
+    else:
+        FAILS.append("毒素池被重复计入")
+        print(f"  FAIL 毒素池被重复计入：{one_one:.3f} → {three_one:.3f}")
+
+    # 已知代价：生效的算子把 caveat 带进结果
+    strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                         "attacks": 1, "buffs": ["cf.狂战士.破胆怒喝"],
+                         "per_attack": {"ops": []}}]}
+    res = calc.evaluate(_j.loads(_j.dumps(barb)), {"target": {"ac": 15}}, strat)
+    if any("破胆怒喝" in c for c in res.caveats):
+        print("  OK   已知代价随结果返回：" + res.caveats[0][:24] + "…")
+    else:
+        FAILS.append("已知代价未返回")
+        print("  FAIL 已知代价未返回")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1743,6 +1802,7 @@ def main():
     test_stateful_damage()
     test_cross_round()
     test_cross_round_resources()
+    test_overestimate_control()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

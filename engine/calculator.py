@@ -313,6 +313,8 @@ def eval_level_expr(expr, level, mods=None, prof=None):
         return level
     if e.startswith("level//"):
         return level // int(e.split("//")[1])
+    if e.startswith("level*"):
+        return level * int(e.split("*")[1])
     if e == "prof" and prof is not None:
         return int(prof)
     if mods and e in mods:
@@ -985,6 +987,11 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
             # 每回合一次：只有本回合第一次攻击享有，其余攻击靠结果树分支处理
             rules.append(Rule(trigger="hit_or_crit", on_attack=attack_index,
                               once_per_turn=True, extra_dice=[comp], name=op["id"]))
+        elif extra.get("once_per_fight"):
+            # 整场一次的有限池（毒击）：整个池子在第一次命中时一次性抽出，
+            # 之后的攻击没有可抽的。按"还没花掉的概率"缩放，跨轮传递见 strategy
+            rules.append(Rule(trigger="hit_or_crit", once_per_fight=True,
+                              extra_dice=[comp], name=op["id"]))
         elif extra.get("per_hit_streak"):
             # 连续命中计数（暴雨梨花）：伤害随"连续第几次命中"增长，
             # 必须在结果树上按分支算，见 strategy.Rule.streak_damage
@@ -1157,6 +1164,9 @@ class Result:
     leaves: int
     trace: list
     spend_report: list = field(default_factory=list)
+    #: 已知的、**没有计入数字**的代价。DPR 只算输出，但有些能力的代价在
+    #: 防御侧（换 AC、双向优势、扣生命），把它们列出来比假装不存在诚实得多。
+    caveats: list = field(default_factory=list)
     warnings: list = field(default_factory=list)
 
 
@@ -2207,10 +2217,21 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                      f"{'，' + '、'.join(op_ids) if op_ids else ''} → {float(dmg):.3f}")
 
     total = sum((d for _, d in per_round), Fraction(0))
+    # 把生效算子声明的 caveat 汇总出来
+    caveats = []
+    active_ids = {op["id"] for op in granted_ops}
+    for rnd in strategy_doc.get("rounds", []):
+        active_ids.update(b for b in (rnd.get("buffs") or []))
+    for oid in active_ids:
+        op = ops.get(oid)
+        text = (op.get("projection") or {}).get("caveat") if op else None
+        if text:
+            caveats.append(f"{op['name']}：{text}")
+
     budget_errors = budget.check_schedule(spends) if spends else []
     return Result(per_round=per_round, total=total, leaves=leaves, trace=trace,
                   spend_report=budget.spend_report(spends) if spends else [],
-                  warnings=warnings + budget_errors)
+                  warnings=warnings + budget_errors, caveats=caveats)
 
 
 # ---------------------------------------------------------------- CLI
@@ -2238,6 +2259,10 @@ def main(argv):
         print("资源消耗:")
         for line in res.spend_report:
             print("  " + line)
+    if res.caveats:
+        print("已知代价（未计入上面的数字）:")
+        for c in res.caveats:
+            print("  ~ " + c)
     if res.warnings:
         print("警告:")
         for w in res.warnings:

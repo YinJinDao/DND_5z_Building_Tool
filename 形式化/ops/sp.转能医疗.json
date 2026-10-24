@@ -16,7 +16,8 @@
   },
   "decision_point": "before_roll",
   "projection": {
-    "note": "把承受的伤害转化为治疗"
+    "note": "把承受的伤害转化为治疗",
+    "caveat": "治疗有总量上限（40d6），超出后不再治疗"
   },
   "source": {
     "book": "5z",

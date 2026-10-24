@@ -15,7 +15,8 @@
   "decision_point": "self_turn_start",
   "gate": {},
   "projection": {
-    "note": "让目标也进入狂暴（使用你的狂暴数值）。效果作用在目标身上，不增加你自身的攻击"
+    "note": "让目标也进入狂暴（使用你的狂暴数值）。效果作用在目标身上，不增加你自身的攻击",
+    "caveat": "消耗一次狂暴使用次数"
   },
   "scope": "out_of_scope",
   "scope_reason": "对目标施加狂暴状态，属控制/增益他人；不改变本角色的输出",
