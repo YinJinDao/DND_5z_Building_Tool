@@ -842,18 +842,29 @@ def test_concentration():
     check("结束后不再结算", r3, Fraction(0), tol=1e-9)
     print(f"       施放 {float(r1):.2f}｜维持 {float(r2):.2f}｜结束 {float(r3):.2f}")
 
-    # 冲突：同时维持两个专注应当告警
-    conflict = {"rounds": [
+    # 重施同一个专注法术：是替换，不是叠加，伤害不该翻倍
+    recast = {"rounds": [
         {"round": 1, "attacks": 0,
          "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]},
         {"round": 2, "attacks": 0,
          "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]}]}
-    res2 = calc.evaluate(build, env, conflict)
-    if any("专注" in w for w in res2.warnings):
-        print("  OK   同时施放两个专注法术会告警")
+    res2 = calc.evaluate(build, env, recast)
+    d1, d2 = (d for _, d in res2.per_round)
+    check("重施同一专注法术不叠加", d2, d1, tol=1e-9)
+
+    # 换另一个专注法术：旧的应当中断，而不是两个一起挂着
+    swap = {"rounds": [
+        {"round": 1, "attacks": 0,
+         "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]},
+        {"round": 2, "attacks": 0,
+         "save_effects": [{"spell": "sp.暗黑星辰", "slot_level": 3}]},
+        {"round": 3, "attacks": 0}]}
+    res3 = calc.evaluate(build, env, swap)
+    if any("专注中断" in t for t in res3.trace):
+        print("  OK   换专注法术时旧的被中断")
     else:
-        FAILS.append("专注冲突未告警")
-        print("  FAIL 专注冲突未告警")
+        FAILS.append("专注未互斥")
+        print("  FAIL 换专注法术时旧的未中断")
 
 
 def test_extra_attack():
@@ -1518,6 +1529,85 @@ def test_stateful_damage():
     check("目标脱离区域后不再结算", three and left, one, tol=1e-9)
 
 
+def test_cross_round():
+    print("")
+    print("[32] 跨轮状态：连击延续、增益计时、专注互斥")
+
+    import json as _j
+
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _j.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                        encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["feats"] = []
+    base["choices"] = {}
+
+    def run(feats, rounds, buff_from=None, buff=None):
+        doc = _j.loads(_j.dumps(base))
+        doc["feats"] = [{"id": f, "at_level": 1} for f in feats]
+        strat = {"rounds": [
+            {"round": i, "move": {"toward": True, "ft": 25}, "attacks": 1,
+             "buffs": ([buff] if buff and i >= (buff_from or 1) else []),
+             "per_attack": {"ops": []}} for i in range(1, rounds + 1)]}
+        return calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+
+    # 连击链跨轮延续：第 2 轮不该从 X=1 重新开始
+    d1 = float(run(["feat.暴雨梨花"], 1).total - run([], 1).total)
+    d3 = float(run(["feat.暴雨梨花"], 3).total - run([], 3).total)
+    if d3 > d1 * 2.5:
+        print(f"  OK  连击跨轮延续：1 轮 +{d1:.3f}，3 轮 +{d3:.3f}")
+    else:
+        FAILS.append("连击未跨轮延续")
+        print(f"  FAIL 连击未跨轮延续：{d1:.3f} vs {d3:.3f}")
+
+    # 增益计时从「它自己开始的那一轮」算，不是从战斗第 1 轮
+    early = float(run([], 3, buff="sp.恶魔形态").total)
+    late = float(run([], 3, buff="sp.恶魔形态", buff_from=3).total)
+    bare3 = float(run([], 3).total)
+    if late - bare3 < early - bare3:
+        print(f"  OK  增益按自身起始轮计时：第1轮开 +{early-bare3:.3f}，"
+              f"第3轮开 +{late-bare3:.3f}")
+    else:
+        FAILS.append("增益计时未按起始轮")
+        print("  FAIL 增益计时未按起始轮")
+
+    # 第 3 轮才开、只打 3 轮：只应累积 1 轮（X=1）
+    expect = bare3 + (early - bare3) / 6 * 1   # 第1轮那份是 X=1 的量
+    if abs(float(late) - float(expect)) < 1e-6:
+        print(f"  OK  第3轮开只累积 1 轮：{float(late):.3f} = {float(expect):.3f}")
+    else:
+        FAILS.append("增益起始轮计时不精确")
+        print(f"  FAIL 增益起始轮计时不精确：{float(late):.3f} vs {float(expect):.3f}")
+
+    # 区域与专注的关系：月华之光在本数据里**不是**专注法术（duration=1分钟），
+    # 因此施放别的专注法术不应打断它。这条断言守的是"别把非专注区域
+    # 误当成专注区域一起清掉"。
+    wiz = _j.load(open(os.path.join(root, "examples", "wizard_l5.build.json"),
+                       encoding="utf-8"))
+    strat = {"rounds": [
+        {"round": 1, "attacks": 0,
+         "save_effects": [{"spell": "sp.月华之光", "slot_level": 2}]},
+        {"round": 2, "attacks": 0,
+         "save_effects": [{"spell": "sp.灼热金属", "slot_level": 2}]},
+        {"round": 3, "attacks": 0}]}
+    res = calc.evaluate(_j.loads(_j.dumps(wiz)),
+                        {"target": {"ac": 15, "saves": {"dex": 0, "con": 0}}},
+                        strat)
+    r1, r3 = ([d for n, d in res.per_round if n == k][0] for k in (1, 3))
+    if any("月华之光 区域持续" in t for t in res.trace if "第 3 轮" in t):
+        print("  OK  非专注的区域在别的专注法术施放后仍然持续")
+    else:
+        FAILS.append("非专注区域被误清")
+        print("  FAIL 非专注区域被误清")
+    if float(r3) > float(r1):
+        print(f"  OK  区域与专注叠加结算：第1轮 {float(r1):.3f}，第3轮 {float(r3):.3f}")
+    else:
+        FAILS.append("区域未与专注叠加")
+        print("  FAIL 区域未与专注叠加")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1553,6 +1643,7 @@ def main():
     test_martial_arts()
     test_build_check()
     test_stateful_damage()
+    test_cross_round()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

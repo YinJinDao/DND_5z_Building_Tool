@@ -70,17 +70,25 @@ def _damage_for_outcome(attack, outcome, target, extra):
     return total
 
 
-def evaluate_turn(attacks, rules=None, target=None, state=None):
+def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
     """求一轮的期望伤害。
 
-    state 若给出（CombatState），会校验资源是否足以支撑策略中的消耗。
-    返回 (期望伤害, 叶子数)。
+    `carry` 是**跨轮状态**：不传就是一轮打完清零。目前只放连击计数——
+    「暴雨梨花」的 X 指的是连续第几次命中，规则书说它只在失手或骰先攻时归零，
+    也就是**跨轮保留**。每轮独立求值会把这条链切断，第 2 轮又从头算 X=1。
+
+    返回 (期望伤害, 叶子数)。carry 就地更新，调用方无需接收。
     """
     rules = rules or []
     if target is None:
         raise ValueError("需要 target")
     acc = Fraction(0)
     leaves = 0
+    start_streak = int((carry or {}).get("streak", 0))
+    # 轮末连击数的**期望**。不能只取某一条分支的结果——连击数本身是随机的。
+    # 好在伤害对连击数是线性的（额外 2×X），所以带期望值进下一轮是精确的：
+    # E[2×(S+k)] = 2·E[S] + 2·k。
+    acc_streak = Fraction(0)
 
     def dfs(i, ctx, prob, seq):
         nonlocal acc, leaves
@@ -88,6 +96,7 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
             return
         if i >= len(seq):
             leaves += 1
+            acc_streak_now[0] += prob * ctx.get("streak", start_streak)
             return
         atk = seq[i]
         adv = atk.adv_tiers + ctx.get("adv_bonus", 0)
@@ -165,7 +174,10 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
             acc += prob * p * dmg
             dfs(i + 1, next_ctx, prob * p, next_seq)
 
-    dfs(0, {}, Fraction(1), list(attacks))
+    acc_streak_now = [Fraction(0)]
+    dfs(0, {"streak": start_streak}, Fraction(1), list(attacks))
+    if carry is not None:
+        carry["streak"] = acc_streak_now[0]
     return acc, leaves
 
 

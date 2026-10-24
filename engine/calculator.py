@@ -790,7 +790,7 @@ def resolve_damage_table(table, resolved, ctx=None):
 
 
 def _apply_buff_projections(attack, buffs, ops, resolved, attack_index,
-                           condition_ctx, rules_out):
+                           condition_ctx, rules_out, buff_since=None):
     """把本轮增益算子的**除优势以外**的投影作用到攻击上。
 
     增益（rage、恶魔形态、神恩…）此前只用来设置「是否狂暴」和一叠优势层数，
@@ -806,9 +806,15 @@ def _apply_buff_projections(attack, buffs, ops, resolved, attack_index,
         proj.pop("rage", None)
         if not proj or set(proj) <= {"note"}:
             continue
+        # 「施法后第 X 轮」要看**这个增益自己**开了几轮，不是战斗打到第几轮
+        ctx = condition_ctx
+        if buff_since and bid in buff_since and "flat_per_round" in json.dumps(proj):
+            ctx = dict(condition_ctx)
+            started = buff_since[bid]
+            now = int((condition_ctx or {}).get("round") or started)
+            ctx["round"] = max(1, now - started + 1)
         attack, rs = apply_op(dict(bop, projection=proj), attack, resolved,
-                              attack_index=attack_index,
-                              condition_ctx=condition_ctx)
+                              attack_index=attack_index, condition_ctx=ctx)
         rules_out.extend(rs)
     return attack
 
@@ -1579,7 +1585,23 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     # 区域每轮都会再次结算。此前一律标 out_of_scope 说"发生在目标回合"，
     # 但契约里目标照样要过自己的回合——它只是不还手、不挪窝。
     zones = []                       # [{name, op, slot, until}]
+    # 跨轮状态：连击数（暴雨梨花）、增益的起始轮（恶魔形态这类按"施法后第几轮"
+    # 增长的伤害）。每轮独立求值会把这两样都截断。
+    carry = {"streak": 0}
+    buff_since = {}                  # buff id → 首次出现的轮次
     sustained_op = None              # 维持中的专注算子（用于逐轮结算）
+
+    def _drop_concentration(why):
+        """结束当前专注，并连带结束它维持的区域。"""
+        nonlocal concentration_active, sustained_op
+        if not concentration_active:
+            return
+        trace.append(f"第 {rnum} 轮 专注中断：{concentration_active}（{why}）")
+        for z in list(zones):
+            if z.get("concentration"):
+                zones.remove(z)
+                trace.append(f"第 {rnum} 轮 {z['name']} 的持续区域随之结束")
+        concentration_active, sustained_op = None, None
 
     for rnd in strategy_doc.get("rounds", []):
         rnum = rnd.get("round", len(per_round) + 1)
@@ -1611,12 +1633,21 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                           if always_on(op)]
                        + [ops[b] for b in buffs if b in ops])
 
+        # 增益的起始轮：恶魔形态这类伤害按"施法后第几轮"增长，
+        # 用绝对轮次会把第 5 轮才开的增益当成已经累积了 5 轮
+        for bid in buffs:
+            buff_since.setdefault(bid, rnum)
+        for bid in list(buff_since):
+            if bid not in buffs:
+                del buff_since[bid]
+
         # 资源消耗
         for pid, amount in (rnd.get("spends") or {}).items():
             spends.append((rnum, pid, int(amount)))
 
         # 维持中的专注效果：在施放之后的回合继续结算
         sustained_dmg = Fraction(0)
+        sustained_id = sustained_op.get("id") if sustained_op else None
         if sustained_op is not None and not rnd.get("end_concentration"):
             eff = sustained_op.get("concentration_effect") or {}
             if eff.get("damage"):
@@ -1629,10 +1660,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 sustained_dmg += sd
                 trace.append(f"第 {rnum} 轮 维持 {sustained_op['name']}（{dice}）→ {float(sd):.3f}")
 
-        if rnd.get("end_concentration"):
-            if concentration_active:
-                trace.append(f"第 {rnum} 轮 结束专注：{concentration_active}")
-            concentration_active, sustained_op = None, None
+
 
         # 每轮重置移动力与槽位。速度**逐轮重算**——狂暴、点燃这类增益只在
         # 生效期间给移速，写在构筑层会让没开 buff 的回合也快跑。
@@ -1825,7 +1853,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
                 a = _apply_buff_projections(a, buffs, ops, resolved, i, cond_ctx,
-                                            all_rules_built)
+                                            all_rules_built, buff_since)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")
@@ -1907,7 +1935,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
                 a = _apply_buff_projections(a, buffs, ops, resolved, i, cond_ctx,
-                                            all_rules_built)
+                                            all_rules_built, buff_since)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")
@@ -1980,8 +2008,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                          f"（触发 {'、'.join(oa_used)}，预算 {budget}："
                          f"{'、'.join(budget_sources)}）")
 
-        dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
-                       else (Fraction(0), 0))
+        dmg, leaves = (evaluate_turn(attacks, all_rules, round_target, carry=carry)
+                       if attacks else (Fraction(0), 0))
 
         # 已存在的持续区域：目标不移动，故每轮再吃一次
         for z in list(zones):
@@ -2038,7 +2066,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 dur = rspec.get("rounds")
                 zones.append({"name": rec["name"], "op": rec,
                               "slot": eff.get("slot_level"),
-                              "until": (rnum + int(dur)) if dur else None})
+                              "until": (rnum + int(dur)) if dur else None,
+                              "concentration": bool(rec.get("concentration"))})
                 trace.append(f"第 {rnum} 轮 登记持续区域 {rec['name']}"
                              + (f"（持续 {dur} 轮）" if dur else "（持续到解除）"))
 
@@ -2050,25 +2079,35 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                toward=bool(post.get("toward", False)))
             trace.append(f"第 {rnum} 轮攻击后移动 {moved} 尺 → 距离 {state.distance_ft} 尺")
 
-        # 专注：同时只能维持一个。打桩下没有持续效果模型，因此这里只做冲突检测，
-        # 待专注类法术编译后，未中断的专注效果应跨轮继续生效。
+        # 专注：同时只能维持一个。**新开一个会顶掉旧的**——规则书说的是
+        # 失去专注，不是"两个一起挂着"。早先只告警不处理，等于让两个专注
+        # 同时生效，把伤害凭空推高。
+        def _open_concentration(op):
+            nonlocal concentration_active, sustained_op
+            if concentration_active and concentration_active != op["name"]:
+                _drop_concentration(f"{op['name']} 需要专注")
+            concentration_active = op["name"]
+            if op.get("concentration_effect"):
+                sustained_op = op
+
+        recast = False
         for eff in rnd.get("save_effects", []):
             sid = eff.get("spell")
             if sid and ops.get(sid, {}).get("concentration"):
-                if concentration_active:
-                    warnings.append(f"第 {rnum} 轮施放 {ops[sid]['name']}（专注），"
-                                    f"但 {concentration_active} 的专注尚未结束")
-                concentration_active = ops[sid]["name"]
-                if ops[sid].get("concentration_effect"):
-                    sustained_op = ops[sid]
+                recast = recast or sid == sustained_id
+                _open_concentration(ops[sid])
         pa_spell = (rnd.get("per_attack") or {}).get("spell")
         if pa_spell and ops.get(pa_spell, {}).get("concentration"):
-            if concentration_active:
-                warnings.append(f"第 {rnum} 轮施放 {ops[pa_spell]['name']}（专注），"
-                                f"但 {concentration_active} 的专注尚未结束")
-            concentration_active = ops[pa_spell]["name"]
-        if rnd.get("end_concentration"):
-            concentration_active = None
+            recast = recast or pa_spell == sustained_id
+            _open_concentration(ops[pa_spell])
+        if recast:
+            # 这一轮重施了正在维持的那个法术：本轮已经吃到了维持结算，
+            # 再叠一次施放伤害就成了同一法术结算两遍
+            trace.append(f"第 {rnum} 轮 重施 {concentration_active}，"
+                         f"本轮的维持结算改为施放伤害")
+            dmg -= sustained_dmg
+        if rnd.get("end_concentration") and concentration_active:
+            _drop_concentration("主动结束专注")
 
         dmg += sustained_dmg
         per_round.append((rnum, dmg))
