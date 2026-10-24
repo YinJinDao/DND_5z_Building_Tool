@@ -34,6 +34,10 @@ class Rule:
     extra_attack: dict | None = None                  # 命中后追加一次攻击
     extra_attack_all_hit: dict | None = None          # 本轮所有攻击都命中才追加
     once_per_turn: bool = False                       # 整轮只结算一次（偷袭）
+    #: 连续命中计数（暴雨梨花）：第 X 次连续命中额外造成 per_streak×X。
+    #: 计数在结果树上按分支维护——失手归零，命中累加。不能预先算成常数，
+    #: 因为"连续第几次"本身取决于这条分支上前几击是否命中。
+    streak_damage: dict | None = None
     name: str = ""
 
     def matches(self, outcome, index):
@@ -104,9 +108,24 @@ def evaluate_turn(attacks, rules=None, target=None, state=None):
                 next_ctx["all_hit"] = False
             else:
                 next_ctx.setdefault("all_hit", True)
+            # 连续命中计数：失手归零，命中累加。同一轮内所有 streak 规则共享
+            # 一个计数（规则书说的是"连续第 X 次攻击命中相同目标"）
+            if outcome == MISS:
+                next_ctx["streak"] = 0
+            else:
+                next_ctx["streak"] = next_ctx.get("streak", 0) + 1
+
             for rule in rules:
                 if not rule.matches(outcome, i):
                     continue
+                if rule.streak_damage:
+                    spec = rule.streak_damage
+                    n = int(spec.get("per_streak", 1)) * next_ctx["streak"]
+                    if n:
+                        extra.append(DamageComponent(
+                            "0", flat=n,
+                            dtype=spec.get("damage_type", "same_as_weapon"),
+                            slot=rule.name or "streak"))
                 # 每回合一次（偷袭）：本分支已用掉就不再给。
                 # 用 ctx 记录而不是跳过固定序号——第一击失手时，第二击仍应吃到偷袭。
                 once_key = f"once:{rule.name}"

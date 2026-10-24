@@ -789,6 +789,30 @@ def resolve_damage_table(table, resolved, ctx=None):
     return dice
 
 
+def _apply_buff_projections(attack, buffs, ops, resolved, attack_index,
+                           condition_ctx, rules_out):
+    """把本轮增益算子的**除优势以外**的投影作用到攻击上。
+
+    增益（rage、恶魔形态、神恩…）此前只用来设置「是否狂暴」和一叠优势层数，
+    其余投影一律不生效——于是一个给伤害的法术写进 buffs 等于没写。
+    优势层数已由外层累加成 `adv`，这里先摘掉，避免同一层算两次。
+    """
+    for bid in buffs:
+        bop = ops.get(bid)
+        if not bop:
+            continue
+        proj = dict(bop.get("projection") or {})
+        proj.pop("adv_tiers", None)
+        proj.pop("rage", None)
+        if not proj or set(proj) <= {"note"}:
+            continue
+        attack, rs = apply_op(dict(bop, projection=proj), attack, resolved,
+                              attack_index=attack_index,
+                              condition_ctx=condition_ctx)
+        rules_out.extend(rs)
+    return attack
+
+
 def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
     if not _TABLES_CACHE:
         _TABLES_CACHE.update(load_damage_tables())
@@ -917,6 +941,12 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
         flat = int(resolved.derived.prof) if raw_flat == "proficiency" else int(raw_flat)
         if extra.get("flat_by_size"):        # 按自身体型给固定加值（泰坦弓手）
             flat += int(extra["flat_by_size"].get(resolved.size, 0))
+        if extra.get("flat_per_round"):
+            # 逐轮增长（恶魔形态：第 X 轮额外 X×10）。轮次来自本轮编号；
+            # 封顶由 cap_rounds 给出，缺省不封顶
+            r = int((condition_ctx or {}).get("round") or 1)
+            r = min(r, int(extra.get("cap_rounds", r)))
+            flat += int(extra["flat_per_round"]) * r
         if extra.get("flat_expr"):          # 如「狂战士等级的一半」「熟练加值」
             flat = eval_level_expr(extra["flat_expr"], resolved.derived.level,
                                    mods=resolved.derived.mods,
@@ -929,7 +959,15 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
         if extra.get("limit") == "每回合一次":
             # 每回合一次：只有本回合第一次攻击享有，其余攻击靠结果树分支处理
             rules.append(Rule(trigger="hit_or_crit", on_attack=attack_index,
-                              extra_dice=[comp], name=op["id"]))
+                              once_per_turn=True, extra_dice=[comp], name=op["id"]))
+        elif extra.get("per_hit_streak"):
+            # 连续命中计数（暴雨梨花）：伤害随"连续第几次命中"增长，
+            # 必须在结果树上按分支算，见 strategy.Rule.streak_damage
+            rules.append(Rule(trigger="hit_or_crit",
+                              streak_damage={"per_streak": int(extra["per_hit_streak"]),
+                                             "damage_type": dtype},
+                              name=op["id"]))
+
         else:
             attack.components.append(comp)
     return attack, rules
@@ -1729,7 +1767,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         # 条件上下文：构筑/回合状态 → 扁平键值，供 conditions 求值
         cond_ctx = build_condition_context(
             resolved, gate_ctx,
-            {"size": resolved.size, "net_adv_tiers": adv,
+            {"size": resolved.size, "net_adv_tiers": adv, "round": rnum,
              "prior_action": "moved" if state.travel_this_turn > 0 else None})
         wdice = weapon_dice_for(resolved, move_ops, build_doc)
         if wdice != resolved.weapon["dice"]:
@@ -1782,6 +1820,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     a, rs = apply_op(pop, a, resolved, attack_index=i,
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
+                a = _apply_buff_projections(a, buffs, ops, resolved, i, cond_ctx,
+                                            all_rules_built)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}")
@@ -1862,6 +1902,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     a, rs = apply_op(pop, a, resolved, attack_index=i,
                                      condition_ctx=cond_ctx)
                     all_rules_built.extend(rs)
+                a = _apply_buff_projections(a, buffs, ops, resolved, i, cond_ctx,
+                                            all_rules_built)
                 for oid in op_ids:
                     if oid not in ops:
                         raise KeyError(f"未知算子: {oid}（检查 形式化/ops/）")

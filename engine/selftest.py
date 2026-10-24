@@ -1410,6 +1410,87 @@ def test_build_check():
         print("  FAIL 范例构筑报了 ERROR：" + str([i["code"] for i in rep.errors()]))
 
 
+def test_stateful_damage():
+    print("")
+    print("[31] 状态化伤害：连击链与逐轮增长")
+
+    import json as _json
+
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _json.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                           encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["feats"] = []
+    base["choices"] = {}
+
+    def run(feats, rounds, attacks, buffs=None):
+        doc = _json.loads(_json.dumps(base))
+        doc["feats"] = [{"id": f, "at_level": 1} for f in feats]
+        strat = {"rounds": [
+            {"round": i + 1, "move": {"toward": True, "ft": 25},
+             "attacks": attacks, "buffs": buffs or [],
+             "per_attack": {"ops": []}} for i in range(rounds)]}
+        return calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+
+    # 连击链：第 X 次连续命中额外 2×X。连续命中的期望增量应显著大于单次命中
+    bare1 = run([], 1, 2).total
+    with1 = run(["feat.暴雨梨花"], 1, 2).total
+    if with1 > bare1:
+        print(f"  OK  暴雨梨花生效：{float(bare1):.3f} → {float(with1):.3f}")
+    else:
+        FAILS.append("暴雨梨花未生效")
+        print("  FAIL 暴雨梨花未生效")
+
+    # 连击链的增量应随每轮攻击次数增加——命中越多，越常走到 X=3、X=4
+    d2 = float(run(["feat.暴雨梨花"], 1, 2).total - run([], 1, 2).total)
+    d4 = float(run(["feat.暴雨梨花"], 1, 4).total - run([], 1, 4).total)
+    if d4 > d2 * 1.5:
+        print(f"  OK  连击数越高增量越大：2 击 +{d2:.3f}，4 击 +{d4:.3f}")
+    else:
+        FAILS.append("连击链未随攻击次数放大")
+        print(f"  FAIL 连击链未随攻击次数放大：{d2:.3f} vs {d4:.3f}")
+
+    # 失手会打断连击：AC 越高，增量应越小
+    doc = _json.loads(_json.dumps(base))
+    doc["feats"] = [{"id": "feat.暴雨梨花", "at_level": 1}]
+    strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                         "attacks": 4, "per_attack": {"ops": []}}]}
+    low = calc.evaluate(doc, {"target": {"ac": 10}}, strat).total
+    bare = _json.loads(_json.dumps(doc))
+    bare["feats"] = []
+    low_bare = calc.evaluate(bare, {"target": {"ac": 10}}, strat).total
+    hi = calc.evaluate(doc, {"target": {"ac": 19}}, strat).total
+    hi_bare = calc.evaluate(bare, {"target": {"ac": 19}}, strat).total
+    if (low - low_bare) > (hi - hi_bare):
+        print(f"  OK  失手打断连击：AC10 +{float(low-low_bare):.3f}，"
+              f"AC19 +{float(hi-hi_bare):.3f}")
+    else:
+        FAILS.append("失手未打断连击链")
+        print("  FAIL 失手未打断连击链")
+
+    # 逐轮增长：第 X 轮额外 X×10，十轮封顶
+    r1 = run([], 1, 1, ["sp.恶魔形态"]).total - run([], 1, 1).total
+    r5 = run([], 5, 1, ["sp.恶魔形态"]).total - run([], 5, 1).total
+    r12 = run([], 12, 1, ["sp.恶魔形态"]).total - run([], 12, 1).total
+    if float(r5) > float(r1) and float(r12) > float(r5):
+        print(f"  OK  恶魔形态逐轮增长：1 轮 +{float(r1):.3f}，"
+              f"5 轮 +{float(r5):.3f}，12 轮 +{float(r12):.3f}")
+    else:
+        FAILS.append("逐轮增长未生效")
+        print("  FAIL 恶魔形态未逐轮增长")
+
+    # 封顶：12 轮的累计增量应等于 1..10 封顶后的和（10*(1+..+10)+10+10）*命中率
+    expect_rounds = sum(min(i, 10) for i in range(1, 13))
+    got_rounds = float(r12) / (float(r1) / 1.0) if float(r1) else 0
+    if abs(got_rounds - expect_rounds) < 0.01:
+        print(f"  OK  十轮封顶：累计等价轮数 {got_rounds:.1f} = {expect_rounds}")
+    else:
+        FAILS.append("逐轮增长的封顶不对")
+        print(f"  FAIL 封顶轮数和不对：{got_rounds:.2f} vs {expect_rounds}")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1444,6 +1525,7 @@ def main():
     test_sneak_attack()
     test_martial_arts()
     test_build_check()
+    test_stateful_damage()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

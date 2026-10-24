@@ -19,11 +19,14 @@
     "extra_dice": [
       {
         "dice": "0",
-        "flat": 10,
-        "damage_type": "necrotic"
+        "flat": 0,
+        "damage_type": "necrotic",
+        "flat_per_round": 10,
+        "cap_rounds": 10,
+        "note": "第 X 轮额外 X×10 暗蚀，十轮封顶 100"
       }
     ],
-    "note": "施法后第 X 轮，攻击命中额外造成 X×10 暗蚀伤害，十轮封顶 100。此处按 X=1 建模，逐轮增长需要按轮数求值"
+    "note": "施法后第 X 轮起攻击命中额外造成 X×10 暗蚀伤害，十轮封顶。轮次由引擎逐轮传入"
   },
   "source": {
     "book": "5z",
@@ -31,6 +34,6 @@
     "file": "法术/法术详述/5环.htm",
     "anchor": "恶魔形态"
   },
-  "status": "approximated",
+  "status": "modeled",
   "ruling": null
 }

@@ -286,6 +286,9 @@ ALLOWED_PROJECTION = {
     "next_adv_on_miss",            # 失手后下一次攻击的优势层数（森林射手）
     "weapon_dice_maximize",        # 把武器基础伤害骰取满（过载震颤）
     "sneak_attack_bonus_dice",     # 每多一种偷袭触发条件，偷袭骰 +N（多重偷袭）
+    "flat_per_round",              # 逐轮增长的固定伤害（恶魔形态）
+    "cap_rounds",                  # 逐轮增长的封顶轮数
+    "per_hit_streak",              # 连续第 X 次命中额外 X×N（暴雨梨花）
     "sneak_dice_to_attack_bonus",  # 放弃偷袭骰换攻击加值（致命精准）
     "spell_attack_bonus_by_hp",    # 按目标剩余生命给法术攻击加值（末路法术）
     "natural_weapon",              # 天生武器形态：{dice, damage_type, properties}

@@ -17,12 +17,13 @@
     "extra_dice": [
       {
         "dice": "0",
-        "flat": 2,
+        "flat": 0,
         "damage_type": "same_as_weapon",
-        "note": "连续第 X 次命中的额外伤害为 2×X"
+        "per_hit_streak": 2,
+        "note": "连续第 X 次命中额外造成 2×X；失手或骰先攻时 X 归零"
       }
     ],
-    "note": "连弩对同一目标连续命中的第 X 次额外造成 2×X 点伤害，失手或骰先攻则 X 归零。此处按 X=1 建模；连击链需要状态化计数，见「多实例结算」待办"
+    "note": "连弩对同一目标连续命中的第 X 次额外造成 2×X 点伤害。计数在结果树上按分支维护：失手归零、命中累加"
   },
   "source": {
     "book": "5z",
@@ -30,6 +31,6 @@
     "file": "专长/娴熟专长/异种武器专长.htm",
     "anchor": "暴雨梨花"
   },
-  "status": "approximated",
+  "status": "modeled",
   "ruling": null
 }
