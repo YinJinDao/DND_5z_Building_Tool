@@ -111,7 +111,7 @@
 {"id": "sp.笨拙射线", "name": "笨拙射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.灼热射线", "name": "灼热射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.粉碎音波", "name": "粉碎音波", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.荆棘丛生", "name": "荆棘丛生", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.荆棘丛生", "name": "荆棘丛生", "status": "out_of_scope", "reason": "伤害由「目标在区域内移动」触发；打桩契约下目标不移动，本场战斗不会产生这份伤害", "source": "manual"}
 {"id": "sp.灵体武器", "name": "灵体武器", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.蛛网术", "name": "蛛网术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.龙息术", "name": "龙息术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -182,7 +182,7 @@
 {"id": "sp.潮涌", "name": "潮涌", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.智能壁垒", "name": "智能壁垒", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.脉冲波动", "name": "脉冲波动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "sp.阿莎德隆奔行", "name": "阿莎德隆奔行", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.阿莎德隆奔行", "name": "阿莎德隆奔行", "status": "out_of_scope", "reason": "伤害由「你自己移动到目标 5 尺内」触发，取决于每轮位移，不是区域持续结算", "source": "manual"}
 {"id": "sp.册封", "name": "册封", "status": "out_of_scope", "reason": "为目标授予职业等级", "source": "manual"}
 {"id": "sp.米萨卡的加速术", "name": "米萨卡的加速术", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.创造幽灵船", "name": "创造幽灵船", "status": "modeled", "reason": "已手工编译", "source": "manual"}

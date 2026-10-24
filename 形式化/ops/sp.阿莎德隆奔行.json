@@ -34,5 +34,7 @@
     "dice": "1d6",
     "damage_type": "fire",
     "half_on_save": false
-  }
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害由「你自己移动到目标 5 尺内」触发，取决于每轮位移，不是区域持续结算"
 }

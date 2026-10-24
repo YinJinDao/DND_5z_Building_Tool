@@ -34,5 +34,7 @@
     "dice": "2d4",
     "damage_type": "piercing",
     "half_on_save": false
-  }
+  },
+  "scope": "out_of_scope",
+  "scope_reason": "伤害由「目标在区域内移动」触发；打桩契约下目标不移动，本场战斗不会产生这份伤害"
 }

@@ -38,5 +38,9 @@
   "area": {
     "shape": "cube",
     "size_ft": 30
+  },
+  "recurring": {
+    "rounds": null,
+    "note": "目标留在区域内，每轮再次结算。打桩契约下目标不移动，因此这个区域会一直罩着它；环境可用 target_leaves_areas 声明目标脱离"
   }
 }

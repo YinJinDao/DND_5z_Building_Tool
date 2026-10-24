@@ -1491,6 +1491,33 @@ def test_stateful_damage():
         print(f"  FAIL 封顶轮数和不对：{got_rounds:.2f} vs {expect_rounds}")
 
 
+    # 持续区域：目标不移动，落在它身上的区域每轮再结算一次
+    import json as _j2
+
+    wiz = _j2.load(open(os.path.join(root, "examples", "wizard_l5.build.json"),
+                        encoding="utf-8"))
+
+    def zone(spell, rounds, extra_env=None):
+        strat = {"rounds": [{"round": 1, "attacks": 0,
+                             "save_effects": [{"spell": spell, "slot_level": 3}]}]
+                 + [{"round": i, "attacks": 0, "save_effects": []}
+                    for i in range(2, rounds + 1)]}
+        env = {"target": {"ac": 15, "saves": {"dex": 0, "con": 0}}}
+        if extra_env:
+            env.update(extra_env)
+        return calc.evaluate(_j2.loads(_j2.dumps(wiz)), env, strat).total
+
+    one = float(zone("sp.匕首之云", 1))
+    three = float(zone("sp.匕首之云", 3))
+    left = float(zone("sp.匕首之云", 3, {"target_leaves_areas": True}))
+    if abs(three - one * 3) < 1e-6:
+        print(f"  OK  持续区域按轮结算：1 轮 {one:.3f}，3 轮 {three:.3f}")
+    else:
+        FAILS.append("持续区域未按轮累加")
+        print(f"  FAIL 持续区域未按轮累加：{one:.3f} vs {three:.3f}")
+    check("目标脱离区域后不再结算", three and left, one, tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")

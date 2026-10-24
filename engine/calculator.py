@@ -1575,6 +1575,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     per_round = []
     spends = []
     concentration_active = None      # 当前维持专注的法术名
+    # 持续区域（匕首之云、月华之光…）：打桩契约下目标不移动，落在它身上的
+    # 区域每轮都会再次结算。此前一律标 out_of_scope 说"发生在目标回合"，
+    # 但契约里目标照样要过自己的回合——它只是不还手、不挪窝。
+    zones = []                       # [{name, op, slot, until}]
     sustained_op = None              # 维持中的专注算子（用于逐轮结算）
 
     for rnd in strategy_doc.get("rounds", []):
@@ -1979,6 +1983,19 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         dmg, leaves = (evaluate_turn(attacks, all_rules, round_target) if attacks
                        else (Fraction(0), 0))
 
+        # 已存在的持续区域：目标不移动，故每轮再吃一次
+        for z in list(zones):
+            if env_doc.get("target_leaves_areas"):
+                zones.remove(z)
+                trace.append(f"第 {rnum} 轮 目标离开了 {z['name']} 的区域")
+                continue
+            if z["until"] is not None and rnum > z["until"]:
+                zones.remove(z)
+                continue
+            zd, zdice = save_effect_from_op(resolved, z["op"], target, z["slot"])
+            dmg += zd
+            trace.append(f"第 {rnum} 轮 {z['name']} 区域持续（{zdice}）→ {float(zd):.3f}")
+
         # 作用于本轮所有豁免效果的修正专长（如「威力豁免」）
         dc_modifier = 0
         on_fail_extra = None
@@ -2014,6 +2031,16 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 sd = _save_effect_damage(eff, target, resolved)
                 trace.append(f"第 {rnum} 轮豁免效果 {eff.get('dice')} → {float(sd):.3f}")
             dmg += sd
+            # 登记持续区域：从下一轮开始每轮结算
+            rec = ops.get(eff.get("spell"), {}) if "spell" in eff else {}
+            if rec.get("recurring"):
+                rspec = rec["recurring"]
+                dur = rspec.get("rounds")
+                zones.append({"name": rec["name"], "op": rec,
+                              "slot": eff.get("slot_level"),
+                              "until": (rnum + int(dur)) if dur else None})
+                trace.append(f"第 {rnum} 轮 登记持续区域 {rec['name']}"
+                             + (f"（持续 {dur} 轮）" if dur else "（持续到解除）"))
 
         # 步骤 5：攻击之后才能用剩余移动力（骑乘冲刺流程的第 5 步）。
         # 「反复拉冲」的可持续性取决于这里——退开的距离决定了下一轮能否再冲。
