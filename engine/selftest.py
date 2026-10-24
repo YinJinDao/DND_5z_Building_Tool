@@ -1786,6 +1786,27 @@ def test_overestimate_control():
         FAILS.append("重骰的生效条件不对")
         print(f"  FAIL 重骰的生效条件不对：AC19 +{miss_more:.3f}，AC5 +{miss_less:.3f}")
 
+    # 取满（法术极效）：期望值应等于骰面上限，比值 = 48/28
+    wiz = _j.load(open(os.path.join(root, "examples", "wizard_l5.build.json"),
+                       encoding="utf-8"))
+
+    def fireball(maximize):
+        eff = {"spell": "sp.火球术", "slot_level": 3}
+        if maximize:
+            eff["maximize"] = True
+        strat = {"rounds": [{"round": 1, "attacks": 0, "save_effects": [eff]}]}
+        return float(calc.evaluate(_j.loads(_j.dumps(wiz)),
+                                   {"target": {"ac": 15, "saves": {"dex": 0}}},
+                                   strat).total)
+
+    plain, maxed = fireball(False), fireball(True)
+    ratio = maxed / plain
+    if abs(ratio - 48 / 28) < 1e-6:
+        print(f"  OK   取满 = 骰面上限：{plain:.2f} → {maxed:.2f}（比值 {ratio:.3f}）")
+    else:
+        FAILS.append("取满的期望值不对")
+        print(f"  FAIL 取满的期望值不对：比值 {ratio:.3f}，应为 {48/28:.3f}")
+
     # 次数接资源池：3 点幸运在 5 轮里比 1 点用得更充分
     one = luck(15, ["feat.幸运"], rounds=5, cap=1) - luck(15, [], rounds=5)
     three = luck(15, ["feat.幸运"], rounds=5, cap=3) - luck(15, [], rounds=5)

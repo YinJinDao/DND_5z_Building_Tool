@@ -292,6 +292,8 @@ ALLOWED_PROJECTION = {
     "once_per_fight",              # 整场一次的有限池（毒击的毒素能量）
     "caveat",                      # 已知但未计入数字的代价（换 AC、双向优势）
     "reroll_miss",                 # 失手后重掷一次（幸运、法术追踪）
+    "maximize",                    # 伤害骰取满（法术极效），由策略在施放时声明
+    "metamagic",                   # 超魔类型标记
     "sneak_dice_to_attack_bonus",  # 放弃偷袭骰换攻击加值（致命精准）
     "spell_attack_bonus_by_hp",    # 按目标剩余生命给法术攻击加值（末路法术）
     "natural_weapon",              # 天生武器形态：{dice, damage_type, properties}

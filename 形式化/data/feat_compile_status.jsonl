@@ -197,8 +197,8 @@
 {"id": "feat.巫婆诅咒", "name": "巫婆诅咒", "status": "out_of_scope", "reason": "把法术改为诅咒：延续与解除条件", "source": "manual"}
 {"id": "feat.法术追踪", "name": "法术追踪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.末路法术", "name": "末路法术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
-{"id": "feat.法术强效", "name": "法术强效", "status": "out_of_scope", "reason": "超魔：增加法术的伤害骰数量，属法术侧", "source": "manual"}
-{"id": "feat.法术极效", "name": "法术极效", "status": "out_of_scope", "reason": "超魔：让伤害骰取满，属法术侧", "source": "manual"}
+{"id": "feat.法术强效", "name": "法术强效", "status": "out_of_scope", "reason": "增骰需要按具体法术的骰式逐条换算，尚无通用表达；取满已有支持", "source": "manual"}
+{"id": "feat.法术极效", "name": "法术极效", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.冰封诅咒", "name": "冰封诅咒", "status": "out_of_scope", "reason": "减速与诅咒，不造成额外伤害", "source": "manual"}
 {"id": "feat.炽烈爆发", "name": "炽烈爆发", "status": "out_of_scope", "reason": "超魔：让火焰法术附带推离与额外伤害", "source": "manual"}
 {"id": "feat.法术聚焦", "name": "法术聚焦", "status": "out_of_scope", "reason": "超魔：范围法术改为单体并给予豁免劣势", "source": "manual"}

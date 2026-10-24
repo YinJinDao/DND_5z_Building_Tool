@@ -14,16 +14,16 @@
   "decision_point": "self_turn_start",
   "gate": {},
   "projection": {
-    "note": "超魔：让伤害骰取满，属法术侧"
+    "metamagic": "maximize",
+    "note": "消耗术法点让一道伤害法术的伤害骰取满。是否对某次施放使用由**策略**声明：在 save_effects / per_attack 里写 maximize: true，并在该轮 spends 里扣相应的术法点",
+    "caveat": "术法点的消耗由策略手写，本工具不会自动扣"
   },
-  "scope": "out_of_scope",
-  "scope_reason": "超魔：让伤害骰取满，属法术侧",
   "source": {
     "book": "5z",
     "version": "1.63",
-    "file": "专长/通用专长/补编.htm",
+    "file": "专长/超魔专长/改变数值.htm",
     "anchor": "法术极效"
   },
-  "status": "modeled",
+  "status": "approximated",
   "ruling": null
 }

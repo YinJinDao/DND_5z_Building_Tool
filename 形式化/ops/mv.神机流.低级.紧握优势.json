@@ -1,0 +1,30 @@
+{
+  "id": "mv.神机流.低级.紧握优势",
+  "name": "紧握优势",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 0
+  },
+  "cost": {
+    "replace_attack": 0,
+    "superiority": 0
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "reroll_miss": {
+      "uses": "unlimited"
+    },
+    "note": "重骰该次攻击检定（或属性检定）的一枚 d20，可能把失败改为成功"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/神机流专长.htm",
+    "anchor": "紧握优势"
+  },
+  "status": "modeled",
+  "ruling": null
+}

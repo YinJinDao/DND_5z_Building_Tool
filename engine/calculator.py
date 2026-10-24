@@ -35,7 +35,7 @@ from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
                     expected_save_damage, opposed_win_probability,
                     save_fail_probability, validate_turn)
 from evaluator import (Attack, DamageComponent, TargetProfile,
-                       apply_target_pipeline, dice_mean, expected_damage)
+                       apply_target_pipeline, dice_mean, expected_damage, dice_max)
 from strategy import Rule, evaluate_turn
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1109,7 +1109,8 @@ def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None, target=None):
     if spec["damage"].get("type_choice"):
         if target is not None:
             dtype = pick_damage_type(spec["damage"]["type_choice"], target)
-    comp = DamageComponent(dice, flat=0, dtype=dtype, slot=op["id"])
+    comp = DamageComponent(dice, flat=0, dtype=dtype, slot=op["id"],
+                           maximized=bool(spec["damage"].get("maximize")))
     return Attack(attack_bonus=resolved.derived.spell_attack.total,
                   adv_tiers=adv_tiers, components=[comp],
                   auto_hit=bool(spec.get("auto_hit", False)))
@@ -1132,7 +1133,9 @@ def save_effect_from_op(resolved, op, target, slot_level=None,
     spec = op.get("save") or {}
     ability = spec.get("ability", "dex")
     dice = spell_dice(op, resolved.derived.level, slot_level)
-    amount = dice_mean(dice)
+    # 「法术极效」让伤害骰取满：期望值就是骰面上限
+    amount = (dice_max(dice) if op.get("damage", {}).get("maximize")
+              else dice_mean(dice))
     half = bool(op.get("damage", {}).get("half_on_save", False))
     save_bonus = int(getattr(target, "saves", {}).get(ability, 0))
     dc = resolved.derived.spell_dc + int(dc_modifier)
@@ -1948,6 +1951,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if spell_id not in ops:
                 raise KeyError(f"未知法术算子: {spell_id}")
             sop = ops[spell_id]
+            if (per_attack or {}).get("maximize"):
+                sop = json.loads(json.dumps(sop))
+                sop.setdefault("attack", {}).setdefault("damage", {})["maximize"] = True
+                trace.append(f"第 {rnum} 轮 {sop['name']}：伤害骰取满")
             consume_slot(budget, spends, rnum, slot_level, sop["name"], warnings)
             instances = spell_attack_instances(sop, slot_level)
             if instances > 1:
@@ -2172,7 +2179,14 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                     continue
                 consume_slot(budget, spends, rnum, eff.get("slot_level"),
                              ops[sid]["name"], warnings)
-                sd, dice = save_effect_from_op(resolved, ops[sid], target,
+                # 「法术极效」这类增伤由**策略**声明：同一道法术用不用极效
+                # 是每次施放的决定，写在算子层会变成"每次施放都取满"
+                sop_eff = ops[sid]
+                if eff.get("maximize"):
+                    sop_eff = json.loads(json.dumps(sop_eff))
+                    sop_eff.setdefault("damage", {})["maximize"] = True
+                    trace.append(f"第 {rnum} 轮 {sop_eff['name']}：伤害骰取满")
+                sd, dice = save_effect_from_op(resolved, sop_eff, target,
                                                eff.get("slot_level"),
                                                dc_modifier=dc_modifier,
                                                on_fail_extra=on_fail_extra)

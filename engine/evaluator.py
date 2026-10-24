@@ -36,6 +36,22 @@ def dice_mean(expr):
     raise ValueError(f"无法解析骰式: {expr!r}")
 
 
+def dice_max(expr):
+    """'2d6' → 12；'1d8+2' → 10；'3' → 3。取满（法术极效、过载震颤）。"""
+    if isinstance(expr, (int, float)):
+        return Fraction(expr)
+    m = DICE_RE.match(str(expr))
+    if m:
+        n = int(m.group(1) or 1)
+        faces = int(m.group(2))
+        flat = int(m.group(4) or 0) * (-1 if m.group(3) == "-" else 1)
+        return Fraction(n * faces + flat)
+    m = FLAT_RE.match(str(expr))
+    if m:
+        return Fraction(int(m.group(1).replace(" ", "")))
+    raise ValueError(f"无法解析骰式: {expr!r}")
+
+
 def _clamp01(x):
     return max(Fraction(0), min(Fraction(1), x))
 
@@ -49,6 +65,7 @@ class DamageComponent:
     slot: str = "other"
     crit_doubles: bool = True    # 重击时骰子是否翻倍（固定值一律不翻）
     irreducible: bool = False    # 不可被抗性/免疫/减伤影响（如「力劈华山」）
+    maximized: bool = False      # 骰值取满（法术极效），期望即上限
     weight: Fraction = None      # 生效概率（如对抗检定胜率）；None 等价于 1
 
     @property
@@ -57,7 +74,8 @@ class DamageComponent:
 
     @property
     def mean(self):
-        return (dice_mean(self.dice) + self.flat) * self.w
+        face = dice_max(self.dice) if self.maximized else dice_mean(self.dice)
+        return (face + self.flat) * self.w
 
 
 @dataclass
