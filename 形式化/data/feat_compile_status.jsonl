@@ -27,6 +27,7 @@
 {"id": "feat.生理控制大师", "name": "生理控制大师", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.群战专家", "name": "群战专家", "status": "out_of_scope", "reason": "伤害溢出转移与株连：多目标", "source": "manual"}
 {"id": "feat.血怒", "name": "血怒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.幸运", "name": "幸运", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.灵活移动", "name": "灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.进阶灵活移动", "name": "进阶灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.超级灵活移动", "name": "超级灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -70,6 +71,7 @@
 {"id": "feat.长长法杖", "name": "长长法杖", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.刺剑大师", "name": "刺剑大师", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.随手投掷", "name": "随手投掷", "status": "out_of_scope", "reason": "把近战武器视为可投掷：改变射程与劣势判定", "source": "manual"}
+{"id": "feat.旋转飞掷", "name": "旋转飞掷", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.武器连招", "name": "武器连招", "status": "out_of_scope", "reason": "双武器连招：需要两把武器交替攻击", "source": "manual"}
 {"id": "feat.见切与居合", "name": "见切与居合", "status": "out_of_scope", "reason": "拔刀/收刀势与格挡：防御与姿态管理", "source": "manual"}
 {"id": "feat.登龙", "name": "登龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -145,6 +147,7 @@
 {"id": "feat.龙族天生武器", "name": "龙族天生武器", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.青年龙", "name": "青年龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.多样眼波射线", "name": "多样眼波射线", "status": "out_of_scope", "reason": "眼魔专属：改变眼波射线的结果表", "source": "manual"}
+{"id": "feat.慷慨吉运", "name": "慷慨吉运", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.蛛化卓尔", "name": "蛛化卓尔", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.精灵之准", "name": "精灵之准", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.绿皮兽人战猪小子", "name": "绿皮兽人战猪小子", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
@@ -153,6 +156,7 @@
 {"id": "feat.兽人式狂怒", "name": "兽人式狂怒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.旗舰", "name": "旗舰", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.人马骑兵", "name": "人马骑兵", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.王佐之才", "name": "王佐之才", "status": "out_of_scope", "reason": "效果作用对象是友方生物，不产生对敌输出", "source": "manual"}
 {"id": "feat.梦境纽带", "name": "梦境纽带", "status": "out_of_scope", "reason": "种族特性强化与免法术位施法", "source": "manual"}
 {"id": "feat.融合元素裔", "name": "融合元素裔", "status": "out_of_scope", "reason": "双元素融合形态：整份数据被替换", "source": "manual"}
 {"id": "feat.七十二变", "name": "七十二变", "status": "out_of_scope", "reason": "形态替换：变为野兽/元素/精类，整份数据被替换", "source": "manual"}
@@ -191,6 +195,7 @@
 {"id": "feat.真名法术", "name": "真名法术", "status": "out_of_scope", "reason": "超魔：说出真名以给予豁免劣势", "source": "manual"}
 {"id": "feat.混沌浪涌", "name": "混沌浪涌", "status": "out_of_scope", "reason": "随机触发表格，结果无法折算为稳定期望", "source": "manual"}
 {"id": "feat.巫婆诅咒", "name": "巫婆诅咒", "status": "out_of_scope", "reason": "把法术改为诅咒：延续与解除条件", "source": "manual"}
+{"id": "feat.法术追踪", "name": "法术追踪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.末路法术", "name": "末路法术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.法术强效", "name": "法术强效", "status": "out_of_scope", "reason": "超魔：增加法术的伤害骰数量，属法术侧", "source": "manual"}
 {"id": "feat.法术极效", "name": "法术极效", "status": "out_of_scope", "reason": "超魔：让伤害骰取满，属法术侧", "source": "manual"}

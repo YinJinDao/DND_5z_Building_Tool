@@ -42,6 +42,10 @@ class Rule:
     #: 花掉就没了。跨轮传递的是"还有多少概率没用掉"——因为伤害对池子线性，
     #: 按概率缩放是精确的，和连击数用的是同一个道理。
     once_per_fight: bool = False
+    #: 重骰失手（幸运、法术追踪）：把一次失手的 d20 重掷。
+    #: 与"给优势"不同——优势是**掷之前**就多一枚骰，重骰是打偏了才用，
+    #: 所以只在失手分支上生效，价值高于同等的优势。
+    reroll_miss: dict | None = None
     name: str = ""
 
     def matches(self, outcome, index):
@@ -191,6 +195,22 @@ def evaluate_turn(attacks, rules=None, target=None, state=None, carry=None):
                     next_ctx[key] = True
 
             dmg = _damage_for_outcome(a, outcome, target, extra)
+            if outcome == MISS:
+                # 重骰失手：把这次失手按"重掷一次"重新分布。
+                # 池子是有限次数，按剩余可用量线性缩放（余量不足 1 次时部分生效）
+                for rule in rules:
+                    if not rule.reroll_miss:
+                        continue
+                    avail = next_ctx["pool_avail"].get(rule.name, Fraction(1))
+                    if avail <= 0:
+                        continue
+                    use = min(Fraction(1), avail)
+                    p_hit2, p_crit2 = a.probs(target.ac)
+                    d_hit = _damage_for_outcome(a, HIT, target, extra)
+                    d_crit = _damage_for_outcome(a, CRIT, target, extra)
+                    dmg += use * ((p_hit2 - p_crit2) * d_hit + p_crit2 * d_crit)
+                    next_ctx["pool_avail"][rule.name] = avail - use
+                    break
             acc += prob * p * dmg
             dfs(i + 1, next_ctx, prob * p, next_seq)
 

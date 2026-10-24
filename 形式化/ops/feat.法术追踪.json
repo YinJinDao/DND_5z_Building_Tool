@@ -1,0 +1,28 @@
+{
+  "id": "feat.法术追踪",
+  "name": "法术追踪",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": []
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "reroll_miss": {
+      "uses": "sorcery"
+    },
+    "note": "消耗 1 术法点让法术攻击检定的首次失手重骰。每道法术限一次"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/超魔专长/改变数值.htm",
+    "anchor": "法术追踪"
+  },
+  "status": "modeled",
+  "ruling": null
+}

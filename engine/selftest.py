@@ -1764,6 +1764,37 @@ def test_overestimate_control():
         FAILS.append("已知代价未返回")
         print("  FAIL 已知代价未返回")
 
+    # 重骰失手：只在会失手时才有价值，几乎必中的 AC 上应当毫无收益
+    def luck(ac, feats, rounds=1, cap=None):
+        doc = _j.loads(_j.dumps(barb))
+        doc["feats"] = [{"id": f, "at_level": 1} for f in feats]
+        if cap:
+            doc["resources"] = {"luck": {"name": "幸运点", "capacity": cap,
+                                         "recharge": "long_rest"}}
+        else:
+            doc.pop("resources", None)
+        strat = {"rounds": [
+            {"round": i, "move": {"toward": True, "ft": 25}, "attacks": 1,
+             "per_attack": {"ops": []}} for i in range(1, rounds + 1)]}
+        return float(calc.evaluate(doc, {"target": {"ac": ac}}, strat).total)
+
+    miss_more = luck(19, ["feat.幸运"]) - luck(19, [])
+    miss_less = luck(5, ["feat.幸运"]) - luck(5, [])
+    if miss_more > 0 and abs(miss_less) < 1e-9:
+        print(f"  OK   重骰只在会失手时生效：AC19 +{miss_more:.3f}，AC5 +{miss_less:.3f}")
+    else:
+        FAILS.append("重骰的生效条件不对")
+        print(f"  FAIL 重骰的生效条件不对：AC19 +{miss_more:.3f}，AC5 +{miss_less:.3f}")
+
+    # 次数接资源池：3 点幸运在 5 轮里比 1 点用得更充分
+    one = luck(15, ["feat.幸运"], rounds=5, cap=1) - luck(15, [], rounds=5)
+    three = luck(15, ["feat.幸运"], rounds=5, cap=3) - luck(15, [], rounds=5)
+    if three > one:
+        print(f"  OK   重骰次数接资源池：1 点 +{one:.3f}，3 点 +{three:.3f}")
+    else:
+        FAILS.append("重骰次数未接资源池")
+        print(f"  FAIL 重骰次数未接资源池：{one:.3f} vs {three:.3f}")
+
 
 def main():
     print("=" * 58)

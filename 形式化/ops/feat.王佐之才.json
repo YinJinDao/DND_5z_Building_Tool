@@ -1,0 +1,29 @@
+{
+  "id": "feat.王佐之才",
+  "name": "王佐之才",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "狐妖"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "对友方造成的伤害无视临时生命、属性损伤骰值取满——作用对象是友方"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/限定物种的专长.htm",
+    "anchor": "王佐之才"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "效果作用对象是友方生物，不产生对敌输出"
+}

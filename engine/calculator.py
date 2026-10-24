@@ -848,6 +848,14 @@ def apply_op(op, attack, resolved, attack_index=0, condition_ctx=None):
     proj = op.get("projection", {})
     rules = []
 
+    # 重骰失手（幸运、法术追踪）：挂在失手分支上，不是提升命中率而是兜底
+    rr = proj.get("reroll_miss")
+    if rr:
+        rules.append(Rule(trigger="miss",
+                          reroll_miss={"pool": rr.get("pool"),
+                                       "uses": rr.get("uses", 1)},
+                          name=op["id"]))
+
     if "attack_bonus" in proj:
         bonus = int(proj["attack_bonus"])
         # 「战神降临」「死神降临」不改变威力攻击本身，而是**削减它的减值**。
@@ -1670,7 +1678,21 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     zones = []                       # [{name, op, slot, until}]
     # 跨轮状态：连击数（暴雨梨花）、增益的起始轮（恶魔形态这类按"施法后第几轮"
     # 增长的伤害）。每轮独立求值会把这两样都截断。
-    carry = {"streak": 0}
+    carry = {"streak": 0, "pool_avail": {}}
+    # 重骰次数接构筑的资源池：幸运点 3 点就该能重骰 3 次，
+    # 而不是永远只按 1 次算。池子没声明时退回 1 次（保守）
+    for op in granted_ops:
+        rr = (op.get("projection") or {}).get("reroll_miss")
+        if not rr:
+            continue
+        pool = rr.get("uses")
+        if pool and pool in budget.pools:
+            cap = budget.pools[pool].effective_capacity(
+                level=int(build_doc.get("meta", {}).get("level", 1)),
+                short_rests=int(env_doc.get("short_rests", 0)),
+                long_rests=int(env_doc.get("long_rests", 1)))
+            if cap != float("inf"):
+                carry["pool_avail"][op["id"]] = Fraction(int(cap))
     buff_since = {}                  # buff id → 首次出现的轮次
     sustained_op = None              # 维持中的专注算子（用于逐轮结算）
 
