@@ -63,6 +63,25 @@ def _bonus_dict(src):
     return {k: int(v) for k, v in (src or {}).items()}
 
 
+def load_uses_table(column="狂暴次数", class_name="狂战士", path=None):
+    """从 class_tables 读「每休息多少次」曲线。∞ 记为 None（无限）。"""
+    path = path or os.path.join(REPO, "形式化", "data", "class_tables.jsonl")
+    table = {}
+    if not os.path.isfile(path):
+        return table
+    with open(path, encoding="utf-8") as fh:
+        for line in fh:
+            row = json.loads(line)
+            if row.get("class") != class_name:
+                continue
+            raw = row.get("columns", {}).get(column)
+            if raw is None:
+                continue
+            txt = str(raw).strip()
+            table[str(row["level"])] = None if txt in ("∞", "—", "-") else int(txt)
+    return table
+
+
 def load_rage_table(class_name="狂战士", path=None):
     """从 class_tables.jsonl 读取等级 → 狂暴伤害加值。不写死在代码里。"""
     path = path or os.path.join(REPO, "形式化", "data", "class_tables.jsonl")
@@ -1173,9 +1192,63 @@ def derive_feat_resources(build_doc, ops, attack_count):
     return pools
 
 
-def load_budget(build_doc, env_doc, extra_pools=None):
-    """从构筑的 resources 声明 + 环境的短休次数构造资源预算。"""
+def slot_pool_id(level):
+    """法术位池的命名约定。构筑里按 spell_slots_<环阶> 声明。"""
+    return f"spell_slots_{int(level)}"
+
+
+def consume_slot(budget, spends, rnum, slot_level, spell_name, warnings):
+    """施放法术就扣一个法术位。
+
+    法术位是**跨轮**资源：一轮里施放多少次、几轮下来总共几个环位，
+    只有累计起来才有意义。早先只在策略显式写 `spends` 时才扣，
+    等于把资源管理交给使用者手抄——漏写就是无限法术位。
+    """
+    if not slot_level:
+        return
+    pid = slot_pool_id(slot_level)
+    if pid not in budget.pools:
+        warnings.append(
+            f"第 {rnum} 轮施放 {spell_name}（{slot_level} 环），但构筑未声明 "
+            f"resources.{pid}——该法术位不会被计入消耗")
+        return
+    spends.append((rnum, pid, 1))
+
+
+def derive_class_resources(build_doc, ops):
+    """职业特性声明了「每休息 N 次」时，从职业表把容量推出来。
+
+    狂暴次数这类曲线本来就在职业表里，让构筑再手抄一遍既多余又容易错。
+    构筑里显式声明的 resources 优先——那是使用者的覆盖。
+    """
+    pools = {}
+    levels = {c.get("id"): int(c.get("level", 0)) for c in build_doc.get("classes") or []}
+    for op in granted_class_ops(build_doc, ops):
+        uses = (op.get("projection") or {}).get("uses") or {}
+        column = uses.get("column")
+        acq = op.get("acquisition") or {}
+        cid = acq.get("class_id")
+        if not column or cid not in levels:
+            continue
+        table = load_uses_table(column, acq.get("class"), None)
+        lv = str(levels[cid])
+        if lv not in table:
+            continue
+        cap = table[lv]
+        pid = uses.get("pool") or f"uses:{op['id']}"
+        pools[pid] = ResourcePool(
+            id=pid, name=op["name"],
+            capacity=10 ** 6 if cap is None else int(cap),
+            recharge=uses.get("recharge", "long_rest"))
+    return pools
+
+
+def load_budget(build_doc, env_doc, extra_pools=None, ops=None):
+    """从职业表 + 构筑的 resources 声明 + 环境的短休次数构造资源预算。"""
     pools = dict(extra_pools or {})
+    # 职业表能推的先铺底，构筑显式声明再覆盖
+    for pid, pool in derive_class_resources(build_doc, ops or {}).items():
+        pools[pid] = pool
     for pid, spec in (build_doc.get("resources") or {}).items():
         pools[pid] = ResourcePool(
             id=pid,
@@ -1561,7 +1634,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
     derived_attacks, attack_src = derive_attack_count(build_doc, ops)
 
     feat_pools = derive_feat_resources(build_doc, ops, derived_attacks)
-    budget = load_budget(build_doc, env_doc, feat_pools)
+    budget = load_budget(build_doc, env_doc, feat_pools, ops)
 
     trace = build_trace + list(resolved.trace) + [
         f"目标 AC {target.ac}",
@@ -1636,7 +1709,20 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         # 增益的起始轮：恶魔形态这类伤害按"施法后第几轮"增长，
         # 用绝对轮次会把第 5 轮才开的增益当成已经累积了 5 轮
         for bid in buffs:
-            buff_since.setdefault(bid, rnum)
+            if bid in buff_since:
+                continue
+            buff_since[bid] = rnum
+            # 激活即消耗：狂暴这类"每休息 N 次"的资源在**开启时**扣一次，
+            # 之后每轮重复列在 buffs 里不代表反复开启
+            bop = ops.get(bid)
+            uses = (bop.get("projection") or {}).get("uses") if bop else None
+            if not uses:
+                continue
+            pid = uses.get("pool") or f"uses:{bop['id']}"
+            if pid not in budget.pools:
+                continue
+            spends.append((rnum, pid, 1))
+            trace.append(f"第 {rnum} 轮 激活 {bop['name']}，消耗 1 次")
         for bid in list(buff_since):
             if bid not in buffs:
                 del buff_since[bid]
@@ -1830,6 +1916,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if spell_id not in ops:
                 raise KeyError(f"未知法术算子: {spell_id}")
             sop = ops[spell_id]
+            consume_slot(budget, spends, rnum, slot_level, sop["name"], warnings)
             instances = spell_attack_instances(sop, slot_level)
             if instances > 1:
                 trace.append(f"第 {rnum} 轮 {sop['name']} 产生 {instances} 次攻击")
@@ -1992,9 +2079,11 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if src in oa_drawbacks:
                 warnings.append(oa_drawbacks[src])
         if oa_triggers > 0 and attacks:
-            budget, budget_sources = opportunity_attack_budget(resolved, ops)
+            # 注意别用 budget 这个名字：外层那个是**资源预算**，
+            # 借机次数只是同名的另一个概念，覆盖掉会让资源校验直接崩
+            oa_budget, budget_sources = opportunity_attack_budget(resolved, ops)
             # 单次触发可以打出多击（连续借机），但总攻击数仍受反应预算封顶
-            count = min(budget, oa_triggers * oa_per_trigger)
+            count = min(oa_budget, oa_triggers * oa_per_trigger)
             oa_adv = 0
             for op in granted_feat_ops(build_doc, ops):
                 oa_adv += int((op.get("projection") or {}).get("opportunity_attack_adv", 0))
@@ -2005,7 +2094,7 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 apply_adv_scaling(a, granted_ops, resolved)
                 attacks.append(a)
             trace.append(f"第 {rnum} 轮借机攻击 {count} 次"
-                         f"（触发 {'、'.join(oa_used)}，预算 {budget}："
+                         f"（触发 {'、'.join(oa_used)}，预算 {oa_budget}："
                          f"{'、'.join(budget_sources)}）")
 
         dmg, leaves = (evaluate_turn(attacks, all_rules, round_target, carry=carry)
@@ -2049,6 +2138,8 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                         f"第 {rnum} 轮 {ops[sid]['name']} 距离 {state.distance_ft} 尺"
                         f"超出施法距离 {srng} 尺，未计入")
                     continue
+                consume_slot(budget, spends, rnum, eff.get("slot_level"),
+                             ops[sid]["name"], warnings)
                 sd, dice = save_effect_from_op(resolved, ops[sid], target,
                                                eff.get("slot_level"),
                                                dc_modifier=dc_modifier,

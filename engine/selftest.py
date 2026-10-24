@@ -480,8 +480,13 @@ def test_composite_and_contingency():
     expected = (p_hit * hit_dmg + p_crit * crit_extra) * 2   # 骑乘战斗易伤
     check("骑乘冲刺期望伤害", res.total, expected, tol=1e-9)
 
-    # 条件策略的消耗被记录
-    check("条件策略消耗入账", Fraction(len(res.spend_report)), Fraction(1), tol=1e-9)
+    # 条件策略的消耗被记录（狂战士现在还会自动派生「狂暴次数」池，
+    # 所以这里查的是卓越骰那一条，而不是"总共只有一条"）
+    if any("卓越骰" in line for line in res.spend_report):
+        print("  OK   条件策略消耗入账")
+    else:
+        FAILS.append("条件策略消耗未入账")
+        print("  FAIL 条件策略消耗未入账：" + str(res.spend_report))
 
     # 移动不足 30 尺时冲刺不生效
     short = _json.loads(_json.dumps(strat))
@@ -1608,6 +1613,99 @@ def test_cross_round():
         print("  FAIL 区域未与专注叠加")
 
 
+def test_cross_round_resources():
+    print("")
+    print("[33] 跨轮资源：法术位、职业次数、超限检出")
+
+    import json as _j
+
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    wiz = _j.load(open(os.path.join(root, "examples", "wizard_l5.build.json"),
+                       encoding="utf-8"))
+    barb = _j.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                        encoding="utf-8"))
+    barb["combat"].pop("mount", None)
+    barb["feats"] = []
+    barb["choices"] = {}
+    barb.pop("resources", None)          # 不手写，考的是"能不能从职业表推出来"
+
+    def cast(rounds, slot):
+        strat = {"rounds": [
+            {"round": i, "attacks": 0,
+             "save_effects": [{"spell": "sp.火球术", "slot_level": slot}]}
+            for i in range(1, rounds + 1)]}
+        return calc.evaluate(_j.loads(_j.dumps(wiz)),
+                             {"target": {"ac": 15, "saves": {"dex": 0}}}, strat)
+
+    # 法术位按环阶累计：3 轮 3 环 = 消耗 3 个 3 环位
+    r3 = cast(3, 3)
+    if any("3" in line and ("2" in line or "3" in line)
+           for line in r3.spend_report):
+        print(f"  OK   法术位按环阶入账：{r3.spend_report}")
+    else:
+        FAILS.append("法术位未入账")
+        print("  FAIL 法术位未入账：" + str(r3.spend_report))
+
+    # 超过容量要报出来（范例构筑 3 环位只有 2 个）
+    if any("超过" in w for w in r3.warnings):
+        print("  OK   法术位超限被检出")
+    else:
+        FAILS.append("法术位超限未检出")
+        print("  FAIL 法术位超限未检出")
+
+    # 没声明该环阶的池子：要告警，而不是静默当作免费
+    r4 = cast(1, 4)
+    if any("spell_slots_4" in w for w in r4.warnings):
+        print("  OK   未声明环阶给出告警")
+    else:
+        FAILS.append("未声明环阶没有告警")
+        print("  FAIL 未声明环阶没有告警")
+
+    # 狂暴次数：从职业表推，激活才扣，连续维持不重复扣
+    def rage(rounds, level=3):
+        doc = _j.loads(_j.dumps(barb))
+        doc["classes"][0]["level"] = level
+        doc["meta"]["level"] = level
+        strat = {"rounds": [
+            {"round": i, "move": {"toward": True, "ft": 25}, "attacks": 1,
+             "buffs": ["rage"], "per_attack": {"ops": []}}
+            for i in range(1, rounds + 1)]}
+        return calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+
+    held = rage(5)
+    if any("狂暴次数: 1" in line or ("狂暴" in line and ": 1" in line)
+           for line in held.spend_report):
+        print(f"  OK   连续维持只扣 1 次：{held.spend_report}")
+    else:
+        FAILS.append("狂暴次数未按激活扣")
+        print("  FAIL 狂暴次数未按激活扣：" + str(held.spend_report))
+
+    # 中断再开会再扣；3 级只有 2 次，第 3 次应超限
+    strat = {"rounds": [
+        {"round": i, "move": {"toward": True, "ft": 25}, "attacks": 1,
+         "buffs": (["rage"] if i % 2 == 1 else []),
+         "per_attack": {"ops": []}} for i in range(1, 6)]}
+    doc = _j.loads(_j.dumps(barb))
+    doc["classes"][0]["level"] = 3
+    doc["meta"]["level"] = 3
+    thrice = calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+    if any("超过" in w for w in thrice.warnings):
+        print("  OK   狂暴次数超限被检出")
+    else:
+        FAILS.append("狂暴次数超限未检出")
+        print("  FAIL 狂暴次数超限未检出")
+
+    # 17 级起次数无限
+    inf = rage(3, level=17)
+    if not any("超过" in w for w in inf.warnings):
+        print("  OK   17 级起狂暴次数无限")
+    else:
+        FAILS.append("17 级仍未无限")
+        print("  FAIL 17 级仍未无限")
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1644,6 +1742,7 @@ def main():
     test_build_check()
     test_stateful_damage()
     test_cross_round()
+    test_cross_round_resources()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")

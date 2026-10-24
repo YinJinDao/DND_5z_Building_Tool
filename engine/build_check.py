@@ -334,6 +334,25 @@ def check_weapon(doc, idx, rep):
 
 
 def check_resources(doc, rep):
+    """资源池声明。跨轮资源算错的典型形态是"根本没声明"。"""
+    res = doc.get("resources") or {}
+    # 法术位：职业表只给总数，按环分账必须由构筑声明
+    spells = (doc.get("spells") or {})
+    if (spells.get("prepared") or spells.get("known")):
+        if not any(k.startswith("spell_slots_") for k in res):
+            rep.add("NOTE", "resources",
+                    "构筑里有法术但没声明任何 spell_slots_<环阶> 池——"
+                    "施法不会计入消耗，等于无限法术位。按 spell_slots_3 这类名字声明即可")
+    # 次数型职业资源：能由职业表推出的不必手写，但写错名字会让所有消耗落空
+    for pid, pool in res.items():
+        if not isinstance(pool, dict):
+            rep.add("ERROR", f"resources.{pid}", "资源池必须是对象")
+            continue
+        cap = pool.get("capacity")
+        if cap is None and not pool.get("derived_from"):
+            rep.add("WARN", f"resources.{pid}.capacity",
+                    "缺容量且不是派生池——该池的消耗永远无法判定是否超限")
+
     res = doc.get("resources") or {}
     for rid, pool in res.items():
         src = (pool or {}).get("derived_from")

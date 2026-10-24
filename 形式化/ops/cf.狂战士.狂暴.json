@@ -19,6 +19,13 @@
       "damage_bonus_from": "class_table",
       "column": "狂暴伤害加值",
       "note": "狂暴期间武器攻击伤害获得加值，数值取自职业表的「狂暴伤害加值」列；是否生效由策略的 buffs 决定"
+    },
+    "uses": {
+      "pool": "rage",
+      "column": "狂暴次数",
+      "recharge": "long_rest",
+      "unlimited_from_level": 17,
+      "note": "次数取自狂战士职业表「狂暴次数」一列（2/3/…，17 级起为∞）。激活时扣 1 次，之后每轮重复列在 buffs 里不再扣"
     }
   },
   "source": {
