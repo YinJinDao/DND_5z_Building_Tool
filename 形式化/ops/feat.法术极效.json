@@ -14,8 +14,11 @@
   "decision_point": "self_turn_start",
   "gate": {},
   "projection": {
-    "metamagic": "maximize",
-    "note": "消耗术法点让一道伤害法术的伤害骰取满。是否对某次施放使用由**策略**声明：在 save_effects / per_attack 里写 maximize: true，并在该轮 spends 里扣相应的术法点",
+    "metamagic": {
+      "maximize": true,
+      "note": "伤害骰取满"
+    },
+    "note": "消耗术法点让一道伤害法术的伤害骰取满。用法：在 save_effects / per_attack 里写 metamagic: [\"feat.法术极效\"]",
     "caveat": "术法点的消耗由策略手写，本工具不会自动扣"
   },
   "source": {

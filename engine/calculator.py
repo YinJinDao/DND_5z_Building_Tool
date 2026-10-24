@@ -35,7 +35,7 @@ from combat import (Budget, CombatState, RangeProfile, ResourcePool, Step,
                     expected_save_damage, opposed_win_probability,
                     save_fail_probability, validate_turn)
 from evaluator import (Attack, DamageComponent, TargetProfile,
-                       apply_target_pipeline, dice_mean, expected_damage, dice_max)
+                       apply_target_pipeline, dice_mean, expected_damage, dice_max, transform_dice)
 from strategy import Rule, evaluate_turn
 
 REPO = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -1036,7 +1036,35 @@ def _add_dice(base, extra, times=1):
     return f"{n1 + n2 * times}d{faces}"
 
 
-def spell_dice(op, char_level, slot_level=None):
+#: 超魔/增骰算子的名字 → 变换规格。策略里以**算子 id**引用，
+#: 变换内容写在算子自己的 projection.metamagic 里——新增一种超魔不必改引擎。
+def metamagic_spec(op):
+    return (op.get("projection") or {}).get("metamagic") or {}
+
+
+def resolve_metamagic(ids, ops):
+    """把一组超魔算子 id 合成的变换规格。未知名抛错，不静默忽略。"""
+    spec = {}
+    for mid in ids or []:
+        op = ops.get(mid)
+        if op is None:
+            raise KeyError(f"未知超魔/增骰算子: {mid}（需写成算子 id）")
+        one = metamagic_spec(op)
+        if not one:
+            raise KeyError(f"{mid} 没有声明 projection.metamagic")
+        for k, v in one.items():
+            if k == "dice_scale":
+                spec["dice_scale"] = spec.get("dice_scale", 1) * float(v)
+            elif k == "count_scale":
+                spec["count_scale"] = spec.get("count_scale", 1) * float(v)
+            elif k == "flat_add":
+                spec["flat_add"] = spec.get("flat_add", 0) + int(v)
+            else:
+                spec[k] = v          # maximize / max_dice / min_dice…
+    return spec
+
+
+def spell_dice(op, char_level, slot_level=None, transform=None):
     """按角色等级应用 scaling，按法术位应用 upcast，返回最终骰式。
 
     scaling 一律写在算子**顶层**。早期把攻击型法术的 scaling 写进了
@@ -1060,10 +1088,16 @@ def spell_dice(op, char_level, slot_level=None):
             and slot_level > upcast["per_slot_above"]):
         base = _add_dice(base, upcast["add_dice"],
                          slot_level - upcast["per_slot_above"])
+    if transform:
+        base = transform_dice(base,
+                              scale=transform.get("dice_scale"),
+                              flat_add=transform.get("flat_add", 0),
+                              max_dice=transform.get("max_dice"),
+                              min_dice=transform.get("min_dice"))
     return base
 
 
-def spell_attack_instances(op, slot_level=None):
+def spell_attack_instances(op, slot_level=None, transform=None):
     """攻击实例数，含升环增加的射线（灼热射线每高一环 +1 道）。
 
     魔法飞弹的枚数按法术位查表（2 环 5 枚、3 环 7 枚……），不是线性增长，
@@ -1073,10 +1107,14 @@ def spell_attack_instances(op, slot_level=None):
     count = int(attack.get("count", 1))
     by_slot = attack.get("count_by_slot")
     if slot_level and by_slot:
-        return int(by_slot.get(str(slot_level), count))
-    up = op.get("upcast") or {}
-    if slot_level and up.get("add_count_per_slot"):
-        count += (slot_level - up["per_slot_above"]) * up["add_count_per_slot"]
+        count = int(by_slot.get(str(slot_level), count))
+    else:
+        up = op.get("upcast") or {}
+        if slot_level and up.get("add_count_per_slot"):
+            count += (slot_level - up["per_slot_above"]) * up["add_count_per_slot"]
+    # 法术强效对「多道射线」这类法术加的是**次数**而不是骰数
+    if transform and transform.get("count_scale"):
+        count = max(1, int(count * float(transform["count_scale"])))
     return count
 
 
@@ -1099,18 +1137,20 @@ def pick_damage_type(choices, target):
     return max(choices, key=score) if choices else None
 
 
-def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None, target=None):
+def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None, target=None,
+                       transform=None):
     """攻击型法术（如冻寒之触）：法术攻击加值 + 法术伤害骰。"""
     if resolved.derived.spell_attack is None:
         raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
     spec = op["attack"]
-    dice = spell_dice(op, resolved.derived.level, slot_level)
+    dice = spell_dice(op, resolved.derived.level, slot_level, transform)
     dtype = spec["damage"]["damage_type"]
     if spec["damage"].get("type_choice"):
         if target is not None:
             dtype = pick_damage_type(spec["damage"]["type_choice"], target)
     comp = DamageComponent(dice, flat=0, dtype=dtype, slot=op["id"],
-                           maximized=bool(spec["damage"].get("maximize")))
+                           maximized=bool(spec["damage"].get("maximize")
+                                          or (transform or {}).get("maximize")))
     return Attack(attack_bonus=resolved.derived.spell_attack.total,
                   adv_tiers=adv_tiers, components=[comp],
                   auto_hit=bool(spec.get("auto_hit", False)))
@@ -1122,7 +1162,7 @@ def spell_attack_count(op):
 
 
 def save_effect_from_op(resolved, op, target, slot_level=None,
-                        dc_modifier=0, on_fail_extra=None):
+                        dc_modifier=0, on_fail_extra=None, transform=None):
     """豁免型法术的期望伤害。DC 取自角色，豁免加值取自目标。
 
     dc_modifier / on_fail_extra 供「威力豁免」这类修正专长使用：
@@ -1132,9 +1172,10 @@ def save_effect_from_op(resolved, op, target, slot_level=None,
         raise ValueError(f"构筑未声明 casting_ability，无法施放 {op['id']}")
     spec = op.get("save") or {}
     ability = spec.get("ability", "dex")
-    dice = spell_dice(op, resolved.derived.level, slot_level)
+    dice = spell_dice(op, resolved.derived.level, slot_level, transform)
     # 「法术极效」让伤害骰取满：期望值就是骰面上限
-    amount = (dice_max(dice) if op.get("damage", {}).get("maximize")
+    amount = (dice_max(dice) if (op.get("damage", {}).get("maximize")
+                                 or (transform or {}).get("maximize"))
               else dice_mean(dice))
     half = bool(op.get("damage", {}).get("half_on_save", False))
     save_bonus = int(getattr(target, "saves", {}).get(ability, 0))
@@ -1951,17 +1992,24 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
             if spell_id not in ops:
                 raise KeyError(f"未知法术算子: {spell_id}")
             sop = ops[spell_id]
+            meta = resolve_metamagic((per_attack or {}).get("metamagic"), ops)
             if (per_attack or {}).get("maximize"):
-                sop = json.loads(json.dumps(sop))
-                sop.setdefault("attack", {}).setdefault("damage", {})["maximize"] = True
-                trace.append(f"第 {rnum} 轮 {sop['name']}：伤害骰取满")
+                meta["maximize"] = True
+            if meta:
+                trace.append(f"第 {rnum} 轮 {sop['name']}：超魔 {sorted(meta)}")
             consume_slot(budget, spends, rnum, slot_level, sop["name"], warnings)
-            instances = spell_attack_instances(sop, slot_level)
+            # 「多次攻击检定的法术改为加次数」——两者**择一**，不能同时加
+            if spell_attack_instances(sop, slot_level) > 1:
+                meta = {k: v for k, v in meta.items() if k != "dice_scale"}
+            else:
+                meta = {k: v for k, v in meta.items() if k != "count_scale"}
+            instances = spell_attack_instances(sop, slot_level, meta)
             if instances > 1:
                 trace.append(f"第 {rnum} 轮 {sop['name']} 产生 {instances} 次攻击")
             for i in range(instances):
                 a = build_spell_attack(resolved, sop, adv_tiers=adv,
-                                       slot_level=slot_level, target=round_target)
+                                       slot_level=slot_level, target=round_target,
+                                       transform=meta)
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
                 # 本轮增益（buffs）已由 buff_adv / rage_active 单独结算，
@@ -2182,14 +2230,18 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 # 「法术极效」这类增伤由**策略**声明：同一道法术用不用极效
                 # 是每次施放的决定，写在算子层会变成"每次施放都取满"
                 sop_eff = ops[sid]
+                meta = resolve_metamagic(eff.get("metamagic"), ops)
+                meta.pop("count_scale", None)   # 豁免型法术没有攻击次数
                 if eff.get("maximize"):
-                    sop_eff = json.loads(json.dumps(sop_eff))
-                    sop_eff.setdefault("damage", {})["maximize"] = True
-                    trace.append(f"第 {rnum} 轮 {sop_eff['name']}：伤害骰取满")
+                    meta["maximize"] = True
+                if meta:
+                    trace.append(f"第 {rnum} 轮 {sop_eff['name']}："
+                                 f"超魔 {sorted(meta)}")
                 sd, dice = save_effect_from_op(resolved, sop_eff, target,
                                                eff.get("slot_level"),
                                                dc_modifier=dc_modifier,
-                                               on_fail_extra=on_fail_extra)
+                                               on_fail_extra=on_fail_extra,
+                                               transform=meta)
                 trace.append(f"第 {rnum} 轮 {ops[sid]['name']}（{dice}，豁免）"
                              f" → {float(sd):.3f}")
             else:

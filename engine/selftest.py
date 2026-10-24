@@ -1807,6 +1807,39 @@ def test_overestimate_control():
         FAILS.append("取满的期望值不对")
         print(f"  FAIL 取满的期望值不对：比值 {ratio:.3f}，应为 {48/28:.3f}")
 
+    # 增骰（法术强效）：骰数 ×1.5 向下取整；多段法术改为加次数而不是加骰
+    def with_meta(spell, slot, meta):
+        isatk = "attack" in calc.load_ops()[spell]
+        pa = {"kind": "spell_attack", "spell": spell, "slot_level": slot}
+        eff = {"spell": spell, "slot_level": slot}
+        if meta:
+            if isatk:
+                pa["metamagic"] = meta
+            else:
+                eff["metamagic"] = meta
+        strat = {"rounds": [{"round": 1, "attacks": 1 if isatk else 0,
+                             "per_attack": pa if isatk else {"ops": []},
+                             "save_effects": [] if isatk else [eff]}]}
+        return float(calc.evaluate(_j.loads(_j.dumps(wiz)),
+                                   {"target": {"ac": 15, "saves": {"dex": 0}}},
+                                   strat).total)
+
+    fb = with_meta("sp.火球术", 3, None)
+    fb_emp = with_meta("sp.火球术", 3, ["feat.法术强效"])
+    if abs(fb_emp / fb - 1.5) < 1e-6:
+        print(f"  OK   增骰 ×1.5：{fb:.2f} → {fb_emp:.2f}")
+    else:
+        FAILS.append("增骰倍率不对")
+        print(f"  FAIL 增骰倍率不对：{fb_emp / fb:.3f}")
+
+    sr = with_meta("sp.灼热射线", 2, None)
+    sr_emp = with_meta("sp.灼热射线", 2, ["feat.法术强效"])
+    if abs(sr_emp / sr - 4 / 3) < 1e-6:
+        print(f"  OK   多段法术改为加次数：{sr:.2f} → {sr_emp:.2f}（3→4 道）")
+    else:
+        FAILS.append("多段法术的增骰口径不对")
+        print(f"  FAIL 多段法术的增骰口径不对：{sr_emp / sr:.3f}")
+
     # 次数接资源池：3 点幸运在 5 轮里比 1 点用得更充分
     one = luck(15, ["feat.幸运"], rounds=5, cap=1) - luck(15, [], rounds=5)
     three = luck(15, ["feat.幸运"], rounds=5, cap=3) - luck(15, [], rounds=5)

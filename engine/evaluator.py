@@ -52,6 +52,39 @@ def dice_max(expr):
     raise ValueError(f"无法解析骰式: {expr!r}")
 
 
+def transform_dice(expr, scale=None, flat_add=0, max_dice=None,
+                   min_dice=None):
+    """对骰式做**枚数层面**的变换，返回新的骰式字符串。
+
+    这是「增骰类」效果的通用表达：法术强效（骰数 ×1.5 向下取整）、
+    各种"额外若干枚同类型骰"、以及"至多 N 枚"的封顶，都归到这里。
+    与 `upcast.add_dice` 的区别是：升环加的是**固定的另一段骰**，
+    而这里的变换作用在**原有骰式**上（`8d6 → 12d6`），面和类别都跟着走。
+
+    纯常数（`"0"`）原样返回——没有骰子可增。
+    """
+    text = str(expr)
+    m = DICE_RE.match(text)
+    if not m:
+        flat = int(FLAT_RE.match(text).group(1).replace(" ", "")) + flat_add
+        return str(flat)
+    n = int(m.group(1) or 1)
+    faces = int(m.group(2))
+    flat = int(m.group(4) or 0) * (-1 if m.group(3) == "-" else 1)
+    if scale is not None:
+        n = int(n * float(scale))
+    n += int(flat_add) if isinstance(flat_add, int) else 0
+    if max_dice is not None:
+        n = min(n, int(max_dice))
+    if min_dice is not None:
+        n = max(n, int(min_dice))
+    n = max(1, n)
+    out = f"{n}d{faces}"
+    if flat:
+        out += f"{flat:+d}"
+    return out
+
+
 def _clamp01(x):
     return max(Fraction(0), min(Fraction(1), x))
 
