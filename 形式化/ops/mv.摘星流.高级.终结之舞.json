@@ -24,13 +24,7 @@
         "note": "基础为 1 枚；目标生命值低于上限改为 2 枚，低于一半改为 3 枚，≤0 改为 4 枚。打桩目标视为满血，故按 1 枚计算"
       }
     ],
-    "conditional_dice": {
-      "by_target_hp": {
-        "below_max": 2,
-        "below_half": 3,
-        "zero_or_below": 4
-      }
-    }
+    "note": "该字段原为占位，引擎从不读取，已移除"
   },
   "source": {
     "book": "5z",

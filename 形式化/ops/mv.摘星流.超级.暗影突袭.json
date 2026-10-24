@@ -15,7 +15,15 @@
   "decision_point": "before_roll",
   "gate": {},
   "projection": {
-    "note": "最多四把投掷武器各发动一次近战攻击，每次造成一枚卓越骰+攻击关键属性，忽略武器骰"
+    "extra_dice": [
+      {
+        "dice": "1d8",
+        "damage_type": "same_as_weapon",
+        "note": "每把暗器一次近战攻击，各造成一枚卓越骰+攻击关键属性，忽略武器伤害骰"
+      }
+    ],
+    "note": "至多四把投掷武器各发动一次攻击。此处按一次攻击 + 一枚卓越骰建模，多出的攻击次数写在 cost.attacks，需由预算校验",
+    "caveat": "四把暗器应各攻击一次，本工具按单次攻击近似，低估"
   },
   "source": {
     "book": "5z",
@@ -23,6 +31,6 @@
     "file": "专长/战技专长/摘星流专长.htm",
     "anchor": "暗影突袭"
   },
-  "status": "modeled",
+  "status": "approximated",
   "ruling": null
 }

@@ -317,9 +317,7 @@ ALLOWED_PROJECTION = {
     "on_hit_extra_attack", "on_all_hit_extra_attack", "on_hit_target_vuln",
     "damage_replaces_weapon", "damage_table", "formula_damage", "attack_irreducible",
     "save_dc_modifier", "on_fail_extra", "requires_contest",
-    "grants_attack_count", "uses", "rage", "area",
-    "size_increase",               # 已声明但引擎未实现，见审计文档
-    "conditional_dice",            # 旧写法，已被通用 conditions 取代
+    "grants_attack_count", "uses", "rage",
     "conditions",                  # 通用条件结构
 }
 
@@ -331,6 +329,28 @@ def check_projection_vocabulary(ops):
             if key not in ALLOWED_PROJECTION:
                 err(f"[A12] {oid}: 未知 projection 字段 {key!r} —— "
                     f"引擎会静默忽略它。如需新增请先扩展引擎并登记到白名单")
+
+
+def check_vocabulary_is_live():
+    """A14：白名单里的每个字段，引擎都必须真的读它。
+
+    A12 只保证"算子不写白名单外的字段"，反过来那一半没人管：白名单里可以躺着
+    引擎从不读取的字段，写成算子后**静默无效**。这条检查直接读引擎源码，
+    找白名单里从未出现过的键——它是"白名单等于可用词汇表"这个承诺的守卫。
+    """
+    root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    src = ""
+    for rel in ("engine/calculator.py", "engine/strategy.py", "engine/evaluator.py"):
+        path = os.path.join(root, rel)
+        if os.path.isfile(path):
+            with open(path, encoding="utf-8") as fh:
+                src += fh.read()
+    for key in sorted(ALLOWED_PROJECTION):
+        if key == "note":
+            continue
+        if f'"{key}"' not in src and f"'{key}'" not in src:
+            err(f"[A14] 白名单字段 {key!r} 从未被引擎读取 —— "
+                f"任何算子写上它都是静默无效。要么实现它，要么从白名单移除")
 
 
 CONDITION_KEYS = {"attacker_state", "prior_action", "target_hp", "target_state",
@@ -425,6 +445,7 @@ def main():
     ops = check_ops()
     print(f"算子: {len(ops)} 个")
     check_projection_vocabulary(ops)
+    check_vocabulary_is_live()
     check_conditions(ops)
     check_op_data_alignment(ops)
     check_table_refs(ops)

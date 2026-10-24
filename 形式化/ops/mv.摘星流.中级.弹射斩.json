@@ -14,7 +14,14 @@
   "decision_point": "before_roll",
   "gate": {},
   "projection": {
-    "note": "获得两倍移动力的位移，结束时若触及内有敌人则可发动一次攻击，攻击检定与伤害各加一枚卓越骰"
+    "extra_dice": [
+      {
+        "dice": "1d8",
+        "damage_type": "same_as_weapon",
+        "note": "攻击检定与伤害各加一枚卓越骰；此处只表达伤害侧"
+      }
+    ],
+    "note": "获得两倍移动力并可立即移动，结束时若触及内有敌人可发动一次攻击。攻击检定的卓越骰加值需在策略的 attack_bonus 另行声明"
   },
   "source": {
     "book": "5z",
@@ -22,6 +29,6 @@
     "file": "专长/战技专长/摘星流专长.htm",
     "anchor": "弹射斩"
   },
-  "status": "modeled",
+  "status": "approximated",
   "ruling": null
 }

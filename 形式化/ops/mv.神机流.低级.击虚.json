@@ -14,7 +14,7 @@
   "decision_point": "before_roll",
   "gate": {},
   "projection": {
-    "note": "不进行攻击检定，改为目标智力豁免，失败视为被命中；优势/劣势换算为目标的豁免劣势/优势"
+    "note": "不进行攻击检定，改为目标智力豁免，失败视为被命中；攻击的优/劣势换算为目标豁免的劣/优势"
   },
   "source": {
     "book": "5z",
@@ -23,5 +23,7 @@
     "anchor": "击虚"
   },
   "status": "modeled",
-  "ruling": null
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "只改变命中判定方式（攻击→豁免），命中率换算取决于目标豁免加值，且不加伤害；本工具按攻击检定建模时数值等价"
 }

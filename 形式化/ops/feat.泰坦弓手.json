@@ -14,7 +14,6 @@
   "decision_point": "self_turn_start",
   "gate": {},
   "projection": {
-    "size_increase": 1,
     "extra_dice": [
       {
         "slot": "专长",
@@ -28,7 +27,7 @@
         "note": "使用重型远程武器命中时，按自身体型额外 +3/+5/+7 伤害"
       }
     ],
-    "note": "体型增大一级未接入尺寸计算；仅按当前体型取加值"
+    "note": "体型增大一级未接入尺寸计算；仅按当前体型取加值。体型增大一级的效果未建模——它影响的是「泰坦弓手」自身的 flat_by_size 取值，构筑请直接把最终的 flat_by_size 写进 extra_dice"
   },
   "source": {
     "book": "5z",

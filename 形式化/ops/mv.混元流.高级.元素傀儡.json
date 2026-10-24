@@ -14,7 +14,7 @@
   "decision_point": "before_roll",
   "gate": {},
   "projection": {
-    "note": "召唤一个小型元素生物"
+    "note": "召唤一个小型元素生物。范围为召唤物的占据空间，不影响伤害计算"
   },
   "scope": "out_of_scope",
   "scope_reason": "召唤物体系：按协作约定排除",

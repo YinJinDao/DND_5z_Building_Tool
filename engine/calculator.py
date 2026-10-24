@@ -439,7 +439,8 @@ def scaled_value(spec, op, build_doc):
     return out
 
 
-def build_sneak_rules(resolved, build_doc, ops, attacks, distance_ft, env_doc):
+def build_sneak_rules(resolved, build_doc, ops, attacks, distance_ft, env_doc,
+                      convert_dice=0):
     """偷袭：每回合一次，满足条件时加骰。
 
     条件有两条互斥路径（规则书「偷袭方式」），环境负责声明后者：
@@ -461,19 +462,63 @@ def build_sneak_rules(resolved, build_doc, ops, attacks, distance_ft, env_doc):
     if not dice or dice == "0":
         return []
     ally = bool(env_doc.get("ally_within_5ft_of_target", False))
-    duel = "cf.盗贼.决斗" in class_ops and distance_ft <= 5
+    # 「决斗」由算子自己声明新增的偷袭方式，而不是在这里写死 id
+    duel = (bool((class_ops.get("cf.盗贼.决斗") or {}).get("projection", {})
+                 .get("sneak_attack_variant")) and distance_ft <= 5)
+
+    # 「多重偷袭」：每多满足一种偷袭触发条件，偷袭骰 +N
+    bonus_per_extra = 0
+    for f in build_doc.get("feats", []):
+        fop = ops.get(f.get("id"))
+        n = int(((fop or {}).get("projection") or {}).get(
+            "sneak_attack_bonus_dice", 0))
+        bonus_per_extra = max(bonus_per_extra, n)
+
+    # 「致命精准」：放弃若干枚偷袭骰，换取该次攻击的 X×2 攻击加值。
+    # 这是**每次攻击的取舍**，所以由策略声明要放弃几枚，不写就不放弃
+    if convert_dice:
+        has_feat = any(
+            int(((ops.get(f.get("id")) or {}).get("projection") or {}).get(
+                "sneak_dice_to_attack_bonus", 0))
+            for f in build_doc.get("feats", []))
+        if not has_feat:
+            convert_dice = 0
+
     rules = []
     for i, a in enumerate(attacks):
-        ok = (a.adv_tiers >= 1
-              or (ally and a.adv_tiers >= 0)
-              or (duel and not ally and a.adv_tiers >= 0))
-        if not ok:
+        # 数一数这条路径满足了几种触发方式（多重偷袭按"种数"加骰）
+        paths = [a.adv_tiers >= 1,
+                 ally and a.adv_tiers >= 0,
+                 duel and a.adv_tiers >= 0]
+        if not any(paths):
             continue
+        extra_n = bonus_per_extra * (sum(1 for x in paths if x) - 1)
+        dice_i = _grow_dice(dice, extra_n) if extra_n else dice
+        used = dice_i
+        if convert_dice:
+            per = int(((ops.get("cf.盗贼.偷袭") or {}).get("projection") or {})
+                      .get("sneak_attack", {}).get("dice_to_attack_bonus", 2))
+            used = _grow_dice(dice_i, -min(convert_dice, _dice_count(dice_i)))
+            attacks[i].attack_bonus += int(convert_dice) * per
         rules.append(Rule(
             trigger="hit_or_crit", on_attack=i, once_per_turn=True, name="盗贼.偷袭",
-            extra_dice=[DamageComponent(dice, dtype=resolved.weapon["damage_type"],
+            extra_dice=[DamageComponent(used,
+                                        dtype=resolved.weapon["damage_type"],
                                         slot="sneak_attack")]))
     return rules
+
+
+def _dice_count(dice_expr):
+    head, sep, _ = str(dice_expr).partition("d")
+    return int(head) if sep and head.isdigit() else 0
+
+
+def _grow_dice(dice_expr, extra_dice_count):
+    """把 `3d8` 增加若干枚，保持面不变：`3d8` + 2 枚 → `5d8`。"""
+    head, sep, tail = str(dice_expr).partition("d")
+    if not sep or not head.isdigit():
+        return dice_expr
+    return f"{int(head) + extra_dice_count}d{tail}"
 
 
 def _scale_dice(dice, n):
@@ -1156,11 +1201,6 @@ def build_spell_attack(resolved, op, adv_tiers=0, slot_level=None, target=None,
                   auto_hit=bool(spec.get("auto_hit", False)))
 
 
-def spell_attack_count(op):
-    """法术产生的攻击实例数（灼热射线为 3 道、升环再加）。"""
-    return int((op.get("attack") or {}).get("count", 1))
-
-
 def save_effect_from_op(resolved, op, target, slot_level=None,
                         dc_modifier=0, on_fail_extra=None, transform=None):
     """豁免型法术的期望伤害。DC 取自角色，豁免加值取自目标。
@@ -1328,10 +1368,6 @@ def load_budget(build_doc, env_doc, extra_pools=None, ops=None):
                   long_rests=int(env_doc.get("long_rests", 1)), level=level)
 
 
-def _has_feat(build_doc, op_id):
-    return any(f.get("id") == op_id for f in build_doc.get("feats", []))
-
-
 def apply_build_time_effects(build_doc, ops, trace=None):
     """把"构筑期"生效的算子投影落到构筑上。
 
@@ -1393,13 +1429,6 @@ BUFF_ALIASES = {
     "rage": "cf.狂战士.狂暴",
     "reckless": "cf.狂战士.鲁莽攻击",
 }
-
-
-def _build_level(build_doc):
-    meta = build_doc.get("meta", {})
-    if meta.get("level"):
-        return int(meta["level"])
-    return sum(int(c.get("level", 0)) for c in build_doc.get("classes", [])) or 1
 
 
 def granted_class_ops(build_doc, ops):
@@ -2010,6 +2039,17 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 a = build_spell_attack(resolved, sop, adv_tiers=adv,
                                        slot_level=slot_level, target=round_target,
                                        transform=meta)
+                # 「末路法术」：目标血越少，法术攻击加值越高
+                hp_frac = float((env_doc.get("target") or {}).get("hp_fraction", 1.0))
+                for pop in move_ops:
+                    if not (pop.get("projection") or {}).get("spell_attack_bonus_by_hp"):
+                        continue
+                    if hp_frac <= 1 / 3:
+                        a.attack_bonus += 3
+                    elif hp_frac <= 2 / 3:
+                        a.attack_bonus += 2
+                    else:
+                        a.attack_bonus += 1
                 # 被动专长（构筑里已选）自动贡献 crit_range / extra_dice，
                 # 但若策略已显式列出同一个算子则不重复应用。
                 # 本轮增益（buffs）已由 buff_adv / rage_active 单独结算，
@@ -2145,7 +2185,9 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                                                 name=pop["id"] + ".next_adv"))
             if attacks:
                 all_rules_built.extend(build_sneak_rules(
-                    resolved, build_doc, ops, attacks, state.distance_ft, env_doc))
+                    resolved, build_doc, ops, attacks, state.distance_ft, env_doc,
+                    convert_dice=int((per_attack or {}).get(
+                        "sneak_dice_to_attack", 0))))
         all_rules.extend(all_rules_built)
 
         # 借机攻击：打桩默认目标不动不还手，**触发次数由环境显式声明**（默认 0）。

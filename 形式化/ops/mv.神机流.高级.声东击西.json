@@ -14,7 +14,7 @@
   "decision_point": "before_roll",
   "gate": {},
   "projection": {
-    "note": "对两名敌人各发动一整轮攻击，随后取消其中一名的全部收益"
+    "note": "对两名敌人各发动一轮攻击，随后取消其中一名的全部收益"
   },
   "source": {
     "book": "5z",
@@ -23,5 +23,7 @@
     "anchor": "声东击西"
   },
   "status": "modeled",
-  "ruling": null
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "多目标攻击：打桩只有一个目标时，取消另一名的收益后即为普通攻击"
 }

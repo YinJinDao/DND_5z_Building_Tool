@@ -1850,6 +1850,77 @@ def test_overestimate_control():
         print(f"  FAIL 重骰次数未接资源池：{one:.3f} vs {three:.3f}")
 
 
+def test_invariants():
+    print("")
+    print("[35] 不变式：单调性与边界")
+
+    import json as _j
+
+    import calculator as calc
+
+    root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    base = _j.load(open(os.path.join(root, "examples", "barbarian_l5.build.json"),
+                        encoding="utf-8"))
+    base["combat"].pop("mount", None)
+    base["feats"] = []
+    base["choices"] = {}
+
+    def run(env=None, rounds=1, attacks=1):
+        doc = _j.loads(_j.dumps(base))
+        rs = [{"round": i, "move": {"toward": True, "ft": 25},
+               "attacks": attacks, "per_attack": {"ops": []}}
+              for i in range(1, rounds + 1)]
+        e = {"target": {"ac": 15}}
+        if env:
+            e["target"].update(env)
+        return float(calc.evaluate(doc, e, {"rounds": rs}).total)
+
+    def mono(name, seq, up=True):
+        ok = all((seq[i] <= seq[i + 1] + 1e-9) if up else (seq[i] >= seq[i + 1] - 1e-9)
+                 for i in range(len(seq) - 1))
+        print(("  OK   " if ok else "  FAIL ") + name)
+        if not ok:
+            FAILS.append(name)
+
+    # 单调性：这些性质不依赖具体数值，只要引擎自洽就一定成立
+    mono("AC 越高伤害不增", [run({"ac": ac}) for ac in range(5, 26)], up=False)
+    mono("攻击次数越多伤害不降", [run(attacks=n) for n in range(1, 6)])
+    mono("轮数越多伤害不降", [run(rounds=n) for n in range(1, 6)])
+
+    plain = run()
+    print(("  OK   " if run({"resist": ["slashing"]}) < plain else "  FAIL ")
+          + "抗性降低伤害")
+    if run({"resist": ["slashing"]}) >= plain:
+        FAILS.append("抗性未降低伤害")
+    print(("  OK   " if abs(run({"immune": ["slashing"]})) < 1e-9 else "  FAIL ")
+          + "免疫后为 0")
+    if abs(run({"immune": ["slashing"]})) > 1e-9:
+        FAILS.append("免疫未归零")
+    print(("  OK   " if run({"vuln": ["slashing"]}) > plain else "  FAIL ")
+          + "易伤提高伤害")
+    if run({"vuln": ["slashing"]}) <= plain:
+        FAILS.append("易伤未提高伤害")
+    print(("  OK   " if run({"resist": ["slashing"],
+                            "pre_reduction": {"all": 100}}) >= 0 else "  FAIL ")
+          + "减伤不为负")
+
+    advseq = []
+    for adv in range(0, 5):
+        doc = _j.loads(_j.dumps(base))
+        strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                             "attacks": 1,
+                             "per_attack": {"ops": [], "adv_tiers": adv}}]}
+        advseq.append(float(calc.evaluate(doc, {"target": {"ac": 15}}, strat).total))
+    mono("优势层数越多伤害不降", advseq)
+
+    # 结果树叶子数 = 3^k
+    doc = _j.loads(_j.dumps(base))
+    strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},
+                         "attacks": 2, "per_attack": {"ops": []}}]}
+    res = calc.evaluate(doc, {"target": {"ac": 15}}, strat)
+    check("2 次攻击 → 9 个叶子", Fraction(res.leaves), Fraction(9), tol=1e-9)
+
+
 def main():
     print("=" * 58)
     print("5z 打桩伤害引擎自检")
@@ -1888,6 +1959,7 @@ def main():
     test_cross_round()
     test_cross_round_resources()
     test_overestimate_control()
+    test_invariants()
     print("\n" + "=" * 58)
     if FAILS:
         print(f"失败 {len(FAILS)} 项: {FAILS}")
