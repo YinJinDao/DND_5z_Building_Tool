@@ -1,0 +1,44 @@
+{
+  "id": "cf.狂战士.血剑",
+  "name": "血剑",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "狂战士",
+    "class_id": "class.barbarian",
+    "level": 14,
+    "subclass": "鲜血"
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "weapon_enhancement_bonus": {
+      "value": 1,
+      "scale": {
+        "12": 2,
+        "18": 3
+      }
+    },
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "level",
+        "damage_type": "necrotic",
+        "limit": "每回合一次",
+        "note": "额外 1dX 暗蚀，X 为狂战士等级；此处按固定值占位"
+      }
+    ],
+    "note": "鲜血道途专用剑：每回合一次额外暗蚀伤害，6/12/18 级起攻击与伤害 +1/+2/+3"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/狂战士/鲜血.htm",
+    "anchor": "血剑"
+  },
+  "status": "approximated",
+  "ruling": null
+}

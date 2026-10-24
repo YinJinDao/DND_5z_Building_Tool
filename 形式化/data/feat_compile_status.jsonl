@@ -14,16 +14,22 @@
 {"id": "feat.威力攻击", "name": "威力攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.死神降临", "name": "死神降临", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.战神降临", "name": "战神降临", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.威力豁免", "name": "威力豁免", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.疯狂连击", "name": "疯狂连击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.穿刺者", "name": "穿刺者", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.挥砍者", "name": "挥砍者", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.钝击者", "name": "钝击者", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.重击大师", "name": "重击大师", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.近程射手", "name": "近程射手", "status": "out_of_scope", "reason": "避免惩罚类：本身不产生加值，只是取消劣势；夹击加值属环境判定", "source": "manual"}
 {"id": "feat.箭刃交响", "name": "箭刃交响", "status": "out_of_scope", "reason": "交替近远程攻击的充能体系：要求本回合攻击类型的顺序", "source": "manual"}
 {"id": "feat.凶蛮打手", "name": "凶蛮打手", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.心理控制大师", "name": "心理控制大师", "status": "out_of_scope", "reason": "强化心智类负面状态", "source": "manual"}
 {"id": "feat.生理控制大师", "name": "生理控制大师", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.群战专家", "name": "群战专家", "status": "out_of_scope", "reason": "伤害溢出转移与株连：多目标", "source": "manual"}
+{"id": "feat.血怒", "name": "血怒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.灵活移动", "name": "灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.进阶灵活移动", "name": "进阶灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.超级灵活移动", "name": "超级灵活移动", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.完美生物", "name": "完美生物", "status": "out_of_scope", "reason": "不死性与传送：角色已超出常规评价范围", "source": "manual"}
 {"id": "feat.创生圣言", "name": "创生圣言", "status": "out_of_scope", "reason": "真名体系：透支生命换取法术约束力", "source": "manual"}
 {"id": "feat.毁灭真言", "name": "毁灭真言", "status": "out_of_scope", "reason": "支配与衰败：控制与持续性减益", "source": "manual"}
@@ -31,6 +37,7 @@
 {"id": "feat.系挂战斗", "name": "系挂战斗", "status": "out_of_scope", "reason": "系挂在体型更大的盟友身上：需要队友", "source": "manual"}
 {"id": "feat.色彩龙赋礼", "name": "色彩龙赋礼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.宝石龙赋礼", "name": "宝石龙赋礼", "status": "out_of_scope", "reason": "授予晶仆法术与受击反伤：反伤属被动触发", "source": "manual"}
+{"id": "feat.极道帝兵", "name": "极道帝兵", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.敏锐心灵", "name": "敏锐心灵", "status": "out_of_scope", "reason": "属性加值与记忆回溯，无战斗数值", "source": "manual"}
 {"id": "feat.天命之礼", "name": "天命之礼", "status": "out_of_scope", "reason": "按神祇选择超自然赠礼，效果分散且多为资源/防御", "source": "manual"}
 {"id": "feat.黑暗之拥", "name": "黑暗之拥", "status": "out_of_scope", "reason": "按神祇选择的动作项，效果分散", "source": "manual"}
@@ -68,7 +75,9 @@
 {"id": "feat.登龙", "name": "登龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.猎虫", "name": "猎虫", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.空中连携", "name": "空中连携", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
+{"id": "feat.超高出力属性解放斩", "name": "超高出力属性解放斩", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.反击风暴", "name": "反击风暴", "status": "out_of_scope", "reason": "纯防御：把命中的攻击改为失手", "source": "manual"}
+{"id": "feat.暴雨梨花", "name": "暴雨梨花", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.贯手著棼", "name": "贯手著棼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.阵地狙击", "name": "阵地狙击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.倒钩大师", "name": "倒钩大师", "status": "out_of_scope", "reason": "勾住与推撞：强制位移与控制", "source": "manual"}
@@ -83,6 +92,7 @@
 {"id": "feat.适应性", "name": "适应性", "status": "out_of_scope", "reason": "把负面状态替换为较弱版本：防御侧", "source": "manual"}
 {"id": "feat.浮光掠影", "name": "浮光掠影", "status": "out_of_scope", "reason": "立体机动装置专用：决定掠袭次数", "source": "manual"}
 {"id": "feat.死与匿", "name": "死与匿", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.战法宝钻", "name": "战法宝钻", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.盾牌大师", "name": "盾牌大师", "status": "out_of_scope", "reason": "盾牌推撞与豁免加值：防御与位移", "source": "manual"}
 {"id": "feat.飞盾", "name": "飞盾", "status": "out_of_scope", "reason": "盾牌投掷与护卫：防御侧", "source": "manual"}
 {"id": "feat.铜墙铁壁", "name": "铜墙铁壁", "status": "out_of_scope", "reason": "盾牌投掷与格挡震击：以盾牌为武器的远程攻击", "source": "manual"}
@@ -96,6 +106,8 @@
 {"id": "feat.神力澎湃", "name": "神力澎湃", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.尖端发明家", "name": "尖端发明家", "status": "out_of_scope", "reason": "造物规则：强化制造的充能型魔法物品", "source": "manual"}
 {"id": "feat.魔能爆大师", "name": "魔能爆大师", "status": "out_of_scope", "reason": "强化特定法术（魔能爆）", "source": "manual"}
+{"id": "feat.精通契约", "name": "精通契约", "status": "out_of_scope", "reason": "属性替换：改变的是用哪个属性算，不改变加值大小", "source": "manual"}
+{"id": "feat.本土召唤", "name": "本土召唤", "status": "out_of_scope", "reason": "召唤物体系：强化对象是召唤生物", "source": "manual"}
 {"id": "feat.爆发式攻击", "name": "爆发式攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.斗气护体", "name": "斗气护体", "status": "out_of_scope", "reason": "纯防御：重击改普通命中与伤害抗性", "source": "manual"}
 {"id": "feat.斗气外放", "name": "斗气外放", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -108,9 +120,11 @@
 {"id": "feat.星宿流", "name": "星宿流", "status": "out_of_scope", "reason": "四方星宿择一：效果分散且多为恢复与范围", "source": "manual"}
 {"id": "feat.真气属性", "name": "真气属性", "status": "out_of_scope", "reason": "侠客真气属性基础效果：移速、隐形、临时生命、禁反应", "source": "manual"}
 {"id": "feat.真气小成", "name": "真气小成", "status": "out_of_scope", "reason": "侠客真气属性初阶效果：浮空、解除法术、迟滞", "source": "manual"}
+{"id": "feat.凛冽", "name": "凛冽", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.真气大成", "name": "真气大成", "status": "out_of_scope", "reason": "侠客真气属性中阶效果：盲视、氪气、冰锥阵", "source": "manual"}
 {"id": "feat.真气圆满", "name": "真气圆满", "status": "out_of_scope", "reason": "侠客真气属性高阶效果：反弹射物、放逐、冰锥", "source": "manual"}
 {"id": "feat.复古法师", "name": "复古法师", "status": "out_of_scope", "reason": "蓄力施法：法术延迟一轮释放，改变的是施法节奏", "source": "manual"}
+{"id": "feat.亵渎强化", "name": "亵渎强化", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.精通反制法术", "name": "精通反制法术", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.戏法过载", "name": "戏法过载", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.魔法护盾", "name": "魔法护盾", "status": "out_of_scope", "reason": "临时生命值与法术位减伤：防御侧", "source": "manual"}
@@ -118,6 +132,7 @@
 {"id": "feat.魔法少女", "name": "魔法少女", "status": "out_of_scope", "reason": "身份伪装与变身戏法", "source": "manual"}
 {"id": "feat.超魔法少女", "name": "超魔法少女", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.荒野咆哮", "name": "荒野咆哮", "status": "out_of_scope", "reason": "夹击与移动力：打桩无盟友", "source": "manual"}
+{"id": "feat.狂怒", "name": "狂怒", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.鲁莽投掷", "name": "鲁莽投掷", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.刹那波流", "name": "刹那波流", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.空手道忍者", "name": "空手道忍者", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -125,6 +140,7 @@
 {"id": "feat.多重偷袭", "name": "多重偷袭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.骑士踢", "name": "骑士踢", "status": "out_of_scope", "reason": "铠甲程序：伤害取决于关闭的演算模块数量", "source": "manual"}
 {"id": "feat.光之符文", "name": "光之符文", "status": "out_of_scope", "reason": "符文与组合效果均为属性检定/豁免加值，不改变伤害数值", "source": "manual"}
+{"id": "feat.非稳态生命", "name": "非稳态生命", "status": "out_of_scope", "reason": "死亡触发：以存活角色为单位时间的 DPR 评价里不可达", "source": "manual"}
 {"id": "feat.守护龙纹", "name": "守护龙纹", "status": "out_of_scope", "reason": "护盾术与警觉护卫：防御侧", "source": "manual"}
 {"id": "feat.龙族天生武器", "name": "龙族天生武器", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.青年龙", "name": "青年龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -141,8 +157,10 @@
 {"id": "feat.融合元素裔", "name": "融合元素裔", "status": "out_of_scope", "reason": "双元素融合形态：整份数据被替换", "source": "manual"}
 {"id": "feat.七十二变", "name": "七十二变", "status": "out_of_scope", "reason": "形态替换：变为野兽/元素/精类，整份数据被替换", "source": "manual"}
 {"id": "feat.真祖之血", "name": "真祖之血", "status": "out_of_scope", "reason": "血族：天生施法与变形", "source": "manual"}
+{"id": "feat.妖精培训课程", "name": "妖精培训课程", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.真正的法师之手", "name": "真正的法师之手", "status": "out_of_scope", "reason": "改写特定戏法", "source": "manual"}
 {"id": "feat.超级巫妖", "name": "超级巫妖", "status": "out_of_scope", "reason": "巫妖种族特性：麻痹之触与恐惧凝视", "source": "manual"}
+{"id": "feat.令咒", "name": "令咒", "status": "out_of_scope", "reason": "强化友方：收益取决于友方的攻击", "source": "manual"}
 {"id": "feat.超古代光之巨人", "name": "超古代光之巨人", "status": "out_of_scope", "reason": "强化特定法术的形态", "source": "manual"}
 {"id": "feat.攻击表示召唤", "name": "攻击表示召唤", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}
 {"id": "feat.神威", "name": "神威", "status": "out_of_scope", "reason": "改写传送类法术：肢体传送与力场伤害", "source": "manual"}
@@ -176,6 +194,7 @@
 {"id": "feat.末路法术", "name": "末路法术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.法术强效", "name": "法术强效", "status": "out_of_scope", "reason": "超魔：增加法术的伤害骰数量，属法术侧", "source": "manual"}
 {"id": "feat.法术极效", "name": "法术极效", "status": "out_of_scope", "reason": "超魔：让伤害骰取满，属法术侧", "source": "manual"}
+{"id": "feat.冰封诅咒", "name": "冰封诅咒", "status": "out_of_scope", "reason": "减速与诅咒，不造成额外伤害", "source": "manual"}
 {"id": "feat.炽烈爆发", "name": "炽烈爆发", "status": "out_of_scope", "reason": "超魔：让火焰法术附带推离与额外伤害", "source": "manual"}
 {"id": "feat.法术聚焦", "name": "法术聚焦", "status": "out_of_scope", "reason": "超魔：范围法术改为单体并给予豁免劣势", "source": "manual"}
 {"id": "feat.超自然超魔", "name": "超自然超魔", "status": "out_of_scope", "reason": "召唤物/随从相关，按协作约定排除", "source": "compiler"}

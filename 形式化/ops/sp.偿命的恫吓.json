@@ -1,0 +1,29 @@
+{
+  "id": "sp.偿命的恫吓",
+  "name": "偿命的恫吓",
+  "kind": "spell",
+  "level": 6,
+  "school": "死灵",
+  "casting_time": "1反应",
+  "range": "90尺",
+  "concentration": false,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 6
+  },
+  "cost": {},
+  "decision_point": "before_roll",
+  "projection": {
+    "note": "感知豁免失败即死：处决类效果"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/6环.htm",
+    "anchor": "偿命的恫吓"
+  },
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "感知豁免失败即死：处决类效果"
+}

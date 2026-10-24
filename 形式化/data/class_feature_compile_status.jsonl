@@ -23,6 +23,7 @@
 {"id": "cf.奇械师.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.奇械师.子弹式压缩球", "name": "子弹式压缩球", "status": "out_of_scope", "reason": "伤害来源是被释放的法术，该特性只改变投射方式", "source": "manual"}
 {"id": "cf.奇械师.多重攻击", "name": "多重攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.奇械师.纵丝弄戏", "name": "纵丝弄戏", "status": "out_of_scope", "reason": "操纵他人的攻击：伤害不是自己发动的", "source": "manual"}
 {"id": "cf.奇械师.完美装甲", "name": "完美装甲", "status": "out_of_scope", "reason": "纯防御：AC 加值", "source": "manual"}
 {"id": "cf.契术师.契与焰的回响", "name": "契与焰的回响", "status": "out_of_scope", "reason": "只改变特定法术的施展方式，伤害仍由该法术产生", "source": "manual"}
 {"id": "cf.契术师.魔焰塑形", "name": "魔焰塑形", "status": "out_of_scope", "reason": "只重塑特定法术的形态；打桩单目标下射线即为最优，塑形不带来增量", "source": "manual"}
@@ -30,6 +31,8 @@
 {"id": "cf.契术师.九州风雷", "name": "九州风雷", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.契术师.牺牲疗愈", "name": "牺牲疗愈", "status": "out_of_scope", "reason": "治疗与自我伤害，不产生对敌输出", "source": "manual"}
 {"id": "cf.契术师.过界信仰", "name": "过界信仰", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.契术师.契灵赋能", "name": "契灵赋能", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.契术师.黑暗赐福", "name": "黑暗赐福", "status": "out_of_scope", "reason": "把临时生命值转为伤害：数值取决于当时持有的临时生命", "source": "manual"}
 {"id": "cf.武僧.武艺", "name": "武艺", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.气", "name": "气", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -40,11 +43,13 @@
 {"id": "cf.武僧.即身成佛", "name": "即身成佛", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.龙岛秘传", "name": "龙岛秘传", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.真气属性", "name": "真气属性", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.武僧.凛冽", "name": "凛冽", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.真气大成", "name": "真气大成", "status": "out_of_scope", "reason": "区域控制与防御，不改变本角色的伤害", "source": "manual"}
 {"id": "cf.武僧.真气圆满", "name": "真气圆满", "status": "out_of_scope", "reason": "伤害转移、控制与反击触发，不构成稳定的每轮输出", "source": "manual"}
 {"id": "cf.武僧.飞升", "name": "飞升", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.气宗形态", "name": "气宗形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.土宗形态", "name": "土宗形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.武僧.火宗形态", "name": "火宗形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.精通散打技巧", "name": "精通散打技巧", "status": "out_of_scope", "reason": "状态与延迟伤害，不改变命中与伤害数值", "source": "manual"}
 {"id": "cf.武僧.阳光枪", "name": "阳光枪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.武僧.奇迹祷告", "name": "奇迹祷告", "status": "out_of_scope", "reason": "治疗与强制位移，不产生伤害", "source": "manual"}
@@ -62,6 +67,7 @@
 {"id": "cf.法师.凶兆猎犬", "name": "凶兆猎犬", "status": "out_of_scope", "reason": "召唤物/部署物相关，按协作约定排除", "source": "compiler"}
 {"id": "cf.法师.信仰之跃", "name": "信仰之跃", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.游侠.战斗风格", "name": "战斗风格", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.游侠.瞄准猎物", "name": "瞄准猎物", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.游侠.引导神力", "name": "引导神力", "status": "out_of_scope", "reason": "辅助与资源类效应，不改变本角色的伤害数值", "source": "manual"}
 {"id": "cf.游侠.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.游侠.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -103,6 +109,7 @@
 {"id": "cf.狂战士.额外攻击", "name": "额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.非凡额外攻击", "name": "非凡额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.狂战士.根击千钧", "name": "根击千钧", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.兽之形·低级", "name": "兽之形·低级", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.兽之形·中级", "name": "兽之形·中级", "status": "out_of_scope", "reason": "五选项全为防御/移动/地形能力；唯一输出向的「鲨之流形」需要水域地形，打桩契约不声明该地形", "source": "manual"}
 {"id": "cf.狂战士.兽之形·高级", "name": "兽之形·高级", "status": "out_of_scope", "reason": "选项全为防御、移动或对他人造成伤害；不改变本角色自身的攻击输出", "source": "manual"}
@@ -113,6 +120,7 @@
 {"id": "cf.狂战士.野兽之形", "name": "野兽之形", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.强化天生武器", "name": "强化天生武器", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.死亡抗拒", "name": "死亡抗拒", "status": "out_of_scope", "reason": "纯防御：只回复自身生命值，不改变输出（打桩契约下也不计承受伤害）", "source": "manual"}
+{"id": "cf.狂战士.血剑", "name": "血剑", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.赤红之池", "name": "赤红之池", "status": "out_of_scope", "reason": "纯防御形态：液态期间不能攻击，只提供抗性与移动方式", "source": "manual"}
 {"id": "cf.狂战士.龙焰铸就", "name": "龙焰铸就", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.狂战士.怒龙醒转", "name": "怒龙醒转", "status": "out_of_scope", "reason": "形态替换与锁定状态：角色失去行动自主权，其输出不能作为构筑评分；咆哮伤害针对他人且要以生命值为代价", "source": "manual"}
@@ -134,6 +142,7 @@
 {"id": "cf.盗贼.战场支援", "name": "战场支援", "status": "out_of_scope", "reason": "地形清理与团队移动，不产生伤害", "source": "manual"}
 {"id": "cf.盗贼.决斗", "name": "决斗", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.盗贼.迅捷优雅", "name": "迅捷优雅", "status": "out_of_scope", "reason": "改变戏法的施放节奏，伤害归入对应戏法算子", "source": "manual"}
+{"id": "cf.盗贼.氤氲的香笼", "name": "氤氲的香笼", "status": "out_of_scope", "reason": "熏香为寻猎虻提供加值，属同伴体系", "source": "manual"}
 {"id": "cf.盗贼.翻涌的尘与光", "name": "翻涌的尘与光", "status": "out_of_scope", "reason": "遮蔽与隐匿，属防御与潜行", "source": "manual"}
 {"id": "cf.盗贼.悄无声息的吻", "name": "悄无声息的吻", "status": "out_of_scope", "reason": "同伴体系：强化对象是寻猎虻", "source": "manual"}
 {"id": "cf.盗贼.立体机动装置训练", "name": "立体机动装置训练", "status": "out_of_scope", "reason": "依赖特定装备（立体机动装置）的攻击方式，其偷袭收益已由偷袭算子表达", "source": "manual"}
@@ -165,6 +174,7 @@
 {"id": "cf.吟游诗人.先发激励", "name": "先发激励", "status": "out_of_scope", "reason": "提前施放一次吟唱：收益取决于所选吟唱内容，不改变每轮输出", "source": "manual"}
 {"id": "cf.吟游诗人.狂热应援", "name": "狂热应援", "status": "out_of_scope", "reason": "控制传染与自救，不产生伤害", "source": "manual"}
 {"id": "cf.吟游诗人.精通额外攻击", "name": "精通额外攻击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "cf.吟游诗人.胜利之歌", "name": "胜利之歌", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "cf.吟游诗人.聚义同心", "name": "聚义同心", "status": "out_of_scope", "reason": "豁免免疫与他人攻击次数，不改变本角色输出", "source": "manual"}
 {"id": "cf.吟游诗人.挽歌", "name": "挽歌", "status": "out_of_scope", "reason": "豁免减值与自我增益的配对，不构成稳定的每轮伤害", "source": "manual"}
 {"id": "cf.灵能师.法术风格", "name": "法术风格", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -190,3 +200,4 @@
 {"id": "cf.召唤师.祭品", "name": "祭品", "status": "out_of_scope", "reason": "以仆从换取自身防御能力，不产生对敌输出", "source": "manual"}
 {"id": "cf.召唤师.巫妖转化", "name": "巫妖转化", "status": "out_of_scope", "reason": "形态转化：角色本体数据被替换，且以亡者之身运作，不适用于常规 DPR 评价", "source": "manual"}
 {"id": "cf.召唤师.英魂凭依", "name": "英魂凭依", "status": "out_of_scope", "reason": "数据合并：凭依期间使用从者的数据，属召唤物体系", "source": "manual"}
+{"id": "cf.召唤师.我献上我的肉", "name": "我献上我的肉", "status": "out_of_scope", "reason": "从魔体系：加成作用于从魔的伤害", "source": "manual"}

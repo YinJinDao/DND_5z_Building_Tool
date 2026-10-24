@@ -5,6 +5,7 @@
 {"id": "sp.燃火术", "name": "燃火术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.冷冻射线", "name": "冷冻射线", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.圣火术", "name": "圣火术", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "sp.橡棍术", "name": "橡棍术", "status": "out_of_scope", "reason": "属性替换：改变用哪个属性算，不改变加值大小", "source": "manual"}
 {"id": "sp.电爪", "name": "电爪", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.荆棘之鞭", "name": "荆棘之鞭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.恶言相加", "name": "恶言相加", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -329,6 +330,7 @@
 {"id": "sp.精金钵", "name": "精金钵", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
 {"id": "sp.再生术", "name": "再生术", "status": "out_of_scope", "reason": "治疗与移除状态", "source": "manual"}
 {"id": "sp.五内俱焚", "name": "五内俱焚", "status": "out_of_scope", "reason": "双方承受属性损伤，不造成生命值伤害", "source": "manual"}
+{"id": "sp.恶魔形态", "name": "恶魔形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.炎之自由", "name": "炎之自由", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.贾拉兹的光辉风暴", "name": "贾拉兹的光辉风暴", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.腐蚀泥沼", "name": "腐蚀泥沼", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -377,6 +379,7 @@
 {"id": "sp.律令互联网", "name": "律令互联网", "status": "out_of_scope", "reason": "对他人行为的反制评论", "source": "manual"}
 {"id": "sp.真正的魔能爆", "name": "真正的魔能爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.天命之子", "name": "天命之子", "status": "out_of_scope", "reason": "叙事性效果", "source": "manual"}
+{"id": "sp.偿命的恫吓", "name": "偿命的恫吓", "status": "out_of_scope", "reason": "感知豁免失败即死：处决类效果", "source": "manual"}
 {"id": "sp.光之巨人形态", "name": "光之巨人形态", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.回春法阵", "name": "回春法阵", "status": "out_of_scope", "reason": "治疗", "source": "manual"}
 {"id": "sp.徘徊火焰", "name": "徘徊火焰", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -439,6 +442,7 @@
 {"id": "sp.能量转换结界", "name": "能量转换结界", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.密斯特拉圣星", "name": "密斯特拉圣星", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.死神形态", "name": "死神形态", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}
+{"id": "sp.太阳祭品的传说", "name": "太阳祭品的传说", "status": "out_of_scope", "reason": "传说任务：需先完成指定行为才能获得奖励", "source": "manual"}
 {"id": "sp.流星爆", "name": "流星爆", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.虹光法墙", "name": "虹光法墙", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "sp.形体变化", "name": "形体变化", "status": "out_of_scope", "reason": "原文无骰式伤害", "source": "compiler"}

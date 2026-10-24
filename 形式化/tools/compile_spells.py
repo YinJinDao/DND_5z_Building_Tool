@@ -146,7 +146,10 @@ def main():
 
     rows, written, stat = [], 0, {}
     for sp in spells:
-        if rel.get(sp["id"], {}).get("tier") != "A":
+        _tier = rel.get(sp["id"], {}).get("tier")
+        # A 档是必须编译的清单；B 档只在**已经有算子**时进表，
+        # 这样它的结论可见，又不会把"没编的 B 档"混进待办。
+        if _tier != "A" and not (_tier == "B" and sp["id"] in existing):
             continue
         if sp["id"] in existing:
             # 已有算子：状态以算子声明为准（与职业特性/专长编译器一致）
@@ -174,7 +177,7 @@ def main():
         for r in rows:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-    print(f"A 档法术 {len(rows)} 条")
+    print(f"A 档必编 + 已编译的 B 档：{len(rows)} 条")
     for k, v in sorted(stat.items(), key=lambda x: -x[1]):
         print(f"  {k:14s} {v:4d}")
     if args.write:

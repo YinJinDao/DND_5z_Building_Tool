@@ -1,0 +1,38 @@
+{
+  "id": "cf.吟游诗人.胜利之歌",
+  "name": "胜利之歌",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "吟游诗人",
+    "class_id": "class.bard",
+    "level": 18,
+    "subclass": "剑舞"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat_expr": "int",
+        "damage_type": "same_as_weapon",
+        "note": "剑歌激活期间加智力调整值（至少 +1）"
+      }
+    ],
+    "note": "剑歌激活时把智力调整值加到近战武器伤害；需策略 buffs 声明剑歌",
+    "chosen_option": null
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/吟游诗人/剑舞.htm",
+    "anchor": "胜利之歌"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -185,7 +185,10 @@ def main():
     rows, written = [], 0
     stat = {}
     for m in mvs:
-        if rel.get(m["id"], {}).get("tier") != "A":
+        _tier = rel.get(m["id"], {}).get("tier")
+        # A 档是必须编译的清单；B 档只在**已经有算子**时进表，
+        # 这样它的结论可见，又不会把"没编的 B 档"混进待办。
+        if _tier != "A" and not (_tier == "B" and m["id"] in existing):
             continue
         if m["id"] in existing:
             rows.append({"id": m["id"], "name": m["name"], "status": "modeled",
@@ -208,7 +211,7 @@ def main():
         for r in rows:
             fh.write(json.dumps(r, ensure_ascii=False) + "\n")
 
-    print(f"A 档战技 {len(rows)} 条")
+    print(f"A 档必编 + 已编译的 B 档：{len(rows)} 条")
     for k, v in sorted(stat.items(), key=lambda x: -x[1]):
         print(f"  {k:14s} {v:3d}")
     if args.write:

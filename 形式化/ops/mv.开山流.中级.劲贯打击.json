@@ -1,0 +1,29 @@
+{
+  "id": "mv.开山流.中级.劲贯打击",
+  "name": "劲贯打击",
+  "kind": "maneuver",
+  "acquisition": {
+    "type": "maneuver_slot",
+    "known": true,
+    "dice_cost": 1
+  },
+  "cost": {
+    "replace_attack": 1,
+    "superiority": 1
+  },
+  "decision_point": "before_roll",
+  "gate": {},
+  "projection": {
+    "note": "对 5 尺宽线形区域内每个生物依次发动一次近战武器攻击"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/战技专长/开山流专长.htm",
+    "anchor": "劲贯打击"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "多目标攻击：打桩单目标时退化为一次普通攻击"
+}

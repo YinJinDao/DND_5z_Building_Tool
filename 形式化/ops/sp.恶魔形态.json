@@ -1,0 +1,36 @@
+{
+  "id": "sp.恶魔形态",
+  "name": "恶魔形态",
+  "kind": "spell",
+  "level": 5,
+  "school": "变化",
+  "casting_time": "1动作",
+  "range": "自身",
+  "concentration": true,
+  "acquisition": {
+    "type": "spell_access",
+    "level": 5
+  },
+  "cost": {
+    "action": 1
+  },
+  "decision_point": "before_roll",
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 10,
+        "damage_type": "necrotic"
+      }
+    ],
+    "note": "施法后第 X 轮，攻击命中额外造成 X×10 暗蚀伤害，十轮封顶 100。此处按 X=1 建模，逐轮增长需要按轮数求值"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "法术/法术详述/5环.htm",
+    "anchor": "恶魔形态"
+  },
+  "status": "approximated",
+  "ruling": null
+}

@@ -3,6 +3,8 @@
 {"id": "mv.开山流.中级.泰山压顶", "name": "泰山压顶", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.中级.汲血痛击", "name": "汲血痛击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.中级.盾牌猛冲", "name": "盾牌猛冲", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "mv.开山流.中级.劲贯打击", "name": "劲贯打击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "mv.开山流.中级.铁布衫", "name": "铁布衫", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.中级.玄武势", "name": "玄武势", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.中级.求生本能", "name": "求生本能", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.开山流.高级.共工槌", "name": "共工槌", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -17,6 +19,7 @@
 {"id": "mv.游龙流.低级.伪装破绽", "name": "伪装破绽", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.游龙流.中级.抱身投", "name": "抱身投", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.游龙流.中级.九死离魂", "name": "九死离魂", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "mv.游龙流.中级.识破", "name": "识破", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.游龙流.高级.叹为观止", "name": "叹为观止", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.游龙流.高级.亢龙有悔", "name": "亢龙有悔", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.游龙流.超级.百川归海", "name": "百川归海", "status": "modeled", "reason": "已手工编译", "source": "manual"}
@@ -36,10 +39,12 @@
 {"id": "mv.摘星流.超级.一瞬千击", "name": "一瞬千击", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.摘星流.超级.暗影突袭", "name": "暗影突袭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.摘星流.低级.月见酒", "name": "月见酒", "status": "out_of_scope", "reason": "原文明确不造成伤害，不进入伤害链路", "source": "compiler"}
+{"id": "mv.摘星流.中级.樱上幕", "name": "樱上幕", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.摘星流.高级.猪鹿蝶", "name": "猪鹿蝶", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.摘星流.超级.刹那一刀·苦夜叉", "name": "刹那一刀·苦夜叉", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.低级.砖袭", "name": "砖袭", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.低级.食物信号", "name": "食物信号", "status": "out_of_scope", "reason": "原文明确不造成伤害，不进入伤害链路", "source": "compiler"}
+{"id": "mv.混元流.低级.斩羽破絮", "name": "斩羽破絮", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.低级.撒盐", "name": "撒盐", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.低级.绊地", "name": "绊地", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "mv.混元流.中级.嗅盐", "name": "嗅盐", "status": "out_of_scope", "reason": "原文明确不造成伤害，不进入伤害链路", "source": "compiler"}

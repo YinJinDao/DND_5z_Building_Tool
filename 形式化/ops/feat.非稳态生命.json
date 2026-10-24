@@ -1,0 +1,29 @@
+{
+  "id": "feat.非稳态生命",
+  "name": "非稳态生命",
+  "kind": "feat",
+  "acquisition": {
+    "type": "feat_slot",
+    "prerequisite": [
+      "元素生物"
+    ]
+  },
+  "cost": {
+    "passive": true
+  },
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "note": "死亡后半径 20 尺爆炸，5×等级伤害，敏捷豁免半伤"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "专长/种族专长/不限定物种的专长.htm",
+    "anchor": "非稳态生命"
+  },
+  "status": "approximated",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "死亡触发：以存活角色为单位时间的 DPR 评价里不可达"
+}

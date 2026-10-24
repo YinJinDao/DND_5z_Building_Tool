@@ -1,0 +1,37 @@
+{
+  "id": "cf.契术师.契灵赋能",
+  "name": "契灵赋能",
+  "kind": "class_feature",
+  "acquisition": {
+    "type": "class_level",
+    "class": "契术师",
+    "class_id": "class.warlock",
+    "level": 8,
+    "subclass": "灵契师（契术师变体）"
+  },
+  "cost": {
+    "passive": true
+  },
+  "activation": "buff",
+  "decision_point": "self_turn_start",
+  "gate": {},
+  "projection": {
+    "extra_dice": [
+      {
+        "dice": "0",
+        "flat": 1,
+        "damage_type": "same_as_weapon",
+        "note": "每与一名偏好刃的契灵立契，契约武器命中额外 +1"
+      }
+    ],
+    "note": "三条增益分别对应书/链/刃契；此处只计刃契的每名 +1 伤害。立契数量取决于构筑，按 1 名建模"
+  },
+  "source": {
+    "book": "5z",
+    "version": "1.63",
+    "file": "职业/职业/契术师/灵契师（契术师变体）.htm",
+    "anchor": "契灵赋能"
+  },
+  "status": "approximated",
+  "ruling": null
+}
