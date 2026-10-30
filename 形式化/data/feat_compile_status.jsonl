@@ -71,7 +71,7 @@
 {"id": "feat.长长法杖", "name": "长长法杖", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.刺剑大师", "name": "刺剑大师", "status": "modeled", "reason": "已手工编译", "source": "manual"}
 {"id": "feat.随手投掷", "name": "随手投掷", "status": "out_of_scope", "reason": "把近战武器视为可投掷：改变射程与劣势判定", "source": "manual"}
-{"id": "feat.旋转飞掷", "name": "旋转飞掷", "status": "modeled", "reason": "已手工编译", "source": "manual"}
+{"id": "feat.旋转飞掷", "name": "旋转飞掷", "status": "out_of_scope", "reason": "效果取决于投掷武器折返落点（d6 决定），需要逐轮位置推演；本工具无位置模型", "source": "manual"}
 {"id": "feat.武器连招", "name": "武器连招", "status": "out_of_scope", "reason": "双武器连招：需要两把武器交替攻击", "source": "manual"}
 {"id": "feat.见切与居合", "name": "见切与居合", "status": "out_of_scope", "reason": "拔刀/收刀势与格挡：防御与姿态管理", "source": "manual"}
 {"id": "feat.登龙", "name": "登龙", "status": "modeled", "reason": "已手工编译", "source": "manual"}

@@ -32,5 +32,7 @@
     "anchor": "威力满溢"
   },
   "status": "modeled",
-  "ruling": null
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "额外伤害等于「命中结果超出 AC 的点数」，是逐次攻击的随机量，需要按 d20 结果分布求积分，当前结果树按命中/重击三态建模无法表达"
 }

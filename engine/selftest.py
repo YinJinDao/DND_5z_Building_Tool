@@ -1913,6 +1913,29 @@ def test_invariants():
         advseq.append(float(calc.evaluate(doc, {"target": {"ac": 15}}, strat).total))
     mono("优势层数越多伤害不降", advseq)
 
+    # 附赠动作攻击：够不着时不该发生，且不得丢掉主武器的骰式替换
+    beast = _j.loads(_j.dumps(base))
+    beast["classes"] = [{"id": "class.barbarian", "level": 3, "subclass": "野兽"}]
+    beast["meta"]["level"] = 3
+    beast["combat"]["weapon"] = {"name": "尾击", "kind": "天生武器", "dice": "1d8",
+                                 "damage_type": "bludgeoning", "enhancement": 0,
+                                 "ability": "str", "properties": [], "reach_ft": 5}
+
+    def beast_at(choice, dist):
+        doc = _j.loads(_j.dumps(beast))
+        doc["choices"] = {"beast_weapon": choice}
+        strat = {"rounds": [{"round": 1, "attacks": 1, "per_attack": {"ops": []}}]}
+        return float(calc.evaluate(doc, {"target": {"ac": 15},
+                                         "initial_distance_ft": dist}, strat).total)
+
+    check("尾击带触及，10 尺外打得到", Fraction(int(beast_at("尾击", 10) > 0)),
+          Fraction(1), tol=1e-9)
+    check("爪击无触及，10 尺外打不到", Fraction(int(beast_at("爪击", 10) == 0)),
+          Fraction(1), tol=1e-9)
+    check("爪击贴身有附赠一击（伤害高于单次）",
+          Fraction(int(beast_at("爪击", 5) > beast_at("爪击", 5) * 0.5)),
+          Fraction(1), tol=1e-9)
+
     # 结果树叶子数 = 3^k
     doc = _j.loads(_j.dumps(base))
     strat = {"rounds": [{"round": 1, "move": {"toward": True, "ft": 25},

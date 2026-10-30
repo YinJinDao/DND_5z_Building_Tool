@@ -30,6 +30,8 @@
     "file": "专长/娴熟专长/常规武器专长.htm",
     "anchor": "旋转飞掷"
   },
-  "status": "approximated",
-  "ruling": null
+  "status": "modeled",
+  "ruling": null,
+  "scope": "out_of_scope",
+  "scope_reason": "效果取决于投掷武器折返落点（d6 决定），需要逐轮位置推演；本工具无位置模型"
 }

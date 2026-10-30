@@ -608,7 +608,11 @@ def collect_movement(active_ops, weapon, build_doc=None, armored=False):
         if proj.get("requires_unarmored") and armored:
             out["skipped"].append(f"「{op['name']}」要求未着装盔甲与盾牌")
             continue
+        # 天生武器自带的「触及」属性（野兽之形的尾击、阳光枪）也应当延长触及
+        nat = proj.get("natural_weapon") or {}
         rb = scaled_value(proj.get("reach_bonus_ft", 0), op, build_doc or {})
+        if "触及" in (nat.get("properties") or []):
+            rb += 5
         if rb:
             out["reach"] += rb
             out["reach_notes"].append(f"{op['name']} +{rb}")
@@ -766,6 +770,7 @@ def weapon_profile(resolved, active_ops, build_doc=None):
             dtype = proj["damage_type_override"]
         if proj.get("natural_weapon"):
             dtype = proj["natural_weapon"].get("damage_type", dtype)
+
         if proj.get("weapon_enhancement_bonus"):
             enhancement += scaled_value(proj["weapon_enhancement_bonus"],
                                         op, build_doc or {})
@@ -1585,6 +1590,14 @@ def derive_attack_count(build_doc, ops):
         if not grants:
             continue
         level_sum = multiclass_level_sum(build_doc, grants.get("classes", []))
+        # 「把另一职业等级的一半加进来」：圣堂审判官/苍翠守望者/灵念开拓师
+        # 都是这个写法。少了这一步会把两个职业的等级**全额**相加，
+        # 于是 2 圣武士/18 牧师 会被判成 20 级 → 拿到 4 次攻击（应为 3 次）
+        half_of = grants.get("half_of")
+        if half_of:
+            half_lv = int(next((c.get("level", 0) for c in build_doc.get("classes", [])
+                                if c.get("id") == half_of), 0))
+            level_sum = level_sum - half_lv + half_lv // 2
         for rule in grants.get("tiers", []):
             if level_sum >= int(rule["min_level_sum"]):
                 counts.append((int(rule["count"]), f"{op['name']}（职业等级和 {level_sum}）"))
@@ -1981,6 +1994,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
         for pop in move_ops:
             bonus_attacks += int((pop.get("projection") or {})
                                  .get("bonus_action_attack", 0))
+        if bonus_attacks and not attacks_n:
+            # 够不着就没有攻击动作，也就没有"攻击动作之后"的附赠打击。
+            # 早先附赠攻击单独结算，于是 10 尺外拿触及 5 尺的爪击照样打得到
+            bonus_attacks = 0
         if bonus_attacks and attacks_n:
             trace.append(f"第 {rnum} 轮附赠动作攻击 +{bonus_attacks} 次")
 
@@ -2109,8 +2126,10 @@ def evaluate(build_doc, env_doc, strategy_doc, ops=None, rage_table=None):
                 use_dice = wdice
                 # 附赠攻击的判定只取决于位置，不取决于是否另设了骰式
                 is_bonus = attacks_n <= i < attacks_n + bonus_attacks
-                if is_bonus:
-                    use_dice = bonus_dice          # 附赠动作攻击用指定骰式
+                if is_bonus and bonus_dice:
+                    # 只有**明确指定**了骰式才替换；没指定就沿用主武器
+                    # 已经算好的骰式（含武艺/武器学识这类替换）
+                    use_dice = bonus_dice
                 a = build_base_attack(resolved, adv_tiers=adv,
                                       rage_active=rage_active, weapon_dice=use_dice,
                                       dtype=wdtype, enhancement=wenh)
